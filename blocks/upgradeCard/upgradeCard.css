@@ -1,0 +1,14 @@
+.upgradeCard {
+  margin: 0;
+  padding: 4px;
+  box-sizing: border-box;
+  width: 172px;
+  height: 96px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #F4F3F480;
+  position: relative;
+  overflow: hidden;
+}

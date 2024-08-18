@@ -1,0 +1,8 @@
+.energyArea__icon {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}

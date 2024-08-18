@@ -1,0 +1,17 @@
+.upgradeCard__level {
+  margin: 0;
+  padding: 0;
+  padding-right: 4px;
+  box-sizing: border-box;
+  width: 62px;
+  text-align: right;
+  border-right: 2px;
+  border-right-style: solid;
+  border-right-color: #161A1D80;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.36px;
+  text-align: center;
+  color: #161A1D;
+}

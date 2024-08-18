@@ -1,0 +1,9 @@
+.wideCard__icon {
+  margin: 0;
+  padding: 0;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #D9D9D933;
+}

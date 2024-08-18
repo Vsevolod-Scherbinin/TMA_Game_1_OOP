@@ -1,0 +1,7 @@
+.userBar__progressBarInner {
+  margin: 0;
+  padding: 0;
+  height: 16px;
+  border-radius: 8px;
+  background: linear-gradient(270deg, #A4161A 0%, #E5383B 100%);
+}

@@ -1,0 +1,10 @@
+.screen__title {
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 33.89px;
+  text-align: center;
+  color: #F5F3F4;
+}

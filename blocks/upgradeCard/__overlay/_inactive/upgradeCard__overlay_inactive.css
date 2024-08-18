@@ -1,0 +1,6 @@
+.upgradeCard__overlay_inactive {
+  background: rgba(186, 186, 186);
+  visibility: visible;
+  display: block;
+  opacity: .7;
+}

@@ -1,0 +1,9 @@
+.navigation__btnName_active {
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 19.36px;
+  text-align: center;
+}

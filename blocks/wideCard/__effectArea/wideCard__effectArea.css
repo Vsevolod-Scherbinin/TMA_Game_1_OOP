@@ -1,0 +1,14 @@
+.wideCard__effectArea {
+  margin: 0;
+  padding: 0 0 0 8px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  border-left: 1.5px solid #4A5551;
+  position: absolute;
+  right: 8px;
+}

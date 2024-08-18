@@ -1,0 +1,11 @@
+.upgradeCard__bottomArea {
+  margin: 0;
+  padding: 4px;
+  height: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-top: 2px;
+  border-top-style: solid;
+  border-top-color: #161A1D80;
+}

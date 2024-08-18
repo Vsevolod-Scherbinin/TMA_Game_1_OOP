@@ -1,0 +1,17 @@
+.tasksScreen__inviteBtn {
+  margin: 0;
+  padding: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 56px;
+  gap: 4px;
+  border-radius: 8px;
+  background: #1982C4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}

@@ -1,0 +1,7 @@
+.wideCard__effectIcon {
+  margin: 0;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}

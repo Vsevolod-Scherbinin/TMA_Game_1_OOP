@@ -1,0 +1,56 @@
+.navigation__button {
+  margin: 0;
+  padding: 4px;
+  box-sizing: border-box;
+  width: 75px;
+  height: 75px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #F4F3F480;
+}
+
+.navigation__button {
+  cursor: pointer;
+}
+
+.navigation__button input[type=radio] {
+	display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.navigation__button label {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000;
+  border-radius: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+}
+
+/* Checked */
+.navigation__button input[type=radio]:checked + label {
+  background: #F460FF;
+}
+
+/* Hover */
+.navigation__button label:hover {
+  background: #F460FF;
+
+}
+
+

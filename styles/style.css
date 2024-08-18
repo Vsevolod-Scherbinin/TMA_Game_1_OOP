@@ -1,0 +1,101 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
+
+@import url(../blocks/page/page.css);
+
+@import url(../blocks/userBar/userBar.css);
+@import url(../blocks/userBar/__progressBar/userBar__progressBar.css);
+@import url(../blocks/userBar/__progressBarInner/userBar__progressBarInner.css);
+@import url(../blocks/userBar/__userLevel/userBar__userLevel.css);
+@import url(../blocks/userBar/__userLevelScoreArea/userBar__userLevelScoreArea.css);
+@import url(../blocks/userBar/__levelScore/userBar__levelScore.css);
+@import url(../blocks/userBar/__userStatus/userBar__userStatus.css);
+@import url(../blocks/userBar/__userName/userBar__userName.css);
+@import url(../blocks/userBar/__userAvatar/userBar__userAvatar.css);
+@import url(../blocks/userBar/__userProfile/userBar__userProfile.css);
+@import url(../blocks/userBar/__levelTitle/userBar__levelTitle.css);
+@import url(../blocks/userBar/__text/userBar__text.css);
+
+@import url(../blocks/scoreArea/scoreArea.css);
+@import url(../blocks/scoreArea/__icon/scoreArea__icon.css);
+@import url(../blocks/scoreArea/__score/scoreArea__score.css);
+
+@import url(../blocks/passiveIncome/passiveIncome.css);
+@import url(../blocks/passiveIncome/__text/passiveIncome__text.css);
+@import url(../blocks/passiveIncome/__icon/passiveIncome__icon.css);
+@import url(../blocks/passiveIncome/__score/passiveIncome__score.css);
+
+@import url(../blocks/screen/screen.css);
+@import url(../blocks/screen/_active/screen_active.css);
+@import url(../blocks/screen/__title/screen__title.css);
+
+@import url(../blocks/mainScreen/mainScreen.css);
+@import url(../blocks/mainScreen/__score/mainScreen__score.css);
+@import url(../blocks/mainScreen/__button/mainScreen__button.css);
+
+@import url(../blocks/energyArea/energyArea.css);
+@import url(../blocks/energyArea/__icon/energyArea__icon.css);
+@import url(../blocks/energyArea/__score/energyArea__score.css);
+@import url(../blocks/energyArea/__slash/energyArea__slash.css);
+@import url(../blocks/energyArea/__limit/energyArea__limit.css);
+
+@import url(../blocks/upgradesScreen/upgradesScreen.css);
+@import url(../blocks/upgradesScreen/__title/upgradesScreen__title.css);
+@import url(../blocks/upgradesScreen/__upgradesField/upgradesScreen__upgradesField.css);
+
+@import url(../blocks/tasksScreen/tasksScreen.css);
+@import url(../blocks/tasksScreen/__title/tasksScreen__title.css);
+@import url(../blocks/tasksScreen/__cardField/tasksScreen__cardField.css);
+@import url(../blocks/tasksScreen/__inviteBtn/tasksScreen__inviteBtn.css);
+@import url(../blocks/tasksScreen/__inviteBtnText/tasksScreen__inviteBtnText.css);
+@import url(../blocks/tasksScreen/__inviteBtnIcon/tasksScreen__inviteBtnIcon.css);
+
+@import url(../blocks/achievementsScreen/achievementsScreen.css);
+@import url(../blocks/achievementsScreen/__title/achievementsScreen__title.css);
+@import url(../blocks/achievementsScreen/__cardField/achievementsScreen__cardField.css);
+
+@import url(../blocks/navigation/navigation.css);
+@import url(../blocks/navigation/__input/navigation__input.css);
+@import url(../blocks/navigation/__button/navigation__button.css);
+@import url(../blocks/navigation/__button/_type/navigation__button_type_main.css);
+@import url(../blocks/navigation/__button/_type/navigation__button_type_upgrades.css);
+@import url(../blocks/navigation/__button/_type/navigation__button_type_tasks.css);
+@import url(../blocks/navigation/__button/_type/navigation__button_type_achievements.css);
+@import url(../blocks/navigation/__btnName/navigation__btnName.css);
+@import url(../blocks/navigation/__btnName/_active/navigation__btnName_active.css);
+
+@import url(../blocks/upgradeCard/upgradeCard.css);
+@import url(../blocks/upgradeCard/__overlay/upgradeCard__overlay.css);
+@import url(../blocks/upgradeCard/__overlay/_inactive/upgradeCard__overlay_inactive.css);
+@import url(../blocks/upgradeCard/__topArea/upgradeCard__topArea.css);
+@import url(../blocks/upgradeCard/__icon/upgradeCard__icon.css);
+@import url(../blocks/upgradeCard/__info/upgradeCard__info.css);
+@import url(../blocks/upgradeCard/__title/upgradeCard__title.css);
+@import url(../blocks/upgradeCard/__text/upgradeCard__text.css);
+@import url(../blocks/upgradeCard/__effectArea/upgradeCard__effectArea.css);
+@import url(../blocks/upgradeCard/__effectIcon/upgradeCard__effectIcon.css);
+@import url(../blocks/upgradeCard/__effect/upgradeCard__effect.css);
+@import url(../blocks/upgradeCard/__bottomArea/upgradeCard__bottomArea.css);
+@import url(../blocks/upgradeCard/__level/upgradeCard__level.css);
+@import url(../blocks/upgradeCard/__costArea/upgradeCard__costArea.css);
+@import url(../blocks/upgradeCard/__coinIcon/upgradeCard__coinIcon.css);
+@import url(../blocks/upgradeCard/__cost/upgradeCard__cost.css);
+
+@import url(../blocks/wideCard/__effectArea/wideCard__effectArea.css);
+@import url(../blocks/wideCard/__effect/wideCard__effect.css);
+@import url(../blocks/wideCard/wideCard.css);
+@import url(../blocks/wideCard/__title/wideCard__title.css);
+@import url(../blocks/wideCard/__icon/wideCard__icon.css);
+@import url(../blocks/wideCard/__description/wideCard__description.css);
+@import url(../blocks/wideCard/__effectIcon/wideCard__effectIcon.css);
+@import url(../blocks/wideCard/__info/wideCard__info.css);
+
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_inactive/popup_inactive.css);
+@import url(../blocks/popup/__overlay/popup__overlay.css);
+@import url(../blocks/popup/__card/popup__card.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__message/popup__message.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__button/popup__button.css);
+@import url(../blocks/popup/__buttonText/popup__buttonText.css);

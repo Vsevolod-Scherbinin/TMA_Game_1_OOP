@@ -1,0 +1,8 @@
+.energyArea {
+  margin: 0;
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
