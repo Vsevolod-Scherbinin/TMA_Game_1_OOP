@@ -18,12 +18,22 @@ class IncomeManager {
     return passiveIncome;
   }
 
+  passiveIncomeRenderer() {
+    const passiveIncomeScoreField = document.querySelector('.passiveIncome__score');
+    passiveIncomeScoreField.textContent = `+${formatNumberWithSpaces(user.passiveIncome)}`;
+  }
+
   cummulativeIncomeCounter() {
     this.user.cummulativeIncome = this.user.cummulativeIncome + this.user.delta;
-    this.saveUserData();
+    // this.saveUserData();
   }
 
   scoreCounter() {
     this.user.score = this.user.score + this.user.delta;
+  }
+
+  scoreRenderer() {
+    const scoreField = document.querySelector('.scoreArea__score');
+    scoreField.textContent = formatNumberWithSpaces(user.score);
   }
 }

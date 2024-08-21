@@ -11,6 +11,14 @@ console.log(user);
 user.loadUserData();
 console.log(user);
 const incomeManager = new IncomeManager(user);
+const upgradeManager = new UpgradeManager(
+  user,
+  incomeManager.scoreCounter(),
+  incomeManager.deltaCounter(),
+  incomeManager.passiveIncomeCounter(),
+  incomeManager.passiveIncomeRenderer(),
+
+);
 
 
 // Move to UserDataLoader
@@ -88,17 +96,9 @@ function popupOpen(obj, level) {
 // --------------- Popup-End ---------------
 
 // --------------- Renderers-Start ---------------
-const formatNumberWithSpaces = (number) => {
-  return new Intl.NumberFormat('en-US', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2,
-      useGrouping: true,
-  }).format(number).replace(/,/g, ' ');
-};
 
 function scoreRenderer() {
   scoreField.textContent = formatNumberWithSpaces(user.score);
-
 }
 
 function passiveIncomeRenderer() {
@@ -140,12 +140,6 @@ function achievementsContentRenderer() {
 // --------------- Renderers-End ---------------
 
 // --------------- Income-Start ---------------
-function deltaCounter() {
-  const currentDeltaLevel = deltaUpgrade.levels.find(upgrade => upgrade.level === user.activeUpgrades.find(upgrade => upgrade.id === 1).level);
-  const currentDelta = currentDeltaLevel.delta;
-  user.delta = currentDelta;
-}
-
 function passiveIncomeCounter() {
   let passiveIncome = 0;
   user.passiveUpgrades.forEach((item) => {
@@ -161,10 +155,6 @@ function passiveIncomeCounter() {
 function cummulativeIncomeCounter() {
   user.cummulativeIncome = user.cummulativeIncome + user.delta;
   user.saveUserData();
-}
-
-function scoreCounter() {
-  user.score = user.score + user.delta;
 }
 
 let timer = 0;
@@ -445,19 +435,19 @@ const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
 // --------------- User-End ---------------
 
 // --------------- Upgrades-Start ---------------
-function checkUpgradeAvailable() {
-  const upgradeCards = document.querySelectorAll('.upgradeCard');
-  upgradeCards.forEach((card) => {
-    const costArea = card.querySelector('.upgradeCard__cost');
-    const overlay = card.querySelector('.upgradeCard__overlay');
-    if(costArea) {
-      const cost = card.querySelector('.upgradeCard__cost').textContent;
-      user.score < cost
-        ? overlay.classList.add('upgradeCard__overlay_inactive')
-        : overlay.classList.remove('upgradeCard__overlay_inactive');
-    }
-  });
-}
+// function upgradeManager.checkUpgradeAvailable() {
+//   const upgradeCards = document.querySelectorAll('.upgradeCard');
+//   upgradeCards.forEach((card) => {
+//     const costArea = card.querySelector('.upgradeCard__cost');
+//     const overlay = card.querySelector('.upgradeCard__overlay');
+//     if(costArea) {
+//       const cost = card.querySelector('.upgradeCard__cost').textContent;
+//       user.score < cost
+//         ? overlay.classList.add('upgradeCard__overlay_inactive')
+//         : overlay.classList.remove('upgradeCard__overlay_inactive');
+//     }
+//   });
+// }
 
 function upgradeFinder(upgradesArray, name) {
   let foundUpgrade;
@@ -506,7 +496,7 @@ function addUpgrade(evt, upgradesArray) {
       } else if (currentUpgradeLevel.delta !== undefined) {
         // console.log('Delta');
         userUpgrade.level++;
-        deltaCounter();
+        incomeManager.deltaCounter();
       } else {
         // console.log('Energy');
         userUpgrade.level++;
@@ -535,7 +525,8 @@ function addUpgrade(evt, upgradesArray) {
         // style
         currentUpgradeCard.classList.add('.upgradeCard_inactive');
         currentUpgradeCard.removeEventListener('click', (evt) => {
-          addUpgrade(evt, upgradesArray);
+          // addUpgrade(evt, upgradesArray);
+          upgradeManager.addUpgrade(evt, upgradesArray);
         });
       }
       user.saveUserData();
@@ -557,7 +548,8 @@ function createUpgradeCard(elem, upgradesArray) {
 
   if(currentUpgrade) {
     upgradeCardElement.querySelector('.upgradeCard').addEventListener('click', (evt) => {
-      addUpgrade(evt, upgradesArray);
+      upgradeManager.addUpgrade(evt, upgradesArray);
+      // addUpgrade(evt, upgradesArray);
     });
 
     upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl ${currentUpgrade.level}`;
@@ -711,14 +703,13 @@ function mainClick() {
     user.activeIncome = user.activeIncome + user.delta;
     setEnergyRecoveryTimeout(false);
     energyRecoveryLooper(false)
-    // scoreCounter();
     incomeManager.scoreCounter();
     scoreRenderer();
     levelProgressCounter();
     energyCounter();
     energyRenderer();
     cummulativeIncomeCounter();
-    checkUpgradeAvailable();
+    upgradeManager.checkUpgradeAvailable();
     // achievementsCheckTaps();
     achievementsContentRenderer();
     // console.log('taps', user.taps);
@@ -792,10 +783,10 @@ window.onload = () => {
   const offlinePassiveIncome = passiveOfflineIncomeCounter(offlineTimeCounter());
   offlinePassiveIncome > 0 && offlineIncomePopupOpen(passiveOfflineIncomeCounter(offlineTimeCounter()));
   screenSwitcher();
-  checkUpgradeAvailable();
+  upgradeManager.checkUpgradeAvailable();
   levelRenderer();
   levelProgressCounter();
-  deltaCounter();
+  incomeManager.deltaCounter();
   user.saveUserData();
   scoreRenderer();
   energyRenderer();
@@ -820,7 +811,7 @@ window.onload = () => {
     passiveOnlineIncomeCounter();
     levelProgressCounter();
     scoreRenderer();
-    checkUpgradeAvailable();
+    upgradeManager.checkUpgradeAvailable();
     // achievementsLevelCheck();
     achievementsContentRenderer();
 
