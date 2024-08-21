@@ -40,27 +40,34 @@ class User {
     console.log(Object.keys(this));
 
     const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
-    console.log(localUserData.score);
 
     if (localUserData === null) {
       Object.keys(userDataModel).forEach((key) => {
-        this.userData[key] = userDataModel[key];
+        console.log(key);
+        console.log(userDataModel[key]);
+        console.log(this[key]);
+
+        this[key] = userDataModel[key];
       });
       activeUpgrades.forEach((upgrade) => {
-        this.userData.activeUpgrades.push({ id: upgrade.id, level: 0 });
+        this.activeUpgrades.push({ id: upgrade.id, level: 0 });
       });
       passiveUpgrades.forEach((upgrade) => {
-        const isUpgradePresent = this.userData.passiveUpgrades.some(obj => obj.id === upgrade.id);
-        !isUpgradePresent && this.userData.passiveUpgrades.push({ id: upgrade.id, level: 0 });
+        const isUpgradePresent = this.passiveUpgrades.some(obj => obj.id === upgrade.id);
+        !isUpgradePresent && this.passiveUpgrades.push({ id: upgrade.id, level: 0 });
       });
       achievements.forEach((achievement) => {
-        this.userData.achievements.push({ id: achievement.id, level: 0 });
+        this.achievements.push({ id: achievement.id, level: 0 });
       });
-      localStorage.setItem('TMAGameUserData', JSON.stringify(this.userData));
+      localStorage.setItem('TMAGameUserData', JSON.stringify(this));
     } else {
       Object.keys(userDataModel).forEach((key) => {
+        console.log(key);
+        console.log(this[key]);
+
+
         this[key] = localUserData[key];
-        this[key] === undefined && (this.userData[key] = userDataModel[key]);
+        this[key] === undefined && (this[key] = userDataModel[key]);
       });
     }
   }
