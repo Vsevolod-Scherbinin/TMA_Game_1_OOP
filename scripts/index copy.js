@@ -6,21 +6,13 @@
 // Updating Model Safe!!!
 // DataBase??
 
-const user = new User(userDataModel);
-console.log(user);
-user.loadUserData();
-console.log(user);
-const incomeManager = new IncomeManager(user);
-
-
 // Move to UserDataLoader
+const userLocalData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
 
-// const userLocalData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
-
-// if(userLocalData !== null) {
-//   const userInstance = new User(userLocalData);
-//   console.log(userInstance);
-// }
+if(userLocalData !== null) {
+  const userInstance = new User(userLocalData);
+  console.log(userInstance);
+}
 
 // const removeAttributes = (element) => {
 //   while (element.attributes.length > 0) {
@@ -37,19 +29,19 @@ function achievementGathering(obj, level) {
   };
   // console.log('newAchievement', newAchievement);
 
-  const isObjectPresent = user.gatheredAchievements.some(obj => obj.id === newAchievement.id);
+  const isObjectPresent = userData.gatheredAchievements.some(obj => obj.id === newAchievement.id);
   // console.log(isObjectPresent);
 
   if(isObjectPresent) {
-    const gatheredAchievement = user.gatheredAchievements.find(obj => obj.id === newAchievement.id);
+    const gatheredAchievement = userData.gatheredAchievements.find(obj => obj.id === newAchievement.id);
     // console.log('gatheredAchievement', gatheredAchievement);
 
     if(gatheredAchievement.level < newAchievement.level) {
-      user.gatheredAchievements.splice(user.gatheredAchievements.indexOf(gatheredAchievement), 1);
-      user.gatheredAchievements.push(newAchievement);
+      userData.gatheredAchievements.splice(userData.gatheredAchievements.indexOf(gatheredAchievement), 1);
+      userData.gatheredAchievements.push(newAchievement);
     }
   } else {
-    user.gatheredAchievements.push(newAchievement);
+    userData.gatheredAchievements.push(newAchievement);
   }
 }
 
@@ -76,8 +68,8 @@ function popupOpen(obj, level) {
   const submit = () => {
     achievementGathering(obj, level);
     obj.metric === 'energyLimit'
-      ? user.energyLimit = user.energyLimit + objLevel.effect
-      : user.score = user.score + objLevel.effect;
+      ? userData.energyLimit = userData.energyLimit + objLevel.effect
+      : userData.score = userData.score + objLevel.effect;
     cardReplacer();
     achievementsLevelCheck();
     scoreRenderer();
@@ -97,20 +89,20 @@ const formatNumberWithSpaces = (number) => {
 };
 
 function scoreRenderer() {
-  scoreField.textContent = formatNumberWithSpaces(user.score);
+  scoreField.textContent = formatNumberWithSpaces(userData.score);
 
 }
 
 function passiveIncomeRenderer() {
-  passiveIncomeScoreField.textContent = `+${formatNumberWithSpaces(user.passiveIncome)}`;
+  passiveIncomeScoreField.textContent = `+${formatNumberWithSpaces(userData.passiveIncome)}`;
 }
 
 function achievementsCardsRenderer() {
-  // console.log('achievements', user.achievements[0]);
+  // console.log('achievements', userData.achievements[0]);
 
   achievements.forEach((elem) => {
     if(elem.id !== 5) {
-      const userLevel = user.achievements.find(obj => obj.id === elem.id).level;
+      const userLevel = userData.achievements.find(obj => obj.id === elem.id).level;
       const card = createAchievementsCard(elem, userLevel);
       achievementCardsField.append(card);
     }
@@ -125,7 +117,7 @@ function achievementsContentRenderer() {
 
     const cardObj = achievements.find(obj => obj.title === card.textContent);
     if(cardObj) {
-      const userAchLevel = user.achievements.find(obj => obj.id === cardObj.id).level;
+      const userAchLevel = userData.achievements.find(obj => obj.id === cardObj.id).level;
       const cardLevel = cardObj.levels.find(obj => obj.level === userAchLevel);
       card.closest('.wideCard').querySelector('.wideCard__icon').src = cardLevel.mainIcon;
       card.closest('.wideCard').querySelector('.wideCard__description').textContent = cardLevel.description;
@@ -133,7 +125,7 @@ function achievementsContentRenderer() {
     }
   });
 
-  user.achievements.forEach((userAch) => {
+  userData.achievements.forEach((userAch) => {
       const found = achievements.find(obj => obj.id === userAch);
   });
 }
@@ -141,14 +133,14 @@ function achievementsContentRenderer() {
 
 // --------------- Income-Start ---------------
 function deltaCounter() {
-  const currentDeltaLevel = deltaUpgrade.levels.find(upgrade => upgrade.level === user.activeUpgrades.find(upgrade => upgrade.id === 1).level);
+  const currentDeltaLevel = deltaUpgrade.levels.find(upgrade => upgrade.level === userData.activeUpgrades.find(upgrade => upgrade.id === 1).level);
   const currentDelta = currentDeltaLevel.delta;
-  user.delta = currentDelta;
+  userData.delta = currentDelta;
 }
 
 function passiveIncomeCounter() {
   let passiveIncome = 0;
-  user.passiveUpgrades.forEach((item) => {
+  userData.passiveUpgrades.forEach((item) => {
     const upgradeFromConstant = passiveUpgrades.find(upgrade => upgrade.id === item.id);
     const upgradeFromConstantLevel = upgradeFromConstant.levels.find(upgrade => upgrade.level === item.level);
     // console.log(upgradeFromConstantLevel.income);
@@ -159,12 +151,12 @@ function passiveIncomeCounter() {
 }
 
 function cummulativeIncomeCounter() {
-  user.cummulativeIncome = user.cummulativeIncome + user.delta;
-  user.saveUserData();
+  userData.cummulativeIncome = userData.cummulativeIncome + userData.delta;
+  saveUserData();
 }
 
 function scoreCounter() {
-  user.score = user.score + user.delta;
+  userData.score = userData.score + userData.delta;
 }
 
 let timer = 0;
@@ -172,8 +164,8 @@ let timer = 0;
 function passiveOnlineIncomeCounter() {
   if(timer < onlinePassiveTimeLimit) {
     const passiveIncome = passiveIncomeCounter();
-    user.score = user.score + Math.round(passiveIncome / 3600);
-    user.cummulativeIncome = user.cummulativeIncome + Math.round(passiveIncome / 3600);
+    userData.score = userData.score + Math.round(passiveIncome / 3600);
+    userData.cummulativeIncome = userData.cummulativeIncome + Math.round(passiveIncome / 3600);
 
     timer++;
   }
@@ -191,6 +183,20 @@ function offlineTimeCounter() {
   }
 }
 
+// function passiveOfflineIncomeCounter(seconds) {
+//   const limit = 3600 * passiveOfflineIncomeHoursLimit;
+//   const passiveIncome = passiveIncomeCounter();
+//   if(seconds < limit) {
+//     userData.score = userData.score + Math.round(passiveIncome / 3600) * seconds;
+//     userData.cummulativeIncome = userData.cummulativeIncome + Math.round(passiveIncome / 3600) * seconds;
+//   } else {
+//     userData.score = userData.score + Math.round(passiveIncome / 3600) * limit;
+//     userData.cummulativeIncome = userData.cummulativeIncome + Math.round(passiveIncome / 3600) * limit;
+//   }
+
+//   saveUserData();
+// }
+
 function passiveOfflineIncomeCounter(seconds) {
   const limit = 3600 * passiveOfflineIncomeHoursLimit;
   const passiveIncome = passiveIncomeCounter();
@@ -205,14 +211,14 @@ function passiveOfflineIncomeCounter(seconds) {
 
 // --------------- Energy-Start ---------------
 function energyUpgradeLimiter() {
-  const currentEnergyLevel = energyUpgrade.levels.find(upgrade => upgrade.level === user.activeUpgrades.find(upgrade => upgrade.id === 2).level);
+  const currentEnergyLevel = energyUpgrade.levels.find(upgrade => upgrade.level === userData.activeUpgrades.find(upgrade => upgrade.id === 2).level);
   const currentEnergyLimit = currentEnergyLevel.energyLimit;
   return currentEnergyLimit;
 }
 
 function energyAchievementLimiter() {
   const energyAchievement = achievements.find(obj => obj.id === 5);
-  const userAchGathered = user.gatheredAchievements.find(obj => obj.id === energyAchievement.id);
+  const userAchGathered = userData.gatheredAchievements.find(obj => obj.id === energyAchievement.id);
   if(userAchGathered) {
     const currentEnergyAchievementLimit = energyAchievement.levels.find(obj => obj.level = userAchGathered.level).effect;
     console.log(currentEnergyAchievementLimit);
@@ -235,12 +241,12 @@ function energyLimitRenderer() {
 }
 
 function energyRenderer() {
-  energyScoreField.textContent = formatNumberWithSpaces(user.energy);
+  energyScoreField.textContent = formatNumberWithSpaces(userData.energy);
 }
 
 function energyCounter() {
-  if(user.energy >= user.delta) {
-    user.energy = user.energy - user.delta;
+  if(userData.energy >= userData.delta) {
+    userData.energy = userData.energy - userData.delta;
   }
 }
 
@@ -257,7 +263,7 @@ function energyRecoveryLooper(start, type) {
   if(start) {
     energyRecoveryInterval = setInterval(() => {
       energyRecovery();
-      if(user.energy >= energyUpgradeLimiter()) {
+      if(userData.energy >= energyUpgradeLimiter()) {
         clearInterval(energyRecoveryInterval);
         type === 'fast' && btnMain.addEventListener('click', mainClick);
       }
@@ -268,29 +274,29 @@ function energyRecoveryLooper(start, type) {
 }
 
 function energyRecovery() {
-  if(user.energy < energyUpgradeLimiter()) {
-    user.energy = user.energy + 3;
-    if(user.energy >= energyUpgradeLimiter()) {
-      user.energy = energyUpgradeLimiter();
+  if(userData.energy < energyUpgradeLimiter()) {
+    userData.energy = userData.energy + 3;
+    if(userData.energy >= energyUpgradeLimiter()) {
+      userData.energy = energyUpgradeLimiter();
     }
   }
   energyRenderer();
-  user.saveUserData();
+  saveUserData();
 }
 
 // --------------- Energy-End ---------------
 
 // --------------- Level-Start ---------------
 function levelRenderer() {
-  levelField.textContent = `${formatNumberWithSpaces(user.level)}`;
+  levelField.textContent = `${formatNumberWithSpaces(userData.level)}`;
 }
 
 function progressBarRenderer(prevLimit, currentLimit) {
-  if(user.cummulativeIncome > 0) {
-    if(user.level === 1) {
+  if(userData.cummulativeIncome > 0) {
+    if(userData.level === 1) {
       prevLimit = 0;
     }
-    const progress = (user.cummulativeIncome - prevLimit) / (currentLimit - prevLimit) * 100;
+    const progress = (userData.cummulativeIncome - prevLimit) / (currentLimit - prevLimit) * 100;
     progressBar.style.width = `${progress}%`;
   } else {
     progressBar.style.width = `0%`;
@@ -318,14 +324,14 @@ function levelLimitCounter(level) {
 // }
 
 function levelProgressCounter() {
-  // const prevLevel = user.level;
+  // const prevLevel = userData.level;
   // console.log('prevLevel', prevLevel);
-  user.level = Math.floor(Math.sqrt((user.cummulativeIncome - c) / a)) + 1 || 1;
-  // levelRewarder(prevLevel, user.level);
-  const prevLimit = levelLimitCounter(user.level-1);
-  const currentLimit = levelLimitCounter(user.level);
+  userData.level = Math.floor(Math.sqrt((userData.cummulativeIncome - c) / a)) + 1 || 1;
+  // levelRewarder(prevLevel, userData.level);
+  const prevLimit = levelLimitCounter(userData.level-1);
+  const currentLimit = levelLimitCounter(userData.level);
 
-  // (user.cummulativeIncome >= currentLimit) && user.level++;
+  // (userData.cummulativeIncome >= currentLimit) && userData.level++;
   progressBarRenderer(prevLimit, currentLimit);
   levelRenderer();
 }
@@ -335,7 +341,7 @@ function levelProgressCounter() {
 function achievementsLevelCheck() {
   // energyAchievementLimiter();
   achievements.forEach((object) => {
-    const isGathered = user.gatheredAchievements.some(obj => obj.id === object.id);
+    const isGathered = userData.gatheredAchievements.some(obj => obj.id === object.id);
 
     // console.log(energyLimiterTotal());
 
@@ -343,12 +349,12 @@ function achievementsLevelCheck() {
 
     object.metric === 'energyLimit'
       ? lessArray = object.levels.filter(obj => obj.limit <= energyLimiterTotal())
-      : lessArray = object.levels.filter(obj => obj.limit <= user[object.metric]);
+      : lessArray = object.levels.filter(obj => obj.limit <= userData[object.metric]);
     const lessLimits = [];
     lessArray.forEach((obj) => {
       lessLimits.push(obj.limit);
     });
-    const userAch = user.achievements.find(obj => obj.id === object.id);
+    const userAch = userData.achievements.find(obj => obj.id === object.id);
     const card = document.querySelector(`.wideCard_id_${object.id}`);
     const handlePopupOpen = () => {
       popupOpen(object, userAch.level);
@@ -358,7 +364,7 @@ function achievementsLevelCheck() {
         userAch.level = 1;
         card.addEventListener('click', handlePopupOpen);
       } else {
-        const gatheredLevel = user.gatheredAchievements.find(obj => obj.id === object.id).level;
+        const gatheredLevel = userData.gatheredAchievements.find(obj => obj.id === object.id).level;
         const availableLevel = lessArray.find(obj => obj.limit === Math.max(...lessLimits)).level + 1;
         userAch.level = gatheredLevel;
         if(gatheredLevel < availableLevel) {
@@ -381,67 +387,67 @@ const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
 // const localUserData = null;
 // localStorage.clear();
 
-// function saveUserData() {
-//   localStorage.setItem('TMAGameUserData1', JSON.stringify(user));
-//   // localStorage.setItem('TMAGameUserData', JSON.stringify(user));
-// }
+function saveUserData() {
+  localStorage.setItem('TMAGameUserData1', JSON.stringify(userData));
+  // localStorage.setItem('TMAGameUserData', JSON.stringify(userData));
+}
 
-// function loadUserData() {
-//   if(localUserData === null) {
-//     console.log('New User');
+function loadUserData() {
+  if(localUserData === null) {
+    console.log('New User');
 
-//     Object.keys(userDataModel).forEach((key) => {
-//       user[key] = userDataModel[key];
-//     })
+    Object.keys(userDataModel).forEach((key) => {
+      userData[key] = userDataModel[key];
+    })
 
-//     activeUpgrades.forEach((upgrade) => {
-//       user.activeUpgrades.push({
-//         id: upgrade.id,
-//         level: 0,
-//       });
-//     })
+    activeUpgrades.forEach((upgrade) => {
+      userData.activeUpgrades.push({
+        id: upgrade.id,
+        level: 0,
+      });
+    })
 
-//     passiveUpgrades.forEach((upgrade) => {
-//       const isUpgradePresent = user.passiveUpgrades.some(obj => obj.id === upgrade.id);
-//       !isUpgradePresent && user.passiveUpgrades.push({
-//         id: upgrade.id,
-//         level: 0,
-//       })
-//     })
+    passiveUpgrades.forEach((upgrade) => {
+      const isUpgradePresent = userData.passiveUpgrades.some(obj => obj.id === upgrade.id);
+      !isUpgradePresent && userData.passiveUpgrades.push({
+        id: upgrade.id,
+        level: 0,
+      })
+    })
 
-//     achievements.forEach((achievement) => {
-//       user.achievements.push({
-//         id: achievement.id,
-//         level: 0,
-//       })
-//     })
+    achievements.forEach((achievement) => {
+      userData.achievements.push({
+        id: achievement.id,
+        level: 0,
+      })
+    })
 
-//     localStorage.setItem('TMAGameUserData1', JSON.stringify(user));
-//     // localStorage.setItem('TMAGameUserData', JSON.stringify(user));
-//     // console.log('New User Made');
-//   } else {
-//     console.log('Old User');
+    localStorage.setItem('TMAGameUserData1', JSON.stringify(userData));
+    // localStorage.setItem('TMAGameUserData', JSON.stringify(userData));
+    // console.log('New User Made');
+  } else {
+    console.log('Old User');
 
-//     Object.keys(userDataModel).forEach((key) => {
-//       // user[key] = userDataModel[key]; // Для обнуления пользователя
-//       user[key] = localUserData[key];
-//       user[key] === undefined && (user[key] = userDataModel[key]);
-//       // console.log(user);
-//     })
-//     // user Additions-Start
+    Object.keys(userDataModel).forEach((key) => {
+      // userData[key] = userDataModel[key]; // Для обнуления пользователя
+      userData[key] = localUserData[key];
+      userData[key] === undefined && (userData[key] = userDataModel[key]);
+      // console.log(userData);
+    })
+    // userData Additions-Start
 
-//     // achievements.forEach((achievement) => {
-//     //   user.achievements.push({
-//     //     id: achievement.id,
-//     //     level: 0,
-//     //   })
-//     // })
+    // achievements.forEach((achievement) => {
+    //   userData.achievements.push({
+    //     id: achievement.id,
+    //     level: 0,
+    //   })
+    // })
 
-//     // user Additions-End
+    // userData Additions-End
 
-//   }
-//   console.log(user);
-// }
+  }
+  console.log(userData);
+}
 // --------------- User-End ---------------
 
 // --------------- Upgrades-Start ---------------
@@ -452,7 +458,7 @@ function checkUpgradeAvailable() {
     const overlay = card.querySelector('.upgradeCard__overlay');
     if(costArea) {
       const cost = card.querySelector('.upgradeCard__cost').textContent;
-      user.score < cost
+      userData.score < cost
         ? overlay.classList.add('upgradeCard__overlay_inactive')
         : overlay.classList.remove('upgradeCard__overlay_inactive');
     }
@@ -476,8 +482,6 @@ function upgradeFinder(upgradesArray, name) {
 }
 
 function addUpgrade(evt, upgradesArray) {
-  console.log(user.score);
-
   // console.log(evt.target);
   const currentUpgradeCard = evt.target.closest('.upgradeCard');
   const currentUpgradeName = currentUpgradeCard.querySelector('.upgradeCard__title').textContent;
@@ -485,7 +489,7 @@ function addUpgrade(evt, upgradesArray) {
   const currentUpgrade = upgradeFinder(upgradesArray, currentUpgradeName);
   // console.log('currentUpgrade', currentUpgrade);
 
-  const userUpgrade = user[upgradesArray][currentUpgrade.id-1];
+  const userUpgrade = userData[upgradesArray][currentUpgrade.id-1];
   const currentUpgradeLevel = currentUpgrade.levels.find(level => level.level === userUpgrade.level+1);
 
   let nextUpgradeLevel;
@@ -494,14 +498,14 @@ function addUpgrade(evt, upgradesArray) {
 
   // Make function purchase() {}
   if(currentUpgradeLevel) {
-    if(user.score >= currentUpgradeLevel.cost) {
-      user.score = user.score - currentUpgradeLevel.cost;
-      user.expences = user.expences + currentUpgradeLevel.cost;
+    if(userData.score >= currentUpgradeLevel.cost) {
+      userData.score = userData.score - currentUpgradeLevel.cost;
+      userData.expences = userData.expences + currentUpgradeLevel.cost;
       scoreRenderer();
       if(currentUpgradeLevel.income !== undefined) {
         // console.log('Income');
         userUpgrade.level++;
-        user.passiveIncome = passiveIncomeCounter();
+        userData.passiveIncome = passiveIncomeCounter();
         passiveIncomeRenderer();
       } else if (currentUpgradeLevel.delta !== undefined) {
         // console.log('Delta');
@@ -511,7 +515,7 @@ function addUpgrade(evt, upgradesArray) {
         // console.log('Energy');
         userUpgrade.level++;
         energyLimitRenderer();
-        // user.energy = energyUpgradeLimiter();
+        // userData.energy = energyUpgradeLimiter();
         energyRecoveryLooper(true, 'fast');
       }
 
@@ -538,7 +542,7 @@ function addUpgrade(evt, upgradesArray) {
           addUpgrade(evt, upgradesArray);
         });
       }
-      user.saveUserData();
+      saveUserData();
     } else {
       // console.log('Недостаточно средств');
     }
@@ -550,7 +554,7 @@ function createUpgradeCard(elem, upgradesArray) {
   upgradeCardElement.querySelector('.upgradeCard__title').textContent = elem.title;
   upgradeCardElement.querySelector('.upgradeCard__icon').src = elem.mainIcon;
   upgradeCardElement.querySelector('.upgradeCard__effectIcon').src = elem.effectIcon;
-  const userUpgradesArray = user[upgradesArray].find(upgrade => upgrade.id === elem.id);
+  const userUpgradesArray = userData[upgradesArray].find(upgrade => upgrade.id === elem.id);
 
   const currentUpgrade = elem.levels.find(level => level.level === userUpgradesArray.level+1);
   const previousUpgrade = elem.levels.find(level => level.level === userUpgradesArray.level);
@@ -706,13 +710,12 @@ function setEnergyRecoveryTimeout(start) {
 }
 
 function mainClick() {
-  if(user.energy > user.delta) {
-    user.taps++;
-    user.activeIncome = user.activeIncome + user.delta;
+  if(userData.energy > userData.delta) {
+    userData.taps++;
+    userData.activeIncome = userData.activeIncome + userData.delta;
     setEnergyRecoveryTimeout(false);
     energyRecoveryLooper(false)
-    // scoreCounter();
-    incomeManager.scoreCounter();
+    scoreCounter();
     scoreRenderer();
     levelProgressCounter();
     energyCounter();
@@ -721,9 +724,8 @@ function mainClick() {
     checkUpgradeAvailable();
     // achievementsCheckTaps();
     achievementsContentRenderer();
-    // console.log('taps', user.taps);
-    // user.saveUserData();
-    user.saveUserData();
+    // console.log('taps', userData.taps);
+    saveUserData();
   }
   setEnergyRecoveryTimeout(true);
 }
@@ -736,9 +738,9 @@ btnMain.addEventListener('click', mainClick);
 function totalExpencesCounter() {
   let activeExpences = 0;
   let passiveExpences = 0;
-  // console.log(user.activeUpgrades);
+  // console.log(userData.activeUpgrades);
 
-  user.activeUpgrades.forEach((upgrade) => {
+  userData.activeUpgrades.forEach((upgrade) => {
     // console.log('upgrade.level', upgrade.level);
 
     for(i = 1; i <= upgrade.level; i++) {
@@ -747,7 +749,7 @@ function totalExpencesCounter() {
   })
   // console.log('activeExpences', activeExpences);
 
-  user.passiveUpgrades.forEach((upgrade) => {
+  userData.passiveUpgrades.forEach((upgrade) => {
     // console.log('upgrade.level', upgrade.level);
 
     for(i = 1; i <= upgrade.level; i++) {
@@ -758,7 +760,7 @@ function totalExpencesCounter() {
 
   const totalExpences = activeExpences + passiveExpences;
   // console.log('totalExpences', totalExpences);
-  user.expences = totalExpences;
+  userData.expences = totalExpences;
 }
 
 // --------------- ServiceFunctions-End ---------------
@@ -771,9 +773,9 @@ function offlineIncomePopupOpen(offlinePassiveIncome) {
   popup.querySelector('.popup__message').textContent = `Поздравляем! Вы заработали $${formatNumberWithSpaces(offlinePassiveIncome)}`;
   popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
   const submit = () => {
-    user.score = user.score + offlinePassiveIncome;
-    user.cummulativeIncome = user.cummulativeIncome + offlinePassiveIncome;
-    user.saveUserData();
+    userData.score = userData.score + offlinePassiveIncome;
+    userData.cummulativeIncome = userData.cummulativeIncome + offlinePassiveIncome;
+    saveUserData();
     scoreRenderer();
     popupClose();
   }
@@ -781,13 +783,13 @@ function offlineIncomePopupOpen(offlinePassiveIncome) {
 }
 
 window.onload = () => {
-  user.loadUserData();
+  loadUserData();
   // ServiceFunctions-Start
     // totalExpencesCounter();
-    // user.score = 60000000;
-    // user.gatheredAchievements = [];
-    user.activeUpgrades[0].level = 0;
-    user.saveUserData();
+    // userData.score = 60000000;
+    // userData.gatheredAchievements = [];
+    userData.activeUpgrades[0].level = 0;
+    saveUserData();
   // ServiceFunctions-End
   const offlinePassiveIncome = passiveOfflineIncomeCounter(offlineTimeCounter());
   offlinePassiveIncome > 0 && offlineIncomePopupOpen(passiveOfflineIncomeCounter(offlineTimeCounter()));
@@ -796,7 +798,7 @@ window.onload = () => {
   levelRenderer();
   levelProgressCounter();
   deltaCounter();
-  user.saveUserData();
+  saveUserData();
   scoreRenderer();
   energyRenderer();
   passiveIncomeCounter();
@@ -808,7 +810,7 @@ window.onload = () => {
   energyLimitRenderer();
   allUpgradesRenderer();
   tasksRenderer();
-  user.saveUserData();
+  saveUserData();
   achievementsCardsRenderer();
   // attributeSetter();
   achievementsLevelCheck();
@@ -824,7 +826,7 @@ window.onload = () => {
     // achievementsLevelCheck();
     achievementsContentRenderer();
 
-    user.saveUserData();
+    saveUserData();
 
     if(timer == onlinePassiveTimeLimit) {
       clearInterval(passiveIncomeTimer);
@@ -832,8 +834,8 @@ window.onload = () => {
   },  1000);
 
   let userOnlineTimer = setInterval(() => {
-    user.timeOnline++;
-    user.saveUserData();
+    userData.timeOnline++;
+    saveUserData();
   },  1000);
 
   energyRecoveryLooper(true, 'normal');
