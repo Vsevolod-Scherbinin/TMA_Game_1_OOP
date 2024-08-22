@@ -783,7 +783,7 @@ window.onload = () => {
   user.loadUserData();
   // ServiceFunctions-Start
     // totalExpencesCounter();
-    // user.score = 60000000;
+    user.score = 100000;
     // user.gatheredAchievements = [];
     // user.activeUpgrades[1].level = 0;
     // user.energy = 500;
