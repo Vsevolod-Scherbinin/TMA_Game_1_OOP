@@ -1,6 +1,7 @@
 class EnergyManager {
   constructor(user) {
     this.user = user;
+    this.energyRecoveryTimeout;
   }
 
   energyUpgradeLimiter() {
@@ -47,6 +48,7 @@ class EnergyManager {
   energyRecoveryLooper(start, type) {
     let energyRecoveryInterval;
     let cycleTime;
+    const btnMain = document.querySelector('.mainScreen__button');
     type === 'normal' && (cycleTime = 1000);
     if(type === 'fast') {
       cycleTime = 25;
@@ -54,7 +56,9 @@ class EnergyManager {
     }
     if(start) {
       energyRecoveryInterval = setInterval(() => {
-        energyRecovery();
+        // console.log(this.user.energy);
+
+        this.energyRecovery();
         if(this.user.energy >= this.energyUpgradeLimiter()) {
           clearInterval(energyRecoveryInterval);
           type === 'fast' && btnMain.addEventListener('click', mainClick);
@@ -78,12 +82,12 @@ class EnergyManager {
 
   setEnergyRecoveryTimeout(start) {
     if(start) {
-      energyRecoveryTimeout = setTimeout(() => {
+      this.energyRecoveryTimeout = setTimeout(() => {
         this.energyRecoveryLooper(true, 'normal');
       }, 1000);
 
     } else {
-      clearTimeout(energyRecoveryTimeout);
+      clearTimeout(this.energyRecoveryTimeout);
     }
   }
 

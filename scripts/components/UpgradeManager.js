@@ -7,7 +7,6 @@ class UpgradeManager {
     energyRecoveryLooper,
     passiveIncomeCounter,
     passiveIncomeRenderer,
-
   ) {
     // Check for Incapsulation
     this.user = user;
@@ -17,6 +16,10 @@ class UpgradeManager {
     this.energyRecoveryLooper = energyRecoveryLooper;
     this.passiveIncomeCounter = passiveIncomeCounter;
     this.passiveIncomeRenderer = passiveIncomeRenderer;
+  }
+
+  saveData() {
+    localStorage.setItem('TMAGameUserData1', JSON.stringify(this.user));
   }
 
   checkUpgradeAvailable() {
@@ -45,55 +48,69 @@ class UpgradeManager {
   addUpgrade(evt, upgradesArray) {
     const currentUpgradeCard = evt.target.closest('.upgradeCard');
     const currentUpgradeName = currentUpgradeCard.querySelector('.upgradeCard__title').textContent;
-    const currentUpgrade = this._upgradeFinder(upgradesArray, currentUpgradeName);
 
-    const userUpgrade = this.user[upgradesArray][currentUpgrade.id - 1];
-    const currentUpgradeLevel = currentUpgrade.levels.find(level => level.level === userUpgrade.level + 1);
-    console.log(currentUpgradeLevel);
+    const currentUpgrade = upgradeFinder(upgradesArray, currentUpgradeName);
+    // console.log('currentUpgrade', currentUpgrade);
+
+    const userUpgrade = this.user[upgradesArray][currentUpgrade.id-1];
+    const currentUpgradeLevel = currentUpgrade.levels.find(level => level.level === userUpgrade.level+1);
 
     let nextUpgradeLevel;
-    (currentUpgradeLevel) && (nextUpgradeLevel = currentUpgrade.levels.find(level => level.level === currentUpgradeLevel.level + 1));
+    (currentUpgradeLevel) && (nextUpgradeLevel = currentUpgrade.levels.find(level => level.level === currentUpgradeLevel.level+1));
+    // console.log('currentUpgradeLevel', currentUpgradeLevel);
 
-    if (currentUpgradeLevel) {
-      if (this.user.score >= currentUpgradeLevel.cost) {
+    // Make function purchase() {}
+    if(currentUpgradeLevel) {
+      if(this.user.score >= currentUpgradeLevel.cost) {
         this.user.score = this.user.score - currentUpgradeLevel.cost;
         this.user.expences = this.user.expences + currentUpgradeLevel.cost;
-        // scoreRenderer();
-        this.scoreRenderer;
-        if (currentUpgradeLevel.income !== undefined) {
+        this.scoreRenderer();
+        if(currentUpgradeLevel.income !== undefined) {
+          // console.log('Income');
           userUpgrade.level++;
-          console.log(this);
-          console.log(this.passiveIncomeCounter);
-
-          this.user.passiveIncome = this.passiveIncomeCounter;
-          this.passiveIncomeRenderer;
+          this.user.passiveIncome = this.passiveIncomeCounter();
+          this.passiveIncomeRenderer();
         } else if (currentUpgradeLevel.delta !== undefined) {
+          // console.log('Delta');
           userUpgrade.level++;
-          this.deltaCounter;
+          this.deltaCounter();
         } else {
+          // console.log('Energy');
           userUpgrade.level++;
-          this.energyLimitRenderer;
-          // Break
-          // this.energyRecoveryLooper(true, 'fast');
-          this.energyRecoveryLooper;
-          if (nextUpgradeLevel) {
-            currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl ${nextUpgradeLevel.level}`;
-            currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.cost)}`;
-            if (nextUpgradeLevel.income !== undefined) {
-              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.income)}`;
-            } else if (nextUpgradeLevel.delta !== undefined) {
-              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.delta)}`;
-            } else {
-              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
-            }
-          } else {
-            currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl Max`;
-            currentUpgradeCard.querySelector('.upgradeCard__costArea').remove();
-            currentUpgradeCard.classList.add('.upgradeCard_inactive');
-            currentUpgradeCard.removeEventListener('click', (evt) => { this.addUpgrade(evt, upgradesArray); });
-          }
-          // this.saveUserData();
+          this.energyLimitRenderer();
+          this.energyRecoveryLooper(true, 'fast');
         }
+
+        // console.log('nextUpgradeLevel', nextUpgradeLevel);
+
+        if(nextUpgradeLevel) {
+          // userUpgrade.level++;
+          currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl ${nextUpgradeLevel.level}`;
+          currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.cost)}`;
+          if(nextUpgradeLevel.income !== undefined) {
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.income)}`;
+          } else if(nextUpgradeLevel.delta !== undefined) {
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.delta)}`;
+          } else {
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
+          }
+        } else {
+          currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl Max`;
+          currentUpgradeCard.querySelector('.upgradeCard__costArea').remove();
+
+          // style
+          currentUpgradeCard.classList.add('.upgradeCard_inactive');
+          currentUpgradeCard.removeEventListener('click', (evt) => {
+            // addUpgrade(evt, upgradesArray);
+            upgradeManager.addUpgrade(evt, upgradesArray);
+          });
+        }
+        console.log('save');
+        console.log(this.user);
+        this.saveData();
+        // this.user.saveUserData(this.user);
+      } else {
+        // console.log('Недостаточно средств');
       }
     }
   }

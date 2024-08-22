@@ -39,7 +39,9 @@ class User {
   loadUserData() {
     console.log(Object.keys(this));
 
-    const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
+    const localUserData = localStorage.getItem('TMAGameUserData1');
+    // const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
+    console.log(localUserData);
 
     if (localUserData === null) {
       Object.keys(userDataModel).forEach((key) => {
@@ -66,7 +68,7 @@ class User {
         console.log(this[key]);
 
 
-        this[key] = localUserData[key];
+        this[key] = JSON.parse(localUserData)[key];
         this[key] === undefined && (this[key] = userDataModel[key]);
       });
     }

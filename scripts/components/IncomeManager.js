@@ -6,6 +6,7 @@ class IncomeManager {
   deltaCounter() {
     const currentDeltaLevel = deltaUpgrade.levels.find(upgrade => upgrade.level === this.user.activeUpgrades.find(upgrade => upgrade.id === 1).level);
     this.user.delta = currentDeltaLevel.delta;
+    console.log('testDelta');
   }
 
   passiveIncomeCounter() {
