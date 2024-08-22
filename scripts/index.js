@@ -11,13 +11,14 @@ console.log(user);
 user.loadUserData();
 console.log(user);
 const incomeManager = new IncomeManager(user);
+const energyManager = new EnergyManager(user);
+
 const upgradeManager = new UpgradeManager(
   user,
   incomeManager.scoreCounter(),
   incomeManager.deltaCounter(),
   incomeManager.passiveIncomeCounter(),
   incomeManager.passiveIncomeRenderer(),
-
 );
 
 
@@ -500,7 +501,8 @@ function addUpgrade(evt, upgradesArray) {
       } else {
         // console.log('Energy');
         userUpgrade.level++;
-        energyLimitRenderer();
+        energyManager.energyLimitRenderer();
+        // energyLimitRenderer();
         // user.energy = energyUpgradeLimiter();
         energyRecoveryLooper(true, 'fast');
       }
@@ -657,6 +659,8 @@ btnAchievements.addEventListener('click', screenSwitcher);
 
 // --------------- CardsRenderer-Start ---------------
 function allUpgradesRenderer() {
+  console.log('Upgrades');
+
   activeUpgrades.forEach((elem) => {
     activeUpgradesField.append(createUpgradeCard(elem, 'activeUpgrades'));
   });
@@ -707,7 +711,7 @@ function mainClick() {
     scoreRenderer();
     levelProgressCounter();
     energyCounter();
-    energyRenderer();
+    energyManager.energyRenderer();
     cummulativeIncomeCounter();
     upgradeManager.checkUpgradeAvailable();
     // achievementsCheckTaps();
@@ -777,7 +781,8 @@ window.onload = () => {
     // totalExpencesCounter();
     // user.score = 60000000;
     // user.gatheredAchievements = [];
-    user.activeUpgrades[0].level = 0;
+    // user.activeUpgrades[0].level = 0;
+    // user.passiveUpgrades[0].level = 0;
     user.saveUserData();
   // ServiceFunctions-End
   const offlinePassiveIncome = passiveOfflineIncomeCounter(offlineTimeCounter());
@@ -796,7 +801,8 @@ window.onload = () => {
   passiveOnlineIncomeCounter();
   energyRenderer();
   energyUpgradeLimiter();
-  energyLimitRenderer();
+  energyManager.energyLimitRenderer();
+  // energyLimitRenderer();
   allUpgradesRenderer();
   tasksRenderer();
   user.saveUserData();

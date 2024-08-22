@@ -19,6 +19,8 @@ class IncomeManager {
   }
 
   passiveIncomeRenderer() {
+    console.log('PI Render');
+
     const passiveIncomeScoreField = document.querySelector('.passiveIncome__score');
     passiveIncomeScoreField.textContent = `+${formatNumberWithSpaces(user.passiveIncome)}`;
   }

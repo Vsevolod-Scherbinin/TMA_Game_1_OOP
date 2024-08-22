@@ -46,8 +46,11 @@ class UpgradeManager {
     const currentUpgradeCard = evt.target.closest('.upgradeCard');
     const currentUpgradeName = currentUpgradeCard.querySelector('.upgradeCard__title').textContent;
     const currentUpgrade = this._upgradeFinder(upgradesArray, currentUpgradeName);
+
     const userUpgrade = this.user[upgradesArray][currentUpgrade.id - 1];
     const currentUpgradeLevel = currentUpgrade.levels.find(level => level.level === userUpgrade.level + 1);
+    console.log(currentUpgradeLevel);
+
     let nextUpgradeLevel;
     (currentUpgradeLevel) && (nextUpgradeLevel = currentUpgrade.levels.find(level => level.level === currentUpgradeLevel.level + 1));
 
@@ -59,6 +62,9 @@ class UpgradeManager {
         this.scoreRenderer;
         if (currentUpgradeLevel.income !== undefined) {
           userUpgrade.level++;
+          console.log(this);
+          console.log(this.passiveIncomeCounter);
+
           this.user.passiveIncome = this.passiveIncomeCounter;
           this.passiveIncomeRenderer;
         } else if (currentUpgradeLevel.delta !== undefined) {
