@@ -17,6 +17,9 @@ const upgradeManager = new UpgradeManager(
   user,
   incomeManager.scoreCounter(),
   incomeManager.deltaCounter(),
+  energyManager.energyLimitRenderer(),
+  // Refactor Looper Arguments
+  energyManager.energyRecoveryLooper(true, 'fast'),
   incomeManager.passiveIncomeCounter(),
   incomeManager.passiveIncomeRenderer(),
 );
@@ -226,7 +229,7 @@ function energyLimitRenderer() {
 }
 
 function energyRenderer() {
-  energyScoreField.textContent = formatNumberWithSpaces(user.energy);
+  // energyScoreField.textContent = formatNumberWithSpaces(user.energy);
 }
 
 function energyCounter() {
@@ -267,6 +270,17 @@ function energyRecovery() {
   }
   energyRenderer();
   user.saveUserData();
+}
+
+function setEnergyRecoveryTimeout(start) {
+  if(start) {
+    energyRecoveryTimeout = setTimeout(() => {
+      energyRecoveryLooper(true, 'normal');
+    }, 1000);
+
+  } else {
+    clearTimeout(energyRecoveryTimeout);
+  }
 }
 
 // --------------- Energy-End ---------------
@@ -690,27 +704,17 @@ function inviteFriends() {
 inviteFriendBtn.addEventListener('click', inviteFriends);
 
 // --------------- MainClick-Start ---------------
-function setEnergyRecoveryTimeout(start) {
-  if(start) {
-    energyRecoveryTimeout = setTimeout(() => {
-      energyRecoveryLooper(true, 'normal');
-    }, 1000);
-
-  } else {
-    clearTimeout(energyRecoveryTimeout);
-  }
-}
 
 function mainClick() {
   if(user.energy > user.delta) {
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
-    setEnergyRecoveryTimeout(false);
-    energyRecoveryLooper(false)
+    energyManager.setEnergyRecoveryTimeout(false);
+    energyManager.energyRecoveryLooper(false)
     incomeManager.scoreCounter();
     scoreRenderer();
     levelProgressCounter();
-    energyCounter();
+    energyManager.energyCounter();
     energyManager.energyRenderer();
     cummulativeIncomeCounter();
     upgradeManager.checkUpgradeAvailable();
@@ -720,7 +724,7 @@ function mainClick() {
     // user.saveUserData();
     user.saveUserData();
   }
-  setEnergyRecoveryTimeout(true);
+  energyManager.setEnergyRecoveryTimeout(true);
 }
 
 btnMain.addEventListener('click', mainClick);
@@ -781,7 +785,8 @@ window.onload = () => {
     // totalExpencesCounter();
     // user.score = 60000000;
     // user.gatheredAchievements = [];
-    // user.activeUpgrades[0].level = 0;
+    // user.activeUpgrades[1].level = 0;
+    // user.energy = 500;
     // user.passiveUpgrades[0].level = 0;
     user.saveUserData();
   // ServiceFunctions-End
@@ -794,13 +799,13 @@ window.onload = () => {
   incomeManager.deltaCounter();
   user.saveUserData();
   scoreRenderer();
-  energyRenderer();
+  energyManager.energyRenderer();
   passiveIncomeCounter();
   passiveIncomeRenderer();
   // passiveOfflineIncomeCounter(offlineTimeCounter());
   passiveOnlineIncomeCounter();
-  energyRenderer();
-  energyUpgradeLimiter();
+  // energyRenderer();
+  energyManager.energyUpgradeLimiter();
   energyManager.energyLimitRenderer();
   // energyLimitRenderer();
   allUpgradesRenderer();
@@ -833,7 +838,7 @@ window.onload = () => {
     user.saveUserData();
   },  1000);
 
-  energyRecoveryLooper(true, 'normal');
+  energyManager.energyRecoveryLooper(true, 'normal');
     if(window.Telegram.WebApp.initDataUnsafe.length>0) {
       nameField.textContent = window.Telegram.WebApp.initDataUnsafe.user.first_name;
     }

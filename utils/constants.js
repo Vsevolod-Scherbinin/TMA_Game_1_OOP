@@ -17,8 +17,8 @@ const btnAchievements = document.querySelector('.navigation__button_type_achieve
 
 const mainScreen = document.querySelector('.mainScreen');
 const passiveIncomeScoreField = document.querySelector('.passiveIncome__score');
-const energyScoreField = document.querySelector('.energyArea__score');
-const energyLimitField = document.querySelector('.energyArea__limit');
+// const energyScoreField = document.querySelector('.energyArea__score');
+// const energyLimitField = document.querySelector('.energyArea__limit');
 
 const upgradesScreen = document.querySelector('.upgradesScreen');
 const passiveUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_passive');

@@ -74,16 +74,17 @@ class UpgradeManager {
           userUpgrade.level++;
           this.energyLimitRenderer;
           // Break
-          this.energyRecoveryLooper(true, 'fast');
+          // this.energyRecoveryLooper(true, 'fast');
+          this.energyRecoveryLooper;
           if (nextUpgradeLevel) {
             currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl ${nextUpgradeLevel.level}`;
-            currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${this.formatNumberWithSpaces(nextUpgradeLevel.cost)}`;
+            currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.cost)}`;
             if (nextUpgradeLevel.income !== undefined) {
-              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${this.formatNumberWithSpaces(nextUpgradeLevel.income)}`;
+              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.income)}`;
             } else if (nextUpgradeLevel.delta !== undefined) {
-              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${this.formatNumberWithSpaces(nextUpgradeLevel.delta)}`;
+              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.delta)}`;
             } else {
-              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${this.formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
+              currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
             }
           } else {
             currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl Max`;
@@ -91,7 +92,7 @@ class UpgradeManager {
             currentUpgradeCard.classList.add('.upgradeCard_inactive');
             currentUpgradeCard.removeEventListener('click', (evt) => { this.addUpgrade(evt, upgradesArray); });
           }
-          this.saveUserData();
+          // this.saveUserData();
         }
       }
     }
