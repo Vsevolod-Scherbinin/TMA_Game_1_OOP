@@ -443,7 +443,7 @@ window.onload = () => {
   user.saveUserData();
   achievementManager.achievementsCardsRenderer();
   // attributeSetter();
-  achievementsLevelCheck();
+  achievementManager.achievementsLevelCheck();
   achievementManager.achievementsContentRenderer();
 
   // Make separate function as energy

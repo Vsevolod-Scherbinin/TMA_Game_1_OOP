@@ -32,7 +32,7 @@ class PopupManager {
     this.popup.querySelector('.popup__image').src = objLevel.mainIcon;
     console.log(objLevel.effect);
     const card = document.querySelector(`.wideCard_id_${obj.id}`);
-    const submit = (obj, level) => {
+    const submit = () => {
       this.achievementGathering(obj, level);
       if (obj.metric === 'energyLimit') {
         user.energyLimit = user.energyLimit + objLevel.effect

@@ -3,13 +3,26 @@ class AchievementManager {
     this.user = user;
   }
 
+  createAchievementsCard(elem, level) {
+    const levelData = elem.levels.find(obj => obj.level === level);
+    const achievementCardElement = wideCardTemplate.cloneNode(true);
+    achievementCardElement.querySelector('.wideCard').classList.add(`wideCard_type_achievement`);
+    achievementCardElement.querySelector('.wideCard').classList.add(`wideCard_id_${elem.id}`);
+    achievementCardElement.querySelector('.wideCard__icon').src = levelData.mainIcon;
+    achievementCardElement.querySelector('.wideCard__title').textContent = elem.title;
+    achievementCardElement.querySelector('.wideCard__description').textContent = levelData.description;
+    achievementCardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
+    achievementCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(levelData.effect)}`;
+    return achievementCardElement;
+  }
+
   achievementsCardsRenderer() {
     // console.log('achievements', user.achievements[0]);
 
     achievements.forEach((elem) => {
       if(elem.id !== 5) {
         const userLevel = this.user.achievements.find(obj => obj.id === elem.id).level;
-        const card = createAchievementsCard(elem, userLevel);
+        const card = this.createAchievementsCard(elem, userLevel);
         const achievementCardsField = document.querySelector('.achievementsScreen__cardField');
         achievementCardsField.append(card);
       }
@@ -24,7 +37,8 @@ class AchievementManager {
 
       const cardObj = achievements.find(obj => obj.title === card.textContent);
       if(cardObj) {
-        const userAchLevel = user.achievements.find(obj => obj.id === cardObj.id).level;
+        const userAchLevel = this.user.achievements.find(obj => obj.id === cardObj.id).level;
+        // console.log(userAchLevel);
         const cardLevel = cardObj.levels.find(obj => obj.level === userAchLevel);
         card.closest('.wideCard').querySelector('.wideCard__icon').src = cardLevel.mainIcon;
         card.closest('.wideCard').querySelector('.wideCard__description').textContent = cardLevel.description;
@@ -40,7 +54,7 @@ class AchievementManager {
   achievementsLevelCheck() {
     // energyAchievementLimiter();
     achievements.forEach((object) => {
-      const isGathered = user.gatheredAchievements.some(obj => obj.id === object.id);
+      const isGathered = this.user.gatheredAchievements.some(obj => obj.id === object.id);
 
       // console.log(energyLimiterTotal());
 
@@ -48,12 +62,12 @@ class AchievementManager {
 
       object.metric === 'energyLimit'
         ? lessArray = object.levels.filter(obj => obj.limit <= energyLimiterTotal())
-        : lessArray = object.levels.filter(obj => obj.limit <= user[object.metric]);
+        : lessArray = object.levels.filter(obj => obj.limit <= this.user[object.metric]);
       const lessLimits = [];
       lessArray.forEach((obj) => {
         lessLimits.push(obj.limit);
       });
-      const userAch = user.achievements.find(obj => obj.id === object.id);
+      const userAch = this.user.achievements.find(obj => obj.id === object.id);
       const card = document.querySelector(`.wideCard_id_${object.id}`);
       const handlePopupOpen = () => {
         popupManager.popupOpen(object, userAch.level);
@@ -63,7 +77,7 @@ class AchievementManager {
           userAch.level = 1;
           card.addEventListener('click', handlePopupOpen);
         } else {
-          const gatheredLevel = user.gatheredAchievements.find(obj => obj.id === object.id).level;
+          const gatheredLevel = this.user.gatheredAchievements.find(obj => obj.id === object.id).level;
           const availableLevel = lessArray.find(obj => obj.limit === Math.max(...lessLimits)).level + 1;
           userAch.level = gatheredLevel;
           if(gatheredLevel < availableLevel) {
@@ -78,28 +92,34 @@ class AchievementManager {
   };
 
   achievementGathering(obj, level) {
-    // console.log(obj);
+    console.log('obj', obj);
 
     const newAchievement = {
       id: obj.id,
       level: level,
     };
-    // console.log('newAchievement', newAchievement);
+    console.log('newAchievement', newAchievement);
 
-    const isObjectPresent = user.gatheredAchievements.some(obj => obj.id === newAchievement.id);
-    // console.log(isObjectPresent);
+    console.log(this.user.gatheredAchievements);
+
+    const isObjectPresent = this.user.gatheredAchievements.some(obj => obj.id === newAchievement.id);
+    console.log('isObjectPresent', isObjectPresent);
 
     if(isObjectPresent) {
-      const gatheredAchievement = user.gatheredAchievements.find(obj => obj.id === newAchievement.id);
+      const gatheredAchievement = this.user.gatheredAchievements.find(obj => obj.id === newAchievement.id);
       // console.log('gatheredAchievement', gatheredAchievement);
 
       if(gatheredAchievement.level < newAchievement.level) {
-        user.gatheredAchievements.splice(user.gatheredAchievements.indexOf(gatheredAchievement), 1);
-        user.gatheredAchievements.push(newAchievement);
+        this.user.gatheredAchievements.splice(this.user.gatheredAchievements.indexOf(gatheredAchievement), 1);
+        this.user.gatheredAchievements.push(newAchievement);
       }
     } else {
-      user.gatheredAchievements.push(newAchievement);
-    }
-  }
 
+      this.user.gatheredAchievements.push(newAchievement);
+      console.log(this.user);
+
+    }
+
+    this.user.saveUserData();
+  }
 }
