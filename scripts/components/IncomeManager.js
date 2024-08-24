@@ -23,7 +23,27 @@ class IncomeManager {
     console.log('PI Render');
 
     const passiveIncomeScoreField = document.querySelector('.passiveIncome__score');
-    passiveIncomeScoreField.textContent = `+${formatNumberWithSpaces(user.passiveIncome)}`;
+    passiveIncomeScoreField.textContent = `${formatNumberWithSpaces(user.passiveIncome)}`;
+  }
+
+  passiveOnlineIncomeCounter() {
+    if(timer < onlinePassiveTimeLimit) {
+      const passiveIncome = this.passiveIncomeCounter();
+      this.user.score = this.user.score + Math.round(passiveIncome / 3600);
+      this.user.cummulativeIncome = this.user.cummulativeIncome + Math.round(passiveIncome / 3600);
+
+      timer++;
+    }
+  }
+
+  passiveOfflineIncomeCounter(seconds) {
+    const limit = 3600 * passiveOfflineIncomeHoursLimit;
+    const passiveIncome = this.passiveIncomeCounter();
+    if(seconds < limit) {
+      return Math.round(passiveIncome / 3600) * seconds;
+    } else {
+      return Math.round(passiveIncome / 3600) * limit;
+    }
   }
 
   cummulativeIncomeCounter() {

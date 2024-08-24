@@ -1,11 +1,17 @@
 // ToDo
+// Classes
+  // Popup & Achievements
+  // LevelManager
+
 // Fonts
-// Review Multiple Energy Upgrade Addition
+// New Icons
 
 // Later
 // Friends!!
 // Updating Model Safe!!!
 // DataBase??
+
+// Clean constants
 
 const user = new User(userDataModel);
 console.log(user);
@@ -13,8 +19,6 @@ user.loadUserData();
 console.log(user);
 const incomeManager = new IncomeManager(user);
 const energyManager = new EnergyManager(user);
-
-  // Refactor Looper Arguments
 const upgradeManager = new UpgradeManager(
   user,
   incomeManager.scoreCounter.bind(incomeManager),
@@ -25,21 +29,7 @@ const upgradeManager = new UpgradeManager(
   incomeManager.passiveIncomeRenderer.bind(incomeManager),
 );
 
-
-// Move to UserDataLoader
-
-// const userLocalData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
-
-// if(userLocalData !== null) {
-//   const userInstance = new User(userLocalData);
-//   console.log(userInstance);
-// }
-
-// const removeAttributes = (element) => {
-//   while (element.attributes.length > 0) {
-//       element.removeAttribute(element.attributes[0].name);
-//   }
-// };
+const popup = new Popup ('.popup');
 
 function achievementGathering(obj, level) {
   // console.log(obj);
@@ -102,14 +92,6 @@ function popupOpen(obj, level) {
 
 // --------------- Renderers-Start ---------------
 
-function scoreRenderer() {
-  scoreField.textContent = formatNumberWithSpaces(user.score);
-}
-
-function passiveIncomeRenderer() {
-  passiveIncomeScoreField.textContent = `+${formatNumberWithSpaces(user.passiveIncome)}`;
-}
-
 function achievementsCardsRenderer() {
   // console.log('achievements', user.achievements[0]);
 
@@ -144,36 +126,7 @@ function achievementsContentRenderer() {
 }
 // --------------- Renderers-End ---------------
 
-// --------------- Income-Start ---------------
-function passiveIncomeCounter() {
-  let passiveIncome = 0;
-  user.passiveUpgrades.forEach((item) => {
-    const upgradeFromConstant = passiveUpgrades.find(upgrade => upgrade.id === item.id);
-    const upgradeFromConstantLevel = upgradeFromConstant.levels.find(upgrade => upgrade.level === item.level);
-    // console.log(upgradeFromConstantLevel.income);
-
-    passiveIncome = passiveIncome + upgradeFromConstantLevel.income;
-  })
-  return passiveIncome;
-}
-
-function cummulativeIncomeCounter() {
-  user.cummulativeIncome = user.cummulativeIncome + user.delta;
-  user.saveUserData();
-}
-
 let timer = 0;
-
-function passiveOnlineIncomeCounter() {
-  if(timer < onlinePassiveTimeLimit) {
-    const passiveIncome = passiveIncomeCounter();
-    user.score = user.score + Math.round(passiveIncome / 3600);
-    user.cummulativeIncome = user.cummulativeIncome + Math.round(passiveIncome / 3600);
-
-    timer++;
-  }
-}
-
 
 function offlineTimeCounter() {
   const closureDate = localStorage.getItem('closureTime');
@@ -185,18 +138,6 @@ function offlineTimeCounter() {
     return timeDeltaInSeconds;
   }
 }
-
-function passiveOfflineIncomeCounter(seconds) {
-  const limit = 3600 * passiveOfflineIncomeHoursLimit;
-  const passiveIncome = passiveIncomeCounter();
-  if(seconds < limit) {
-    return Math.round(passiveIncome / 3600) * seconds;
-  } else {
-    return Math.round(passiveIncome / 3600) * limit;
-  }
-}
-
-// --------------- Income-End ---------------
 
 // --------------- Level-Start ---------------
 function levelRenderer() {
@@ -223,6 +164,7 @@ function levelLimitCounter(level) {
   return levelLimit;
 }
 
+// To Income Manager or LevelManager
 // function levelRewarder(prevLevel, currentLevel) {
 //   const levelDelta = currentLevel - prevLevel;
 //   const rewardMultiplier = 10;
@@ -269,7 +211,7 @@ function achievementsLevelCheck() {
     const userAch = user.achievements.find(obj => obj.id === object.id);
     const card = document.querySelector(`.wideCard_id_${object.id}`);
     const handlePopupOpen = () => {
-      popupOpen(object, userAch.level);
+      popup.popupOpen(object, userAch.level);
     }
     if(lessArray.length) {
       if(!isGathered) {
@@ -298,11 +240,6 @@ const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
 // const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData'));
 // const localUserData = null;
 // localStorage.clear();
-
-// function saveUserData() {
-//   localStorage.setItem('TMAGameUserData1', JSON.stringify(user));
-//   // localStorage.setItem('TMAGameUserData', JSON.stringify(user));
-// }
 
 // function loadUserData() {
 //   if(localUserData === null) {
@@ -363,20 +300,6 @@ const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
 // --------------- User-End ---------------
 
 // --------------- Upgrades-Start ---------------
-// function upgradeManager.checkUpgradeAvailable() {
-//   const upgradeCards = document.querySelectorAll('.upgradeCard');
-//   upgradeCards.forEach((card) => {
-//     const costArea = card.querySelector('.upgradeCard__cost');
-//     const overlay = card.querySelector('.upgradeCard__overlay');
-//     if(costArea) {
-//       const cost = card.querySelector('.upgradeCard__cost').textContent;
-//       user.score < cost
-//         ? overlay.classList.add('upgradeCard__overlay_inactive')
-//         : overlay.classList.remove('upgradeCard__overlay_inactive');
-//     }
-//   });
-// }
-
 function upgradeFinder(upgradesArray, name) {
   let foundUpgrade;
   if(upgradesArray == 'activeUpgrades') {
@@ -393,78 +316,6 @@ function upgradeFinder(upgradesArray, name) {
   return currentUpgrade;
 }
 
-function addUpgrade(evt, upgradesArray) {
-  console.log(user.score);
-
-  // console.log(evt.target);
-  const currentUpgradeCard = evt.target.closest('.upgradeCard');
-  const currentUpgradeName = currentUpgradeCard.querySelector('.upgradeCard__title').textContent;
-
-  const currentUpgrade = upgradeFinder(upgradesArray, currentUpgradeName);
-  // console.log('currentUpgrade', currentUpgrade);
-
-  const userUpgrade = user[upgradesArray][currentUpgrade.id-1];
-  const currentUpgradeLevel = currentUpgrade.levels.find(level => level.level === userUpgrade.level+1);
-
-  let nextUpgradeLevel;
-  (currentUpgradeLevel) && (nextUpgradeLevel = currentUpgrade.levels.find(level => level.level === currentUpgradeLevel.level+1));
-  // console.log('currentUpgradeLevel', currentUpgradeLevel);
-
-  // Make function purchase() {}
-  if(currentUpgradeLevel) {
-    if(user.score >= currentUpgradeLevel.cost) {
-      user.score = user.score - currentUpgradeLevel.cost;
-      user.expences = user.expences + currentUpgradeLevel.cost;
-      scoreRenderer();
-      if(currentUpgradeLevel.income !== undefined) {
-        // console.log('Income');
-        userUpgrade.level++;
-        user.passiveIncome = passiveIncomeCounter();
-        passiveIncomeRenderer();
-      } else if (currentUpgradeLevel.delta !== undefined) {
-        // console.log('Delta');
-        userUpgrade.level++;
-        incomeManager.deltaCounter();
-      } else {
-        // console.log('Energy');
-        userUpgrade.level++;
-        energyManager.energyLimitRenderer();
-        // energyLimitRenderer();
-        // user.energy = energyUpgradeLimiter();
-        energyRecoveryLooper(true, 'fast');
-      }
-
-      // console.log('nextUpgradeLevel', nextUpgradeLevel);
-
-      if(nextUpgradeLevel) {
-        // userUpgrade.level++;
-        currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl ${nextUpgradeLevel.level}`;
-        currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.cost)}`;
-        if(nextUpgradeLevel.income !== undefined) {
-          currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.income)}`;
-        } else if(nextUpgradeLevel.delta !== undefined) {
-          currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.delta)}`;
-        } else {
-          currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
-        }
-      } else {
-        currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl Max`;
-        currentUpgradeCard.querySelector('.upgradeCard__costArea').remove();
-
-        // style
-        currentUpgradeCard.classList.add('.upgradeCard_inactive');
-        currentUpgradeCard.removeEventListener('click', (evt) => {
-          // addUpgrade(evt, upgradesArray);
-          upgradeManager.addUpgrade(evt, upgradesArray);
-        });
-      }
-      user.saveUserData();
-    } else {
-      // console.log('Недостаточно средств');
-    }
-  }
-}
-
 function createUpgradeCard(elem, upgradesArray) {
   const upgradeCardElement = upgradeCardTemplate.cloneNode(true);
   upgradeCardElement.querySelector('.upgradeCard__title').textContent = elem.title;
@@ -478,25 +329,24 @@ function createUpgradeCard(elem, upgradesArray) {
   if(currentUpgrade) {
     upgradeCardElement.querySelector('.upgradeCard').addEventListener('click', (evt) => {
       upgradeManager.addUpgrade(evt, upgradesArray);
-      // addUpgrade(evt, upgradesArray);
     });
 
     upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl ${currentUpgrade.level}`;
     upgradeCardElement.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(currentUpgrade.cost)}`;
 
     currentUpgrade.income !== undefined
-      ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(currentUpgrade.income)}`
+      ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.income)}/час`
       : currentUpgrade.delta !== undefined
-        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(currentUpgrade.delta)}`
+        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.delta)}/клик`
         : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.energyLimit)}`;
   } else {
     upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl Max`;
     upgradeCardElement.querySelector('.upgradeCard__costArea').remove();
 
     previousUpgrade.income !== undefined
-      ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(previousUpgrade.income)}`
+      ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.income)}`
       : previousUpgrade.delta !== undefined
-        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(previousUpgrade.delta)}`
+        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.delta)}`
         : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.energyLimit)}`;
   }
 
@@ -687,7 +537,7 @@ function offlineIncomePopupOpen(offlinePassiveIncome) {
     user.cummulativeIncome = user.cummulativeIncome + offlinePassiveIncome;
     user.saveUserData();
     incomeManager.scoreRenderer();
-    popupClose();
+    popup.popupClose();
   }
   popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
 }
@@ -696,15 +546,15 @@ window.onload = () => {
   user.loadUserData();
   // ServiceFunctions-Start
     // totalExpencesCounter();
-    user.score = 100000;
+    // user.score = 100000;
     // user.gatheredAchievements = [];
     // user.activeUpgrades[0].level = 0;
     // user.energy = 500;
     // user.passiveUpgrades[0].level = 0;
     user.saveUserData();
   // ServiceFunctions-End
-  const offlinePassiveIncome = passiveOfflineIncomeCounter(offlineTimeCounter());
-  offlinePassiveIncome > 0 && offlineIncomePopupOpen(passiveOfflineIncomeCounter(offlineTimeCounter()));
+  const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter(offlineTimeCounter());
+  // offlinePassiveIncome > 0 && offlineIncomePopupOpen(offlinePassiveIncome);
   screenSwitcher();
   upgradeManager.checkUpgradeAvailable();
   levelRenderer();
@@ -715,8 +565,7 @@ window.onload = () => {
   energyManager.energyRenderer();
   incomeManager.passiveIncomeCounter();
   incomeManager.passiveIncomeRenderer();
-  // passiveOfflineIncomeCounter(offlineTimeCounter());
-  passiveOnlineIncomeCounter();
+  incomeManager.passiveOnlineIncomeCounter();
   // energyRenderer();
   energyManager.energyUpgradeLimiter();
   energyManager.energyLimitRenderer();
@@ -732,7 +581,7 @@ window.onload = () => {
   // Make separate function as energy
   let passiveIncomeTimer = setInterval(() => {
     // Move unlimited functions to userOnlineTimer
-    passiveOnlineIncomeCounter();
+    incomeManager.passiveOnlineIncomeCounter();
     levelProgressCounter();
     incomeManager.scoreRenderer();
     upgradeManager.checkUpgradeAvailable();

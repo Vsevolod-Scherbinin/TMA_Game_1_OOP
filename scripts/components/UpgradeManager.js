@@ -18,10 +18,6 @@ class UpgradeManager {
     this.passiveIncomeRenderer = passiveIncomeRenderer;
   }
 
-  saveData() {
-    localStorage.setItem('TMAGameUserData1', JSON.stringify(this.user));
-  }
-
   checkUpgradeAvailable() {
     const upgradeCards = document.querySelectorAll('.upgradeCard');
     upgradeCards.forEach((card) => {
@@ -88,11 +84,11 @@ class UpgradeManager {
           currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl ${nextUpgradeLevel.level}`;
           currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.cost)}`;
           if(nextUpgradeLevel.income !== undefined) {
-            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.income)}`;
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.income)}`;
           } else if(nextUpgradeLevel.delta !== undefined) {
-            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.delta)}`;
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.delta)}`;
           } else {
-            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `+${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
           }
         } else {
           currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl Max`;
@@ -107,8 +103,7 @@ class UpgradeManager {
         }
         console.log('save');
         console.log(this.user);
-        this.saveData();
-        // this.user.saveUserData(this.user);
+        this.user.saveUserData();
       } else {
         // console.log('Недостаточно средств');
       }

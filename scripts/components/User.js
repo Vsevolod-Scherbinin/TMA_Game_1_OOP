@@ -37,13 +37,13 @@ class User {
   }
 
   loadUserData() {
-    console.log(Object.keys(this));
+    // console.log(Object.keys(this));
 
     const localUserData = localStorage.getItem('TMAGameUserData1');
-    // const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
     console.log(localUserData);
 
     if (localUserData === null) {
+      console.log('New User');
       Object.keys(userDataModel).forEach((key) => {
         console.log(key);
         console.log(userDataModel[key]);
@@ -61,12 +61,11 @@ class User {
       achievements.forEach((achievement) => {
         this.achievements.push({ id: achievement.id, level: 0 });
       });
-      localStorage.setItem('TMAGameUserData', JSON.stringify(this));
+      localStorage.setItem('TMAGameUserData1', JSON.stringify(this));
     } else {
       Object.keys(userDataModel).forEach((key) => {
         console.log(key);
         console.log(this[key]);
-
 
         this[key] = JSON.parse(localUserData)[key];
         this[key] === undefined && (this[key] = userDataModel[key]);

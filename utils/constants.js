@@ -34,7 +34,7 @@ const achievementCardsField = document.querySelector('.achievementsScreen__cardF
 const upgradeCardTemplate = document.querySelector('#upgradeCard').content;
 const wideCardTemplate = document.querySelector('#wideCard').content;
 
-const popup = document.querySelector('.popup');
+// const popup = document.querySelector('.popup');
 const popupTitle = document.querySelector('.popup__title');
 const popupMessage = document.querySelector('.popup__message');
 const popupImage = document.querySelector('.popup__image');
