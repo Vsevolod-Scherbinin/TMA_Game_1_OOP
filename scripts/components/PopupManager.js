@@ -3,10 +3,12 @@ class PopupManager {
     user,
     scoreRenderer,
     achievementGathering,
+    achievementsLevelCheck,
   ) {
     this.user = user;
     this.scoreRenderer = scoreRenderer;
     this.achievementGathering = achievementGathering;
+    this.achievementsLevelCheck = achievementsLevelCheck;
     this.popup = document.querySelector('.popup');
   }
 
@@ -42,7 +44,7 @@ class PopupManager {
 
       }
       this.cardReplacer();
-      achievementsLevelCheck();
+      this.achievementsLevelCheck();
       this.scoreRenderer();
       this.popupClose();
     }

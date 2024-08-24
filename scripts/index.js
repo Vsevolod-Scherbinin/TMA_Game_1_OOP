@@ -34,43 +34,8 @@ const popupManager = new PopupManager (
   user,
   incomeManager.scoreCounter.bind(incomeManager),
   achievementManager.achievementGathering.bind(achievementManager),
+  achievementManager.achievementsLevelCheck.bind(achievementManager),
 );
-
-// --------------- Popup-Start ---------------
-function popupClose() {
-  popup.classList.add('popup_inactive');
-}
-
-function cardReplacer() {
-  const cards = document.querySelectorAll('.wideCard_type_achievement');
-  cards.forEach((card) => {
-    card.replaceWith(card.cloneNode(true));
-  });
-}
-// --------------- Popup-End ---------------
-
-// --------------- Renderers-Start ---------------
-function achievementsContentRenderer() {
-  const cards = document.querySelectorAll('.wideCard__title');
-
-  cards.forEach((card) => {
-    // console.log(card);
-
-    const cardObj = achievements.find(obj => obj.title === card.textContent);
-    if(cardObj) {
-      const userAchLevel = user.achievements.find(obj => obj.id === cardObj.id).level;
-      const cardLevel = cardObj.levels.find(obj => obj.level === userAchLevel);
-      card.closest('.wideCard').querySelector('.wideCard__icon').src = cardLevel.mainIcon;
-      card.closest('.wideCard').querySelector('.wideCard__description').textContent = cardLevel.description;
-      card.closest('.wideCard').querySelector('.wideCard__effect').textContent = formatNumberWithSpaces(cardLevel.effect);
-    }
-  });
-
-  user.achievements.forEach((userAch) => {
-      const found = achievements.find(obj => obj.id === userAch);
-  });
-}
-// --------------- Renderers-End ---------------
 
 let timer = 0;
 
