@@ -36,31 +36,6 @@ const popupManager = new PopupManager (
   achievementManager.achievementGathering.bind(achievementManager),
 );
 
-function achievementGathering(obj, level) {
-  // console.log(obj);
-
-  const newAchievement = {
-    id: obj.id,
-    level: level,
-  };
-  // console.log('newAchievement', newAchievement);
-
-  const isObjectPresent = user.gatheredAchievements.some(obj => obj.id === newAchievement.id);
-  // console.log(isObjectPresent);
-
-  if(isObjectPresent) {
-    const gatheredAchievement = user.gatheredAchievements.find(obj => obj.id === newAchievement.id);
-    // console.log('gatheredAchievement', gatheredAchievement);
-
-    if(gatheredAchievement.level < newAchievement.level) {
-      user.gatheredAchievements.splice(user.gatheredAchievements.indexOf(gatheredAchievement), 1);
-      user.gatheredAchievements.push(newAchievement);
-    }
-  } else {
-    user.gatheredAchievements.push(newAchievement);
-  }
-}
-
 // --------------- Popup-Start ---------------
 function popupClose() {
   popup.classList.add('popup_inactive');
@@ -453,7 +428,7 @@ window.onload = () => {
     levelProgressCounter();
     incomeManager.scoreRenderer();
     upgradeManager.checkUpgradeAvailable();
-    // achievementsLevelCheck();
+    achievementManager.achievementsLevelCheck();
     achievementManager.achievementsContentRenderer();
 
     user.saveUserData();
