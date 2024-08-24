@@ -40,7 +40,7 @@ class User {
     // console.log(Object.keys(this));
 
     const localUserData = localStorage.getItem('TMAGameUserData1');
-    console.log(localUserData);
+    // console.log(localUserData);
 
     if (localUserData === null) {
       console.log('New User');
@@ -63,13 +63,15 @@ class User {
       });
       localStorage.setItem('TMAGameUserData1', JSON.stringify(this));
     } else {
+      console.log('Old User');
       Object.keys(userDataModel).forEach((key) => {
-        console.log(key);
-        console.log(this[key]);
+        // console.log(key);
+        // console.log(this[key]);
 
         this[key] = JSON.parse(localUserData)[key];
         this[key] === undefined && (this[key] = userDataModel[key]);
       });
+
     }
   }
 

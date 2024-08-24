@@ -6,7 +6,6 @@ class IncomeManager {
   deltaCounter() {
     const currentDeltaLevel = deltaUpgrade.levels.find(upgrade => upgrade.level === this.user.activeUpgrades.find(upgrade => upgrade.id === 1).level);
     this.user.delta = currentDeltaLevel.delta;
-    console.log('testDelta');
   }
 
   passiveIncomeCounter() {
@@ -20,8 +19,6 @@ class IncomeManager {
   }
 
   passiveIncomeRenderer() {
-    console.log('PI Render');
-
     const passiveIncomeScoreField = document.querySelector('.passiveIncome__score');
     passiveIncomeScoreField.textContent = `${formatNumberWithSpaces(user.passiveIncome)}`;
   }
@@ -59,4 +56,5 @@ class IncomeManager {
     const scoreField = document.querySelector('.scoreArea__score');
     scoreField.textContent = formatNumberWithSpaces(user.score);
   }
+
 }

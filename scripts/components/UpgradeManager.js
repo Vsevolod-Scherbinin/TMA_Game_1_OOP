@@ -101,8 +101,8 @@ class UpgradeManager {
             upgradeManager.addUpgrade(evt, upgradesArray);
           });
         }
-        console.log('save');
-        console.log(this.user);
+        // console.log('save');
+        // console.log(this.user);
         this.user.saveUserData();
       } else {
         // console.log('Недостаточно средств');

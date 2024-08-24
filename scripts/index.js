@@ -13,10 +13,10 @@
 
 // Clean constants
 
+// localStorage.clear();
+
 const user = new User(userDataModel);
-console.log(user);
 user.loadUserData();
-console.log(user);
 const incomeManager = new IncomeManager(user);
 const energyManager = new EnergyManager(user);
 const upgradeManager = new UpgradeManager(
@@ -28,8 +28,13 @@ const upgradeManager = new UpgradeManager(
   incomeManager.passiveIncomeCounter.bind(incomeManager),
   incomeManager.passiveIncomeRenderer.bind(incomeManager),
 );
+const achievementManager = new AchievementManager(user);
 
-const popup = new Popup ('.popup');
+const popupManager = new PopupManager (
+  user,
+  incomeManager.scoreCounter.bind(incomeManager),
+  achievementManager.achievementGathering.bind(achievementManager),
+);
 
 function achievementGathering(obj, level) {
   // console.log(obj);
@@ -67,43 +72,9 @@ function cardReplacer() {
     card.replaceWith(card.cloneNode(true));
   });
 }
-
-function popupOpen(obj, level) {
-  const objLevel = obj.levels.find(obj => obj.level === level);
-  popup.classList.remove('popup_inactive');
-  popup.querySelector('.popup__title').textContent = obj.title;
-  popup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumberWithSpaces(objLevel.effect)}`;
-  popup.querySelector('.popup__image').src = objLevel.mainIcon;
-  console.log(objLevel.effect);
-  const card = document.querySelector(`.wideCard_id_${obj.id}`);
-  const submit = () => {
-    achievementGathering(obj, level);
-    obj.metric === 'energyLimit'
-      ? user.energyLimit = user.energyLimit + objLevel.effect
-      : user.score = user.score + objLevel.effect;
-    cardReplacer();
-    achievementsLevelCheck();
-    scoreRenderer();
-    popupClose();
-  }
-  popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
-}
 // --------------- Popup-End ---------------
 
 // --------------- Renderers-Start ---------------
-
-function achievementsCardsRenderer() {
-  // console.log('achievements', user.achievements[0]);
-
-  achievements.forEach((elem) => {
-    if(elem.id !== 5) {
-      const userLevel = user.achievements.find(obj => obj.id === elem.id).level;
-      const card = createAchievementsCard(elem, userLevel);
-      achievementCardsField.append(card);
-    }
-  });
-}
-
 function achievementsContentRenderer() {
   const cards = document.querySelectorAll('.wideCard__title');
 
@@ -211,7 +182,7 @@ function achievementsLevelCheck() {
     const userAch = user.achievements.find(obj => obj.id === object.id);
     const card = document.querySelector(`.wideCard_id_${object.id}`);
     const handlePopupOpen = () => {
-      popup.popupOpen(object, userAch.level);
+      popupManager.popupOpen(object, userAch.level);
     }
     if(lessArray.length) {
       if(!isGathered) {
@@ -236,68 +207,10 @@ function achievementsLevelCheck() {
 // --------------- Achievements-End ---------------
 
 // --------------- User-Start ---------------
-const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
+// const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
 // const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData'));
 // const localUserData = null;
 // localStorage.clear();
-
-// function loadUserData() {
-//   if(localUserData === null) {
-//     console.log('New User');
-
-//     Object.keys(userDataModel).forEach((key) => {
-//       user[key] = userDataModel[key];
-//     })
-
-//     activeUpgrades.forEach((upgrade) => {
-//       user.activeUpgrades.push({
-//         id: upgrade.id,
-//         level: 0,
-//       });
-//     })
-
-//     passiveUpgrades.forEach((upgrade) => {
-//       const isUpgradePresent = user.passiveUpgrades.some(obj => obj.id === upgrade.id);
-//       !isUpgradePresent && user.passiveUpgrades.push({
-//         id: upgrade.id,
-//         level: 0,
-//       })
-//     })
-
-//     achievements.forEach((achievement) => {
-//       user.achievements.push({
-//         id: achievement.id,
-//         level: 0,
-//       })
-//     })
-
-//     localStorage.setItem('TMAGameUserData1', JSON.stringify(user));
-//     // localStorage.setItem('TMAGameUserData', JSON.stringify(user));
-//     // console.log('New User Made');
-//   } else {
-//     console.log('Old User');
-
-//     Object.keys(userDataModel).forEach((key) => {
-//       // user[key] = userDataModel[key]; // Для обнуления пользователя
-//       user[key] = localUserData[key];
-//       user[key] === undefined && (user[key] = userDataModel[key]);
-//       // console.log(user);
-//     })
-//     // user Additions-Start
-
-//     // achievements.forEach((achievement) => {
-//     //   user.achievements.push({
-//     //     id: achievement.id,
-//     //     level: 0,
-//     //   })
-//     // })
-
-//     // user Additions-End
-
-//   }
-//   console.log(user);
-// }
-// --------------- User-End ---------------
 
 // --------------- Upgrades-Start ---------------
 function upgradeFinder(upgradesArray, name) {
@@ -482,7 +395,7 @@ function mainClick() {
     incomeManager.cummulativeIncomeCounter();
     upgradeManager.checkUpgradeAvailable();
     // achievementsCheckTaps();
-    achievementsContentRenderer();
+    achievementManager.achievementsContentRenderer();
     // console.log('taps', user.taps);
     // user.saveUserData();
     user.saveUserData();
@@ -493,60 +406,15 @@ function mainClick() {
 btnMain.addEventListener('click', mainClick);
 // --------------- MainClick-End ---------------
 
-// --------------- ServiceFunctions-Start ---------------
-
-function totalExpencesCounter() {
-  let activeExpences = 0;
-  let passiveExpences = 0;
-  // console.log(user.activeUpgrades);
-
-  user.activeUpgrades.forEach((upgrade) => {
-    // console.log('upgrade.level', upgrade.level);
-
-    for(i = 1; i <= upgrade.level; i++) {
-      activeExpences = activeExpences + activeUpgrades[upgrade.id - 1].levels[i].cost;
-    };
-  })
-  // console.log('activeExpences', activeExpences);
-
-  user.passiveUpgrades.forEach((upgrade) => {
-    // console.log('upgrade.level', upgrade.level);
-
-    for(i = 1; i <= upgrade.level; i++) {
-      passiveExpences = passiveExpences + passiveUpgrades[upgrade.id - 1].levels[i].cost;
-    };
-  })
-  // console.log('passiveExpences', passiveExpences);
-
-  const totalExpences = activeExpences + passiveExpences;
-  // console.log('totalExpences', totalExpences);
-  user.expences = totalExpences;
-}
-
-// --------------- ServiceFunctions-End ---------------
-
 
 // --------------- Window-Start ---------------
-function offlineIncomePopupOpen(offlinePassiveIncome) {
-  popup.classList.remove('popup_inactive');
-  popup.querySelector('.popup__title').textContent = 'Ваш заработок!';
-  popup.querySelector('.popup__message').textContent = `Поздравляем! Вы заработали $${formatNumberWithSpaces(offlinePassiveIncome)}`;
-  popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
-  const submit = () => {
-    user.score = user.score + offlinePassiveIncome;
-    user.cummulativeIncome = user.cummulativeIncome + offlinePassiveIncome;
-    user.saveUserData();
-    incomeManager.scoreRenderer();
-    popup.popupClose();
-  }
-  popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
-}
 
 window.onload = () => {
   user.loadUserData();
   // ServiceFunctions-Start
     // totalExpencesCounter();
     // user.score = 100000;
+    user.score = 50000;
     // user.gatheredAchievements = [];
     // user.activeUpgrades[0].level = 0;
     // user.energy = 500;
@@ -554,7 +422,7 @@ window.onload = () => {
     user.saveUserData();
   // ServiceFunctions-End
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter(offlineTimeCounter());
-  // offlinePassiveIncome > 0 && offlineIncomePopupOpen(offlinePassiveIncome);
+  offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
   screenSwitcher();
   upgradeManager.checkUpgradeAvailable();
   levelRenderer();
@@ -573,10 +441,10 @@ window.onload = () => {
   allUpgradesRenderer();
   tasksRenderer();
   user.saveUserData();
-  achievementsCardsRenderer();
+  achievementManager.achievementsCardsRenderer();
   // attributeSetter();
   achievementsLevelCheck();
-  achievementsContentRenderer();
+  achievementManager.achievementsContentRenderer();
 
   // Make separate function as energy
   let passiveIncomeTimer = setInterval(() => {
@@ -586,7 +454,7 @@ window.onload = () => {
     incomeManager.scoreRenderer();
     upgradeManager.checkUpgradeAvailable();
     // achievementsLevelCheck();
-    achievementsContentRenderer();
+    achievementManager.achievementsContentRenderer();
 
     user.saveUserData();
 
