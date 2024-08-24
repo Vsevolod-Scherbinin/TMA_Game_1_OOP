@@ -137,50 +137,6 @@ function levelProgressCounter() {
 }
 // --------------- Level-End ---------------
 
-// --------------- Achievements-Start ---------------
-function achievementsLevelCheck() {
-  // energyAchievementLimiter();
-  achievements.forEach((object) => {
-    const isGathered = user.gatheredAchievements.some(obj => obj.id === object.id);
-
-    // console.log(energyLimiterTotal());
-
-    let lessArray;
-
-    object.metric === 'energyLimit'
-      ? lessArray = object.levels.filter(obj => obj.limit <= energyLimiterTotal())
-      : lessArray = object.levels.filter(obj => obj.limit <= user[object.metric]);
-    const lessLimits = [];
-    lessArray.forEach((obj) => {
-      lessLimits.push(obj.limit);
-    });
-    const userAch = user.achievements.find(obj => obj.id === object.id);
-    const card = document.querySelector(`.wideCard_id_${object.id}`);
-    const handlePopupOpen = () => {
-      popupManager.popupOpen(object, userAch.level);
-    }
-    if(lessArray.length) {
-      if(!isGathered) {
-        userAch.level = 1;
-        card.addEventListener('click', handlePopupOpen);
-      } else {
-        const gatheredLevel = user.gatheredAchievements.find(obj => obj.id === object.id).level;
-        const availableLevel = lessArray.find(obj => obj.limit === Math.max(...lessLimits)).level + 1;
-        userAch.level = gatheredLevel;
-        if(gatheredLevel < availableLevel) {
-          userAch.level = gatheredLevel + 1;
-          card.addEventListener('click', handlePopupOpen);
-        }
-      }
-    } else {
-      userAch.level = 0;
-    }
-  });
-};
-
-
-// --------------- Achievements-End ---------------
-
 // --------------- User-Start ---------------
 // const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData1'));
 // const localUserData = JSON.parse(localStorage.getItem('TMAGameUserData'));
