@@ -1,6 +1,8 @@
 class IncomeManager {
   constructor(user) {
     this.user = user;
+    this.passiveIncomeScoreField = document.querySelector('.passiveIncome__score');
+    this.scoreField = document.querySelector('.scoreArea__score');
   }
 
   deltaCounter() {
@@ -19,8 +21,7 @@ class IncomeManager {
   }
 
   passiveIncomeRenderer() {
-    const passiveIncomeScoreField = document.querySelector('.passiveIncome__score');
-    passiveIncomeScoreField.textContent = `${formatNumberWithSpaces(user.passiveIncome)}`;
+    this.passiveIncomeScoreField.textContent = `${formatNumberWithSpaces(user.passiveIncome)}`;
   }
 
   passiveOnlineIncomeCounter() {
@@ -66,8 +67,7 @@ class IncomeManager {
   }
 
   scoreRenderer() {
-    const scoreField = document.querySelector('.scoreArea__score');
-    scoreField.textContent = formatNumberWithSpaces(user.score);
+    this.scoreField.textContent = formatNumberWithSpaces(user.score);
   }
 
 }

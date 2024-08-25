@@ -2,6 +2,7 @@ class AchievementManager {
   constructor(user) {
     this.user = user;
     this.wideCardTemplate = document.querySelector('#wideCard').content;
+    this.achievementCardsField = document.querySelector('.achievementsScreen__cardField');
 
   }
 
@@ -24,8 +25,7 @@ class AchievementManager {
       if(elem.id !== 5) {
         const userLevel = this.user.achievements.find(obj => obj.id === elem.id).level;
         const card = this._createAchievementsCard(elem, userLevel);
-        const achievementCardsField = document.querySelector('.achievementsScreen__cardField');
-        achievementCardsField.append(card);
+        this.achievementCardsField.append(card);
       }
     });
   }
@@ -49,7 +49,7 @@ class AchievementManager {
         const found = achievements.find(obj => obj.id === userAch);
     });
   }
-  // Break -- Connect
+
   achievementsLevelCheck() {
     // energyAchievementLimiter();
     achievements.forEach((object) => {

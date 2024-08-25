@@ -2,6 +2,9 @@ class EnergyManager {
   constructor(user) {
     this.user = user;
     this.energyRecoveryTimeout;
+    this.energyLimitField = document.querySelector('.energyArea__limit');
+    this.energyScoreField = document.querySelector('.energyArea__score');
+    this.btnMain = document.querySelector('.mainScreen__button');
   }
 
   energyUpgradeLimiter() {
@@ -30,13 +33,11 @@ class EnergyManager {
   }
 
   energyLimitRenderer() {
-    const energyLimitField = document.querySelector('.energyArea__limit');
-    energyLimitField.textContent = formatNumberWithSpaces(this.energyLimiterTotal());
+    this.energyLimitField.textContent = formatNumberWithSpaces(this.energyLimiterTotal());
   }
 
   energyRenderer() {
-    const energyScoreField = document.querySelector('.energyArea__score');
-    energyScoreField.textContent = formatNumberWithSpaces(this.user.energy);
+    this.energyScoreField.textContent = formatNumberWithSpaces(this.user.energy);
   }
 
   energyCounter() {
@@ -48,11 +49,11 @@ class EnergyManager {
   energyRecoveryLooper(start, type) {
     let energyRecoveryInterval;
     let cycleTime;
-    const btnMain = document.querySelector('.mainScreen__button');
+    // const btnMain = document.querySelector('.mainScreen__button');
     type === 'normal' && (cycleTime = 1000);
     if(type === 'fast') {
       cycleTime = 25;
-      btnMain.removeEventListener('click', mainClick);
+      this.btnMain.removeEventListener('click', mainClick);
     }
     if(start) {
       energyRecoveryInterval = setInterval(() => {
@@ -61,7 +62,7 @@ class EnergyManager {
         this.energyRecovery();
         if(this.user.energy >= this.energyUpgradeLimiter()) {
           clearInterval(energyRecoveryInterval);
-          type === 'fast' && btnMain.addEventListener('click', mainClick);
+          type === 'fast' && this.btnMain.addEventListener('click', mainClick);
         }
       }, cycleTime);
     } else {

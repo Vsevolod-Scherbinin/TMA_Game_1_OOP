@@ -34,12 +34,13 @@ class User {
     this.tasks = tasks;
     this.achievements = achievements;
     this.gatheredAchievements = gatheredAchievements;
+    this.saveSlotName = 'TMAGameUserData1';
   }
 
   loadUserData() {
     // console.log(Object.keys(this));
 
-    const localUserData = localStorage.getItem('TMAGameUserData1');
+    const localUserData = localStorage.getItem(this.saveSlotName);
     // console.log(localUserData);
 
     if (localUserData === null) {
@@ -61,7 +62,7 @@ class User {
       achievements.forEach((achievement) => {
         this.achievements.push({ id: achievement.id, level: 0 });
       });
-      localStorage.setItem('TMAGameUserData1', JSON.stringify(this));
+      localStorage.setItem(this.saveSlotName, JSON.stringify(this));
     } else {
       console.log('Old User');
       Object.keys(userDataModel).forEach((key) => {
@@ -76,6 +77,6 @@ class User {
   }
 
   saveUserData() {
-    localStorage.setItem('TMAGameUserData1', JSON.stringify(this));
+    localStorage.setItem(this.saveSlotName, JSON.stringify(this));
   }
 }

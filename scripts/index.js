@@ -45,58 +45,6 @@ screenSwitcher.setEventListeners();
 
 let timer = 0;
 
-// --------------- Level-Start ---------------
-// function levelRenderer() {
-//   levelField.textContent = `${formatNumberWithSpaces(user.level)}`;
-// }
-
-// function progressBarRenderer(prevLimit, currentLimit) {
-//   if(user.cummulativeIncome > 0) {
-//     if(user.level === 1) {
-//       prevLimit = 0;
-//     }
-//     const progress = (user.cummulativeIncome - prevLimit) / (currentLimit - prevLimit) * 100;
-//     progressBar.style.width = `${progress}%`;
-//   } else {
-//     progressBar.style.width = `0%`;
-//   }
-
-// }
-
-// const a = 30;
-// const c = 70;
-// function levelLimitCounter(level) {
-//   const levelLimit = a * Math.pow(level, 2) + c;
-//   return levelLimit;
-// }
-
-// To Income Manager or LevelManager
-// function levelRewarder(prevLevel, currentLevel) {
-//   const levelDelta = currentLevel - prevLevel;
-//   const rewardMultiplier = 10;
-//   let reward;
-//   for(i=prevLevel; i<currentLevel; i++) {
-//     // console.log(i);
-
-//     reward = reward + (i+1)*rewardMultiplier;
-//   }
-//   // console.log('reward', reward);
-// }
-
-// function levelProgressCounter() {
-//   // const prevLevel = user.level;
-//   // console.log('prevLevel', prevLevel);
-//   user.level = Math.floor(Math.sqrt((user.cummulativeIncome - c) / a)) + 1 || 1;
-//   // levelRewarder(prevLevel, user.level);
-//   const prevLimit = levelLimitCounter(user.level-1);
-//   const currentLimit = levelLimitCounter(user.level);
-
-//   // (user.cummulativeIncome >= currentLimit) && user.level++;
-//   progressBarRenderer(prevLimit, currentLimit);
-//   levelRenderer();
-// }
-// --------------- Level-End ---------------
-
 // --------------- Upgrades-Start ---------------
 function upgradeFinder(upgradesArray, name) {
   let foundUpgrade;
@@ -249,8 +197,6 @@ btnMain.addEventListener('click', mainClick);
 window.onload = () => {
   user.loadUserData();
   // ServiceFunctions-Start
-    // totalExpencesCounter();
-    // user.score = 100000;
     user.score = 50000;
     // user.gatheredAchievements = [];
     // user.activeUpgrades[0].level = 0;
@@ -271,15 +217,12 @@ window.onload = () => {
   incomeManager.passiveIncomeCounter();
   incomeManager.passiveIncomeRenderer();
   incomeManager.passiveOnlineIncomeCounter();
-  // energyRenderer();
   energyManager.energyUpgradeLimiter();
   energyManager.energyLimitRenderer();
-  // energyLimitRenderer();
   allUpgradesRenderer();
   tasksRenderer();
   user.saveUserData();
   achievementManager.achievementsCardsRenderer();
-  // attributeSetter();
   achievementManager.achievementsLevelCheck();
   achievementManager.achievementsContentRenderer();
 
