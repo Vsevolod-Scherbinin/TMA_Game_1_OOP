@@ -28,55 +28,47 @@ const upgradeManager = new UpgradeManager(
   incomeManager.passiveIncomeCounter.bind(incomeManager),
   incomeManager.passiveIncomeRenderer.bind(incomeManager),
 );
+
 const achievementManager = new AchievementManager(user);
 
-const popupManager = new PopupManager (
+const popupManager = new PopupManager(
   user,
   incomeManager.scoreCounter.bind(incomeManager),
   achievementManager.achievementGathering.bind(achievementManager),
   achievementManager.achievementsLevelCheck.bind(achievementManager),
 );
 
+const levelManager = new LevelManager(user);
+
 const screenSwitcher = new ScreenSwitcher();
 screenSwitcher.setEventListeners();
 
 let timer = 0;
 
-function offlineTimeCounter() {
-  const closureDate = localStorage.getItem('closureTime');
-  if(closureDate) {
-    const now = new Date();
-    const closureTime = new Date(closureDate);
-    const timeDelta = now - closureTime
-    const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
-    return timeDeltaInSeconds;
-  }
-}
-
 // --------------- Level-Start ---------------
-function levelRenderer() {
-  levelField.textContent = `${formatNumberWithSpaces(user.level)}`;
-}
+// function levelRenderer() {
+//   levelField.textContent = `${formatNumberWithSpaces(user.level)}`;
+// }
 
-function progressBarRenderer(prevLimit, currentLimit) {
-  if(user.cummulativeIncome > 0) {
-    if(user.level === 1) {
-      prevLimit = 0;
-    }
-    const progress = (user.cummulativeIncome - prevLimit) / (currentLimit - prevLimit) * 100;
-    progressBar.style.width = `${progress}%`;
-  } else {
-    progressBar.style.width = `0%`;
-  }
+// function progressBarRenderer(prevLimit, currentLimit) {
+//   if(user.cummulativeIncome > 0) {
+//     if(user.level === 1) {
+//       prevLimit = 0;
+//     }
+//     const progress = (user.cummulativeIncome - prevLimit) / (currentLimit - prevLimit) * 100;
+//     progressBar.style.width = `${progress}%`;
+//   } else {
+//     progressBar.style.width = `0%`;
+//   }
 
-}
+// }
 
-const a = 30;
-const c = 70;
-function levelLimitCounter(level) {
-  const levelLimit = a * Math.pow(level, 2) + c;
-  return levelLimit;
-}
+// const a = 30;
+// const c = 70;
+// function levelLimitCounter(level) {
+//   const levelLimit = a * Math.pow(level, 2) + c;
+//   return levelLimit;
+// }
 
 // To Income Manager or LevelManager
 // function levelRewarder(prevLevel, currentLevel) {
@@ -91,18 +83,18 @@ function levelLimitCounter(level) {
 //   // console.log('reward', reward);
 // }
 
-function levelProgressCounter() {
-  // const prevLevel = user.level;
-  // console.log('prevLevel', prevLevel);
-  user.level = Math.floor(Math.sqrt((user.cummulativeIncome - c) / a)) + 1 || 1;
-  // levelRewarder(prevLevel, user.level);
-  const prevLimit = levelLimitCounter(user.level-1);
-  const currentLimit = levelLimitCounter(user.level);
+// function levelProgressCounter() {
+//   // const prevLevel = user.level;
+//   // console.log('prevLevel', prevLevel);
+//   user.level = Math.floor(Math.sqrt((user.cummulativeIncome - c) / a)) + 1 || 1;
+//   // levelRewarder(prevLevel, user.level);
+//   const prevLimit = levelLimitCounter(user.level-1);
+//   const currentLimit = levelLimitCounter(user.level);
 
-  // (user.cummulativeIncome >= currentLimit) && user.level++;
-  progressBarRenderer(prevLimit, currentLimit);
-  levelRenderer();
-}
+//   // (user.cummulativeIncome >= currentLimit) && user.level++;
+//   progressBarRenderer(prevLimit, currentLimit);
+//   levelRenderer();
+// }
 // --------------- Level-End ---------------
 
 // --------------- Upgrades-Start ---------------
@@ -234,7 +226,7 @@ function mainClick() {
     energyManager.energyRecoveryLooper(false)
     incomeManager.scoreCounter();
     incomeManager.scoreRenderer();
-    levelProgressCounter();
+    levelManager.levelProgressCounter();
     energyManager.energyCounter();
     energyManager.energyRenderer();
     incomeManager.cummulativeIncomeCounter();
@@ -266,12 +258,12 @@ window.onload = () => {
     // user.passiveUpgrades[0].level = 0;
     user.saveUserData();
   // ServiceFunctions-End
-  const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter(offlineTimeCounter());
+  const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
   screenSwitcher.screenSwitch();
   upgradeManager.checkUpgradeAvailable();
-  levelRenderer();
-  levelProgressCounter();
+  levelManager.levelRenderer();
+  levelManager.levelProgressCounter();
   incomeManager.deltaCounter();
   user.saveUserData();
   incomeManager.scoreRenderer();
@@ -295,7 +287,7 @@ window.onload = () => {
   let passiveIncomeTimer = setInterval(() => {
     // Move unlimited functions to userOnlineTimer
     incomeManager.passiveOnlineIncomeCounter();
-    levelProgressCounter();
+    levelManager.levelProgressCounter();
     incomeManager.scoreRenderer();
     upgradeManager.checkUpgradeAvailable();
     achievementManager.achievementsLevelCheck();

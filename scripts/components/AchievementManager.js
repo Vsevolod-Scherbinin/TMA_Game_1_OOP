@@ -1,11 +1,13 @@
 class AchievementManager {
   constructor(user) {
     this.user = user;
+    this.wideCardTemplate = document.querySelector('#wideCard').content;
+
   }
 
   _createAchievementsCard(elem, level) {
     const levelData = elem.levels.find(obj => obj.level === level);
-    const achievementCardElement = wideCardTemplate.cloneNode(true);
+    const achievementCardElement = this.wideCardTemplate.cloneNode(true);
     achievementCardElement.querySelector('.wideCard').classList.add(`wideCard_type_achievement`);
     achievementCardElement.querySelector('.wideCard').classList.add(`wideCard_id_${elem.id}`);
     achievementCardElement.querySelector('.wideCard__icon').src = levelData.mainIcon;
