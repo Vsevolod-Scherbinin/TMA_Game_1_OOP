@@ -8,8 +8,8 @@ const btnMain = document.querySelector('.mainScreen__button');
 
 const navSection = document.querySelector('.navigation');
 
-const passiveUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_passive');
-const activeUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_active');
+// const activeUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_active');
+// const passiveUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_passive');
 
 const taskCardsField = document.querySelector('.tasksScreen__cardField');
 const inviteFriendBtn = document.querySelector('.tasksScreen__inviteBtn');

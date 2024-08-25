@@ -1,7 +1,6 @@
 // ToDo
-// Classes
-  // Popup & Achievements
-  // LevelManager
+// Mech
+  // Energy Recovery Multiple Work -- toFix
 
 // Fonts
 // New Icons
@@ -11,12 +10,11 @@
 // Updating Model Safe!!!
 // DataBase??
 
-// Clean constants
-
 // localStorage.clear();
 
 const user = new User(userDataModel);
 user.loadUserData();
+
 const incomeManager = new IncomeManager(user);
 const energyManager = new EnergyManager(user);
 const upgradeManager = new UpgradeManager(
@@ -117,34 +115,9 @@ function createWideCards(elem) {
   wideCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(elem.effect)}`;
   return wideCardElement;
 }
-
-function createAchievementsCard(elem, level) {
-  const levelData = elem.levels.find(obj => obj.level === level);
-  const achievementCardElement = wideCardTemplate.cloneNode(true);
-  achievementCardElement.querySelector('.wideCard').classList.add(`wideCard_type_achievement`);
-  achievementCardElement.querySelector('.wideCard').classList.add(`wideCard_id_${elem.id}`);
-  achievementCardElement.querySelector('.wideCard__icon').src = levelData.mainIcon;
-  achievementCardElement.querySelector('.wideCard__title').textContent = elem.title;
-  achievementCardElement.querySelector('.wideCard__description').textContent = levelData.description;
-  achievementCardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
-  achievementCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(levelData.effect)}`;
-  return achievementCardElement;
-}
 // --------------- WideCards-End ---------------
 
 // --------------- CardsRenderer-Start ---------------
-function allUpgradesRenderer() {
-  console.log('Upgrades');
-
-  activeUpgrades.forEach((elem) => {
-    activeUpgradesField.append(createUpgradeCard(elem, 'activeUpgrades'));
-  });
-  passiveUpgrades.forEach((elem) => {
-    passiveUpgradesField.append(createUpgradeCard(elem, 'passiveUpgrades'));
-  });
-}
-// console.log(tasks);
-
 function tasksRenderer() {
   tasks.forEach((elem) => {
     taskCardsField.append(createWideCards(elem));
@@ -219,7 +192,7 @@ window.onload = () => {
   incomeManager.passiveOnlineIncomeCounter();
   energyManager.energyUpgradeLimiter();
   energyManager.energyLimitRenderer();
-  allUpgradesRenderer();
+  upgradeManager.allUpgradesRenderer();
   tasksRenderer();
   user.saveUserData();
   achievementManager.achievementsCardsRenderer();

@@ -16,6 +16,19 @@ class UpgradeManager {
     this.energyRecoveryLooper = energyRecoveryLooper;
     this.passiveIncomeCounter = passiveIncomeCounter;
     this.passiveIncomeRenderer = passiveIncomeRenderer;
+    this.activeUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_active');
+    this.passiveUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_passive');
+  }
+
+  allUpgradesRenderer() {
+    console.log('Upgrades');
+
+    activeUpgrades.forEach((elem) => {
+      this.activeUpgradesField.append(createUpgradeCard(elem, 'activeUpgrades'));
+    });
+    passiveUpgrades.forEach((elem) => {
+      this.passiveUpgradesField.append(createUpgradeCard(elem, 'passiveUpgrades'));
+    });
   }
 
   checkUpgradeAvailable() {
