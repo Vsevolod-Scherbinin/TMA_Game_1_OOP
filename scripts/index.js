@@ -317,7 +317,7 @@ window.onload = () => {
     if(window.Telegram.WebApp.initDataUnsafe.length>0) {
       nameField.textContent = window.Telegram.WebApp.initDataUnsafe.user.first_name;
     }
-  };
+};
 
 window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();

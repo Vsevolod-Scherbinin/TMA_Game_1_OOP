@@ -57,10 +57,9 @@ class ScreenSwitcher {
   }
 
   setEventListeners() {
-    this.btnMainScreen.addEventListener('click', this.screenSwitch);
-    this.btnUpgrades.addEventListener('click', this.screenSwitch);
-    this.btnTasks.addEventListener('click', this.screenSwitch);
-    this.btnAchievements.addEventListener('click', this.screenSwitch);
+    this.btnMainScreen.addEventListener('click', this.screenSwitch.bind(this));
+    this.btnUpgrades.addEventListener('click', this.screenSwitch.bind(this));
+    this.btnTasks.addEventListener('click', this.screenSwitch.bind(this));
+    this.btnAchievements.addEventListener('click', this.screenSwitch.bind(this));
   }
-
 }
