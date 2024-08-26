@@ -1,12 +1,18 @@
 .mainScreen__button {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  border-radius: 50%;
   width: 320px;
   height: 320px;
-  object-fit: cover;
-  transition: transform 0.1s;
+
+  background-image: url('../../../images/main-button.png');
+  background-size: contain;
+  transition: transform background-image 0.1s;
+
 }
 
 .mainScreen__button:active {
   transform: scale(0.95);
+  background-image: url('../../../images/main-button-pressed.png');
 }
