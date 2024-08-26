@@ -3,12 +3,31 @@ class LevelManager {
     this.user = user;
     this.levelField = document.querySelector('.userBar__levelScore');
     this.progressBar = document.querySelector('.userBar__progressBarInner');
+    this.btnMain = document.querySelector('.mainScreen__button');
     this.a = 30;
     this.c = 70;
   }
 
+  _mainButtonChanger() {
+    this.user.level >= 1 && (this.btnMain.style.backgroundImage = `url('./images/main-button.png')`);
+    this.user.level >= 10 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${10}lvl.png')`);
+    this.user.level >= 20 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${20}lvl.png')`);
+    this.user.level >= 30 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${30}lvl.png')`);
+    this.user.level >= 40 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${40}lvl.png')`);
+    this.user.level >= 50 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${50}lvl.png')`);
+    this.user.level >= 60 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${60}lvl.png')`);
+    this.user.level >= 70 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${70}lvl.png')`);
+    this.user.level >= 80 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${80}lvl.png')`);
+    this.user.level >= 90 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${90}lvl.png')`);
+    this.user.level >= 100 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${100}lvl.png')`);
+    this.user.level >= 110 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${110}lvl.png')`);
+    this.user.level >= 120 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${120}lvl.png')`);
+    this.user.level >= 130 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${130}lvl.png')`);
+  }
+
   levelRenderer() {
     this.levelField.textContent = `${formatNumberWithSpaces(this.user.level)}`;
+    this._mainButtonChanger();
   }
 
   progressBarRenderer(prevLimit, currentLimit) {
