@@ -10,7 +10,7 @@
 // Updating Model Safe!!!
 // DataBase??
 
-// localStorage.clear();
+localStorage.clear();
 
 const user = new User(userDataModel);
 user.loadUserData();
