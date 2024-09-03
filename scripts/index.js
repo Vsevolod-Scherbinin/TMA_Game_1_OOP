@@ -143,11 +143,14 @@ function tasksRenderer() {
 }
 
 function inviteFriends() {
-  const url = 'https://t.me/FirstTGTest_bot';
-  const text = 'Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел!';
+  console.log('Invite Friend');
+
+  const url = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
+  const text = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${url}`;
 
   // Используем Telegram Web Apps API для открытия ссылки
-  window.Telegram.WebApp.sendData(JSON.stringify({url: url, text: text}));
+  window.Telegram.WebApp.sendData(text);
+  // window.Telegram.WebApp.sendData(JSON.stringify({url: url, text: text}));
   // console.log('Invitation');
 }
 // --------------- CardsRenderer-End ---------------
@@ -171,7 +174,7 @@ function mainClick() {
     upgradeManager.checkUpgradeAvailable();
     // achievementsCheckTaps();
     achievementManager.achievementsContentRenderer();
-    console.log('taps', user.taps);
+    // console.log('taps', user.taps);
     // user.saveUserData();
     user.saveUserData();
   }
