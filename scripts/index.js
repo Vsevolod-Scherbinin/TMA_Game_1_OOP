@@ -246,7 +246,7 @@ const tg = window.Telegram.WebApp;
 // Full Screen
 if(tg) {
   // tg.WebApp.initData;
-  tg.WebApp.expand();
+  // tg.WebApp.expand();
 }
 
 function inviteFriends() {
