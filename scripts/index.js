@@ -253,6 +253,11 @@ window.addEventListener('beforeunload', (evt) => {
 // Инициализация Telegram Web App
 const tg = window.Telegram.WebApp;
 
+if(tg) {
+  tg.WebApp.initData;
+  tg.WebApp.expand();
+}
+
 // Функция для обработки параметров при запуске бота
 function handleStartParams() {
     const params = tg.initDataUnsafe;
