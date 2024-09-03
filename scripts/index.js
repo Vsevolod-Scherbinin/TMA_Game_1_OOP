@@ -12,6 +12,8 @@
 
 localStorage.clear();
 
+const element = document.documentElement;
+
 function openFullscreen() {
   if (element.requestFullscreen) {
     element.requestFullscreen();
