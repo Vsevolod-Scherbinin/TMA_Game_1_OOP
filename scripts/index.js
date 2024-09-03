@@ -249,7 +249,7 @@ function inviteFriends() {
   const url = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
   const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${url}`;
 
-  tg.sendMessage(message);
+  tg.sendData(message);
 
 
   // Используем Telegram Web Apps API для открытия ссылки
