@@ -243,13 +243,23 @@ window.addEventListener('beforeunload', (evt) => {
 // Инициализация Telegram Web App
 const tg = window.Telegram.WebApp;
 
+// Full Screen
+if(tg) {
+  // tg.WebApp.initData;
+  tg.WebApp.expand();
+}
+
 function inviteFriends() {
   console.log('Invite Friend');
 
-  const url = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
-  const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${url}`;
+  const inviteLink = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
+  const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${inviteLink}`;
 
   tg.sendData(message);
+
+  const shareLink = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(message)}`;
+  window.open(shareLink, '_blank');
+
 
 
   // Используем Telegram Web Apps API для открытия ссылки
@@ -261,11 +271,7 @@ function inviteFriends() {
 
 inviteFriendBtn.addEventListener('click', inviteFriends);
 
-// Full Screen
-// if(tg) {
-//   tg.WebApp.initData;
-//   tg.WebApp.expand();
-// }
+
 
 // // Функция для обработки параметров при запуске бота
 // function handleStartParams() {
