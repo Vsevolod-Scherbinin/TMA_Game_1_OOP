@@ -12,6 +12,21 @@
 
 localStorage.clear();
 
+function openFullscreen() {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.mozRequestFullScreen) { // Firefox
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    element.webkitRequestFullscreen();
+  } else if (element.msRequestFullscreen) { // IE/Edge
+    element.msRequestFullscreen();
+  }
+}
+
+// Вызов функции при загрузке приложения или по кнопке
+window.onload = openFullscreen;
+
 const user = new User(userDataModel);
 user.loadUserData();
 
