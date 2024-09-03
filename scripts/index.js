@@ -141,21 +141,8 @@ function tasksRenderer() {
     // taskCardsField.append(createTaskCards(elem));
   });
 }
-
-function inviteFriends() {
-  console.log('Invite Friend');
-
-  const url = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
-  const text = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${url}`;
-
-  // Используем Telegram Web Apps API для открытия ссылки
-  window.Telegram.WebApp.sendData(text);
-  // window.Telegram.WebApp.sendData(JSON.stringify({url: url, text: text}));
-  // console.log('Invitation');
-}
 // --------------- CardsRenderer-End ---------------
 
-inviteFriendBtn.addEventListener('click', inviteFriends);
 
 // --------------- MainClick-Start ---------------
 
@@ -256,38 +243,57 @@ window.addEventListener('beforeunload', (evt) => {
 // Инициализация Telegram Web App
 const tg = window.Telegram.WebApp;
 
-if(tg) {
-  tg.WebApp.initData;
-  tg.WebApp.expand();
+function inviteFriends() {
+  console.log('Invite Friend');
+
+  const url = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
+  const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${url}`;
+
+  tg.sendMessage(message);
+
+
+  // Используем Telegram Web Apps API для открытия ссылки
+  // window.Telegram.WebApp.sendData(text);
+  // window.Telegram.WebApp;
+  // window.Telegram.WebApp.sendData(JSON.stringify({url: url, text: text}));
+  // console.log('Invitation');
 }
 
-// Функция для обработки параметров при запуске бота
-function handleStartParams() {
-    const params = tg.initDataUnsafe;
+inviteFriendBtn.addEventListener('click', inviteFriends);
 
-    // Проверяем, есть ли параметры
-    if (params && params.query) {
-        const queryParams = new URLSearchParams(params.query);
-        const referralId = queryParams.get('referral_id');
+// Full Screen
+// if(tg) {
+//   tg.WebApp.initData;
+//   tg.WebApp.expand();
+// }
 
-        if (referralId) {
-            // Отправляем приветственное сообщение с информацией о приглашении
-            alert(`Вы пришли по приглашению пользователя с ID: ${referralId}`);
-        }
-    }
-}
+// // Функция для обработки параметров при запуске бота
+// function handleStartParams() {
+//     const params = tg.initDataUnsafe;
 
-// Обработчик нажатия на кнопку
-document.querySelector('.tasksScreen__inviteBtn').onclick = function() {
-    const inviteLink = `https://t.me/${tg.initDataUnsafe.user.username}?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
-    const message = `Пригласите своих друзей по ссылке: ${inviteLink}`;
+//     // Проверяем, есть ли параметры
+//     if (params && params.query) {
+//         const queryParams = new URLSearchParams(params.query);
+//         const referralId = queryParams.get('referral_id');
 
-    // Отправляем сообщение в чат с помощью Telegram Web App API
-    tg.sendMessage(message);
-};
+//         if (referralId) {
+//             // Отправляем приветственное сообщение с информацией о приглашении
+//             alert(`Вы пришли по приглашению пользователя с ID: ${referralId}`);
+//         }
+//     }
+// }
 
-// Вызываем функцию для обработки параметров
-handleStartParams();
+// // Обработчик нажатия на кнопку
+// document.querySelector('.tasksScreen__inviteBtn').onclick = function() {
+//     const inviteLink = `https://t.me/${tg.initDataUnsafe.user.username}?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
+//     const message = `Пригласите своих друзей по ссылке: ${inviteLink}`;
+
+//     // Отправляем сообщение в чат с помощью Telegram Web App API
+//     tg.sendMessage(message);
+// };
+
+// // Вызываем функцию для обработки параметров
+// handleStartParams();
 
 // nameField.textContent = TMA.initDataUnsafe.user.first_name;
 // console.log(TMA);
