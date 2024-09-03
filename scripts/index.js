@@ -171,7 +171,7 @@ function mainClick() {
     upgradeManager.checkUpgradeAvailable();
     // achievementsCheckTaps();
     achievementManager.achievementsContentRenderer();
-    // console.log('taps', user.taps);
+    console.log('taps', user.taps);
     // user.saveUserData();
     user.saveUserData();
   }
