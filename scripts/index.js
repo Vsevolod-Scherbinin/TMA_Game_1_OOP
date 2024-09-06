@@ -12,6 +12,8 @@
 
 localStorage.clear();
 
+const token = '6750879766:AAFr6iUUudfD_zxG6RE87VbRblR5uRrSTao';
+
 const element = document.documentElement;
 
 function openFullscreen() {
@@ -60,9 +62,34 @@ screenSwitcher.setEventListeners();
 
 let timer = 0;
 
-function saveTGLib() {
+// --------------- TGLib-Start ---------------
+// async function saveTGLib() {
+//   const tg = window.Telegram.WebApp; // Инициализация Telegram Web App
 
-}
+//   // Получение токена бота
+//   const botToken = 'YOUR_BOT_TOKEN_HERE'; // Замените на ваш токен
+
+//   try {
+//       const response = await fetch(`https://api.tglib.com/save`, { // URL для сохранения данных
+//           method: 'POST',
+//           headers: {
+//               'Content-Type': 'application/json',
+//               'Authorization': `Bearer ${botToken}` // Используйте токен для аутентификации
+//           },
+//           body: JSON.stringify(userData),
+//       });
+
+//       if (!response.ok) {
+//           throw new Error('Ошибка при сохранении данных в TGLib');
+//       }
+
+//       const result = await response.json();
+//       console.log('Данные успешно сохранены:', result);
+//   } catch (error) {
+//       console.error('Ошибка:', error);
+//   }
+// }
+// --------------- TGLib-End ---------------
 
 // --------------- Upgrades-Start ---------------
 function upgradeFinder(upgradesArray, name) {
@@ -168,6 +195,7 @@ function mainClick() {
     // console.log('taps', user.taps);
     // user.saveUserData();
     user.saveUserData();
+    user.saveTGLib(token);
   }
   energyManager.setEnergyRecoveryTimeout(true);
 }
@@ -193,8 +221,8 @@ function inviteFriends() {
 
 inviteFriendBtn.addEventListener('click', inviteFriends);
 
-// --------------- Window-Start ---------------
 
+// --------------- Window-Start ---------------
 window.onload = () => {
   user.loadUserData();
   // ServiceFunctions-Start
