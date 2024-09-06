@@ -60,6 +60,10 @@ screenSwitcher.setEventListeners();
 
 let timer = 0;
 
+function saveTGLib() {
+
+}
+
 // --------------- Upgrades-Start ---------------
 function upgradeFinder(upgradesArray, name) {
   let foundUpgrade;
@@ -171,6 +175,23 @@ function mainClick() {
 btnMain.addEventListener('click', mainClick);
 // --------------- MainClick-End ---------------
 
+const tg = window.Telegram.WebApp;
+
+// Full Screen
+if(tg) {
+  // tg.WebApp.initData;
+  // tg.WebApp.expand();
+}
+
+function inviteFriends() {
+  const inviteLink = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
+  const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${inviteLink}`;
+  tg.sendData(message);
+  const shareLink = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(message)}`;
+  window.open(shareLink, '_blank');
+}
+
+inviteFriendBtn.addEventListener('click', inviteFriends);
 
 // --------------- Window-Start ---------------
 
@@ -229,7 +250,8 @@ window.onload = () => {
   },  1000);
 
   energyManager.energyRecoveryLooper(true, 'normal');
-    if(window.Telegram.WebApp.initDataUnsafe.length>0) {
+    if(tg) {
+      // if(window.Telegram.WebApp.initDataUnsafe.length>0) {
       nameField.textContent = window.Telegram.WebApp.initDataUnsafe.user.first_name;
     }
 };
@@ -240,36 +262,7 @@ window.addEventListener('beforeunload', (evt) => {
 });
 // --------------- Window-End ---------------
 
-// Инициализация Telegram Web App
-const tg = window.Telegram.WebApp;
 
-// Full Screen
-if(tg) {
-  // tg.WebApp.initData;
-  // tg.WebApp.expand();
-}
-
-function inviteFriends() {
-  console.log('Invite Friend');
-
-  const inviteLink = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
-  const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${inviteLink}`;
-
-  tg.sendData(message);
-
-  const shareLink = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(message)}`;
-  window.open(shareLink, '_blank');
-
-
-
-  // Используем Telegram Web Apps API для открытия ссылки
-  // window.Telegram.WebApp.sendData(text);
-  // window.Telegram.WebApp;
-  // window.Telegram.WebApp.sendData(JSON.stringify({url: url, text: text}));
-  // console.log('Invitation');
-}
-
-inviteFriendBtn.addEventListener('click', inviteFriends);
 
 
 
