@@ -142,6 +142,26 @@ function tasksRenderer() {
   });
 }
 // --------------- CardsRenderer-End ---------------
+btnMain.addEventListener('click', function(e) {
+  // const scoreDisplay = document.createElement('div');
+  scoreDisplay.textContent = `+${user.delta}`;
+  scoreDisplay.style.opacity = '1';
+  page.appendChild(scoreDisplay);
+
+  // Позиционируем текст в месте нажатия
+  scoreDisplay.style.left = `${e.clientX}px`;
+  scoreDisplay.style.top = `${e.clientY}px`;
+
+  // Анимация
+  setTimeout(() => {
+    scoreDisplay.style.opacity = '0';
+  }, 500);
+
+  // Удаляем текст после анимации
+  // setTimeout(() => {
+  //     scoreDisplay.remove();
+  // }, 1010); // 500 мс для анимации + 10 мс задержка
+});
 
 // --------------- MainClick-Start ---------------
 
@@ -245,8 +265,8 @@ window.onload = () => {
   },  1000);
 
   energyManager.energyRecoveryLooper(true, 'normal');
-    if(tg) {
-      // if(window.Telegram.WebApp.initDataUnsafe.length>0) {
+    // if(tg) {
+      if(tg.initDataUnsafe.length>0) {
       nameField.textContent = window.Telegram.WebApp.initDataUnsafe.user.first_name;
     }
 };

@@ -4,7 +4,9 @@ const onlinePassiveTimeLimit = 3600 * passiveOfflineIncomeHoursLimit;
 
 const nameField = document.querySelector('.userBar__userName');
 
+const page = document.querySelector('.page');
 const btnMain = document.querySelector('.mainScreen__button');
+const scoreDisplay = document.querySelector('.mainScreen__deltaAnimDisplay');
 
 const navSection = document.querySelector('.navigation');
 
