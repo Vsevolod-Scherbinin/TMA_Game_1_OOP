@@ -1,8 +1,6 @@
-.passiveIncome {
+.income {
   margin: 0;
   padding: 4px;
-  width: 100%;
-  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;

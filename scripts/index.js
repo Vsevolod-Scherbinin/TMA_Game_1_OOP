@@ -155,7 +155,7 @@ btnMain.addEventListener('click', function(e) {
   // Анимация
   setTimeout(() => {
     scoreDisplay.style.opacity = '0';
-  }, 500);
+  }, 2000);
 
   // Удаляем текст после анимации
   // setTimeout(() => {

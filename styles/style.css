@@ -20,10 +20,12 @@
 @import url(../blocks/scoreArea/__icon/scoreArea__icon.css);
 @import url(../blocks/scoreArea/__score/scoreArea__score.css);
 
-@import url(../blocks/passiveIncome/passiveIncome.css);
-@import url(../blocks/passiveIncome/__text/passiveIncome__text.css);
-@import url(../blocks/passiveIncome/__icon/passiveIncome__icon.css);
-@import url(../blocks/passiveIncome/__score/passiveIncome__score.css);
+@import url(../blocks/incomeSpeedArea/incomeSpeedArea.css);
+
+@import url(../blocks/income/income.css);
+@import url(../blocks/income/__text/income__text.css);
+@import url(../blocks/income/__icon/income__icon.css);
+@import url(../blocks/income/__score/income__score.css);
 
 @import url(../blocks/screen/screen.css);
 @import url(../blocks/screen/_active/screen_active.css);

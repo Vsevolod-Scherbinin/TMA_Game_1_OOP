@@ -4,7 +4,7 @@
       opacity: 1;
   }
   100% {
-      transform: translateY(-100px);
+      transform: translateY(-200px);
       opacity: 0;
   }
 }
@@ -17,18 +17,17 @@
   font-size: 24px;
   position: absolute;
   opacity: 1;
-  /* background-image: linear-gradient(0deg, #FAB821, #FAB821),
-  linear-gradient(180deg, rgba(255, 219, 95, 0) 22.73%, #FFDB5F 72.73%); */
+  background-image: linear-gradient(0deg, #FAB821, #FAB821),
+  linear-gradient(180deg, rgba(255, 219, 95, 0) 22.73%, #FFDB5F 72.73%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-clip: text;
-  background-clip: text;
   -webkit-background-clip: text;
-  color: #fff;
-  /* color: transparent; */
+  /* color: #fff; */
+  color: transparent;
   display: inline-block;
   text-align: center;
-  animation: moveUp 1s ease-out forwards;
+  animation: moveUp 2s ease-out forwards;
   pointer-events: none;
   transition: opacity 2s ease;
 }

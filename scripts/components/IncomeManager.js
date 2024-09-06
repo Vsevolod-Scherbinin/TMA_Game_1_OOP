@@ -1,13 +1,15 @@
 class IncomeManager {
   constructor(user) {
     this.user = user;
-    this.passiveIncomeScoreField = document.querySelector('.passiveIncome__score');
     this.scoreField = document.querySelector('.scoreArea__score');
+    this.deltaIncomeScoreField = document.querySelector('.income_type_active').querySelector('.income__score');
+    this.passiveIncomeScoreField = document.querySelector('.income_type_passive').querySelector('.income__score');
   }
 
   deltaCounter() {
     const currentDeltaLevel = deltaUpgrade.levels.find(upgrade => upgrade.level === this.user.activeUpgrades.find(upgrade => upgrade.id === 1).level);
     this.user.delta = currentDeltaLevel.delta;
+    this.deltaIncomeScoreField.textContent = `${formatNumberWithSpaces(user.delta)}`;
   }
 
   passiveIncomeCounter() {
@@ -21,7 +23,7 @@ class IncomeManager {
   }
 
   passiveIncomeRenderer() {
-    this.passiveIncomeScoreField.textContent = `${formatNumberWithSpaces(user.passiveIncome)}`;
+    this.passiveIncomeScoreField.textContent = `${formatNumberWithSpaces(this.user.passiveIncome)}`;
   }
 
   passiveOnlineIncomeCounter() {
