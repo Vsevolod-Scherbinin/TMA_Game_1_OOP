@@ -174,6 +174,10 @@ function tasksRenderer() {
 }
 // --------------- CardsRenderer-End ---------------
 
+const userModel = {
+  id: 'user123',
+  bonuses: 0,
+};
 
 // --------------- MainClick-Start ---------------
 
@@ -195,7 +199,9 @@ function mainClick() {
     // console.log('taps', user.taps);
     // user.saveUserData();
     user.saveUserData();
-    user.saveTGLib(token);
+    // user.saveTGLib(token);
+    TGLib.set('user_data', userModel);
+
   }
   energyManager.setEnergyRecoveryTimeout(true);
 }
