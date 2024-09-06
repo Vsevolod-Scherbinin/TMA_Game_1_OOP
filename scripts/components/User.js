@@ -79,27 +79,4 @@ class User {
   saveUserData() {
     localStorage.setItem(this.saveSlotName, JSON.stringify(this));
   }
-
-  async saveTGLib(botToken) {
-
-    try {
-        const response = await fetch(`https://api.tglib.com/save`, { // URL для сохранения данных
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${botToken}` // Используйте токен для аутентификации
-            },
-            body: JSON.stringify(this),
-        });
-
-        if (!response.ok) {
-            throw new Error('Ошибка при сохранении данных в TGLib');
-        }
-
-        const result = await response.json();
-        console.log('Данные успешно сохранены:', result);
-    } catch (error) {
-        console.error('Ошибка:', error);
-    }
-  }
 }
