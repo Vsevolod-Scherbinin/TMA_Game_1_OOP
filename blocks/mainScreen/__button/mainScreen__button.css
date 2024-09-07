@@ -38,8 +38,8 @@
   -webkit-transition: -webkit-transform 0.1s, -webkit-filter 0.1s;
   transition: -webkit-transform 0.1s, -webkit-filter 0.1s;
   -o-transition: transform 0.1s, filter 0.1s;
-  transition: transform 0.1s, filter 0.1s;
-  transition: transform 0.1s, filter 0.1s, -webkit-transform 0.1s, -webkit-filter 0.1s;
+  /* transition: transform 0.1s, filter 0.1s;
+  transition: transform 0.1s, filter 0.1s, -webkit-transform 0.1s, -webkit-filter 0.1s; */
   position: relative;
 }
 
@@ -47,7 +47,7 @@
   -webkit-transform: scale(0.99);
       -ms-transform: scale(0.99);
           transform: scale(0.99);
-  -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
-          filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
+  /* -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
+          filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5)); */
   /* box-shadow: 0px 0px 15px 5px #FFFFFF4D; */
 }
