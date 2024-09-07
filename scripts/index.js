@@ -287,10 +287,10 @@ window.onload = () => {
   },  1000);
 
   energyManager.energyRecoveryLooper(true, 'normal');
-    // if(tg) {
-      if(tg.initDataUnsafe.length>0) {
-      nameField.textContent = window.Telegram.WebApp.initDataUnsafe.user.first_name;
-    }
+    try {
+    // if(tg.initDataUnsafe.length>0) {
+      nameField.textContent = tg.initDataUnsafe.user.first_name;
+    } catch {}
 };
 
 window.addEventListener('beforeunload', (evt) => {
