@@ -142,7 +142,7 @@ function tasksRenderer() {
   });
 }
 // --------------- CardsRenderer-End ---------------
-btnMain.addEventListener('click', function(e) {
+function click(e) {
   const scoreDisplay = document.createElement('div');
   scoreDisplay.classList.add('mainScreen__deltaAnimDisplay');
   scoreDisplay.textContent = `+${user.delta}`;
@@ -163,12 +163,9 @@ btnMain.addEventListener('click', function(e) {
   setTimeout(() => {
     btnMain.classList.remove('mainScreen__button_active');
   }, 100);
-
-  // Удаляем текст после анимации
-  // setTimeout(() => {
-  //     scoreDisplay.remove();
-  // }, 1010); // 500 мс для анимации + 10 мс задержка
-});
+}
+btnMain.addEventListener('click', click);
+btnMain.addEventListener('touchend', click);
 
 // --------------- MainClick-Start ---------------
 
@@ -287,10 +284,11 @@ window.onload = () => {
   },  1000);
 
   energyManager.energyRecoveryLooper(true, 'normal');
-    try {
-    // if(tg.initDataUnsafe.length>0) {
+
+    if(tg.initDataUnsafe.length>0) {
+      console.log('tgData', tg.initDataUnsafe);
       nameField.textContent = tg.initDataUnsafe.user.first_name;
-    } catch {}
+    }
 };
 
 window.addEventListener('beforeunload', (evt) => {
