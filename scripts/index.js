@@ -126,6 +126,9 @@ function tasksRenderer() {
     // taskCardsField.append(createTaskCards(elem));
   });
 }
+
+
+// --------------- CardsRenderer-End ---------------
 // const scoreDisplay = document.createElement('div');
 // scoreDisplay.classList.add('mainScreen__deltaAnimDisplay');
 // page.appendChild(scoreDisplay);
@@ -133,7 +136,6 @@ function tasksRenderer() {
 // scoreDisplay.style.left = `100px`;
 // scoreDisplay.style.top = `500px`;
 
-// --------------- CardsRenderer-End ---------------
 function click(e) {
   const scoreDisplay = document.createElement('div');
   scoreDisplay.classList.add('mainScreen__deltaAnimDisplay');
@@ -141,11 +143,9 @@ function click(e) {
   scoreDisplay.style.opacity = '1';
   page.appendChild(scoreDisplay);
 
-  // Позиционируем текст в месте нажатия
   scoreDisplay.style.left = `${e.clientX}px`;
   scoreDisplay.style.top = `${e.clientY}px`;
 
-  // Анимация
   setTimeout(() => {
     scoreDisplay.style.opacity = '0';
     scoreDisplay.remove();
@@ -177,7 +177,6 @@ function mainClick() {
 
     tg.HapticFeedback.impactOccurred('light');
     tg.HapticFeedback.notificationOccurred('success');
-    console.log('haptic');
 
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
