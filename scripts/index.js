@@ -175,7 +175,7 @@ try {
 function mainClick() {
   if(user.energy > user.delta) {
 
-    tg.HapticFeedback.impactOccurred('soft');
+    tg.HapticFeedback.impactOccurred('light');
     tg.HapticFeedback.notificationOccurred('success');
     console.log('haptic');
 
