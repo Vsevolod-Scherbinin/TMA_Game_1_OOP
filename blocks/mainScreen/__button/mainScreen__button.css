@@ -1,4 +1,4 @@
-/* .mainScreen__button {
+.mainScreen__button {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -33,7 +33,7 @@
   transition: width 0.5s, height 0.5s;
 }
 
-.mainScreen__button:active {
+/* .mainScreen__button:active {
   transform: scale(0.99);
   box-shadow: 0px 0px 15px 5px #FFFFFF4D;
 }
@@ -43,65 +43,12 @@
   height: 200%;
 } */
 
-.mainScreen__button {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 50%;
-  width: 320px;
-  height: 320px;
-  overflow: hidden;
-  background-image: url(../../../images/main-button.png);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  -webkit-transition: -webkit-transform box-shadow 0.1s;
-  transition: -webkit-transform box-shadow 0.1s;
-  -o-transition: transform box-shadow 0.1s;
-  transition: transform box-shadow 0.1s;
-  transition: transform box-shadow 0.1s, -webkit-transform box-shadow 0.1s;
-  position: relative;
+.mainScreen__button_active {
+  transform: scale(0.99);
+  box-shadow: 0px 0px 15px 5px #FFFFFF4D;
 }
 
-.mainScreen__button::after {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 0;
-  height: 0;
-  border-radius: 100%;
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: -o-radial-gradient(50% 50%,
-  50% 50%,
-  rgba(233, 183, 206, 0.2) 0%,
-  rgba(211, 243, 241, 0.1) 66.5%,
-  rgba(0, 0, 0, 0) 95%);
-  background: radial-gradient(50% 50% at 50% 50%,
-  rgba(233, 183, 206, 0.2) 0%,
-  rgba(211, 243, 241, 0.1) 66.5%,
-  rgba(0, 0, 0, 0) 95%);
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  -webkit-transition: width 0.5s, height 0.5s;
-  -o-transition: width 0.5s, height 0.5s;
-  transition: width 0.5s, height 0.5s;
-}
-
-.mainScreen__button:active {
-  -webkit-transform: scale(0.99);
-      -ms-transform: scale(0.99);
-          transform: scale(0.99);
-  -webkit-box-shadow: 0px 0px 15px 5px #FFFFFF4D;
-          box-shadow: 0px 0px 15px 5px #FFFFFF4D;
-}
-
-.mainScreen__button:active::after {
+.mainScreen__button_active::after {
   width: 200%;
   height: 200%;
 }

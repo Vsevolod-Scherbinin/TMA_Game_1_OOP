@@ -172,7 +172,7 @@ console.log('tg', tg);
 function mainClick() {
   if(user.energy > user.delta) {
     try {
-      tg.hapticFeedback.impactOccurred('soft');
+      tg.hapticFeedback.impactOccurred('hard');
     } catch {
 
     }
@@ -197,6 +197,14 @@ function mainClick() {
 }
 
 btnMain.addEventListener('click', mainClick);
+
+btnMain.addEventListener('touchstart', () => {
+  btnMain.classList.add('mainScreen__button_active');
+});
+
+btnMain.addEventListener('touchend', () => {
+  btnMain.classList.remove('mainScreen__button_active');
+});
 // --------------- MainClick-End ---------------
 
 
