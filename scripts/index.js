@@ -157,6 +157,11 @@ btnMain.addEventListener('click', function(e) {
     scoreDisplay.style.opacity = '0';
   }, 2000);
 
+  btnMain.classList.add('mainScreen__button_active');
+  setTimeout(() => {
+    btnMain.classList.remove('mainScreen__button_active');
+  }, 100);
+
   // Удаляем текст после анимации
   // setTimeout(() => {
   //     scoreDisplay.remove();
@@ -198,21 +203,20 @@ function mainClick() {
 
 btnMain.addEventListener('click', mainClick);
 
-btnMain.addEventListener('touchstart', () => {
-  btnMain.classList.add('mainScreen__button_active');
-});
+// btnMain.addEventListener('touchstart', () => {
+//   btnMain.classList.add('mainScreen__button_active');
+// });
 
-btnMain.addEventListener('touchend', () => {
-  btnMain.classList.remove('mainScreen__button_active');
-});
+// btnMain.addEventListener('touchend', () => {
+//   btnMain.classList.remove('mainScreen__button_active');
+// });
 // --------------- MainClick-End ---------------
 
 
 // Full Screen
-if(tg) {
-  // tg.WebApp.initData;
+try {
   tg.expand();
-}
+} catch {}
 
 function inviteFriends() {
   const inviteLink = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
