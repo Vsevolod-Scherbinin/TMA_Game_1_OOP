@@ -188,7 +188,7 @@ if(tg.initDataUnsafe.user.first_name.length>0) {
 function mainClick() {
   if(user.energy > user.delta) {
 
-    tg.hapticFeedback.impactOccurred('heavy');
+    tg.HapticFeedback.impactOccurred('heavy');
     console.log('haptic');
 
     user.taps++;
