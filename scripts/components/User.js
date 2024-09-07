@@ -46,9 +46,9 @@ class User {
     if (localUserData === null) {
       console.log('New User');
       Object.keys(userDataModel).forEach((key) => {
-        console.log(key);
-        console.log(userDataModel[key]);
-        console.log(this[key]);
+        // console.log(key);
+        // console.log(userDataModel[key]);
+        // console.log(this[key]);
 
         this[key] = userDataModel[key];
       });

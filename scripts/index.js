@@ -165,8 +165,17 @@ btnMain.addEventListener('click', function(e) {
 
 // --------------- MainClick-Start ---------------
 
+const tg = window.Telegram.WebApp;
+console.log('tg', tg);
+
+
 function mainClick() {
   if(user.energy > user.delta) {
+    try {
+      tg.hapticFeedback.impactOccurred('soft');
+    } catch {
+
+    }
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
     energyManager.setEnergyRecoveryTimeout(false);
@@ -190,7 +199,6 @@ function mainClick() {
 btnMain.addEventListener('click', mainClick);
 // --------------- MainClick-End ---------------
 
-const tg = window.Telegram.WebApp;
 
 // Full Screen
 if(tg) {

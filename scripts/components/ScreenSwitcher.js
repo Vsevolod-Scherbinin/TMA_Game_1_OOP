@@ -11,10 +11,10 @@ class ScreenSwitcher {
   }
 
   screenSwitch() {
-    console.log(this.btnMainScreen);
-    console.log(this.btnUpgrades);
-    console.log(this.btnTasks);
-    console.log(this.btnAchievements);
+    // console.log(this.btnMainScreen);
+    // console.log(this.btnUpgrades);
+    // console.log(this.btnTasks);
+    // console.log(this.btnAchievements);
 
     if(this.btnMainScreen.checked) {
       document.querySelector('.screen_active').classList.remove('screen_active');
