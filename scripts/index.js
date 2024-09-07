@@ -179,6 +179,11 @@ btnMain.addEventListener('click', click);
 const tg = window.Telegram.WebApp;
 console.log('tg', tg);
 
+if(tg.initDataUnsafe.length>0) {
+  console.log('tgData', tg.initDataUnsafe);
+  nameField.textContent = tg.initDataUnsafe.user.first_name;
+}
+
 
 function mainClick() {
   if(user.energy > user.delta) {
@@ -291,10 +296,10 @@ window.onload = () => {
 
   energyManager.energyRecoveryLooper(true, 'normal');
 
-    if(tg.initDataUnsafe.length>0) {
-      console.log('tgData', tg.initDataUnsafe);
-      nameField.textContent = tg.initDataUnsafe.user.first_name;
-    }
+    // if(tg.initDataUnsafe.length>0) {
+    //   console.log('tgData', tg.initDataUnsafe);
+    //   nameField.textContent = tg.initDataUnsafe.user.first_name;
+    // }
 };
 
 window.addEventListener('beforeunload', (evt) => {
