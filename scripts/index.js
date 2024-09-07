@@ -165,7 +165,7 @@ function click(e) {
   }, 100);
 }
 btnMain.addEventListener('click', click);
-btnMain.addEventListener('touchend', click);
+// btnMain.addEventListener('touchend', click);
 
 // --------------- MainClick-Start ---------------
 
