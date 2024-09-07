@@ -184,6 +184,8 @@ function mainClick() {
   if(user.energy > user.delta) {
     try {
       tg.hapticFeedback.impactOccurred('hard');
+      console.log('haptic');
+
     } catch {
 
     }
