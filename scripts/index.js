@@ -182,13 +182,10 @@ console.log('tg', tg);
 
 function mainClick() {
   if(user.energy > user.delta) {
-    try {
-      tg.hapticFeedback.impactOccurred('hard');
-      console.log('haptic');
 
-    } catch {
+    tg.hapticFeedback.impactOccurred('heavy');
+    console.log('haptic');
 
-    }
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
     energyManager.setEnergyRecoveryTimeout(false);
