@@ -14,21 +14,6 @@ localStorage.clear();
 
 const element = document.documentElement;
 
-function openFullscreen() {
-  if (element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if (element.mozRequestFullScreen) { // Firefox
-    element.mozRequestFullScreen();
-  } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
-    element.webkitRequestFullscreen();
-  } else if (element.msRequestFullscreen) { // IE/Edge
-    element.msRequestFullscreen();
-  }
-}
-
-// Вызов функции при загрузке приложения или по кнопке
-window.onload = openFullscreen;
-
 const user = new User(userDataModel);
 user.loadUserData();
 
@@ -179,16 +164,19 @@ btnMain.addEventListener('click', click);
 const tg = window.Telegram.WebApp;
 console.log('tg', tg);
 
-if(tg.initDataUnsafe.user.first_name.length>0) {
-  console.log('tgData', tg.initDataUnsafe);
-  nameField.textContent = tg.initDataUnsafe.user.first_name;
-}
+try {
+  if(tg.initDataUnsafe.user.first_name.length>0) {
+    console.log('tgData', tg.initDataUnsafe);
+    nameField.textContent = tg.initDataUnsafe.user.first_name;
+  }
+} catch {}
 
 
 function mainClick() {
   if(user.energy > user.delta) {
 
     tg.HapticFeedback.impactOccurred('heavy');
+    tg.HapticFeedback.notificationOccurred('success');
     console.log('haptic');
 
     user.taps++;
