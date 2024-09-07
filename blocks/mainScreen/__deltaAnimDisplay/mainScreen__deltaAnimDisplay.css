@@ -17,17 +17,28 @@
   font-size: 24px;
   position: absolute;
   opacity: 1;
-  background-image: linear-gradient(0deg, #FAB821, #FAB821),
+  background:
+  linear-gradient(0deg, #FAB821, #FAB821),
   linear-gradient(180deg, rgba(255, 219, 95, 0) 22.73%, #FFDB5F 72.73%);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-blend-mode: screen;
   background-clip: text;
   -webkit-background-clip: text;
-  /* color: #fff; */
   color: transparent;
   display: inline-block;
   text-align: center;
   animation: moveUp 2s ease-out forwards;
   pointer-events: none;
   transition: opacity 2s ease;
+}
+
+.text-mainScreen__deltaAnimDisplay::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(28, 27, 31, 0.35); /* Цвет границы */
+  z-index: -1;
+  -webkit-text-stroke: 4px rgba(28, 27, 31, 0.35); /* Толщина и цвет границы */
+  text-stroke: 4px rgba(28, 27, 31, 0.35);
 }

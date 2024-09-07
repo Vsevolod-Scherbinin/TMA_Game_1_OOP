@@ -141,6 +141,13 @@ function tasksRenderer() {
     // taskCardsField.append(createTaskCards(elem));
   });
 }
+// const scoreDisplay = document.createElement('div');
+// scoreDisplay.classList.add('mainScreen__deltaAnimDisplay');
+// page.appendChild(scoreDisplay);
+// scoreDisplay.textContent = `+1`;
+// scoreDisplay.style.left = `100px`;
+// scoreDisplay.style.top = `500px`;
+
 // --------------- CardsRenderer-End ---------------
 function click(e) {
   const scoreDisplay = document.createElement('div');
