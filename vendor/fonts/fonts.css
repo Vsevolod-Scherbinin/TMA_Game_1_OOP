@@ -1,55 +1,55 @@
-/* Inter-Start */
+/* NunitoSans_7pt-Start */
 @font-face {
-  src:  url(./inter/Inter-Thin.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-Thin.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: 100;
 }
 
 @font-face {
-  src:  url(./inter/Inter-ExtraLight.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-ExtraLight.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: 200;
 }
 
 @font-face {
-  src:  url(./inter/Inter-Light.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-Light.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: 300;
 }
 
 @font-face {
-  src:  url(./inter/Inter-Regular.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-Regular.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: normal;
 }
 
 @font-face {
-  src:  url(./inter/Inter-Medium.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-Medium.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: 500;
 }
 
 @font-face {
-  src:  url(./inter/Inter-SemiBold.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-SemiBold.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: 600;
 }
 
 @font-face {
-  src:  url(./inter/Inter-Bold.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-Bold.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: 700;
 }
 
 @font-face {
-  src:  url(./inter/Inter-ExtraBold.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-ExtraBold.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: 800;
 }
 
 @font-face {
-  src:  url(./inter/Inter-Black.ttf) format('truetype');
-  font-family: 'Inter';
+  src:  url(./nunito-sans/NunitoSans_7pt-Black.ttf) format('truetype');
+  font-family: 'NunitoSans';
   font-weight: 900;
 }
-/* Inter-End */
+/* NunitoSans_7pt-End */
