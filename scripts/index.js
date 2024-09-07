@@ -143,7 +143,8 @@ function tasksRenderer() {
 }
 // --------------- CardsRenderer-End ---------------
 btnMain.addEventListener('click', function(e) {
-  // const scoreDisplay = document.createElement('div');
+  const scoreDisplay = document.createElement('div');
+  scoreDisplay.classList.add('mainScreen__deltaAnimDisplay');
   scoreDisplay.textContent = `+${user.delta}`;
   scoreDisplay.style.opacity = '1';
   page.appendChild(scoreDisplay);
@@ -155,6 +156,7 @@ btnMain.addEventListener('click', function(e) {
   // Анимация
   setTimeout(() => {
     scoreDisplay.style.opacity = '0';
+    scoreDisplay.remove();
   }, 2000);
 
   btnMain.classList.add('mainScreen__button_active');
