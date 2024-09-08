@@ -183,7 +183,9 @@ try {
   // console.log('user.id', tg.initDataUnsafe.user.id);
   loadUserDataMDB('180799659');
   // loadUserDataMDB(tg.initDataUnsafe.user.id);
-} catch {}
+} catch (error) {
+  console.log(error);
+}
 
 
 function mainClick() {
