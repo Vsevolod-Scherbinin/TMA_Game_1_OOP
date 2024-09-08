@@ -178,17 +178,18 @@ async function loadUserDataMDB(userId) {
   return data;
 }
 try {
-  console.log('user.id', tg.initDataUnsafe.user.id);
-  loadUserDataMDB(tg.initDataUnsafe.user.id);
+  // console.log('user.id', tg.initDataUnsafe.user.id);
+  loadUserDataMDB('180799659');
+  // loadUserDataMDB(tg.initDataUnsafe.user.id);
 } catch {}
 
 
 function mainClick() {
   if(user.energy > user.delta) {
-
-    tg.HapticFeedback.impactOccurred('soft');
-    tg.HapticFeedback.notificationOccurred('success');
-
+    if(tg.initDataUnsafe.user.first_name.length>0) {
+      tg.HapticFeedback.impactOccurred('soft');
+      tg.HapticFeedback.notificationOccurred('success');
+    }
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
     energyManager.setEnergyRecoveryTimeout(false);
