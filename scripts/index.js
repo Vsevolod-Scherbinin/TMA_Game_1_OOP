@@ -172,7 +172,7 @@ try {
 } catch {}
 
 async function loadUserDataMDB(userId) {
-  const response = await fetch(`http://localhost:3000/getUserData/${userId}`);
+  const response = await fetch(`http://localhost:3200/getUserData/${userId}`);
   const data = await response.json();
   console.log('Данные пользователя загружены:', data);
   return data;
