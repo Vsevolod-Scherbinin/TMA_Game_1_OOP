@@ -171,6 +171,17 @@ try {
   }
 } catch {}
 
+async function loadUserDataMDB(userId) {
+  const response = await fetch(`http://localhost:3000/getUserData/${userId}`);
+  const data = await response.json();
+  console.log('Данные пользователя загружены:', data);
+  return data;
+}
+try {
+  console.log('user.id', tg.initDataUnsafe.user.id);
+  loadUserDataMDB(tg.initDataUnsafe.user.id);
+} catch {}
+
 
 function mainClick() {
   if(user.energy > user.delta) {
