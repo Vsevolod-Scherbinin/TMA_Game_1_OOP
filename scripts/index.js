@@ -179,18 +179,18 @@ async function loadUserDataMDB(userId) {
   console.log('Данные пользователя загружены:', data);
   return data;
 }
-try {
+if(tg.initDataUnsafe.user == undefined) {
   // console.log('user.id', tg.initDataUnsafe.user.id);
   loadUserDataMDB('180799659');
   // loadUserDataMDB(tg.initDataUnsafe.user.id);
-} catch (error) {
-  console.log(error);
 }
+
+console.log(tg.initDataUnsafe.user !== undefined);
 
 
 function mainClick() {
   if(user.energy > user.delta) {
-    if(tg.initDataUnsafe.user.first_name.length>0) {
+    if(tg.initDataUnsafe.user) {
       tg.HapticFeedback.impactOccurred('soft');
       tg.HapticFeedback.notificationOccurred('success');
     }
