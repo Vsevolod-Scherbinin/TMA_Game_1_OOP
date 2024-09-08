@@ -163,6 +163,7 @@ btnMain.addEventListener('click', click);
 
 const tg = window.Telegram.WebApp;
 console.log('tg', tg);
+tg.enableClosingConfirmation();
 
 try {
   if(tg.initDataUnsafe.user.first_name.length>0) {
@@ -179,6 +180,7 @@ async function loadUserDataMDB(userId) {
   console.log('Данные пользователя загружены:', data);
   return data;
 }
+
 if(tg.initDataUnsafe.user == undefined) {
   // console.log('user.id', tg.initDataUnsafe.user.id);
   loadUserDataMDB('180799659');
