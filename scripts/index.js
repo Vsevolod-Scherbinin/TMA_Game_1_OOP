@@ -176,7 +176,7 @@ function mainClick() {
   if(user.energy > user.delta) {
 
     tg.HapticFeedback.impactOccurred('light');
-    tg.HapticFeedback.notificationOccurred('warning');
+    // tg.HapticFeedback.notificationOccurred('warning');
 
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
