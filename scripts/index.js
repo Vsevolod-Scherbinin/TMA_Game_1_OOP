@@ -179,11 +179,11 @@ async function loadUserDataMDB(userId) {
   console.log('Данные пользователя загружены:', data);
   return data;
 }
-// if(tg.initDataUnsafe.user == undefined) {
+if(tg.initDataUnsafe.user == undefined) {
   // console.log('user.id', tg.initDataUnsafe.user.id);
   loadUserDataMDB('180799659');
   // loadUserDataMDB(tg.initDataUnsafe.user.id);
-// }
+}
 
 console.log(tg.initDataUnsafe.user !== undefined);
 
