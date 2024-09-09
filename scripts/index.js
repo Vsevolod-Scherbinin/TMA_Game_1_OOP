@@ -175,17 +175,18 @@ try {
 async function loadUserDataMDB(userId) {
   console.log('DataLoading');
 
-  const response = await fetch(`http://51.250.34.225:3200/getUserData/${userId}`);
+  const response = await fetch(`http://api.scherbinin.mesto.nomoredomains.club/getUserData/${userId}`);
+  // const response = await fetch(`http://51.250.34.225:3200/getUserData/${userId}`);
   const data = await response.json();
   console.log('Данные пользователя загружены:', data);
   return data;
 }
 
-if(tg.initDataUnsafe.user !== undefined) {
+// if(tg.initDataUnsafe.user !== undefined) {
   // console.log('user.id', tg.initDataUnsafe.user.id);
   loadUserDataMDB('180799659');
   // loadUserDataMDB(tg.initDataUnsafe.user.id);
-}
+// }
 
 console.log(tg.initDataUnsafe.user !== undefined);
 
