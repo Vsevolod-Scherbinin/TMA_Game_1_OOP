@@ -175,7 +175,7 @@ try {
 async function loadUserDataMDB(userId) {
   console.log('DataLoading');
 
-  const response = await fetch(`http://api.scherbinin.mesto.nomoredomains.club/getUserData/${userId}`);
+  const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/getUserData/${userId}`);
   // const response = await fetch(`http://51.250.34.225:3200/getUserData/${userId}`);
   const data = await response.json();
   console.log('Данные пользователя загружены:', data);
