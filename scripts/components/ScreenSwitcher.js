@@ -19,38 +19,22 @@ class ScreenSwitcher {
     if(this.btnMainScreen.checked) {
       document.querySelector('.screen_active').classList.remove('screen_active');
       document.querySelector('.navigation__btnName_active').classList.remove('navigation__btnName_active');
-      this.btnMainScreen.parentElement.querySelector('.navigation__buttonIcon').src = './images/mainscreen-button-icon-active.png';
-      this.btnUpgrades.parentElement.querySelector('.navigation__buttonIcon').src = './images/upgrade-button-icon-inactive.png';
-      this.btnTasks.parentElement.querySelector('.navigation__buttonIcon').src = './images/friends-button-icon-inactive.png';
-      this.btnAchievements.parentElement.querySelector('.navigation__buttonIcon').src = './images/achievements-button-icon-inactive.png';
       this.btnMainScreen.parentElement.querySelector('.navigation__btnName').classList.add('navigation__btnName_active');
       this.mainScreen.classList.add('screen_active');
     } else if (this.btnUpgrades.checked) {
       document.querySelector('.screen_active').classList.remove('screen_active');
       document.querySelector('.navigation__btnName_active').classList.remove('navigation__btnName_active');
-      this.btnMainScreen.parentElement.querySelector('.navigation__buttonIcon').src = './images/mainscreen-button-icon-inactive.png';
-      this.btnUpgrades.parentElement.querySelector('.navigation__buttonIcon').src = './images/upgrade-button-icon-active.png';
-      this.btnTasks.parentElement.querySelector('.navigation__buttonIcon').src = './images/friends-button-icon-inactive.png';
-      this.btnAchievements.parentElement.querySelector('.navigation__buttonIcon').src = './images/achievements-button-icon-inactive.png';
       this.btnUpgrades.parentElement.querySelector('.navigation__btnName').classList.add('navigation__btnName_active');
       this.upgradesScreen.classList.add('screen_active');
     } else if (this.btnTasks.checked) {
       document.querySelector('.screen_active').classList.remove('screen_active');
       document.querySelector('.navigation__btnName_active').classList.remove('navigation__btnName_active');
-      this.btnMainScreen.parentElement.querySelector('.navigation__buttonIcon').src = './images/mainscreen-button-icon-inactive.png';
-      this.btnUpgrades.parentElement.querySelector('.navigation__buttonIcon').src = './images/upgrade-button-icon-inactive.png';
-      this.btnTasks.parentElement.querySelector('.navigation__buttonIcon').src = './images/friends-button-icon-active.png';
-      this.btnAchievements.parentElement.querySelector('.navigation__buttonIcon').src = './images/achievements-button-icon-inactive.png';
       this.btnTasks.parentElement.querySelector('.navigation__btnName').classList.add('navigation__btnName_active');
       this.tasksScreen.classList.add('screen_active');
     } else if (this.btnAchievements.checked) {
       // Review if next function is needed.
       document.querySelector('.screen_active').classList.remove('screen_active');
       document.querySelector('.navigation__btnName_active').classList.remove('navigation__btnName_active');
-      this.btnMainScreen.parentElement.querySelector('.navigation__buttonIcon').src = './images/mainscreen-button-icon-inactive.png';
-      this.btnUpgrades.parentElement.querySelector('.navigation__buttonIcon').src = './images/upgrade-button-icon-inactive.png';
-      this.btnTasks.parentElement.querySelector('.navigation__buttonIcon').src = './images/friends-button-icon-inactive.png';
-      this.btnAchievements.parentElement.querySelector('.navigation__buttonIcon').src = './images/achievements-button-icon-active.png';
       this.btnAchievements.parentElement.querySelector('.navigation__btnName').classList.add('navigation__btnName_active');
       this.achievementsScreen.classList.add('screen_active');
     }

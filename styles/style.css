@@ -41,6 +41,10 @@
 @import url(../blocks/energyArea/__slash/energyArea__slash.css);
 @import url(../blocks/energyArea/__limit/energyArea__limit.css);
 
+@import url(../blocks/tasksButton/tasksButton.css);
+@import url(../blocks/tasksButton/__icon/tasksButton__icon.css);
+@import url(../blocks/tasksButton/__title/tasksButton__title.css);
+
 @import url(../blocks/upgradesScreen/upgradesScreen.css);
 @import url(../blocks/upgradesScreen/__title/upgradesScreen__title.css);
 @import url(../blocks/upgradesScreen/__upgradesField/upgradesScreen__upgradesField.css);
@@ -59,6 +63,7 @@
 @import url(../blocks/navigation/navigation.css);
 @import url(../blocks/navigation/__input/navigation__input.css);
 @import url(../blocks/navigation/__button/navigation__button.css);
+@import url(../blocks/navigation/__button/_active/navigation__button_active.css);
 @import url(../blocks/navigation/__button/_type/navigation__button_type_main.css);
 @import url(../blocks/navigation/__button/_type/navigation__button_type_upgrades.css);
 @import url(../blocks/navigation/__button/_type/navigation__button_type_tasks.css);
