@@ -1,0 +1,7 @@
+.tasksButton__newTasksIcon {
+  margin: 0;
+  padding: 0;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}

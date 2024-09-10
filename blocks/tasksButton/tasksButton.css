@@ -6,8 +6,7 @@
   height: 42px;
   border-radius: 12px;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
-  gap: 4px;
   background: rgba(245, 243, 244, 0.2);
 }
