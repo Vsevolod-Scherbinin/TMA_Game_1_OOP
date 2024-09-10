@@ -11,31 +11,26 @@ class ScreenSwitcher {
   }
 
   screenSwitch() {
-    // console.log(this.btnMainScreen);
-    // console.log(this.btnUpgrades);
-    // console.log(this.btnTasks);
-    // console.log(this.btnAchievements);
-
     if(this.btnMainScreen.checked) {
+      document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
+      this.btnMainScreen.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
-      document.querySelector('.navigation__btnName_active').classList.remove('navigation__btnName_active');
-      this.btnMainScreen.parentElement.querySelector('.navigation__btnName').classList.add('navigation__btnName_active');
       this.mainScreen.classList.add('screen_active');
     } else if (this.btnUpgrades.checked) {
+      document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
+      this.btnUpgrades.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
-      document.querySelector('.navigation__btnName_active').classList.remove('navigation__btnName_active');
-      this.btnUpgrades.parentElement.querySelector('.navigation__btnName').classList.add('navigation__btnName_active');
       this.upgradesScreen.classList.add('screen_active');
     } else if (this.btnTasks.checked) {
+      document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
+      this.btnTasks.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
-      document.querySelector('.navigation__btnName_active').classList.remove('navigation__btnName_active');
-      this.btnTasks.parentElement.querySelector('.navigation__btnName').classList.add('navigation__btnName_active');
       this.tasksScreen.classList.add('screen_active');
     } else if (this.btnAchievements.checked) {
+      document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
+      this.btnAchievements.parentElement.classList.add('navigation__button_active');
       // Review if next function is needed.
       document.querySelector('.screen_active').classList.remove('screen_active');
-      document.querySelector('.navigation__btnName_active').classList.remove('navigation__btnName_active');
-      this.btnAchievements.parentElement.querySelector('.navigation__btnName').classList.add('navigation__btnName_active');
       this.achievementsScreen.classList.add('screen_active');
     }
   }

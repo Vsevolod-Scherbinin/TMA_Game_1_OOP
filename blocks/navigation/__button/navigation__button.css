@@ -9,16 +9,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-}
-
-.navigation__button {
   cursor: pointer;
 }
 
 .navigation__button input[type=radio] {
 	display: none;
-  width: 100%;
-  height: 100%;
 }
 
 .navigation__button label {
@@ -39,16 +34,3 @@
   line-height: normal;
   cursor: pointer;
 }
-
-/* Checked */
-.navigation__button input[type=radio]:checked + label {
-  background: #F4F3F480;
-}
-
-/* Hover */
-/* .navigation__button label:hover {
-  background: #F460FF;
-
-} */
-
-

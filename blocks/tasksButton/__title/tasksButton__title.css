@@ -1,3 +1,9 @@
 .tasksButton__title {
-
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21.82px;
+  text-align: left;
+  color: rgba(28, 27, 31, 1);
 }
