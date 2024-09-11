@@ -1,19 +1,3 @@
-// ToDo
-// Mech
-  // Energy Recovery Multiple Work -- toFix
-
-// Fonts
-// New Icons
-
-// Later
-// Friends!!
-// Updating Model Safe!!!
-// DataBase??
-
-localStorage.clear();
-
-const element = document.documentElement;
-
 const user = new User(userDataModel);
 user.loadUserData();
 
@@ -156,7 +140,7 @@ function click(e) {
     btnMain.classList.remove('mainScreen__button_active');
   }, 100);
 }
-btnMain.addEventListener('click', click);
+// btnMain.addEventListener('click', click);
 // btnMain.addEventListener('touchend', click);
 
 // --------------- MainClick-Start ---------------
@@ -197,6 +181,7 @@ function mainClick() {
       tg.HapticFeedback.impactOccurred('soft');
       tg.HapticFeedback.notificationOccurred('success');
     }
+    click(evt);
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
     energyManager.setEnergyRecoveryTimeout(false);
@@ -247,6 +232,7 @@ inviteFriendBtn.addEventListener('click', inviteFriends);
 
 // --------------- Window-Start ---------------
 window.onload = () => {
+// localStorage.clear();
   user.loadUserData();
   // ServiceFunctions-Start
     user.score = 50000;
