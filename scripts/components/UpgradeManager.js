@@ -104,7 +104,7 @@ class UpgradeManager {
             currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
           }
         } else {
-          currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl Max`;
+          currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `Max`;
           currentUpgradeCard.querySelector('.upgradeCard__costArea').remove();
 
           // style
