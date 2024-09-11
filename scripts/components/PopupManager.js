@@ -68,4 +68,20 @@ class PopupManager {
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
   }
 
+  referencePopupOpen(bonus, dbData) {
+    this.popup.classList.remove('popup_inactive');
+    this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    this.popup.querySelector('.popup__message').textContent = `Вы получили $${formatNumberWithSpaces(bonus)} от друга`;
+    this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
+    const submit = () => {
+      console.log('Submit');
+      //this.user.referenceBonus = 0;
+      this.user.score = user.score + bonus;
+      this.user.cummulativeIncome = user.cummulativeIncome + bonus;
+      this.user.saveUserData();
+      // incomeManager.scoreRenderer();
+      this.popupClose();
+    }
+    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+  }
 }

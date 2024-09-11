@@ -159,8 +159,8 @@ try {
 async function loadUserDataMDB(userId) {
   console.log('DataLoading');
 
-  const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/getUserData/${userId}`);
-  // const response = await fetch(`http://51.250.34.225:3200/getUserData/${userId}`);
+  const response = await fetch(`http://localhost:3200/getUserData/${userId}`);
+  // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/getUserData/${userId}`);
   const data = await response.json();
   console.log('Данные пользователя загружены:', data);
   return data;
@@ -203,14 +203,6 @@ function mainClick(evt) {
 }
 
 btnMain.addEventListener('click', mainClick);
-
-// btnMain.addEventListener('touchstart', () => {
-//   btnMain.classList.add('mainScreen__button_active');
-// });
-
-// btnMain.addEventListener('touchend', () => {
-//   btnMain.classList.remove('mainScreen__button_active');
-// });
 // --------------- MainClick-End ---------------
 
 
@@ -220,7 +212,7 @@ try {
 } catch {}
 
 function inviteFriends() {
-  const inviteLink = `https://t.me/FirstTGTest_bot?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
+  const inviteLink = `https://t.me/FirstTGTest_bot?start=referral_id=${tg.initDataUnsafe.user.id}`;
   const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${inviteLink}`;
   tg.sendData(message);
   const shareLink = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(message)}`;
@@ -230,9 +222,17 @@ function inviteFriends() {
 inviteFriendBtn.addEventListener('click', inviteFriends);
 
 
+
 // --------------- Window-Start ---------------
-window.onload = () => {
-// localStorage.clear();
+window.onload = async () => {
+  localStorage.clear();
+
+  localStorage.setItem('DataFromDB', JSON.stringify(await loadUserDataMDB('180799659')));
+  const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
+
+  dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
+  // dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
+
   user.loadUserData();
   // ServiceFunctions-Start
     user.score = 50000;
@@ -288,10 +288,6 @@ window.onload = () => {
 
   energyManager.energyRecoveryLooper(true, 'normal');
 
-    // if(tg.initDataUnsafe.length>0) {
-    //   console.log('tgData', tg.initDataUnsafe);
-    //   nameField.textContent = tg.initDataUnsafe.user.first_name;
-    // }
 };
 
 window.addEventListener('beforeunload', (evt) => {
@@ -299,34 +295,3 @@ window.addEventListener('beforeunload', (evt) => {
   localStorage.setItem('closureTime', new Date());
 });
 // --------------- Window-End ---------------
-
-// // Функция для обработки параметров при запуске бота
-// function handleStartParams() {
-//     const params = tg.initDataUnsafe;
-
-//     // Проверяем, есть ли параметры
-//     if (params && params.query) {
-//         const queryParams = new URLSearchParams(params.query);
-//         const referralId = queryParams.get('referral_id');
-
-//         if (referralId) {
-//             // Отправляем приветственное сообщение с информацией о приглашении
-//             alert(`Вы пришли по приглашению пользователя с ID: ${referralId}`);
-//         }
-//     }
-// }
-
-// // Обработчик нажатия на кнопку
-// document.querySelector('.tasksScreen__inviteBtn').onclick = function() {
-//     const inviteLink = `https://t.me/${tg.initDataUnsafe.user.username}?start=invite_friends&referral_id=${tg.initDataUnsafe.user.id}`;
-//     const message = `Пригласите своих друзей по ссылке: ${inviteLink}`;
-
-//     // Отправляем сообщение в чат с помощью Telegram Web App API
-//     tg.sendMessage(message);
-// };
-
-// // Вызываем функцию для обработки параметров
-// handleStartParams();
-
-// nameField.textContent = TMA.initDataUnsafe.user.first_name;
-// console.log(TMA);
