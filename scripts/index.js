@@ -175,7 +175,7 @@ async function loadUserDataMDB(userId) {
 console.log(tg.initDataUnsafe.user !== undefined);
 
 
-function mainClick() {
+function mainClick(evt) {
   if(user.energy > user.delta) {
     if(tg.initDataUnsafe.user) {
       tg.HapticFeedback.impactOccurred('soft');
