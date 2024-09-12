@@ -174,11 +174,34 @@ function inviteFriends() {
 
 inviteFriendBtn.addEventListener('click', inviteFriends);
 
+async function checkUserSubscription(channelId, userId) {
+  try {
+    const response = await fetch('http://localhost:3200/checkSubscription', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId, channelId }),
+    });
 
+    const data = await response.json();
+    if (data.subscribed) {
+      console.log('Пользователь подписан на канал!');
+      // Здесь вы можете уведомить пользователя о том, что он подписан
+    } else {
+      console.log('Пользователь не подписан на канал!');
+      // Здесь вы можете уведомить пользователя о необходимости подписки
+    }
+  } catch (error) {
+    console.error('Ошибка при проверке подписки:', error);
+  }
+}
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
   localStorage.clear();
+  checkUserSubscription(-1002493343663, 180799659);
+  checkUserSubscription(-1002493343663, 653832788);
 
   localStorage.setItem('DataFromDB', JSON.stringify(await loadUserDataMDB('180799659')));
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
