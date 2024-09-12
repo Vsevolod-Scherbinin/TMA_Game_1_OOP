@@ -200,6 +200,7 @@ async function checkUserSubscription(channelId, userId) {
 // --------------- Window-Start ---------------
 window.onload = async () => {
   localStorage.clear();
+  // Subscribtion Test
   checkUserSubscription(-1002493343663, 180799659);
   checkUserSubscription(-1002493343663, 653832788);
 
