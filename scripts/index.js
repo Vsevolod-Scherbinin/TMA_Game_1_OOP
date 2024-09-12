@@ -47,8 +47,6 @@ function createWideCards(elem) {
 }
 
 const tasksButton = document.querySelector('.tasksButton');
-const userId1 = '180799659';
-const userId2 = '653832788';
 const channelId = '-1002493343663';
 function subscribe() {
   window.open(`https://t.me/+cU6JKcOAFuphZTli`, '_blank');
@@ -93,8 +91,6 @@ function click(e) {
     btnMain.classList.remove('mainScreen__button_active');
   }, 100);
 }
-// btnMain.addEventListener('click', click);
-// btnMain.addEventListener('touchend', click);
 
 // --------------- MainClick-Start ---------------
 
@@ -156,10 +152,9 @@ function mainClick(evt) {
 }
 
 btnMain.addEventListener('click', mainClick);
+
 // --------------- MainClick-End ---------------
 
-
-// Full Screen
 try {
   tg.expand();
 } catch {}
@@ -187,10 +182,8 @@ async function checkUserSubscription(channelId, userId) {
     const data = await response.json();
     if (data.subscribed) {
       console.log('Пользователь подписан на канал!');
-      // Здесь вы можете уведомить пользователя о том, что он подписан
     } else {
       console.log('Пользователь не подписан на канал!');
-      // Здесь вы можете уведомить пользователя о необходимости подписки
     }
   } catch (error) {
     console.error('Ошибка при проверке подписки:', error);
