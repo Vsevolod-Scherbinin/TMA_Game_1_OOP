@@ -29,62 +29,6 @@ screenSwitcher.setEventListeners();
 
 let timer = 0;
 
-// --------------- Upgrades-Start ---------------
-function upgradeFinder(upgradesArray, name) {
-  let foundUpgrade;
-  if(upgradesArray == 'activeUpgrades') {
-    foundUpgrade = activeUpgrades.find(upgrade => upgrade.title === name);
-  } else {
-    foundUpgrade = passiveUpgrades.find(upgrade => upgrade.title === name);
-  };
-  const currentUpgrade = {
-    id: foundUpgrade.id,
-    levels: foundUpgrade.levels,
-  }
-  // console.log(currentUpgrade);
-
-  return currentUpgrade;
-}
-
-function createUpgradeCard(elem, upgradesArray) {
-  const upgradeCardElement = upgradeCardTemplate.cloneNode(true);
-  upgradeCardElement.querySelector('.upgradeCard__title').textContent = elem.title;
-  upgradeCardElement.querySelector('.upgradeCard__icon').src = elem.mainIcon;
-  upgradeCardElement.querySelector('.upgradeCard__effectIcon').src = elem.effectIcon;
-  const userUpgradesArray = user[upgradesArray].find(upgrade => upgrade.id === elem.id);
-
-  const currentUpgrade = elem.levels.find(level => level.level === userUpgradesArray.level+1);
-  const previousUpgrade = elem.levels.find(level => level.level === userUpgradesArray.level);
-
-  if(currentUpgrade) {
-    upgradeCardElement.querySelector('.upgradeCard').addEventListener('click', (evt) => {
-      upgradeManager.addUpgrade(evt, upgradesArray);
-    });
-
-    upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl ${currentUpgrade.level}`;
-    upgradeCardElement.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(currentUpgrade.cost)}`;
-
-    currentUpgrade.income !== undefined
-      ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.income)}/час`
-      : currentUpgrade.delta !== undefined
-        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.delta)}/клик`
-        : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.energyLimit)}`;
-  } else {
-    upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl Max`;
-    upgradeCardElement.querySelector('.upgradeCard__costArea').remove();
-
-    previousUpgrade.income !== undefined
-      ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.income)}`
-      : previousUpgrade.delta !== undefined
-        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.delta)}`
-        : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.energyLimit)}`;
-  }
-
-
-  return upgradeCardElement;
-};
-// --------------- Upgrades-End ---------------
-
 // --------------- WideCards-End ---------------
 function createTaskCards(elem) {
   const taskCardElement = wideCardTemplate.cloneNode(true);

@@ -20,14 +20,52 @@ class UpgradeManager {
     this.passiveUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_passive');
   }
 
+  _createUpgradeCard(elem, upgradesArray) {
+    const upgradeCardElement = upgradeCardTemplate.cloneNode(true);
+    upgradeCardElement.querySelector('.upgradeCard__title').textContent = elem.title;
+    upgradeCardElement.querySelector('.upgradeCard__icon').src = elem.mainIcon;
+    upgradeCardElement.querySelector('.upgradeCard__effectIcon').src = elem.effectIcon;
+    const userUpgradesArray = user[upgradesArray].find(upgrade => upgrade.id === elem.id);
+
+    const currentUpgrade = elem.levels.find(level => level.level === userUpgradesArray.level+1);
+    const previousUpgrade = elem.levels.find(level => level.level === userUpgradesArray.level);
+
+    if(currentUpgrade) {
+      upgradeCardElement.querySelector('.upgradeCard').addEventListener('click', (evt) => {
+        upgradeManager.addUpgrade(evt, upgradesArray);
+      });
+
+      upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl ${currentUpgrade.level}`;
+      upgradeCardElement.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(currentUpgrade.cost)}`;
+
+      currentUpgrade.income !== undefined
+        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.income)}/час`
+        : currentUpgrade.delta !== undefined
+          ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.delta)}/клик`
+          : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.energyLimit)}`;
+    } else {
+      upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl Max`;
+      upgradeCardElement.querySelector('.upgradeCard__costArea').remove();
+
+      previousUpgrade.income !== undefined
+        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.income)}`
+        : previousUpgrade.delta !== undefined
+          ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.delta)}`
+          : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.energyLimit)}`;
+    }
+
+
+    return upgradeCardElement;
+  };
+
   allUpgradesRenderer() {
     console.log('Upgrades');
 
     activeUpgrades.forEach((elem) => {
-      this.activeUpgradesField.append(createUpgradeCard(elem, 'activeUpgrades'));
+      this.activeUpgradesField.append(this._createUpgradeCard(elem, 'activeUpgrades'));
     });
     passiveUpgrades.forEach((elem) => {
-      this.passiveUpgradesField.append(createUpgradeCard(elem, 'passiveUpgrades'));
+      this.passiveUpgradesField.append(this._createUpgradeCard(elem, 'passiveUpgrades'));
     });
   }
 
@@ -58,7 +96,7 @@ class UpgradeManager {
     const currentUpgradeCard = evt.target.closest('.upgradeCard');
     const currentUpgradeName = currentUpgradeCard.querySelector('.upgradeCard__title').textContent;
 
-    const currentUpgrade = upgradeFinder(upgradesArray, currentUpgradeName);
+    const currentUpgrade = this._upgradeFinder(upgradesArray, currentUpgradeName);
     // console.log('currentUpgrade', currentUpgrade);
 
     const userUpgrade = this.user[upgradesArray][currentUpgrade.id-1];

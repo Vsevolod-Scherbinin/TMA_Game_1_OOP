@@ -71,6 +71,7 @@
 @import url(../blocks/navigation/__button/_type/navigation__button_type_upgrades.css);
 @import url(../blocks/navigation/__button/_type/navigation__button_type_tasks.css);
 @import url(../blocks/navigation/__button/_type/navigation__button_type_achievements.css);
+@import url(../blocks/navigation/__buttonIcon/navigation__buttonIcon.css);
 @import url(../blocks/navigation/__btnName/navigation__btnName.css);
 @import url(../blocks/navigation/__btnName/_active/navigation__btnName_active.css);
 
