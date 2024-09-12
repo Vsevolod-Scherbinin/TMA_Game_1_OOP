@@ -51,7 +51,7 @@ const userId1 = '180799659';
 const userId2 = '653832788';
 const channelId = '-1002493343663';
 function subscribe() {
-  window.open(`https://t.me/${channelId}`, '_blank');
+  window.open(`https://t.me/+cU6JKcOAFuphZTli`, '_blank');
 }
 tasksButton.addEventListener('click', subscribe);
 
