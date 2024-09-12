@@ -45,6 +45,16 @@ function createWideCards(elem) {
   wideCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(elem.effect)}`;
   return wideCardElement;
 }
+
+const tasksButton = document.querySelector('.tasksButton');
+const userId1 = '180799659';
+const userId2 = '653832788';
+const channelId = '-1002493343663';
+function subscribe() {
+  window.open(`https://t.me/${channelId}`, '_blank');
+}
+tasksButton.addEventListener('click', subscribe);
+
 // --------------- WideCards-End ---------------
 
 // --------------- CardsRenderer-Start ---------------
@@ -54,7 +64,6 @@ function tasksRenderer() {
     // taskCardsField.append(createTaskCards(elem));
   });
 }
-
 
 // --------------- CardsRenderer-End ---------------
 // const scoreDisplay = document.createElement('div');
