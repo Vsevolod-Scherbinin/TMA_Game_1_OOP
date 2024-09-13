@@ -154,7 +154,7 @@ class UpgradeManager {
         }
         // console.log('save');
         // console.log(this.user);
-        this.user.saveUserData();
+        this.user.saveUserDataLocal();
       } else {
         // console.log('Недостаточно средств');
       }

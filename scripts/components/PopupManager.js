@@ -61,7 +61,7 @@ class PopupManager {
 
       this.user.score = user.score + offlinePassiveIncome;
       this.user.cummulativeIncome = user.cummulativeIncome + offlinePassiveIncome;
-      this.user.saveUserData();
+      this.user.saveUserDataLocal();
       // incomeManager.scoreRenderer();
       this.popupClose();
     }
@@ -78,7 +78,7 @@ class PopupManager {
       //this.user.referenceBonus = 0;
       this.user.score = user.score + bonus;
       this.user.cummulativeIncome = user.cummulativeIncome + bonus;
-      this.user.saveUserData();
+      this.user.saveUserDataLocal();
       // incomeManager.scoreRenderer();
       this.popupClose();
     }

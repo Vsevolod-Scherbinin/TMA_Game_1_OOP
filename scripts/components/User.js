@@ -1,8 +1,13 @@
+const mainApi = new MainApi(BASE_URL, {'Content-Type': 'application/json'});
+
+const saveSlotName = 'TMAGameUserData1';
+
 class User {
   // constructor(userData) {
   //   this._userData = userData;
   // }
   constructor({
+    userId,
     score,
     delta,
     energy,
@@ -18,7 +23,10 @@ class User {
     tasks,
     achievements,
     gatheredAchievements,
+    referenceBonus,
+    referrals
   }) {
+    this.userId = userId;
     this.score = score;
     this.delta = delta;
     this.energy = energy;
@@ -34,13 +42,14 @@ class User {
     this.tasks = tasks;
     this.achievements = achievements;
     this.gatheredAchievements = gatheredAchievements;
-    this.saveSlotName = 'TMAGameUserData1';
+    this.referenceBonus = referenceBonus;
+    this.referrals = referrals;
   }
 
   loadUserData() {
     // console.log(Object.keys(this));
 
-    const localUserData = localStorage.getItem(this.saveSlotName);
+    const localUserData = localStorage.getItem(saveSlotName);
     // console.log(localUserData);
 
     if (localUserData === null) {
@@ -62,7 +71,7 @@ class User {
       achievements.forEach((achievement) => {
         this.achievements.push({ id: achievement.id, level: 0 });
       });
-      localStorage.setItem(this.saveSlotName, JSON.stringify(this));
+      localStorage.setItem(saveSlotName, JSON.stringify(this));
     } else {
       console.log('Old User');
       Object.keys(userDataModel).forEach((key) => {
@@ -76,7 +85,19 @@ class User {
     }
   }
 
-  saveUserData() {
-    localStorage.setItem(this.saveSlotName, JSON.stringify(this));
+  saveUserDataLocal() {
+    localStorage.setItem(saveSlotName, JSON.stringify(this));
+  }
+
+  saveUserDataDB() {
+    console.log('this', this);
+
+    mainApi.saveUser(this)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+    });
   }
 }

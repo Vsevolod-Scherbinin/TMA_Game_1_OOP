@@ -105,6 +105,6 @@ class AchievementManager {
       this.user.gatheredAchievements.push(newAchievement);
       console.log(this.user);
     }
-    this.user.saveUserData();
+    this.user.saveUserDataLocal();
   }
 }

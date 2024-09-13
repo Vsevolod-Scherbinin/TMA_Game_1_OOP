@@ -1,4 +1,8 @@
 // const TMA = window.Telegram.WebApp;
+
+// const BASE_URL = 'https://api.scherbinin.diploma.nomoredomains.club';
+const BASE_URL = 'http://localhost:3200';
+
 const passiveOfflineIncomeHoursLimit = 3;
 const onlinePassiveTimeLimit = 3600 * passiveOfflineIncomeHoursLimit;
 

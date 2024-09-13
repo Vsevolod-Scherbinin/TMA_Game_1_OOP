@@ -78,7 +78,7 @@ class EnergyManager {
       }
     }
     this.energyRenderer();
-    this.user.saveUserData();
+    this.user.saveUserDataLocal();
   }
 
   setEnergyRecoveryTimeout(start) {

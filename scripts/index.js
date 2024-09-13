@@ -108,8 +108,8 @@ try {
 async function loadUserDataMDB(userId) {
   console.log('DataLoading');
 
-  const response = await fetch(`http://localhost:3200/getUserData/${userId}`);
-  // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/getUserData/${userId}`);
+  const response = await fetch(`http://localhost:3200/users/${userId}`);
+  // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${userId}`);
   const data = await response.json();
   console.log('Данные пользователя загружены:', data);
   return data;
@@ -123,9 +123,8 @@ async function loadUserDataMDB(userId) {
 
 console.log(tg.initDataUnsafe.user !== undefined);
 
-
 function mainClick(evt) {
-  if(user.energy > user.delta) {
+  if(user.energy >= user.delta) {
     if(tg.initDataUnsafe.user) {
       tg.HapticFeedback.impactOccurred('soft');
       tg.HapticFeedback.notificationOccurred('success');
@@ -144,9 +143,8 @@ function mainClick(evt) {
     upgradeManager.checkUpgradeAvailable();
     // achievementsCheckTaps();
     achievementManager.achievementsContentRenderer();
-    // console.log('taps', user.taps);
-    // user.saveUserData();
-    user.saveUserData();
+    user.saveUserDataLocal();
+    user.saveUserDataDB();
   }
   energyManager.setEnergyRecoveryTimeout(true);
 }
@@ -210,7 +208,7 @@ window.onload = async () => {
     // user.activeUpgrades[0].level = 0;
     // user.energy = 500;
     // user.passiveUpgrades[0].level = 0;
-    user.saveUserData();
+    // user.saveUserDataLocal();
   // ServiceFunctions-End
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
@@ -219,7 +217,7 @@ window.onload = async () => {
   levelManager.levelRenderer();
   levelManager.levelProgressCounter();
   incomeManager.deltaCounter();
-  user.saveUserData();
+  // user.saveUserDataLocal();
   incomeManager.scoreRenderer();
   energyManager.energyRenderer();
   incomeManager.passiveIncomeCounter();
@@ -229,7 +227,7 @@ window.onload = async () => {
   energyManager.energyLimitRenderer();
   upgradeManager.allUpgradesRenderer();
   tasksRenderer();
-  user.saveUserData();
+  user.saveUserDataLocal();
   achievementManager.achievementsCardsRenderer();
   achievementManager.achievementsLevelCheck();
   achievementManager.achievementsContentRenderer();
@@ -244,17 +242,17 @@ window.onload = async () => {
     achievementManager.achievementsLevelCheck();
     achievementManager.achievementsContentRenderer();
 
-    user.saveUserData();
+    user.saveUserDataLocal();
 
     if(timer == onlinePassiveTimeLimit) {
       clearInterval(passiveIncomeTimer);
     }
   },  1000);
 
-  let userOnlineTimer = setInterval(() => {
-    user.timeOnline++;
-    user.saveUserData();
-  },  1000);
+  // let userOnlineTimer = setInterval(() => {
+  //   user.timeOnline++;
+  //   user.saveUserDataLocal();
+  // },  1000);
 
   energyManager.energyRecoveryLooper(true, 'normal');
 

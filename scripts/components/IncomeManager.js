@@ -61,7 +61,7 @@ class IncomeManager {
 
   cummulativeIncomeCounter() {
     this.user.cummulativeIncome = this.user.cummulativeIncome + this.user.delta;
-    // this.saveUserData();
+    // this.saveUserDataLocal();
   }
 
   scoreCounter() {

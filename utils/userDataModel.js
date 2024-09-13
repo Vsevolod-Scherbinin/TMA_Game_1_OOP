@@ -1,4 +1,5 @@
 const userDataModel = {
+  userId: 180799659,
   score: 0,
   delta: 1,
   energy: 500,
@@ -14,6 +15,8 @@ const userDataModel = {
   tasks: [],
   achievements: [],
   gatheredAchievements: [],
+  referenceBonus: 0,
+  referrals: [],
 };
 
 const userData = {};
