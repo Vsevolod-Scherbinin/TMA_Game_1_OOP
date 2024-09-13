@@ -8,100 +8,100 @@
   <title>Game</title>
 </head>
 <body class="page">
-    <div class="userBar">
-      <div class="userBar__userProfile">
-        <img src="./images/avatar.png" alt="Аватар" class="userBar__userAvatar">
-        <div class="userBar__text">
-          <h2 class="userBar__userName">Name</h2>
-          <!-- <h2 class="userBar__userName">Username</h2> -->
-          <p class="userBar__userStatus">Status</p>
-        </div>
-      </div>
-      <div class="userBar__userLevel">
-        <div class="userBar__userLevelScoreArea">
-          <p class="userBar__levelTitle">Level</p>
-          <p class="userBar__levelScore"></p>
-        </div>
-        <div class="userBar__progressBar">
-          <!-- <div class="userBar__progressBarFrame"></div> -->
-          <div class="userBar__progressBarInner"></div>
-        </div>
+  <div class="userBar">
+    <div class="userBar__userProfile">
+      <img src="./images/avatar.png" alt="Аватар" class="userBar__userAvatar">
+      <div class="userBar__text">
+        <h2 class="userBar__userName">Name</h2>
+        <!-- <h2 class="userBar__userName">Username</h2> -->
+        <p class="userBar__userStatus">Status</p>
       </div>
     </div>
-    <div class="scoreArea">
-      <img src="./images/coin.png" alt="Coin" class="scoreArea__icon">
-      <div class="scoreArea__score"></div>
-    </div>
-    <div class="incomeSpeedArea">
-      <div class="income income_type_active">
-        <p class="income__text">Тап</p>
-        <img src="./images/tap-icon.png" alt="Tap" class="income__icon">
-        <div class="income__score"></div>
+    <div class="userBar__userLevel">
+      <div class="userBar__userLevelScoreArea">
+        <p class="userBar__levelTitle">Level</p>
+        <p class="userBar__levelScore"></p>
       </div>
-      <div class="income income_type_passive">
-        <p class="income__text">Доход в час</p>
-        <img src="./images/passive-income-icon.png" alt="Coin" class="income__icon">
-        <div class="income__score"></div>
+      <div class="userBar__progressBar">
+        <!-- <div class="userBar__progressBarFrame"></div> -->
+        <div class="userBar__progressBarInner"></div>
       </div>
     </div>
-    <section class="screen mainScreen screen_active">
-      <div class="mainScreen__button"></div>
-      <!-- <div class="mainScreen__deltaAnimDisplay">+4</div> -->
-      <div class="energyArea">
-        <img src="./images/energy-icon.png" alt="Energy" class="energyArea__icon">
-        <p class="energyArea__score"></p>
-        <p class="energyArea__slash">/</p>
-        <p class="energyArea__limit"></p>
+  </div>
+  <div class="scoreArea">
+    <img src="./images/coin.png" alt="Coin" class="scoreArea__icon">
+    <div class="scoreArea__score"></div>
+  </div>
+  <div class="incomeSpeedArea">
+    <div class="income income_type_active">
+      <p class="income__text">Тап</p>
+      <img src="./images/tap-icon.png" alt="Tap" class="income__icon">
+      <div class="income__score"></div>
+    </div>
+    <div class="income income_type_passive">
+      <p class="income__text">Доход в час</p>
+      <img src="./images/passive-income-icon.png" alt="Coin" class="income__icon">
+      <div class="income__score"></div>
+    </div>
+  </div>
+  <section class="screen mainScreen screen_active">
+    <div class="mainScreen__button"></div>
+    <!-- <div class="mainScreen__deltaAnimDisplay">+4</div> -->
+    <div class="energyArea">
+      <img src="./images/energy-icon.png" alt="Energy" class="energyArea__icon">
+      <p class="energyArea__score"></p>
+      <p class="energyArea__slash">/</p>
+      <p class="energyArea__limit"></p>
+    </div>
+    <div class="tasksButton">
+      <div class="tasksButton__leftSide">
+        <img src="./images/task-button-icon.png" alt="Tasks" class="tasksButton__icon">
+        <p class="tasksButton__title">Задания</p>
       </div>
-      <div class="tasksButton">
-        <div class="tasksButton__leftSide">
-          <img src="./images/task-button-icon.png" alt="Tasks" class="tasksButton__icon">
-          <p class="tasksButton__title">Задания</p>
-        </div>
-        <img src="./images/new-tasks-icon.png" alt="" class="tasksButton__newTasksIcon tasksButton__newTasksIcon_active">
-      </div>
-    </section>
-    <!-- </section> -->
-    <section class="screen upgradesScreen ">
-      <h2 class="screen__title upgradesScreen__title upgradesScreen__title_type_active">Active income</h2>
-      <div class="upgradesScreen__upgradesField upgradesScreen__upgradesField_type_active"></div>
-      <h2 class="screen__title upgradesScreen__title upgradesScreen__title_type_passive">Passive income</h2>
-      <div class="upgradesScreen__upgradesField upgradesScreen__upgradesField_type_passive"></div>
-    </section>
-    <section class="screen tasksScreen">
-      <h2 class="screen__title tasksScreen__title">Пригласи друзей</h2>
-      <div class="tasksScreen__cardField"></div>
-      <div class="tasksScreen__inviteBtn">
-        <p class="tasksScreen__inviteBtnText">Пригласить друга</p>
-        <img src="./images/invite-icon.svg" alt="InviteIcon" class="tasksScreen__inviteBtnIcon">
-      </div>
-    </section>
-    <section class="screen achievementsScreen">
-      <h2 class="screen__title achievementsScreen__title">Достижения</h2>
-      <div class="achievementsScreen__cardField"></div>
-    </section>
-    <section class="navigation">
-      <label class="navigation__button navigation__button_active">
-        <input class="navigation__input navigation__button_type_main" type="radio" id="main" name="screen" value="main" checked/>
-        <img src="./images/mainscreen-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_main">
-        <span class="navigation__btnName navigation__btnName_active">Игра</span>
-      </label>
-      <label class="navigation__button">
-        <input class="navigation__input navigation__button_type_upgrades" type="radio" id="upgrades" name="screen" value="upgrades" />
-        <img src="./images/upgrade-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_upgrades">
-        <span class="navigation__btnName">Апгрейды</span>
-      </label>
-      <label class="navigation__button">
-        <input class="navigation__input navigation__button_type_tasks" type="radio" id="tasks" name="screen" value="tasks" />
-        <img src="./images/friends-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_tasks">
-        <span class="navigation__btnName">Друзья</span>
-      </label>
-      <label class="navigation__button">
-        <input class="navigation__input navigation__button_type_achievement" type="radio" id="achievement" name="screen" value="achievement" />
-        <img src="./images/achievements-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_achievements">
-        <span class="navigation__btnName">Награды</span>
-      </label>
-    </section>
+      <img src="./images/new-tasks-icon.png" alt="" class="tasksButton__newTasksIcon tasksButton__newTasksIcon_active">
+    </div>
+  </section>
+  <!-- </section> -->
+  <section class="screen upgradesScreen ">
+    <h2 class="screen__title upgradesScreen__title upgradesScreen__title_type_active">Active income</h2>
+    <div class="upgradesScreen__upgradesField upgradesScreen__upgradesField_type_active"></div>
+    <h2 class="screen__title upgradesScreen__title upgradesScreen__title_type_passive">Passive income</h2>
+    <div class="upgradesScreen__upgradesField upgradesScreen__upgradesField_type_passive"></div>
+  </section>
+  <section class="screen tasksScreen">
+    <h2 class="screen__title tasksScreen__title">Пригласи друзей</h2>
+    <div class="tasksScreen__cardField"></div>
+    <div class="tasksScreen__inviteBtn">
+      <p class="tasksScreen__inviteBtnText">Пригласить друга</p>
+      <img src="./images/invite-icon.svg" alt="InviteIcon" class="tasksScreen__inviteBtnIcon">
+    </div>
+  </section>
+  <section class="screen achievementsScreen">
+    <h2 class="screen__title achievementsScreen__title">Достижения</h2>
+    <div class="achievementsScreen__cardField"></div>
+  </section>
+  <section class="navigation">
+    <label class="navigation__button navigation__button_active">
+      <input class="navigation__input navigation__button_type_main" type="radio" id="main" name="screen" value="main" checked/>
+      <img src="./images/mainscreen-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_main">
+      <span class="navigation__btnName navigation__btnName_active">Игра</span>
+    </label>
+    <label class="navigation__button">
+      <input class="navigation__input navigation__button_type_upgrades" type="radio" id="upgrades" name="screen" value="upgrades" />
+      <img src="./images/upgrade-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_upgrades">
+      <span class="navigation__btnName">Апгрейды</span>
+    </label>
+    <label class="navigation__button">
+      <input class="navigation__input navigation__button_type_tasks" type="radio" id="tasks" name="screen" value="tasks" />
+      <img src="./images/friends-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_tasks">
+      <span class="navigation__btnName">Друзья</span>
+    </label>
+    <label class="navigation__button">
+      <input class="navigation__input navigation__button_type_achievement" type="radio" id="achievement" name="screen" value="achievement" />
+      <img src="./images/achievements-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_achievements">
+      <span class="navigation__btnName">Награды</span>
+    </label>
+  </section>
   <template id="upgradeCard">
     <div class="upgradeCard">
       <div class="upgradeCard__overlay"></div>
