@@ -1,6 +1,6 @@
 .tasksButton__newTasksIcon_active {
-  width: 24px;
-  height: 24px;
+  height: 100%;
+  width: auto;
   display: block;
   visibility: visible;
   opacity: 1;
