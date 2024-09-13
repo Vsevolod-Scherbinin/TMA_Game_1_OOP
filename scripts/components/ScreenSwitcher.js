@@ -6,7 +6,7 @@ class ScreenSwitcher {
     this.btnAchievements = document.querySelector('.navigation__button_type_achievement');
     this.mainScreen = document.querySelector('.mainScreen');
     this.upgradesScreen = document.querySelector('.upgradesScreen');
-    this.tasksScreen = document.querySelector('.tasksScreen');
+    this.friendsScreen = document.querySelector('.friendsScreen');
     this.achievementsScreen = document.querySelector('.achievementsScreen');
   }
 
@@ -25,7 +25,7 @@ class ScreenSwitcher {
       document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
       this.btnTasks.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
-      this.tasksScreen.classList.add('screen_active');
+      this.friendsScreen.classList.add('screen_active');
     } else if (this.btnAchievements.checked) {
       document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
       this.btnAchievements.parentElement.classList.add('navigation__button_active');

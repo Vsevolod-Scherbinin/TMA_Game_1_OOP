@@ -17,8 +17,8 @@ const navSection = document.querySelector('.navigation');
 // const activeUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_active');
 // const passiveUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_passive');
 
-const taskCardsField = document.querySelector('.tasksScreen__cardField');
-const inviteFriendBtn = document.querySelector('.tasksScreen__inviteBtn');
+const taskCardsField = document.querySelector('.friendsScreen__cardField');
+const inviteFriendBtn = document.querySelector('.friendsScreen__inviteBtn');
 
 const achievementCardsField = document.querySelector('.achievementsScreen__cardField');
 

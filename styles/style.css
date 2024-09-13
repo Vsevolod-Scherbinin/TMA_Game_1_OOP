@@ -52,12 +52,12 @@
 @import url(../blocks/upgradesScreen/__title/upgradesScreen__title.css);
 @import url(../blocks/upgradesScreen/__upgradesField/upgradesScreen__upgradesField.css);
 
-@import url(../blocks/tasksScreen/tasksScreen.css);
-@import url(../blocks/tasksScreen/__title/tasksScreen__title.css);
-@import url(../blocks/tasksScreen/__cardField/tasksScreen__cardField.css);
-@import url(../blocks/tasksScreen/__inviteBtn/tasksScreen__inviteBtn.css);
-@import url(../blocks/tasksScreen/__inviteBtnText/tasksScreen__inviteBtnText.css);
-@import url(../blocks/tasksScreen/__inviteBtnIcon/tasksScreen__inviteBtnIcon.css);
+@import url(../blocks/friendsScreen/friendsScreen.css);
+@import url(../blocks/friendsScreen/__title/friendsScreen__title.css);
+@import url(../blocks/friendsScreen/__cardField/friendsScreen__cardField.css);
+@import url(../blocks/friendsScreen/__inviteBtn/friendsScreen__inviteBtn.css);
+@import url(../blocks/friendsScreen/__inviteBtnText/friendsScreen__inviteBtnText.css);
+@import url(../blocks/friendsScreen/__inviteBtnIcon/friendsScreen__inviteBtnIcon.css);
 
 @import url(../blocks/achievementsScreen/achievementsScreen.css);
 @import url(../blocks/achievementsScreen/__title/achievementsScreen__title.css);
