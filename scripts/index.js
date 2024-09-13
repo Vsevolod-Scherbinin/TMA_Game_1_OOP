@@ -72,7 +72,7 @@ function tasksRenderer() {
 // scoreDisplay.style.top = `500px`;
 
 function click(e) {
-  const scoreDisplay = document.createElement('div');
+  const scoreDisplay = document.createElement('p');
   scoreDisplay.classList.add('mainScreen__deltaAnimDisplay');
   scoreDisplay.textContent = `+${user.delta}`;
   scoreDisplay.style.opacity = '1';
@@ -133,7 +133,7 @@ function mainClick(evt) {
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
     energyManager.setEnergyRecoveryTimeout(false);
-    energyManager.energyRecoveryLooper(false)
+    energyManager.energyRecoveryLooper(false);
     incomeManager.scoreCounter();
     incomeManager.scoreRenderer();
     levelManager.levelProgressCounter();
