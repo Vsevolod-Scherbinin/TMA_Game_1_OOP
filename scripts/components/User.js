@@ -3,9 +3,6 @@ const mainApi = new MainApi(BASE_URL, {'Content-Type': 'application/json'});
 const saveSlotName = 'TMAGameUserData1';
 
 class User {
-  // constructor(userData) {
-  //   this._userData = userData;
-  // }
   constructor({
     userId,
     score,
@@ -101,13 +98,38 @@ class User {
     });
   }
 
-  async loadUserDataMDB(userId) {
-    console.log('DataLoading');
+  async loadUserDataDB(userId) {
+    // console.log('DataLoading');
 
     const response = await fetch(`${BASE_URL}/users/${userId}`);
     // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${userId}`);
     const data = await response.json();
     console.log('Данные пользователя загружены:', data);
-    return data;
+    // return data;
+    Object.keys(data).forEach((key) => {
+      // console.log(key);
+      // console.log(userDataModel[key]);
+      // console.log(this[key]);
+
+      this[key] = data[key];
+    });
+    if (this.activeUpgrades.length === 0) {
+      activeUpgrades.forEach((upgrade) => {
+        this.activeUpgrades.push({ id: upgrade.id, level: 0 });
+      });
+    }
+    passiveUpgrades.forEach((upgrade) => {
+      const isUpgradePresent = this.passiveUpgrades.some(obj => obj.id === upgrade.id);
+      !isUpgradePresent && this.passiveUpgrades.push({ id: upgrade.id, level: 0 });
+    });
+    achievements.forEach((achievement) => {
+      const isAchievementPresent = this.achievements.some(obj => obj.id === achievement.id);
+      !isAchievementPresent && this.achievements.push({ id: achievement.id, level: 0 });
+    });
+    // localStorage.setItem(saveSlotName, JSON.stringify(this));
+    // localStorage.setItem('DataFromDB', JSON.stringify(data));
+    console.log(this);
+
+    localStorage.setItem('DataFromDB', JSON.stringify(this));
   }
 }

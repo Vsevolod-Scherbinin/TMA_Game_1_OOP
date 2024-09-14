@@ -105,7 +105,7 @@ try {
   }
 } catch {}
 
-// async function loadUserDataMDB(userId) {
+// async function loadUserDataDB(userId) {
 //   console.log('DataLoading');
 
 //   const response = await fetch(`${BASE_URL}/users/${userId}`);
@@ -113,12 +113,6 @@ try {
 //   const data = await response.json();
 //   console.log('Данные пользователя загружены:', data);
 //   return data;
-// }
-
-// if(tg.initDataUnsafe.user !== undefined) {
-  console.log('user.id', tg.initDataUnsafe.user);
-  user.loadUserDataMDB('180799659');
-  // user.loadUserDataMDB(tg.initDataUnsafe.user.id);
 // }
 
 console.log(tg.initDataUnsafe.user !== undefined);
@@ -169,7 +163,7 @@ inviteFriendBtn.addEventListener('click', inviteFriends);
 
 async function checkUserSubscription(channelId, userId) {
   try {
-    const response = await fetch('http://localhost:3200/checkSubscription', {
+    const response = await fetch(`${BASE_URL}/checkSubscription`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -195,13 +189,21 @@ window.onload = async () => {
   checkUserSubscription(-1002493343663, 180799659);
   checkUserSubscription(-1002493343663, 653832788);
 
-  localStorage.setItem('DataFromDB', JSON.stringify(await user.loadUserDataMDB('180799659')));
-  const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
-
-  dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
-  // dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
 
   user.loadUserData();
+  try {
+    if(tg.initDataUnsafe.user.id.length>0) {
+      // console.log('user.id', tg.initDataUnsafe.user);
+      await user.loadUserDataDB(tg.initDataUnsafe.user.id);
+    }
+  } catch {await user.loadUserDataDB('180799659');}
+
+    const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
+
+    dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
+    dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
+
+
   // ServiceFunctions-Start
     // user.score = 50000;
     // user.gatheredAchievements = [];
