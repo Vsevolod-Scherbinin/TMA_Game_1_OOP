@@ -138,7 +138,6 @@ function mainClick(evt) {
     // achievementsCheckTaps();
     achievementManager.achievementsContentRenderer();
     user.saveUserDataLocal();
-    user.saveUserDataDB();
   }
   energyManager.setEnergyRecoveryTimeout(true);
 }
@@ -258,10 +257,15 @@ window.onload = async () => {
 
   energyManager.energyRecoveryLooper(true, 'normal');
 
+  const dbSave = setInterval(() => {
+    user.saveUserDataDB();
+  }, 10*60*1000)
+
 };
 
 window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
+  user.saveUserDataDB();
   localStorage.setItem('closureTime', new Date());
 });
 // --------------- Window-End ---------------
