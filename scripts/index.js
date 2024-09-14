@@ -199,7 +199,7 @@ window.onload = async () => {
 
     const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
 
-    dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
+    // dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
     dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
 
 

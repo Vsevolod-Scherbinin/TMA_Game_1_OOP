@@ -1,6 +1,6 @@
 const mainApi = new MainApi(BASE_URL, {'Content-Type': 'application/json'});
 
-const saveSlotName = 'TMAGameUserData1';
+const saveSlotName = 'DataFromDB';
 
 class User {
   constructor({

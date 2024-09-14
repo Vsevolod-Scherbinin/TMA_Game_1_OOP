@@ -78,6 +78,7 @@ class PopupManager {
       //this.user.referenceBonus = 0;
       this.user.score = user.score + bonus;
       this.user.cummulativeIncome = user.cummulativeIncome + bonus;
+      this.user.referenceBonus = 0;
       this.user.saveUserDataLocal();
       // incomeManager.scoreRenderer();
       this.popupClose();
