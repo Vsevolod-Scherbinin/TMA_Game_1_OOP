@@ -2,7 +2,7 @@ class ScreenSwitcher {
   constructor() {
     this.btnMainScreen = document.querySelector('.navigation__button_type_main');
     this.btnUpgrades = document.querySelector('.navigation__button_type_upgrades');
-    this.btnTasks = document.querySelector('.navigation__button_type_tasks');
+    this.btnTasks = document.querySelector('.navigation__button_type_friends');
     this.btnAchievements = document.querySelector('.navigation__button_type_achievement');
     this.mainScreen = document.querySelector('.mainScreen');
     this.upgradesScreen = document.querySelector('.upgradesScreen');

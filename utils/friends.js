@@ -1,4 +1,4 @@
-const tasks = [
+const friends = [
   {
     id: 1,
     mainIcon: './images/achievement-icon-friends-bronze.png',
