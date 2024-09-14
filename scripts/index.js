@@ -1,5 +1,5 @@
 const user = new User(userDataModel);
-user.loadUserData();
+// user.loadUserData();
 
 const incomeManager = new IncomeManager(user);
 const energyManager = new EnergyManager(user);
@@ -105,20 +105,20 @@ try {
   }
 } catch {}
 
-async function loadUserDataMDB(userId) {
-  console.log('DataLoading');
+// async function loadUserDataMDB(userId) {
+//   console.log('DataLoading');
 
-  const response = await fetch(`http://localhost:3200/users/${userId}`);
-  // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${userId}`);
-  const data = await response.json();
-  console.log('Данные пользователя загружены:', data);
-  return data;
-}
+//   const response = await fetch(`${BASE_URL}/users/${userId}`);
+//   // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${userId}`);
+//   const data = await response.json();
+//   console.log('Данные пользователя загружены:', data);
+//   return data;
+// }
 
 // if(tg.initDataUnsafe.user !== undefined) {
-  // console.log('user.id', tg.initDataUnsafe.user.id);
-  loadUserDataMDB('180799659');
-  // loadUserDataMDB(tg.initDataUnsafe.user.id);
+  console.log('user.id', tg.initDataUnsafe.user);
+  user.loadUserDataMDB('180799659');
+  // user.loadUserDataMDB(tg.initDataUnsafe.user.id);
 // }
 
 console.log(tg.initDataUnsafe.user !== undefined);
@@ -190,12 +190,12 @@ async function checkUserSubscription(channelId, userId) {
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
-  localStorage.clear();
+  // localStorage.clear();
   // Subscribtion Test
   checkUserSubscription(-1002493343663, 180799659);
   checkUserSubscription(-1002493343663, 653832788);
 
-  localStorage.setItem('DataFromDB', JSON.stringify(await loadUserDataMDB('180799659')));
+  localStorage.setItem('DataFromDB', JSON.stringify(await user.loadUserDataMDB('180799659')));
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
 
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
@@ -203,7 +203,7 @@ window.onload = async () => {
 
   user.loadUserData();
   // ServiceFunctions-Start
-    user.score = 50000;
+    // user.score = 50000;
     // user.gatheredAchievements = [];
     // user.activeUpgrades[0].level = 0;
     // user.energy = 500;

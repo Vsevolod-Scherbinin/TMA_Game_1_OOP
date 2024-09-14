@@ -46,6 +46,10 @@ class User {
     this.referrals = referrals;
   }
 
+  saveUserDataLocal() {
+    localStorage.setItem(saveSlotName, JSON.stringify(this));
+  }
+
   loadUserData() {
     // console.log(Object.keys(this));
 
@@ -85,10 +89,6 @@ class User {
     }
   }
 
-  saveUserDataLocal() {
-    localStorage.setItem(saveSlotName, JSON.stringify(this));
-  }
-
   saveUserDataDB() {
     console.log('this', this);
 
@@ -99,5 +99,15 @@ class User {
       .catch((err) => {
         console.log(err);
     });
+  }
+
+  async loadUserDataMDB(userId) {
+    console.log('DataLoading');
+
+    const response = await fetch(`${BASE_URL}/users/${userId}`);
+    // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${userId}`);
+    const data = await response.json();
+    console.log('Данные пользователя загружены:', data);
+    return data;
   }
 }
