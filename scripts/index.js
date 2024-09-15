@@ -157,7 +157,7 @@ window.onload = async () => {
   // user.checkUserSubscription(-1002493343663, 180799659);
   // user.checkUserSubscription(-1002493343663, 653832788);
 
-  user.loadUserData();
+  // user.loadUserData();
   try {
     if(tg.initDataUnsafe.user.id.length>0) {
       // console.log('user.id', tg.initDataUnsafe.user);
