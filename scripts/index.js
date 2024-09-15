@@ -157,7 +157,7 @@ try {
 
 
 inviteFriendBtn.addEventListener('click', () => {
-  user.inviteFriends
+  user.inviteFriends()
   .then(() => {
     const today = new Date().toLocaleDateString();
     localStorage.setItem('invited', today);
