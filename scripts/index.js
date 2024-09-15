@@ -1,3 +1,4 @@
+// --------------- Classes-Start ---------------
 const user = new User(userDataModel);
 // user.loadUserData();
 
@@ -27,9 +28,10 @@ const levelManager = new LevelManager(user);
 const screenSwitcher = new ScreenSwitcher();
 screenSwitcher.setEventListeners();
 
+// --------------- Classes-End ---------------
+
 let timer = 0;
 
-// --------------- WideCards-End ---------------
 function createTaskCards(elem) {
   const taskCardElement = wideCardTemplate.cloneNode(true);
   taskCardElement.querySelector('.wideCard__title').textContent = elem.title;
@@ -46,12 +48,12 @@ function createWideCards(elem) {
   return wideCardElement;
 }
 
-const tasksButton = document.querySelector('.tasksButton');
+
 const channelId = '-1002493343663';
 function subscribe() {
   window.open(`https://t.me/+cU6JKcOAFuphZTli`, '_blank');
 }
-tasksButton.addEventListener('click', subscribe);
+// tasksButton.addEventListener('click', subscribe);
 
 // --------------- WideCards-End ---------------
 
@@ -115,6 +117,16 @@ try {
 // }
 
 console.log(tg.initDataUnsafe.user !== undefined);
+
+function openScreen() {
+  dailyTaskScreen.classList.add('dailyTasksScreen_active');
+}
+tasksButton.addEventListener('click', openScreen);
+
+function closeScreen() {
+  dailyTaskScreen.classList.remove('dailyTasksScreen_active');
+}
+dailyTaskCloseBtn.addEventListener('click', closeScreen);
 
 function mainClick(evt) {
   if(user.energy >= user.delta) {
@@ -181,6 +193,12 @@ async function checkUserSubscription(channelId, userId) {
     console.error('Ошибка при проверке подписки:', error);
   }
 }
+
+const today = new Date();  // Создаем новый объект Date, который содержит текущую дату и время
+
+const date = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
+
+console.log('date', date);
 
 // --------------- Window-Start ---------------
 window.onload = async () => {

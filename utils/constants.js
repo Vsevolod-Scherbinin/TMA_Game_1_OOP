@@ -14,8 +14,11 @@ const btnMain = document.querySelector('.mainScreen__button');
 
 const navSection = document.querySelector('.navigation');
 
-// const activeUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_active');
-// const passiveUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_passive');
+const tasksButton = document.querySelector('.tasksButton');
+
+const dailyTaskScreen = document.querySelector('.dailyTasksScreen');
+const dailyTaskField = document.querySelector('.dailyTasksScreen__cardField');
+const dailyTaskCloseBtn = document.querySelector('.dailyTasksScreen__closeButton');
 
 const friendsCardsField = document.querySelector('.friendsScreen__cardField');
 const inviteFriendBtn = document.querySelector('.friendsScreen__inviteBtn');
