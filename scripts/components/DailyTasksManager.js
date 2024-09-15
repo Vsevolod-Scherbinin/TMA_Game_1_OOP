@@ -10,7 +10,17 @@ class DailyTasksManager {
   }
 
   friendCardToggle() {
+    const today = new Date().toLocaleDateString();
+    const todayTasks = dailyTasks.find(obj => obj.date === today).tasks;
+    const taskId = todayTasks.find(obj => obj.type === 'friend').id;
     const card = this.dailyTaskField.querySelector(`.wideCard_type_friend`);
+
+    const isGathered = this.user.tasks.some(obj => obj.id === taskId);
+    if(isGathered) {
+      card.querySelector('.wideCard__icon').src = `./images/done.png`;
+      return
+    }
+
     if(this.user.hasInvitedToday()) {
       card.classList.add('wideCard_complete');
       card.querySelector('.wideCard__icon').src = `./images/done.png`;
