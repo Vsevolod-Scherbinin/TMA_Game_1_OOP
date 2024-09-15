@@ -176,4 +176,25 @@ class User {
       } catch {console.log('Функция работает только в TG')}
     })
   }
+
+  async checkUserSubscription(channelId, userId) {
+    try {
+      const response = await fetch(`${BASE_URL}/checkSubscription`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, channelId }),
+      });
+
+      const data = await response.json();
+      if (data.subscribed) {
+        console.log('Пользователь подписан на канал!');
+      } else {
+        console.log('Пользователь не подписан на канал!');
+      }
+    } catch (error) {
+      console.error('Ошибка при проверке подписки:', error);
+    }
+  }
 }

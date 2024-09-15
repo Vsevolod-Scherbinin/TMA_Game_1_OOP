@@ -9,7 +9,7 @@ class DailyTasksManager {
     window.open(`${link}`, '_blank');
   }
 
-  cardToggle() {
+  friendCardToggle() {
     const card = this.dailyTaskField.querySelector(`.wideCard_type_friend`);
     if(this.user.hasInvitedToday()) {
       card.classList.add('wideCard_complete');
@@ -18,7 +18,17 @@ class DailyTasksManager {
     const scoreDisplay = document.createElement('p');
     scoreDisplay.textContent = `${this.user.hasInvitedToday()}`;
     this.dailyTaskField.appendChild(scoreDisplay);
+  }
 
+  channelCardToggle() {
+    const today = new Date().toLocaleDateString();
+    const channelId = dailyTasks.find(obj => obj.date === today).tasks.find(obj => obj.type === 'channel').channelId;
+    console.log('channelId', channelId);
+    const card = this.dailyTaskField.querySelector(`.wideCard_type_channel`);
+    if(this.user.checkUserSubscription(channelId, this.user.userId)) {
+      card.classList.add('wideCard_complete');
+      card.querySelector('.wideCard__icon').src = `./images/done.png`;
+    }
   }
 
   _createCard(elem) {
@@ -42,7 +52,7 @@ class DailyTasksManager {
         .then(() => {
           const today = new Date().toLocaleDateString();
           localStorage.setItem('invited', today);
-          this.cardToggle();
+          this.friendCardToggle();
         });
     }))
     const channel = elem.type === 'channel';

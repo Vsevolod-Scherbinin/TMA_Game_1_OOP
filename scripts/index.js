@@ -155,27 +155,6 @@ try {
 
 inviteFriendBtn.addEventListener('click', user.inviteFriends);
 
-async function checkUserSubscription(channelId, userId) {
-  try {
-    const response = await fetch(`${BASE_URL}/checkSubscription`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ userId, channelId }),
-    });
-
-    const data = await response.json();
-    if (data.subscribed) {
-      console.log('Пользователь подписан на канал!');
-    } else {
-      console.log('Пользователь не подписан на канал!');
-    }
-  } catch (error) {
-    console.error('Ошибка при проверке подписки:', error);
-  }
-}
-
 const currentDate = new Date().toLocaleDateString();
 
 // --------------- Window-Start ---------------
@@ -184,8 +163,9 @@ window.onload = async () => {
 
   // localStorage.clear();
   // Subscribtion Test
-  checkUserSubscription(-1002493343663, 180799659);
-  checkUserSubscription(-1002493343663, 653832788);
+  user.checkUserSubscription(-1002493343663, user.userId);
+  // user.checkUserSubscription(-1002493343663, 180799659);
+  // user.checkUserSubscription(-1002493343663, 653832788);
 
 
 
@@ -237,7 +217,8 @@ window.onload = async () => {
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.contentRenderer();
   dailyTasksManager.newTasksToggle();
-  dailyTasksManager.cardToggle();
+  dailyTasksManager.friendCardToggle();
+  dailyTasksManager.channelCardToggle();
 
   // Make separate function as energy
   let passiveIncomeTimer = setInterval(() => {
