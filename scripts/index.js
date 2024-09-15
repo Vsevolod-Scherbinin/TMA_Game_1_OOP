@@ -159,9 +159,9 @@ const currentDate = new Date().toLocaleDateString();
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
-  // localStorage.removeItem('invited');
+  localStorage.removeItem('invited');
 
-  // localStorage.clear();
+  localStorage.clear();
   // Subscribtion Test
   user.checkUserSubscription(-1002493343663, user.userId);
   // user.checkUserSubscription(-1002493343663, 180799659);
