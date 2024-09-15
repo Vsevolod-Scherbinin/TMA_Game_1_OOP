@@ -156,7 +156,14 @@ try {
 
 
 
-inviteFriendBtn.addEventListener('click', user.inviteFriends);
+inviteFriendBtn.addEventListener('click', () => {
+  user.inviteFriends
+  .then(() => {
+    const today = new Date().toLocaleDateString();
+    localStorage.setItem('invited', today);
+    dailyTasksManager.friendCardToggle();
+  });
+});
 
 const currentDate = new Date().toLocaleDateString();
 
