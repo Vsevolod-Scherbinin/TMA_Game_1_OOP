@@ -203,7 +203,7 @@ console.log('currentDate', currentDate);
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
-  // localStorage.clear();
+  localStorage.clear();
   // Subscribtion Test
   checkUserSubscription(-1002493343663, 180799659);
   checkUserSubscription(-1002493343663, 653832788);
@@ -221,16 +221,18 @@ window.onload = async () => {
 
     // dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
     dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
-
-
   // ServiceFunctions-Start
-    // user.score = 50000;
+    user.score = 50000;
+    user.taps = 0;
+    user.cummulativeIncome = 0;
+    user.passiveIncome = 0;
     // user.gatheredAchievements = [];
-    // user.activeUpgrades[0].level = 0;
+    user.activeUpgrades[0].level = 0;
     // user.energy = 500;
-    // user.passiveUpgrades[0].level = 0;
-    // user.saveUserDataLocal();
+    user.passiveUpgrades[0].level = 0;
+    user.passiveUpgrades[1].level = 0;
   // ServiceFunctions-End
+
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
   screenSwitcher.screenSwitch();
