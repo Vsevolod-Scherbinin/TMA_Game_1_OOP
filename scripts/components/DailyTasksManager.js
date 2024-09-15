@@ -22,8 +22,16 @@ class DailyTasksManager {
     }
 
     if(this.user.hasInvitedToday()) {
-      card.classList.add('wideCard_complete');
-      card.querySelector('.wideCard__icon').src = `./images/done.png`;
+      const newCard = card.cloneNode(true)
+      newCard.classList.add('wideCard_complete');
+      newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+      newCard.addEventListener('click', (evt) => {
+        const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
+        const reward = todayTasks.find(obj => obj.title === title).effect;
+        console.log(reward);
+        popupManager.taskPopupOpen(reward, newCard, taskId);
+      })
+      card.replaceWith(newCard);
     }
     // check hasInvitedToday()
     // const scoreDisplay = document.createElement('p');
