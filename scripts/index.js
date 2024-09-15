@@ -51,9 +51,7 @@ function createWideCards(elem) {
 
 
 const channelId = '-1002493343663';
-function subscribe() {
-  window.open(`https://t.me/+cU6JKcOAFuphZTli`, '_blank');
-}
+
 // tasksButton.addEventListener('click', subscribe);
 
 // --------------- WideCards-End ---------------
@@ -107,23 +105,11 @@ try {
   }
 } catch {}
 
-// async function loadUserDataDB(userId) {
-//   console.log('DataLoading');
-
-//   const response = await fetch(`${BASE_URL}/users/${userId}`);
-//   // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${userId}`);
-//   const data = await response.json();
-//   console.log('Данные пользователя загружены:', data);
-//   return data;
-// }
-
 console.log(tg.initDataUnsafe.user !== undefined);
 
-function openScreen() {
-  dailyTaskScreen.classList.add('dailyTasksScreen_active');
-}
+
 tasksButton.addEventListener('click', () => {
-  openScreen();
+  dailyTasksManager.openScreen();
   dailyTasksManager.newTasksCheck();
 });
 
@@ -199,13 +185,7 @@ async function checkUserSubscription(channelId, userId) {
   }
 }
 
-const today = new Date();  // Создаем новый объект Date, который содержит текущую дату и время
-console.log(typeof today);
-console.log(today.toLocaleDateString());
-
-const currentDate = today.toLocaleDateString();
-
-console.log('currentDate', currentDate);
+const currentDate = new Date().toLocaleDateString();
 
 // --------------- Window-Start ---------------
 window.onload = async () => {

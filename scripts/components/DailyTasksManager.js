@@ -5,23 +5,37 @@ class DailyTasksManager {
     this.dailyTaskField = document.querySelector('.dailyTasksScreen__cardField');
   }
 
+  subscribe(link) {
+    window.open(`${link}`, '_blank');
+  }
+
   _createCard(elem) {
     const cardElement = wideCardTemplate.cloneNode(true);
-    cardElement.querySelector('.wideCard__icon').src = elem.mainIcon;
+    cardElement.querySelector('.wideCard').classList.add(`wideCard_id_${elem.id}`);
     cardElement.querySelector('.wideCard__title').textContent = elem.title;
     cardElement.querySelector('.wideCard__description').textContent = elem.description;
     cardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
     cardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(elem.effect)}`;
+    // hasChannel && cardElement.querySelector('wideCard').classList.add(`wideCard_${elem.channelId}`);
     return cardElement;
   }
 
-  cardsRenderer(date) {
-    // const currentTasks = dailyTasks.find(obj => obj.date === date).tasks
-    // console.log(currentTasks);
+  setCardEvents(elem) {
+    const friend = elem.type === 'friend';
+    friend && (this.dailyTaskField.querySelector(`.wideCard_id_${elem.id}`).addEventListener('click', () => {
+      this.user.inviteFriends();
+    }))
+    const channel = elem.type === 'channel';
+    channel && (this.dailyTaskField.querySelector(`.wideCard_id_${elem.id}`).addEventListener('click', () => {
+      this.subscribe(elem.channelLink);
+    }))
+  }
 
+  cardsRenderer(date) {
     dailyTasks.find(obj => obj.date === date).tasks.forEach((elem) => {
       const card = this._createCard(elem);
       this.dailyTaskField.append(card);
+      this.setCardEvents(elem);
     });
   }
 
@@ -43,6 +57,10 @@ class DailyTasksManager {
     user.achievements.forEach((userAch) => {
         const found = achievements.find(obj => obj.id === userAch);
     });
+  }
+
+  openScreen() {
+    dailyTaskScreen.classList.add('dailyTasksScreen_active');
   }
 
   newTasksCheck() {

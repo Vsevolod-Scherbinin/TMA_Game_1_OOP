@@ -4,43 +4,23 @@ const dailyTasks = [
     tasks: [
       {
         id: 1,
-        mainIcon: './images/achievement-icon-friends-bronze.png',
+        type: 'friend',
+        mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+        // mainIcon: './images/done.png',
         title: "Пригласить друга",
         description: 'Пригласите в игру 1 друга',
         effectIcon: "./images/coin.png",
-        metric: 'friends',
         effect: 10000,
       },
       {
         id: 2,
-        mainIcon: './images/achievement-icon-friends-bronze.png',
-        title: "Пригласить друга",
-        description: 'Пригласите в игру 1 друга',
+        type: 'channel',
+        mainIcon: './images/done.png',
+        channelId: -1002493343663,
+        channelLink: 'https://t.me/+cU6JKcOAFuphZTli',
+        title: "Подписаться на канал",
+        description: `Название`,
         effectIcon: "./images/coin.png",
-        metric: 'friends',
-        effect: 10000,
-      },
-    ]
-  },
-  {
-    date: '16-09-2024',
-    tasks: [
-      {
-        id: 1,
-        mainIcon: './images/achievement-icon-friends-bronze.png',
-        title: "Пригласить друга",
-        description: 'Пригласите в игру 1 друга',
-        effectIcon: "./images/coin.png",
-        metric: 'friends',
-        effect: 10000,
-      },
-      {
-        id: 2,
-        mainIcon: './images/achievement-icon-friends-bronze.png',
-        title: "Пригласить друга",
-        description: 'Пригласите в игру 1 друга',
-        effectIcon: "./images/coin.png",
-        metric: 'friends',
         effect: 10000,
       },
     ]
