@@ -36,7 +36,7 @@ class FriendsManager {
           // Добавляем красную границу
           card.classList.add('wideCard_complete');
           card.querySelector('.wideCard__icon').src = `./images/done.png`;
-          card.addEventListener('click', (evt) => {
+          card.addEventListener('click', () => {
             const reward = friends.find(obj => obj.id === elem.id).effect;
             popupManager.taskPopupOpen(reward, card);
           })

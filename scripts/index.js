@@ -109,7 +109,7 @@ function mainClick(evt) {
     energyManager.energyRenderer();
     incomeManager.cummulativeIncomeCounter();
     upgradeManager.checkUpgradeAvailable();
-    // achievementsCheckTaps();
+    achievementManager.achievementsLevelCheck();
     achievementManager.achievementsContentRenderer();
     user.saveUserDataLocal();
   }
@@ -150,16 +150,12 @@ const currentDate = new Date().toLocaleDateString();
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
-
   // localStorage.removeItem('invited');
-
   localStorage.clear();
   // Subscribtion Test
   user.checkUserSubscription(-1002493343663, user.userId);
   // user.checkUserSubscription(-1002493343663, 180799659);
   // user.checkUserSubscription(-1002493343663, 653832788);
-
-
 
   user.loadUserData();
   try {
@@ -170,15 +166,13 @@ window.onload = async () => {
   } catch {await user.loadUserDataDB('180799659');}
 
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
-
-  // dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
   // ServiceFunctions-Start
     user.score = 50000;
     user.taps = 0;
     user.cummulativeIncome = 0;
     user.passiveIncome = 0;
-    // user.gatheredAchievements = [];
+    user.gatheredAchievements = [];
     user.activeUpgrades[0].level = 0;
     // user.energy = 500;
     user.passiveUpgrades[0].level = 0;

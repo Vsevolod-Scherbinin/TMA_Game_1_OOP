@@ -12,6 +12,14 @@ class PopupManager {
     this.popup = document.querySelector('.popup');
   }
 
+  _cardReplacer(card) {
+    const newCard = card.cloneNode(true)
+    newCard.classList.remove('wideCard_complete');
+    newCard.classList.add('wideCard_gathered');
+    newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+    card.replaceWith(newCard);
+  }
+
   popupClose() {
     this.popup.classList.add('popup_inactive');
   }
@@ -32,7 +40,7 @@ class PopupManager {
     this.popup.querySelector('.popup__title').textContent = obj.title;
     this.popup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumberWithSpaces(objLevel.effect)}`;
     this.popup.querySelector('.popup__image').src = objLevel.mainIcon;
-    console.log(objLevel.effect);
+    // console.log(objLevel.effect);
     const card = document.querySelector(`.wideCard_id_${obj.id}`);
     const submit = () => {
       this.achievementGathering(obj, level);
@@ -102,11 +110,9 @@ class PopupManager {
       this.user.tasks.push({id: taskId});
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
-      const newCard = card.cloneNode(true)
-      newCard.classList.remove('wideCard_complete');
-      newCard.classList.add('wideCard_gathered');
-      newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
-      card.replaceWith(newCard);
+
+      this._cardReplacer(card);
+
       this.popupClose();
     }
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
@@ -127,11 +133,9 @@ class PopupManager {
       this.user.cummulativeIncome = this.user.cummulativeIncome + bonus;
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
-      const newCard = card.cloneNode(true)
-      newCard.classList.remove('wideCard_complete');
-      newCard.classList.add('wideCard_gathered');
-      newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
-      card.replaceWith(newCard);
+
+      this._cardReplacer(card)
+
       this.popupClose();
     }
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });

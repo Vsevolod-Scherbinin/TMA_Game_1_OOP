@@ -21,11 +21,11 @@ class AchievementManager {
   achievementsCardsRenderer() {
     // console.log('achievements', user.achievements[0]);
     achievements.forEach((elem) => {
-      if(elem.id !== 5) {
+
         const userLevel = this.user.achievements.find(obj => obj.id === elem.id).level;
         const card = this._createAchievementsCard(elem, userLevel);
         this.achievementCardsField.append(card);
-      }
+
     });
   }
 
@@ -59,25 +59,41 @@ class AchievementManager {
         ? lessArray = object.levels.filter(obj => obj.limit <= energyLimiterTotal())
         : lessArray = object.levels.filter(obj => obj.limit <= this.user[object.metric]);
       const lessLimits = [];
+      console.log('lessArray', lessArray);
+
       lessArray.forEach((obj) => {
         lessLimits.push(obj.limit);
       });
+      console.log('lessLimits', lessLimits);
+
       const userAch = this.user.achievements.find(obj => obj.id === object.id);
-      const card = document.querySelector(`.wideCard_id_${object.id}`);
-      const handlePopupOpen = () => {
-        popupManager.achievementsPopupOpen(object, userAch.level);
-      }
+      const card = this.achievementCardsField.querySelector(`.wideCard_id_${object.id}`);
+      // const handlePopupOpen = () => {
+      //   popupManager.achievementsPopupOpen(object, userAch.level);
+      // }
       if(lessArray.length) {
         if(!isGathered) {
           userAch.level = 1;
-          card.addEventListener('click', handlePopupOpen);
+          console.log('card', card);
+
+          card.addEventListener('click', () => {
+            console.log('Test');
+
+            popupManager.achievementsPopupOpen(object, userAch.level);
+          })
+          // card.addEventListener('click', handlePopupOpen);
         } else {
           const gatheredLevel = this.user.gatheredAchievements.find(obj => obj.id === object.id).level;
           const availableLevel = lessArray.find(obj => obj.limit === Math.max(...lessLimits)).level + 1;
           userAch.level = gatheredLevel;
           if(gatheredLevel < availableLevel) {
             userAch.level = gatheredLevel + 1;
-            card.addEventListener('click', handlePopupOpen);
+            card.addEventListener('click', () => {
+              console.log('Test');
+
+              popupManager.achievementsPopupOpen(object, userAch.level);
+            })
+            // card.addEventListener('click', handlePopupOpen);
           }
         }
       } else {
