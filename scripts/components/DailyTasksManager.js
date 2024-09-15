@@ -15,22 +15,31 @@ class DailyTasksManager {
       card.classList.add('wideCard_complete');
       card.querySelector('.wideCard__icon').src = `./images/done.png`;
     }
-    const scoreDisplay = document.createElement('p');
-    scoreDisplay.textContent = `${this.user.hasInvitedToday()}`;
-    this.dailyTaskField.appendChild(scoreDisplay);
+    // check hasInvitedToday()
+    // const scoreDisplay = document.createElement('p');
+    // scoreDisplay.textContent = `${this.user.hasInvitedToday()}`;
+    // this.dailyTaskField.appendChild(scoreDisplay);
   }
 
   async channelCardToggle() {
     const today = new Date().toLocaleDateString();
-    const channelId = dailyTasks.find(obj => obj.date === today).tasks.find(obj => obj.type === 'channel').channelId;
+    const todayTasks = dailyTasks.find(obj => obj.date === today).tasks;
+    const channelId = todayTasks.find(obj => obj.type === 'channel').channelId;
     console.log('channelId', channelId);
     const card = this.dailyTaskField.querySelector(`.wideCard_type_channel`);
     const subscribed = await this.user.checkUserSubscription(channelId, this.user.userId);
-    console.log('subscribed', subscribed);
-
+    // console.log('subscribed', subscribed);
     if(subscribed) {
-      card.classList.add('wideCard_complete');
-      card.querySelector('.wideCard__icon').src = `./images/done.png`;
+      const newCard = card.cloneNode(true)
+      newCard.classList.add('wideCard_complete');
+      newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+      newCard.addEventListener('click', (evt) => {
+        const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
+        const reward = todayTasks.find(obj => obj.title === title).effect;
+        console.log(reward);
+        popupManager.taskPopupOpen(reward);
+      })
+      card.replaceWith(newCard);
     }
   }
 

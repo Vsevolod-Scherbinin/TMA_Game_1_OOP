@@ -23,7 +23,7 @@ class PopupManager {
     });
   }
 
-  popupOpen(obj, level) {
+  achievementsPopupOpen(obj, level) {
     console.log(this.popup);
     console.log('obj', obj);
 
@@ -37,10 +37,10 @@ class PopupManager {
     const submit = () => {
       this.achievementGathering(obj, level);
       if (obj.metric === 'energyLimit') {
-        user.energyLimit = user.energyLimit + objLevel.effect
+        user.energyLimit = this.user.energyLimit + objLevel.effect
       } else {
-        user.score = user.score + objLevel.effect;
-        this.user.cummulativeIncome = user.cummulativeIncome + objLevel.effect;
+        user.score = this.user.score + objLevel.effect;
+        this.user.cummulativeIncome = this.user.cummulativeIncome + objLevel.effect;
 
       }
       this.cardReplacer();
@@ -59,8 +59,8 @@ class PopupManager {
     const submit = () => {
       console.log('Submit');
 
-      this.user.score = user.score + offlinePassiveIncome;
-      this.user.cummulativeIncome = user.cummulativeIncome + offlinePassiveIncome;
+      this.user.score = this.user.score + offlinePassiveIncome;
+      this.user.cummulativeIncome = this.user.cummulativeIncome + offlinePassiveIncome;
       this.user.saveUserDataLocal();
       // incomeManager.scoreRenderer();
       this.popupClose();
@@ -76,11 +76,31 @@ class PopupManager {
     const submit = () => {
       console.log('Submit');
       //this.user.referenceBonus = 0;
-      this.user.score = user.score + bonus;
-      this.user.cummulativeIncome = user.cummulativeIncome + bonus;
+      this.user.score = this.user.score + bonus;
+      this.user.cummulativeIncome = this.user.cummulativeIncome + bonus;
       this.user.referenceBonus = 0;
       this.user.saveUserDataLocal();
       // incomeManager.scoreRenderer();
+      this.popupClose();
+    }
+    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+  }
+
+  taskPopupOpen(bonus) {
+    this.popup.classList.remove('popup_inactive');
+    this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    this.popup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
+    this.popup.querySelector('.popup__image').src = './images/done.png';
+    const submit = () => {
+      console.log('Submit');
+      console.log('score', this.user.score);
+      console.log('bonus', bonus);
+
+      this.user.score = this.user.score + bonus;
+      console.log(this.user.score);
+      this.user.cummulativeIncome = this.user.cummulativeIncome + bonus;
+      this.user.saveUserDataLocal();
+      incomeManager.scoreRenderer();
       this.popupClose();
     }
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });

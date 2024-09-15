@@ -66,7 +66,7 @@ class AchievementManager {
       const userAch = this.user.achievements.find(obj => obj.id === object.id);
       const card = document.querySelector(`.wideCard_id_${object.id}`);
       const handlePopupOpen = () => {
-        popupManager.popupOpen(object, userAch.level);
+        popupManager.achievementsPopupOpen(object, userAch.level);
       }
       if(lessArray.length) {
         if(!isGathered) {
