@@ -27,9 +27,11 @@ class DailyTasksManager {
     friend && (card.addEventListener('click', () => {
       this.user.inviteFriends()
         .then(() => {
+          card.classList.add('wideCard_complete');
+          card.querySelector('.wideCard__icon').src = `./images/done.png`;
+        })
+        .then(() => {
           card.replaceWith(card.cloneNode(true));
-          card.cloneNode(true).classList.add('wideCard_complete');
-          card.cloneNode(true).querySelector('.wideCard__icon').src = `./images/done.png`;
         });
     }))
     const channel = elem.type === 'channel';
