@@ -17,7 +17,6 @@ const navSection = document.querySelector('.navigation');
 const tasksButton = document.querySelector('.tasksButton');
 
 const dailyTaskScreen = document.querySelector('.dailyTasksScreen');
-const dailyTaskField = document.querySelector('.dailyTasksScreen__cardField');
 const dailyTaskCloseBtn = document.querySelector('.dailyTasksScreen__closeButton');
 
 const friendsCardsField = document.querySelector('.friendsScreen__cardField');

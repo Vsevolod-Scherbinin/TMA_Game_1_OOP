@@ -15,6 +15,7 @@ const upgradeManager = new UpgradeManager(
 );
 
 const achievementManager = new AchievementManager(user);
+const dailyTasksManager = new DailyTasksManager(user);
 
 const popupManager = new PopupManager(
   user,
@@ -164,7 +165,8 @@ try {
 function inviteFriends() {
   try {
     const inviteLink = `https://t.me/FirstTGTest_bot?start=referral_id=${tg.initDataUnsafe.user.id}`;
-    const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${inviteLink}`;
+    const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел!`;
+    // const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${inviteLink}`;
     tg.sendData(message);
     const shareLink = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(message)}`;
     window.open(shareLink, '_blank');
@@ -195,10 +197,9 @@ async function checkUserSubscription(channelId, userId) {
 }
 
 const today = new Date();  // Создаем новый объект Date, который содержит текущую дату и время
+const currentDate = today.getDate().toString().padStart(2, '0') + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getFullYear();
 
-const date = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
-
-console.log('date', date);
+console.log('currentDate', currentDate);
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
@@ -251,6 +252,9 @@ window.onload = async () => {
   achievementManager.achievementsCardsRenderer();
   achievementManager.achievementsLevelCheck();
   achievementManager.achievementsContentRenderer();
+  dailyTasksManager.cardsRenderer(currentDate);
+  dailyTasksManager.contentRenderer();
+
 
   // Make separate function as energy
   let passiveIncomeTimer = setInterval(() => {
