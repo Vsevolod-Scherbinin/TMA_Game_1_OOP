@@ -21,12 +21,17 @@ class DailyTasksManager {
   }
 
   setCardEvents(elem) {
+    const card = this.dailyTaskField.querySelector(`.wideCard_id_${elem.id}`)
     const friend = elem.type === 'friend';
-    friend && (this.dailyTaskField.querySelector(`.wideCard_id_${elem.id}`).addEventListener('click', () => {
-      this.user.inviteFriends();
+    friend && (card.addEventListener('click', () => {
+      this.user.inviteFriends()
+        .then(() => {
+          card.classList.add('wideCard_complete');
+          card.querySelector('.wideCard__icon').src = `url(./images/done.png)`;
+        });
     }))
     const channel = elem.type === 'channel';
-    channel && (this.dailyTaskField.querySelector(`.wideCard_id_${elem.id}`).addEventListener('click', () => {
+    channel && (card.addEventListener('click', () => {
       this.subscribe(elem.channelLink);
     }))
   }

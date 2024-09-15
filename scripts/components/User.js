@@ -150,13 +150,15 @@ class User {
   }
 
   inviteFriends() {
-    try {
-      const inviteLink = `https://t.me/FirstTGTest_bot?start=referral_id=${tg.initDataUnsafe.user.id}`;
-      const message = `Привет! Я нашел классную игру и хочу, чтобы ты тоже её попробовал!`;
-      // const message = `Привет! Я нашел этот классный канал/бота и хочу, чтобы ты тоже его посмотрел! ${inviteLink}`;
-      tg.sendData(message);
-      const shareLink = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(message)}`;
-      window.open(shareLink, '_blank');
-    } catch {console.log('Функция работает только в TG')}
+    return new Promise((resolve) => {
+      try {
+        const inviteLink = `https://t.me/FirstTGTest_bot?start=referral_id=${tg.initDataUnsafe.user.id}`;
+        const message = `Привет! Я нашел классную игру и хочу, чтобы ты тоже её попробовал!`;
+        tg.sendData(message);
+        const shareLink = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(message)}`;
+        window.open(shareLink, '_blank');
+        resolve();
+      } catch {console.log('Функция работает только в TG')}
+    })
   }
 }
