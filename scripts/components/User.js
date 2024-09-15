@@ -156,7 +156,11 @@ class User {
         const message = `Привет! Я нашел классную игру и хочу, чтобы ты тоже её попробовал!`;
         tg.sendData(message);
         const shareLink = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(message)}`;
-        window.open(shareLink, '_blank');
+
+        // window.open(shareLink, '_blank');
+        setTimeout(() => {
+          window.open(shareLink, '_blank');
+      }, 0);
         resolve();
       } catch {console.log('Функция работает только в TG')}
     })
