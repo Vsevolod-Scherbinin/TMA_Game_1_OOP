@@ -185,8 +185,7 @@ window.onload = async () => {
   checkUserSubscription(-1002493343663, 180799659);
   checkUserSubscription(-1002493343663, 653832788);
 
-  dailyTasksManager.newTasksToggle();
-  dailyTasksManager.cardToggle();
+
 
   user.loadUserData();
   try {
@@ -235,7 +234,8 @@ window.onload = async () => {
   achievementManager.achievementsContentRenderer();
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.contentRenderer();
-
+  dailyTasksManager.newTasksToggle();
+  dailyTasksManager.cardToggle();
 
   // Make separate function as energy
   let passiveIncomeTimer = setInterval(() => {
