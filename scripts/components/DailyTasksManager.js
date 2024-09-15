@@ -15,6 +15,10 @@ class DailyTasksManager {
       card.classList.add('wideCard_complete');
       card.querySelector('.wideCard__icon').src = `./images/done.png`;
     }
+    const scoreDisplay = document.createElement('p');
+    scoreDisplay.textContent = `${this.user.hasInvitedToday()}`;
+    this.dailyTaskField.appendChild(scoreDisplay);
+
   }
 
   _createCard(elem) {
