@@ -149,6 +149,7 @@ btnMain.addEventListener('click', mainClick);
 
 try {
   tg.expand();
+  console.log(tg.platform);
 } catch {}
 
 
@@ -159,6 +160,7 @@ const currentDate = new Date().toLocaleDateString();
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
+
   localStorage.removeItem('invited');
 
   localStorage.clear();
