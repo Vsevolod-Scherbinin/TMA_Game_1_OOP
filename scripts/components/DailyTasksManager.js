@@ -28,8 +28,8 @@ class DailyTasksManager {
       this.user.inviteFriends()
         .then(() => {
           card.replaceWith(card.cloneNode(true));
-          card.classList.add('wideCard_complete');
-          card.querySelector('.wideCard__icon').src = `./images/done.png`;
+          card.cloneNode(true).classList.add('wideCard_complete');
+          card.cloneNode(true).querySelector('.wideCard__icon').src = `./images/done.png`;
         });
     }))
     const channel = elem.type === 'channel';
