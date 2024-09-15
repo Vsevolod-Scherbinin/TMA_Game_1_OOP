@@ -13,7 +13,7 @@ const friends = [
     title: "Пригласить друга",
     description: 'Пригласите в игру 5 друзей',
     effectIcon: "./images/coin.png",
-    effect: 100000,
+    effect: 50000,
   },
   {
     id: 3,
@@ -21,6 +21,22 @@ const friends = [
     title: "Пригласить друга",
     description: 'Пригласите в игру 10 друзей',
     effectIcon: "./images/coin.png",
-    effect: 250000,
+    effect: 75000,
+  },
+  {
+    id: 4,
+    mainIcon: './images/achievement-icon-friends-gold.png',
+    title: "Пригласить друга",
+    description: 'Пригласите в игру 15 друзей',
+    effectIcon: "./images/coin.png",
+    effect: 100000,
+  },
+  {
+    id: 5,
+    mainIcon: './images/achievement-icon-friends-gold.png',
+    title: "Пригласить друга",
+    description: 'Пригласите в игру 25 друзей',
+    effectIcon: "./images/coin.png",
+    effect: 125000,
   },
 ];

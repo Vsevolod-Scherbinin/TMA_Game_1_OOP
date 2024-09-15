@@ -6,4 +6,6 @@
   flex-direction: column;
   justify-content: start;
   gap: 8px;
+  flex: 1;
+  overflow: scroll;
 }
