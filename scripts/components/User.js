@@ -149,6 +149,18 @@ class User {
     return false; // Не первое посещение за день
   }
 
+  hasInvitedToday() {
+    const invited = localStorage.getItem('invited');
+    const today = new Date().toLocaleDateString();
+
+    if (!invited || invited !== today) {
+      localStorage.setItem('invited', today);
+      return true; // Первое посещение за день
+    }
+
+    return false; // Не первое посещение за день
+  }
+
   inviteFriends() {
     return new Promise((resolve) => {
       try {

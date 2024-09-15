@@ -110,7 +110,7 @@ console.log(tg.initDataUnsafe.user !== undefined);
 
 tasksButton.addEventListener('click', () => {
   dailyTasksManager.openScreen();
-  dailyTasksManager.newTasksCheck();
+  dailyTasksManager.newTasksToggle();
 });
 
 function closeScreen() {
@@ -185,7 +185,8 @@ window.onload = async () => {
   checkUserSubscription(-1002493343663, 180799659);
   checkUserSubscription(-1002493343663, 653832788);
 
-  dailyTasksManager.newTasksCheck();
+  dailyTasksManager.newTasksToggle();
+  dailyTasksManager.cardToggle();
 
   user.loadUserData();
   try {
