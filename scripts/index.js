@@ -156,14 +156,23 @@ try {
 
 
 
+// inviteFriendBtn.addEventListener('click', () => {
+//   user.inviteFriends()
+//   .then(() => {
+//     const today = new Date().toLocaleDateString();
+//     localStorage.setItem('invited', today);
+//     dailyTasksManager.friendCardToggle();
+//   });
+// });
+
 inviteFriendBtn.addEventListener('click', () => {
-  user.inviteFriends()
-  .then(() => {
-    const today = new Date().toLocaleDateString();
-    localStorage.setItem('invited', today);
-    dailyTasksManager.friendCardToggle();
-  });
-});
+  this.user.inviteFriends()
+    .then(() => {
+      const today = new Date().toLocaleDateString();
+      localStorage.setItem('invited', today);
+      this.friendCardToggle();
+    });
+})
 
 const currentDate = new Date().toLocaleDateString();
 
