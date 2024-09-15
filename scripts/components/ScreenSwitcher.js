@@ -12,21 +12,29 @@ class ScreenSwitcher {
 
   screenSwitch() {
     if(this.btnMainScreen.checked) {
+      page.style.backgroundColor = '';
+      page.style.backgroundImage = 'url(./images/page-background.png)';
       document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
       this.btnMainScreen.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
       this.mainScreen.classList.add('screen_active');
     } else if (this.btnUpgrades.checked) {
+      page.style.backgroundColor = '#1A1A1A';
+      page.style.backgroundImage = 'none';
       document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
       this.btnUpgrades.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
       this.upgradesScreen.classList.add('screen_active');
     } else if (this.btnTasks.checked) {
+      page.style.backgroundColor = '#1A1A1A';
+      page.style.backgroundImage = 'none';
       document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
       this.btnTasks.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
       this.friendsScreen.classList.add('screen_active');
     } else if (this.btnAchievements.checked) {
+      page.style.backgroundColor = '#1A1A1A';
+      page.style.backgroundImage = 'none';
       document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
       this.btnAchievements.parentElement.classList.add('navigation__button_active');
       // Review if next function is needed.
