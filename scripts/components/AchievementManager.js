@@ -59,12 +59,12 @@ class AchievementManager {
         ? lessArray = object.levels.filter(obj => obj.limit <= energyLimiterTotal())
         : lessArray = object.levels.filter(obj => obj.limit <= this.user[object.metric]);
       const lessLimits = [];
-      console.log('lessArray', lessArray);
+      // console.log('lessArray', lessArray);
 
       lessArray.forEach((obj) => {
         lessLimits.push(obj.limit);
       });
-      console.log('lessLimits', lessLimits);
+      // console.log('lessLimits', lessLimits);
 
       const userAch = this.user.achievements.find(obj => obj.id === object.id);
       const card = this.achievementCardsField.querySelector(`.wideCard_id_${object.id}`);
@@ -74,13 +74,11 @@ class AchievementManager {
       if(lessArray.length) {
         if(!isGathered) {
           userAch.level = 1;
-          console.log('card', card);
-
           card.addEventListener('click', () => {
             console.log('Test');
 
             popupManager.achievementsPopupOpen(object, userAch.level);
-          })
+          }, { once: true })
           // card.addEventListener('click', handlePopupOpen);
         } else {
           const gatheredLevel = this.user.gatheredAchievements.find(obj => obj.id === object.id).level;
@@ -92,7 +90,7 @@ class AchievementManager {
               console.log('Test');
 
               popupManager.achievementsPopupOpen(object, userAch.level);
-            })
+            }, { once: true })
             // card.addEventListener('click', handlePopupOpen);
           }
         }

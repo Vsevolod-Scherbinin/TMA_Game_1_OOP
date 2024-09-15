@@ -151,9 +151,9 @@ const currentDate = new Date().toLocaleDateString();
 // --------------- Window-Start ---------------
 window.onload = async () => {
   // localStorage.removeItem('invited');
-  localStorage.clear();
+  // localStorage.clear();
   // Subscribtion Test
-  user.checkUserSubscription(-1002493343663, user.userId);
+  // user.checkUserSubscription(-1002493343663, user.userId);
   // user.checkUserSubscription(-1002493343663, 180799659);
   // user.checkUserSubscription(-1002493343663, 653832788);
 
@@ -168,15 +168,15 @@ window.onload = async () => {
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
   // ServiceFunctions-Start
-    user.score = 50000;
-    user.taps = 0;
-    user.cummulativeIncome = 0;
-    user.passiveIncome = 0;
-    user.gatheredAchievements = [];
-    user.activeUpgrades[0].level = 0;
+    // user.score = 50000;
+    // user.taps = 0;
+    // user.cummulativeIncome = 0;
+    // user.passiveIncome = 0;
+    // user.gatheredAchievements = [];
+    // user.activeUpgrades[0].level = 0;
     // user.energy = 500;
-    user.passiveUpgrades[0].level = 0;
-    user.passiveUpgrades[1].level = 0;
+    // user.passiveUpgrades[0].level = 0;
+    // user.passiveUpgrades[1].level = 0;
   // ServiceFunctions-End
 
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();

@@ -36,6 +36,8 @@ class PopupManager {
     console.log('obj', obj);
 
     const objLevel = obj.levels.find(obj => obj.level === level);
+    console.log('objLevel', objLevel);
+
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = obj.title;
     this.popup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumberWithSpaces(objLevel.effect)}`;
