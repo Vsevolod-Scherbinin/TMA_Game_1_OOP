@@ -166,11 +166,11 @@ try {
 // });
 
 inviteFriendBtn.addEventListener('click', () => {
-  this.user.inviteFriends()
+  user.inviteFriends()
     .then(() => {
       const today = new Date().toLocaleDateString();
       localStorage.setItem('invited', today);
-      this.friendCardToggle();
+      dailyTasksManager.friendCardToggle();
     });
 })
 
