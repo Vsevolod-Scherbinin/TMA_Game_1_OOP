@@ -53,6 +53,7 @@
 
 @import url(../blocks/dailyTasksScreen/dailyTasksScreen.css);
 @import url(../blocks/dailyTasksScreen/_active/dailyTasksScreen_active.css);
+@import url(../blocks/dailyTasksScreen/__cardsArea/dailyTasksScreen__cardsArea.css);
 @import url(../blocks/dailyTasksScreen/__title/dailyTasksScreen__title.css);
 @import url(../blocks/dailyTasksScreen/__cardField/dailyTasksScreen__cardField.css);
 @import url(../blocks/dailyTasksScreen/__closeButton/dailyTasksScreen__closeButton.css);
