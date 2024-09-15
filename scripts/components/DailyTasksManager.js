@@ -45,24 +45,30 @@ class DailyTasksManager {
     });
   }
 
-  gathering(obj, level) {
-    const newAchievement = {
-      id: obj.id,
-      level: level,
-    };
-    const isObjectPresent = this.user.gatheredAchievements.some(obj => obj.id === newAchievement.id);
-    // console.log('isObjectPresent', isObjectPresent);
-    if(isObjectPresent) {
-      const gatheredAchievement = this.user.gatheredAchievements.find(obj => obj.id === newAchievement.id);
-      // console.log('gatheredAchievement', gatheredAchievement);
-      if(gatheredAchievement.level < newAchievement.level) {
-        this.user.gatheredAchievements.splice(this.user.gatheredAchievements.indexOf(gatheredAchievement), 1);
-        this.user.gatheredAchievements.push(newAchievement);
-      }
-    } else {
-      this.user.gatheredAchievements.push(newAchievement);
-      console.log(this.user);
-    }
-    this.user.saveUserDataLocal();
+  newTasksCheck() {
+    this.user.isFirstVisitToday()
+      ? newTasksIcon.classList.add('tasksButton__newTasksIcon_active')
+      : newTasksIcon.classList.remove('tasksButton__newTasksIcon_active');
   }
+
+  // gathering(obj, level) {
+  //   const newAchievement = {
+  //     id: obj.id,
+  //     level: level,
+  //   };
+  //   const isObjectPresent = this.user.gatheredAchievements.some(obj => obj.id === newAchievement.id);
+  //   // console.log('isObjectPresent', isObjectPresent);
+  //   if(isObjectPresent) {
+  //     const gatheredAchievement = this.user.gatheredAchievements.find(obj => obj.id === newAchievement.id);
+  //     // console.log('gatheredAchievement', gatheredAchievement);
+  //     if(gatheredAchievement.level < newAchievement.level) {
+  //       this.user.gatheredAchievements.splice(this.user.gatheredAchievements.indexOf(gatheredAchievement), 1);
+  //       this.user.gatheredAchievements.push(newAchievement);
+  //     }
+  //   } else {
+  //     this.user.gatheredAchievements.push(newAchievement);
+  //     console.log(this.user);
+  //   }
+  //   this.user.saveUserDataLocal();
+  // }
 }

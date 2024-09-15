@@ -122,7 +122,10 @@ console.log(tg.initDataUnsafe.user !== undefined);
 function openScreen() {
   dailyTaskScreen.classList.add('dailyTasksScreen_active');
 }
-tasksButton.addEventListener('click', openScreen);
+tasksButton.addEventListener('click', () => {
+  openScreen();
+  dailyTasksManager.newTasksCheck();
+});
 
 function closeScreen() {
   dailyTaskScreen.classList.remove('dailyTasksScreen_active');
@@ -197,17 +200,21 @@ async function checkUserSubscription(channelId, userId) {
 }
 
 const today = new Date();  // Создаем новый объект Date, который содержит текущую дату и время
-const currentDate = today.getDate().toString().padStart(2, '0') + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getFullYear();
+console.log(typeof today);
+console.log(today.toLocaleDateString());
+
+const currentDate = today.toLocaleDateString();
 
 console.log('currentDate', currentDate);
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
-  localStorage.clear();
+  // localStorage.clear();
   // Subscribtion Test
   checkUserSubscription(-1002493343663, 180799659);
   checkUserSubscription(-1002493343663, 653832788);
 
+  dailyTasksManager.newTasksCheck();
 
   user.loadUserData();
   try {

@@ -21,7 +21,9 @@ class User {
     achievements,
     gatheredAchievements,
     referenceBonus,
-    referrals
+    friends,
+    channels,
+    // lastClosure,
   }) {
     this.userId = userId;
     this.score = score;
@@ -40,7 +42,9 @@ class User {
     this.achievements = achievements;
     this.gatheredAchievements = gatheredAchievements;
     this.referenceBonus = referenceBonus;
-    this.referrals = referrals;
+    this.friends = friends;
+    this.channels = channels;
+    // this.lastClosure = lastClosure;
   }
 
   saveUserDataLocal() {
@@ -87,7 +91,7 @@ class User {
   }
 
   saveUserDataDB() {
-    console.log('this', this);
+    console.log('Autosave', this);
 
     mainApi.saveUser(this)
       .then((res) => {
@@ -131,5 +135,17 @@ class User {
     console.log(this);
 
     localStorage.setItem('DataFromDB', JSON.stringify(this));
+  }
+
+  isFirstVisitToday() {
+    const lastVisitDate = localStorage.getItem('lastVisitDate');
+    const today = new Date().toLocaleDateString();
+
+    if (!lastVisitDate || lastVisitDate !== today) {
+      localStorage.setItem('lastVisitDate', today);
+      return true; // Первое посещение за день
+    }
+
+    return false; // Не первое посещение за день
   }
 }

@@ -1,6 +1,6 @@
 const dailyTasks = [
   {
-    date: '15-09-2024',
+    date: '15.09.2024',
     tasks: [
       {
         id: 1,
