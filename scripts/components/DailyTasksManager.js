@@ -24,9 +24,16 @@ class DailyTasksManager {
   async channelCardToggle() {
     const today = new Date().toLocaleDateString();
     const todayTasks = dailyTasks.find(obj => obj.date === today).tasks;
+    const taskId = todayTasks.find(obj => obj.type === 'channel').id;
     const channelId = todayTasks.find(obj => obj.type === 'channel').channelId;
-    console.log('channelId', channelId);
     const card = this.dailyTaskField.querySelector(`.wideCard_type_channel`);
+
+    const isGathered = this.user.tasks.some(obj => obj.id === taskId);
+    if(isGathered) {
+      card.querySelector('.wideCard__icon').src = `./images/done.png`;
+      return
+    }
+    console.log('channelId', channelId);
     const subscribed = await this.user.checkUserSubscription(channelId, this.user.userId);
     // console.log('subscribed', subscribed);
     if(subscribed) {
@@ -37,7 +44,7 @@ class DailyTasksManager {
         const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log(reward);
-        popupManager.taskPopupOpen(reward);
+        popupManager.taskPopupOpen(reward, newCard, taskId);
       })
       card.replaceWith(newCard);
     }
@@ -58,19 +65,22 @@ class DailyTasksManager {
   setCardEvents(elem) {
     const card = this.dailyTaskField.querySelector(`.wideCard_id_${elem.id}`)
 
+    const isGathered = this.user.tasks.some(obj => obj.id === elem.id);
     const friend = elem.type === 'friend';
-    friend && (card.addEventListener('click', () => {
-      this.user.inviteFriends()
-        .then(() => {
-          const today = new Date().toLocaleDateString();
-          localStorage.setItem('invited', today);
-          this.friendCardToggle();
-        });
-    }))
-    const channel = elem.type === 'channel';
-    channel && (card.addEventListener('click', () => {
-      this.subscribe(elem.channelLink);
-    }))
+    if(!isGathered) {
+      friend && (card.addEventListener('click', () => {
+        this.user.inviteFriends()
+          .then(() => {
+            const today = new Date().toLocaleDateString();
+            localStorage.setItem('invited', today);
+            this.friendCardToggle();
+          });
+      }))
+      const channel = elem.type === 'channel';
+      channel && (card.addEventListener('click', () => {
+        this.subscribe(elem.channelLink);
+      }))
+    }
   }
 
   cardsRenderer(date) {
