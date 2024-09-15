@@ -27,7 +27,7 @@ class DailyTasksManager {
       this.user.inviteFriends()
         .then(() => {
           card.classList.add('wideCard_complete');
-          card.querySelector('.wideCard__icon').src = `url(./images/done.png)`;
+          card.querySelector('.wideCard__icon').src = `./images/done.png`;
         });
     }))
     const channel = elem.type === 'channel';
