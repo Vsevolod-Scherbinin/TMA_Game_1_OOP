@@ -10,7 +10,7 @@ class DailyTasksManager {
   }
 
   cardToggle() {
-    const card = this.dailyTaskField.querySelector(`.wideCard_id_friend`);
+    const card = this.dailyTaskField.querySelector(`.wideCard_type_friend`);
     this.user.hasInvitedToday() && card.classList.add('wideCard_complete')
       // : newTasksIcon.classList.remove('tasksButton__newTasksIcon_active');
   }
