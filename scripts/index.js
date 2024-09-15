@@ -163,7 +163,7 @@ const currentDate = new Date().toLocaleDateString();
 // --------------- Window-Start ---------------
 window.onload = async () => {
 
-  localStorage.removeItem('invited');
+  // localStorage.removeItem('invited');
 
   localStorage.clear();
   // Subscribtion Test
