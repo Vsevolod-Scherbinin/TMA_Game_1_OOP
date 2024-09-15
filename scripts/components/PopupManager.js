@@ -111,4 +111,29 @@ class PopupManager {
     }
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
   }
+
+  friendsPopupOpen(bonus, card) {
+    this.popup.classList.remove('popup_inactive');
+    this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    this.popup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
+    this.popup.querySelector('.popup__image').src = './images/done.png';
+    const submit = () => {
+      console.log('Submit');
+      console.log('score', this.user.score);
+      console.log('bonus', bonus);
+
+      this.user.score = this.user.score + bonus;
+      console.log(this.user.score);
+      this.user.cummulativeIncome = this.user.cummulativeIncome + bonus;
+      this.user.saveUserDataLocal();
+      incomeManager.scoreRenderer();
+      const newCard = card.cloneNode(true)
+      newCard.classList.remove('wideCard_complete');
+      newCard.classList.add('wideCard_gathered');
+      newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+      card.replaceWith(newCard);
+      this.popupClose();
+    }
+    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+  }
 }

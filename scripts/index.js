@@ -15,6 +15,7 @@ const upgradeManager = new UpgradeManager(
 );
 
 const achievementManager = new AchievementManager(user);
+const friendsManager = new FriendsManager(user);
 const dailyTasksManager = new DailyTasksManager(user);
 
 const popupManager = new PopupManager(
@@ -39,37 +40,7 @@ function createTaskCards(elem) {
   return taskCardElement;
 }
 
-function createWideCards(elem) {
-  const wideCardElement = wideCardTemplate.cloneNode(true);
-  wideCardElement.querySelector('.wideCard__icon').src = elem.mainIcon;
-  wideCardElement.querySelector('.wideCard__title').textContent = elem.title;
-  wideCardElement.querySelector('.wideCard__description').textContent = elem.description;
-  wideCardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
-  wideCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(elem.effect)}`;
-  return wideCardElement;
-}
-
-
 const channelId = '-1002493343663';
-
-// tasksButton.addEventListener('click', subscribe);
-
-// --------------- WideCards-End ---------------
-
-// --------------- CardsRenderer-Start ---------------
-function friendsRenderer() {
-  friends.forEach((elem) => {
-    friendsCardsField.append(createWideCards(elem));
-  });
-}
-
-// --------------- CardsRenderer-End ---------------
-// const scoreDisplay = document.createElement('div');
-// scoreDisplay.classList.add('mainScreen__deltaAnimDisplay');
-// page.appendChild(scoreDisplay);
-// scoreDisplay.textContent = `+1`;
-// scoreDisplay.style.left = `100px`;
-// scoreDisplay.style.top = `500px`;
 
 function click(e) {
   const scoreDisplay = document.createElement('p');
@@ -171,6 +142,7 @@ inviteFriendBtn.addEventListener('click', () => {
       const today = new Date().toLocaleDateString();
       localStorage.setItem('invited', today);
       dailyTasksManager.friendCardToggle();
+      achievementManager.friendsAmountCheck();
     });
 })
 
@@ -197,10 +169,10 @@ window.onload = async () => {
     }
   } catch {await user.loadUserDataDB('180799659');}
 
-    const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
+  const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
 
-    // dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
-    dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
+  // dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus, dbData);
+  dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
   // ServiceFunctions-Start
     user.score = 50000;
     user.taps = 0;
@@ -229,7 +201,10 @@ window.onload = async () => {
   energyManager.energyUpgradeLimiter();
   energyManager.energyLimitRenderer();
   upgradeManager.allUpgradesRenderer();
-  friendsRenderer();
+
+  friendsManager.friendsRenderer();
+  friendsManager.friendsAmountCheck();
+
   user.saveUserDataLocal();
   achievementManager.achievementsCardsRenderer();
   achievementManager.achievementsLevelCheck();

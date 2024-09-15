@@ -132,7 +132,7 @@ class User {
     });
     // localStorage.setItem(saveSlotName, JSON.stringify(this));
     // localStorage.setItem('DataFromDB', JSON.stringify(data));
-    console.log(this);
+    console.log('UserDBLoaded', this);
 
     localStorage.setItem('DataFromDB', JSON.stringify(this));
   }

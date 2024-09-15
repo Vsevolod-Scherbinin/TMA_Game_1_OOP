@@ -3,7 +3,6 @@ class AchievementManager {
     this.user = user;
     this.wideCardTemplate = document.querySelector('#wideCard').content;
     this.achievementCardsField = document.querySelector('.achievementsScreen__cardField');
-
   }
 
   _createAchievementsCard(elem, level) {
