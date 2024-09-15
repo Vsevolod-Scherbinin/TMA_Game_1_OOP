@@ -11,8 +11,10 @@ class DailyTasksManager {
 
   cardToggle() {
     const card = this.dailyTaskField.querySelector(`.wideCard_type_friend`);
-    this.user.hasInvitedToday() && card.classList.add('wideCard_complete')
-      // : newTasksIcon.classList.remove('tasksButton__newTasksIcon_active');
+    if(this.user.hasInvitedToday()) {
+      card.classList.add('wideCard_complete');
+      card.querySelector('.wideCard__icon').src = `./images/done.png`;
+    }
   }
 
   _createCard(elem) {
@@ -32,13 +34,7 @@ class DailyTasksManager {
 
     const friend = elem.type === 'friend';
     friend && (card.addEventListener('click', () => {
-      this.user.inviteFriends()
-        .then(() => {
-
-          this.user.hasInvitedToday()
-          ? newTasksIcon.classList.add('tasksButton__newTasksIcon_active')
-          : newTasksIcon.classList.remove('tasksButton__newTasksIcon_active');
-        })
+      this.user.inviteFriends();
     }))
     const channel = elem.type === 'channel';
     channel && (card.addEventListener('click', () => {

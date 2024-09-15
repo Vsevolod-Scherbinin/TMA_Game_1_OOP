@@ -155,10 +155,10 @@ class User {
 
     if (!invited || invited !== today) {
       localStorage.setItem('invited', today);
-      return true; // Первое посещение за день
+      return false;
     }
 
-    return false; // Не первое посещение за день
+    return true;
   }
 
   inviteFriends() {
