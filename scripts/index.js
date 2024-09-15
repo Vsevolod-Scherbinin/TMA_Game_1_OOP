@@ -180,6 +180,8 @@ const currentDate = new Date().toLocaleDateString();
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
+  localStorage.removeItem('invited');
+
   // localStorage.clear();
   // Subscribtion Test
   checkUserSubscription(-1002493343663, 180799659);

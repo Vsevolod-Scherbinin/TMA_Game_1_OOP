@@ -34,7 +34,12 @@ class DailyTasksManager {
 
     const friend = elem.type === 'friend';
     friend && (card.addEventListener('click', () => {
-      this.user.inviteFriends();
+      this.user.inviteFriends()
+        .then(() => {
+          const today = new Date().toLocaleDateString();
+          localStorage.setItem('invited', today);
+          this.cardToggle();
+        });
     }))
     const channel = elem.type === 'channel';
     channel && (card.addEventListener('click', () => {

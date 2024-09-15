@@ -154,10 +154,9 @@ class User {
     const today = new Date().toLocaleDateString();
 
     if (!invited || invited !== today) {
-      localStorage.setItem('invited', today);
+      // localStorage.setItem('invited', today);
       return false;
     }
-
     return true;
   }
 
