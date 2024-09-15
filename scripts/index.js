@@ -151,7 +151,7 @@ btnMain.addEventListener('click', mainClick);
 
 try {
   tg.expand();
-  console.log(tg.platform);
+  console.log('platform', tg.platform);
 } catch {}
 
 
@@ -222,7 +222,7 @@ window.onload = async () => {
   dailyTasksManager.contentRenderer();
   dailyTasksManager.newTasksToggle();
   dailyTasksManager.friendCardToggle();
-  dailyTasksManager.channelCardToggle();
+  await dailyTasksManager.channelCardToggle();
 
   // Make separate function as energy
   let passiveIncomeTimer = setInterval(() => {

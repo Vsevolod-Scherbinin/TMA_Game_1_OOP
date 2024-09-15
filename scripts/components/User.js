@@ -193,6 +193,7 @@ class User {
       } else {
         console.log('Пользователь не подписан на канал!');
       }
+      return data.subscribed;
     } catch (error) {
       console.error('Ошибка при проверке подписки:', error);
     }
