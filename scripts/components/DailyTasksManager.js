@@ -22,10 +22,12 @@ class DailyTasksManager {
 
   setCardEvents(elem) {
     const card = this.dailyTaskField.querySelector(`.wideCard_id_${elem.id}`)
+
     const friend = elem.type === 'friend';
     friend && (card.addEventListener('click', () => {
       this.user.inviteFriends()
         .then(() => {
+          card.replaceWith(card.cloneNode(true));
           card.classList.add('wideCard_complete');
           card.querySelector('.wideCard__icon').src = `./images/done.png`;
         });
