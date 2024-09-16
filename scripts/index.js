@@ -113,7 +113,7 @@ function mainClick(evt) {
     achievementManager.achievementsLevelCheck();
     achievementManager.achievementsContentRenderer();
     user.saveUserDataLocal();
-    // user.saveUserDataDB();
+    user.saveUserDataDB();
   }
   energyManager.setEnergyRecoveryTimeout(true);
 }
@@ -240,13 +240,14 @@ window.onload = async () => {
 
   const dbSave = setInterval(() => {
     user.saveUserDataDB();
-  }, 10*60*1000)
+  }, 10000)
+// }, 10*60*1000)
 
 };
 
-window.addEventListener('beforeunload', async (evt) => {
+window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
-  await user.saveUserDataDB();
+  user.saveUserDataDB();
   localStorage.removeItem('DataFromDB');
   localStorage.setItem('closureTime', new Date());
 });
