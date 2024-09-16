@@ -113,6 +113,7 @@ function mainClick(evt) {
     achievementManager.achievementsLevelCheck();
     achievementManager.achievementsContentRenderer();
     user.saveUserDataLocal();
+    user.saveUserDataDB();
   }
   energyManager.setEnergyRecoveryTimeout(true);
 }
