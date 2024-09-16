@@ -165,7 +165,6 @@ window.onload = async () => {
       console.log('DBLoading', tg.initDataUnsafe.user.id);
       // console.log('user.id', tg.initDataUnsafe.user);
       await user.loadUserDataDB(tg.initDataUnsafe.user.id);
-
     }
   // } catch {}
 } catch {await user.loadUserDataDB('180799659')}
