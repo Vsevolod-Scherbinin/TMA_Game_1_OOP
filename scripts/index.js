@@ -113,7 +113,7 @@ function mainClick(evt) {
     achievementManager.achievementsLevelCheck();
     achievementManager.achievementsContentRenderer();
     user.saveUserDataLocal();
-    user.saveUserDataDB();
+    // user.saveUserDataDB();
   }
   energyManager.setEnergyRecoveryTimeout(true);
 }
@@ -244,9 +244,9 @@ window.onload = async () => {
 
 };
 
-window.addEventListener('beforeunload', (evt) => {
+window.addEventListener('beforeunload', async (evt) => {
   evt.preventDefault();
-  user.saveUserDataDB();
+  await user.saveUserDataDB();
   localStorage.removeItem('DataFromDB');
   localStorage.setItem('closureTime', new Date());
 });
