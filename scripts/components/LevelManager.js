@@ -32,7 +32,7 @@ class LevelManager {
     let currentLevelStatus;
     if(this.user.level < 10) {
       currentLevelStatus = levelsStatuses[0].status;
-    } else {
+    } else if(this.user.level <= 130) {
       currentLevelStatus = levelsStatuses.find(obj => obj.level === Math.floor(this.user.level / 10) * 10).status;
     }
     this.statusField.textContent = currentLevelStatus;
