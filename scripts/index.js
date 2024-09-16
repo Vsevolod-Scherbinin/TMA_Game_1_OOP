@@ -76,7 +76,8 @@ try {
     // const userPhoto = tg.initDataUnsafe.user.photo_url;
     // avatarField.src = userPhoto;
   }
-} catch (error){console.log(error)}
+} catch {}
+// } catch (error){console.log(error)}
 
 console.log(tg.initDataUnsafe.user !== undefined);
 
@@ -123,7 +124,8 @@ btnMain.addEventListener('click', mainClick);
 try {
   tg.expand();
   console.log('platform', tg.platform);
-} catch (error){console.log(error)}
+} catch {}
+// } catch (error){console.log(error)}
 
 
 
@@ -165,7 +167,7 @@ window.onload = async () => {
       await user.loadUserDataDB(tg.initDataUnsafe.user.id);
 
     }
-  } catch (error){console.log(error)}
+  } catch {}
 // } catch {await user.loadUserDataDB('180799659')}
 
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
