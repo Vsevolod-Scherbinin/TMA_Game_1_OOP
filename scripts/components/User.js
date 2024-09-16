@@ -102,11 +102,11 @@ class User {
     });
   }
 
-  async loadUserDataDB() {
+  async loadUserDataDB(userId) {
     console.log('DataLoading', this.user.userId);
 
-    // const response = await fetch(`${BASE_URL}/users/${this.user.userId}`);
-    const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${this.user.userId}`);
+    const response = await fetch(`${BASE_URL}/users/${userId}`);
+    // const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${userId}`);
     const data = await response.json();
     console.log('Данные пользователя загружены:', data);
     // return data;
