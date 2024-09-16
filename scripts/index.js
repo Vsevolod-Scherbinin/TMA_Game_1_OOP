@@ -160,14 +160,14 @@ window.onload = async () => {
   // user.checkUserSubscription(-1002493343663, 653832788);
 
   // user.loadUserData();
-  try {
+  // try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
       console.log('DBLoading', tg.initDataUnsafe.user.id);
       // console.log('user.id', tg.initDataUnsafe.user);
       await user.loadUserDataDB(tg.initDataUnsafe.user.id);
 
     }
-  } catch {}
+  // } catch {}
 // } catch {await user.loadUserDataDB('180799659')}
 
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));

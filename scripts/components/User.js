@@ -103,7 +103,7 @@ class User {
   }
 
   async loadUserDataDB() {
-    // console.log('DataLoading');
+    console.log('DataLoading');
 
     // const response = await fetch(`${BASE_URL}/users/${this.user.userId}`);
     const response = await fetch(`https://api.scherbinin.mesto.nomoredomains.club/users/${userId}`);
