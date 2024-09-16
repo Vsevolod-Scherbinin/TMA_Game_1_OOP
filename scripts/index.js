@@ -240,7 +240,7 @@ window.onload = async () => {
 
   const dbSave = setInterval(() => {
     user.saveUserDataDB();
-  }, 10*60*1000)
+  }, 60*1000)
 
 };
 
