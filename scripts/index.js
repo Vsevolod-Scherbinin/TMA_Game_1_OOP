@@ -162,7 +162,7 @@ window.onload = async () => {
   // user.loadUserData();
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
-      console.log('DBLoading');
+      console.log('DBLoading', tg.initDataUnsafe.user.id);
       // console.log('user.id', tg.initDataUnsafe.user);
       await user.loadUserDataDB(tg.initDataUnsafe.user.id);
 
