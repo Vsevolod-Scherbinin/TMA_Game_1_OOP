@@ -32,7 +32,7 @@ class AchievementManager {
   achievementsContentRenderer() {
     const cards = document.querySelectorAll('.wideCard_type_achievement');
     cards.forEach((card) => {
-      // console.log(card);
+      // console.log('card', card);
       const cardObj = achievements.find(obj => obj.title === card.textContent);
       if(cardObj) {
         const userAchLevel = this.user.achievements.find(obj => obj.id === cardObj.id).level;
@@ -58,12 +58,14 @@ class AchievementManager {
       if(isGathered) {
         const gatheredLevel = this.user.gatheredAchievements.find(obj => obj.id === object.id).level;
         if(availableLevel > gatheredLevel) {
+          card.classList.add('wideCard_active');
           card.addEventListener('click', () => {
             popupManager.achievementsPopupOpen(object, availableLevel);
           });
         }
       } else {
         if(isAvailable) {
+          card.classList.add('wideCard_active');
           card.addEventListener('click', () => {
             popupManager.achievementsPopupOpen(object, availableLevel);
           });
@@ -104,6 +106,7 @@ class AchievementManager {
           userAch.level = 1;
           if(!isActive) {
             this.user.activeAchievements.push({id: object.id});
+            card.classList.add('wideCard_active');
             card.addEventListener('click', () => {
               // console.log('Test !isGathered');
               popupManager.achievementsPopupOpen(object, userAch.level);
@@ -117,16 +120,20 @@ class AchievementManager {
             userAch.level = gatheredLevel + 1;
             if(!isActive) {
               this.user.activeAchievements.push({id: object.id});
+              card.classList.add('wideCard_active');
               card.addEventListener('click', () => {
                 console.log('Test !isGathered');
                 popupManager.achievementsPopupOpen(object, userAch.level);
               });
             }
+          } else {
+            card.classList.remove('wideCard_active');
           }
         }
       } else {
         userAch.level = 0;
       }
+      this.achievementsContentRenderer();
     });
   };
 

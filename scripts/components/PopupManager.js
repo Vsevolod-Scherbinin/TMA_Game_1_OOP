@@ -16,8 +16,7 @@ class PopupManager {
 
   _cardReplacer(card) {
     const newCard = card.cloneNode(true)
-    newCard.classList.remove('wideCard_complete');
-    newCard.classList.add('wideCard_gathered');
+    newCard.classList.remove('wideCard_active');
     newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
     card.replaceWith(newCard);
   }

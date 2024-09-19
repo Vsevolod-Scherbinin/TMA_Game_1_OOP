@@ -23,7 +23,7 @@ class DailyTasksManager {
 
     if(this.user.hasInvitedToday()) {
       const newCard = card.cloneNode(true)
-      newCard.classList.add('wideCard_complete');
+      newCard.classList.add('wideCard_active');
       newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
       newCard.addEventListener('click', (evt) => {
         const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
@@ -56,7 +56,7 @@ class DailyTasksManager {
     // console.log('subscribed', subscribed);
     // if(subscribed) {
     //   const newCard = card.cloneNode(true)
-    //   newCard.classList.add('wideCard_complete');
+    //   newCard.classList.add('wideCard_active');
     //   newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
     //   newCard.addEventListener('click', (evt) => {
     //     const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;

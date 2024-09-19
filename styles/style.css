@@ -103,8 +103,7 @@
 @import url(../blocks/upgradeCard/__cost/upgradeCard__cost.css);
 
 @import url(../blocks/wideCard/wideCard.css);
-@import url(../blocks/wideCard/_complete/wideCard_complete.css);
-@import url(../blocks/wideCard/_gathered/wideCard_gathered.css);
+@import url(../blocks/wideCard/_active/wideCard_active.css);
 @import url(../blocks/wideCard/__effectArea/wideCard__effectArea.css);
 @import url(../blocks/wideCard/__effect/wideCard__effect.css);
 @import url(../blocks/wideCard/__title/wideCard__title.css);

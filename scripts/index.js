@@ -132,7 +132,7 @@ async function mainClick(evt) {
     incomeManager.cummulativeIncomeCounter();
     upgradeManager.checkUpgradeAvailable();
     achievementManager.achievementsLevelCheck();
-    achievementManager.achievementsContentRenderer();
+    // achievementManager.achievementsContentRenderer();
     user.saveUserDataLocal();
     // user.saveUserDataDB();
   }
@@ -217,7 +217,7 @@ window.onload = async () => {
   achievementManager.achievementsCardsRenderer();
   achievementManager.achievementsLevelCheck();
   achievementManager.activeOnloadCorrection();
-  achievementManager.achievementsContentRenderer();
+  // achievementManager.achievementsContentRenderer();
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.contentRenderer();
   dailyTasksManager.newTasksToggle();
@@ -232,7 +232,7 @@ window.onload = async () => {
     incomeManager.scoreRenderer();
     upgradeManager.checkUpgradeAvailable();
     achievementManager.achievementsLevelCheck();
-    achievementManager.achievementsContentRenderer();
+    // achievementManager.achievementsContentRenderer();
 
     // user.saveUserDataLocal();
 
@@ -255,7 +255,7 @@ window.onload = async () => {
 
 window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
-  user.saveUserDataDB();
+  // user.saveUserDataDB();
   localStorage.removeItem('DataFromDB');
   localStorage.setItem('closureTime', new Date());
 });
