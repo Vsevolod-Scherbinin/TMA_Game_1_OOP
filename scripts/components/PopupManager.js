@@ -2,11 +2,13 @@ class PopupManager {
   constructor(
     user,
     scoreRenderer,
+    // achievementManager
     achievementGathering,
     achievementsLevelCheck,
   ) {
     this.user = user;
     this.scoreRenderer = scoreRenderer;
+    // this.achievementManager = achievementManager;
     this.achievementGathering = achievementGathering;
     this.achievementsLevelCheck = achievementsLevelCheck;
     this.popup = document.querySelector('.popup');
@@ -51,8 +53,12 @@ class PopupManager {
       } else {
         user.score = this.user.score + objLevel.effect;
         this.user.cummulativeIncome = this.user.cummulativeIncome + objLevel.effect;
-
       }
+
+      const index = this.user.activeAchievements.indexOf(this.user.activeAchievements.find(object => object.id === obj.id));
+      this.user.activeAchievements.splice(index, 1);
+      // this.user.activeAchievements = this.user.activeAchievements.filter(object => obj.id !== )
+      this.user.saveUserDataLocal();
       this.cardReplacer();
       this.achievementsLevelCheck();
       this.scoreRenderer();

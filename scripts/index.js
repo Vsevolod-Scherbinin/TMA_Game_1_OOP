@@ -1,3 +1,23 @@
+// Before Online Update
+// Delete Click DBSave
+// Improve Achievements Limits
+// Check Bot Commentaries
+// Daily Tasks Commentaries:
+    // const subscribed = await this.user.checkUserSubscription(channelId, this.user.userId);
+    // console.log('subscribed', subscribed);
+    // if(subscribed) {
+    //   const newCard = card.cloneNode(true)
+    //   newCard.classList.add('wideCard_complete');
+    //   newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+    //   newCard.addEventListener('click', (evt) => {
+    //     const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
+    //     const reward = todayTasks.find(obj => obj.title === title).effect;
+    //     console.log(reward);
+    //     popupManager.taskPopupOpen(reward, newCard, taskId);
+    //   })
+    //   card.replaceWith(newCard);
+    // }
+
 // --------------- Classes-Start ---------------
 const user = new User(userDataModel);
 // user.loadUserData();
@@ -21,6 +41,7 @@ const dailyTasksManager = new DailyTasksManager(user);
 const popupManager = new PopupManager(
   user,
   incomeManager.scoreCounter.bind(incomeManager),
+  // achievementManager
   achievementManager.achievementGathering.bind(achievementManager),
   achievementManager.achievementsLevelCheck.bind(achievementManager),
 );
@@ -92,7 +113,7 @@ function closeScreen() {
 }
 dailyTaskCloseBtn.addEventListener('click', closeScreen);
 
-function mainClick(evt) {
+async function mainClick(evt) {
   if(user.energy >= user.delta) {
     if(tg.initDataUnsafe.user) {
       tg.HapticFeedback.impactOccurred('soft');
@@ -113,7 +134,7 @@ function mainClick(evt) {
     achievementManager.achievementsLevelCheck();
     achievementManager.achievementsContentRenderer();
     user.saveUserDataLocal();
-    user.saveUserDataDB();
+    // user.saveUserDataDB();
   }
   energyManager.setEnergyRecoveryTimeout(true);
 }
@@ -127,17 +148,6 @@ try {
   console.log('platform', tg.platform);
 } catch {}
 // } catch (error){console.log(error)}
-
-
-
-// inviteFriendBtn.addEventListener('click', () => {
-//   user.inviteFriends()
-//   .then(() => {
-//     const today = new Date().toLocaleDateString();
-//     localStorage.setItem('invited', today);
-//     dailyTasksManager.friendCardToggle();
-//   });
-// });
 
 inviteFriendBtn.addEventListener('click', () => {
   user.inviteFriends()
@@ -183,7 +193,6 @@ window.onload = async () => {
     // user.passiveUpgrades[0].level = 0;
     // user.passiveUpgrades[1].level = 0;
   // ServiceFunctions-End
-
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
   screenSwitcher.screenSwitch();
@@ -207,6 +216,7 @@ window.onload = async () => {
   user.saveUserDataLocal();
   achievementManager.achievementsCardsRenderer();
   achievementManager.achievementsLevelCheck();
+  achievementManager.activeOnloadCorrection();
   achievementManager.achievementsContentRenderer();
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.contentRenderer();
@@ -224,7 +234,7 @@ window.onload = async () => {
     achievementManager.achievementsLevelCheck();
     achievementManager.achievementsContentRenderer();
 
-    user.saveUserDataLocal();
+    // user.saveUserDataLocal();
 
     if(timer == onlinePassiveTimeLimit) {
       clearInterval(passiveIncomeTimer);
@@ -239,10 +249,8 @@ window.onload = async () => {
   energyManager.energyRecoveryLooper(true, 'normal');
 
   const dbSave = setInterval(() => {
-    user.saveUserDataDB();
-  }, 10000)
-// }, 10*60*1000)
-
+    // user.saveUserDataDB();
+  }, 15*1000)
 };
 
 window.addEventListener('beforeunload', (evt) => {

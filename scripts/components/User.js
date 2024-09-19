@@ -20,6 +20,7 @@ class User {
     tasks,
     achievements,
     gatheredAchievements,
+    activeAchievements,
     referenceBonus,
     friends,
     channels,
@@ -41,6 +42,7 @@ class User {
     this.tasks = tasks;
     this.achievements = achievements;
     this.gatheredAchievements = gatheredAchievements;
+    this.activeAchievements = activeAchievements,
     this.referenceBonus = referenceBonus;
     this.friends = friends;
     this.channels = channels;
@@ -81,7 +83,7 @@ class User {
       console.log('Old User');
       Object.keys(userDataModel).forEach((key) => {
         // console.log(key);
-        // console.log(this[key]);
+        console.log(`Key ${key} ${this[key]}`);
 
         this[key] = JSON.parse(localUserData)[key];
         this[key] === undefined && (this[key] = userDataModel[key]);
