@@ -2,20 +2,20 @@ class PopupManager {
   constructor(
     user,
     scoreRenderer,
-    // achievementManager
+    achievementManager,
     achievementGathering,
     achievementsLevelCheck,
   ) {
     this.user = user;
     this.scoreRenderer = scoreRenderer;
-    // this.achievementManager = achievementManager;
+    this.achievementManager = achievementManager;
     this.achievementGathering = achievementGathering;
     this.achievementsLevelCheck = achievementsLevelCheck;
     this.popup = document.querySelector('.popup');
   }
 
   _cardReplacer(card) {
-    const newCard = card.cloneNode(true)
+    const newCard = card.cloneNode(true);
     newCard.classList.remove('wideCard_active');
     newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
     card.replaceWith(newCard);
@@ -37,28 +37,30 @@ class PopupManager {
     console.log('obj', obj);
 
     const objLevel = obj.levels.find(obj => obj.level === level);
+    const iconLevel = obj.levels.find(obj => obj.level === (level +1));
     console.log('objLevel', objLevel);
 
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = obj.title;
     this.popup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumberWithSpaces(objLevel.effect)}`;
-    this.popup.querySelector('.popup__image').src = objLevel.mainIcon;
+    this.popup.querySelector('.popup__image').src = iconLevel.mainIcon;
     // console.log(objLevel.effect);
     const card = document.querySelector(`.wideCard_id_${obj.id}`);
     const submit = () => {
-      this.achievementGathering(obj, level);
-      if (obj.metric === 'energyLimit') {
-        user.energyLimit = this.user.energyLimit + objLevel.effect
-      } else {
+      this.achievementGathering(obj, level+1);
+      // if (obj.metric === 'energyLimit') {
+      //   user.energyLimit = this.user.energyLimit + objLevel.effect
+      // } else {
         user.score = this.user.score + objLevel.effect;
         this.user.cummulativeIncome = this.user.cummulativeIncome + objLevel.effect;
-      }
+      // }
 
       const index = this.user.activeAchievements.indexOf(this.user.activeAchievements.find(object => object.id === obj.id));
       this.user.activeAchievements.splice(index, 1);
       // this.user.activeAchievements = this.user.activeAchievements.filter(object => obj.id !== )
       this.user.saveUserDataLocal();
       this.cardReplacer();
+      this.achievementManager.activeOnloadCorrection();
       this.achievementsLevelCheck();
       this.scoreRenderer();
       this.popupClose();

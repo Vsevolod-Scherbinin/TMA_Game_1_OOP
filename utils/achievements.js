@@ -20,7 +20,8 @@ const achievements = [
         description: 'Совершите 5000 тапов',
         // limit: 5000,
         limit: 7,
-        effect: 100000,
+        effect: 50000,
+        // effect: 100000,
       },
       {
         level: 2,

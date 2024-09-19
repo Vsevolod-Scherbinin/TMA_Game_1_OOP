@@ -30,8 +30,8 @@ class AchievementManager {
   }
 
   _achievementsContentRenderer(card, cardData, textLevel, iconLevel) {
-    const cardLevel = cardDataObject.levels.find(obj => obj.level === textLevel);
-    const iconLvl = cardDataObject.levels.find(obj => obj.level === iconLevel);
+    const cardLevel = cardData.levels.find(obj => obj.level === textLevel);
+    const iconLvl = cardData.levels.find(obj => obj.level === iconLevel);
     card.querySelector('.wideCard__icon').src = iconLvl.mainIcon;
     card.querySelector('.wideCard__description').textContent = cardLevel.description;
     card.querySelector('.wideCard__effect').textContent = formatNumberWithSpaces(cardLevel.effect);
@@ -92,12 +92,13 @@ class AchievementManager {
       if(lessLevels.length) {
         if(!isGathered) {
           userAch.level = 1;
+          this._achievementsContentRenderer(card, object, userAch.level-1, userAch.level);
           if(!isActive) {
             this.user.activeAchievements.push({id: object.id});
             card.classList.add('wideCard_active');
             card.addEventListener('click', () => {
               // console.log('Test !isGathered');
-              popupManager.achievementsPopupOpen(object, userAch.level);
+              popupManager.achievementsPopupOpen(object, userAch.level-1);
             });
           }
         } else {
@@ -106,22 +107,25 @@ class AchievementManager {
           userAch.level = gatheredLevel;
           if(gatheredLevel < availableLevel) {
             userAch.level = gatheredLevel + 1;
+            this._achievementsContentRenderer(card, object, gatheredLevel, userAch.level);
             if(!isActive) {
               this.user.activeAchievements.push({id: object.id});
               card.classList.add('wideCard_active');
               card.addEventListener('click', () => {
                 console.log('Test !isGathered');
-                popupManager.achievementsPopupOpen(object, userAch.level);
+                popupManager.achievementsPopupOpen(object, userAch.level-1);
               });
             }
           } else {
             card.classList.remove('wideCard_active');
+            this._achievementsContentRenderer(card, object, gatheredLevel, userAch.level);
           }
         }
       } else {
         userAch.level = 0;
+        this._achievementsContentRenderer(card, object, userAch.level, userAch.level);
+
       }
-      this._achievementsContentRenderer(card, object, );
     });
   };
 

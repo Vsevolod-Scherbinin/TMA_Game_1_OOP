@@ -41,7 +41,7 @@ const dailyTasksManager = new DailyTasksManager(user);
 const popupManager = new PopupManager(
   user,
   incomeManager.scoreCounter.bind(incomeManager),
-  // achievementManager
+  achievementManager,
   achievementManager.achievementGathering.bind(achievementManager),
   achievementManager.achievementsLevelCheck.bind(achievementManager),
 );
