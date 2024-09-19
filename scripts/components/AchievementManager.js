@@ -29,24 +29,12 @@ class AchievementManager {
     });
   }
 
-  achievementsContentRenderer() {
-    const cards = document.querySelectorAll('.wideCard_type_achievement');
-    cards.forEach((card) => {
-      // console.log('card', card);
-      const cardObj = achievements.find(obj => obj.title === card.textContent);
-      if(cardObj) {
-        const userAchLevel = this.user.achievements.find(obj => obj.id === cardObj.id).level;
-        // console.log(userAchLevel);
-        const cardLevel = cardObj.levels.find(obj => obj.level === userAchLevel);
-        card.closest('.wideCard').querySelector('.wideCard__icon').src = cardLevel.mainIcon;
-        card.closest('.wideCard').querySelector('.wideCard__description').textContent = cardLevel.description;
-        card.closest('.wideCard').querySelector('.wideCard__effect').textContent = formatNumberWithSpaces(cardLevel.effect);
-      }
-    });
-
-    user.achievements.forEach((userAch) => {
-        const found = achievements.find(obj => obj.id === userAch);
-    });
+  _achievementsContentRenderer(card, cardData, textLevel, iconLevel) {
+    const cardLevel = cardDataObject.levels.find(obj => obj.level === textLevel);
+    const iconLvl = cardDataObject.levels.find(obj => obj.level === iconLevel);
+    card.querySelector('.wideCard__icon').src = iconLvl.mainIcon;
+    card.querySelector('.wideCard__description').textContent = cardLevel.description;
+    card.querySelector('.wideCard__effect').textContent = formatNumberWithSpaces(cardLevel.effect);
   }
 
   activeOnloadCorrection() {
@@ -133,7 +121,7 @@ class AchievementManager {
       } else {
         userAch.level = 0;
       }
-      this.achievementsContentRenderer();
+      this._achievementsContentRenderer(card, object, );
     });
   };
 

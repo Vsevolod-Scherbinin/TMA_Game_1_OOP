@@ -132,7 +132,6 @@ async function mainClick(evt) {
     incomeManager.cummulativeIncomeCounter();
     upgradeManager.checkUpgradeAvailable();
     achievementManager.achievementsLevelCheck();
-    // achievementManager.achievementsContentRenderer();
     user.saveUserDataLocal();
     // user.saveUserDataDB();
   }
@@ -217,7 +216,6 @@ window.onload = async () => {
   achievementManager.achievementsCardsRenderer();
   achievementManager.achievementsLevelCheck();
   achievementManager.activeOnloadCorrection();
-  // achievementManager.achievementsContentRenderer();
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.contentRenderer();
   dailyTasksManager.newTasksToggle();
@@ -232,7 +230,6 @@ window.onload = async () => {
     incomeManager.scoreRenderer();
     upgradeManager.checkUpgradeAvailable();
     achievementManager.achievementsLevelCheck();
-    // achievementManager.achievementsContentRenderer();
 
     // user.saveUserDataLocal();
 
