@@ -84,10 +84,8 @@ try {
     console.log('tgData', tg.initDataUnsafe);
     nameField.textContent = tg.initDataUnsafe.user.first_name;
     // const userPhoto = user.getUserPhoto(tg.initDataUnsafe.user.id);
-    const userId = tg.initDataUnsafe.user.id;
-    console.log('UserId', userId);
 
-    user.getUserPhoto(userId)
+    user.getUserPhoto(tg.initDataUnsafe.user.id)
       .then((res) => {
         // console.log('userPhoto', res);
         avatarField.src = res;
