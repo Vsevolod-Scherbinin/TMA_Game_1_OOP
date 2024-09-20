@@ -73,12 +73,24 @@ const tg = window.Telegram.WebApp;
 console.log('tg', tg);
 // tg.enableClosingConfirmation();
 
+user.getUserPhoto(180799659)
+  .then((res) => {
+    // console.log('userPhoto', res);
+    avatarField.src = res;
+  });
+
+
+
 try {
   if(tg.initDataUnsafe.user.first_name.length>0) {
     console.log('tgData', tg.initDataUnsafe);
     nameField.textContent = tg.initDataUnsafe.user.first_name;
-    const userPhoto = user.getUserPhoto(tg.initDataUnsafe.user.id);
-    avatarField.src = userPhoto;
+    // const userPhoto = user.getUserPhoto(tg.initDataUnsafe.user.id);
+    user.getUserPhoto(tg.initDataUnsafe.user.id)
+      .then((res) => {
+        // console.log('userPhoto', res);
+        avatarField.src = res;
+      });
   }
 } catch {}
 // } catch (error){console.log(error)}

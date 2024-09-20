@@ -201,39 +201,25 @@ class User {
     }
   }
 
-  async getUserPhoto(id) {
-    fetch('https://api.telegram.org/bot6750879766:AAFr6iUUudfD_zxG6RE87VbRblR5uRrSTao/getUserProfilePhotos', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          user_id: id, // ID пользователя, чьи фотографии вы хотите получить
-          offset: 0,
-          limit: 1 // Максимальное количество фотографий для получения
-      })
-  })
-  .then(response => response.json())
-  .then(data => {
-      if (data.ok) {
-          const photos = data.result.photos;
-          if (photos.length > 0) {
-              // Получаем URL первой фотографии
-              const fileId = photos[0][0].file_id; // Получаем ID первой фотографии
-              return fetch(`https://api.telegram.org/bot6750879766:AAFr6iUUudfD_zxG6RE87VbRblR5uRrSTao/getFile?file_id=${fileId}`);
-          } else {
-              console.log('У пользователя нет фотографий');
-          }
-      } else {
-          console.error('Ошибка при получении фотографий:', data.description);
-      }
-  })
-  .then(response => response.json())
-  .then(fileData => {
-      const filePath = fileData.result.file_path;
-      const photoUrl = `https://api.telegram.org/file/bot<Ваш_Токен>/${filePath}`;
-      document.getElementById('userPhoto').src = photoUrl; // Устанавливаем URL фотографии в img элемент
-  })
-  .catch(error => console.error('Ошибка сети:', error));
+  async getUserPhoto(userId) {
+    console.log('userId', userId);
+
+    try {
+      const response = await fetch(`${BASE_URL}/getUserPhoto`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId }),
+      });
+      const photo = await response.json();
+      console.log('photo', photo.file_path);
+      const userPhotoUrl = `https://api.telegram.org/file/bot6750879766:AAFr6iUUudfD_zxG6RE87VbRblR5uRrSTao/${photo.file_path}`;
+      return userPhotoUrl;
+      // avatarField.src = userPhotoUrl;
+
+    } catch (error) {
+      console.error('Ошибка при загрузке фотографии:', error);
+    }
   }
 }
