@@ -9,12 +9,13 @@ const incomeManager = new IncomeManager(user);
 const energyManager = new EnergyManager(user);
 const upgradeManager = new UpgradeManager(
   user,
-  incomeManager.scoreCounter.bind(incomeManager),
-  incomeManager.deltaCounter.bind(incomeManager),
+  incomeManager,
+  // incomeManager.scoreCounter.bind(incomeManager),
+  // incomeManager.deltaCounter.bind(incomeManager),
   energyManager.energyLimitRenderer.bind(energyManager),
   energyManager.energyRecoveryLooper.bind(energyManager),
-  incomeManager.passiveIncomeCounter.bind(incomeManager),
-  incomeManager.passiveIncomeRenderer.bind(incomeManager),
+  // incomeManager.passiveIncomeCounter.bind(incomeManager),
+  // incomeManager.passiveIncomeRenderer.bind(incomeManager),
 );
 
 const achievementManager = new AchievementManager(user);

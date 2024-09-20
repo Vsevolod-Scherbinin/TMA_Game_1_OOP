@@ -1,21 +1,23 @@
 class UpgradeManager {
   constructor(
     user,
-    scoreRenderer,
-    deltaCounter,
+    incomeManager,
+    // scoreRenderer,
+    // deltaCounter,
     energyLimitRenderer,
     energyRecoveryLooper,
-    passiveIncomeCounter,
-    passiveIncomeRenderer,
+    // passiveIncomeCounter,
+    // passiveIncomeRenderer,
   ) {
     // Check for Incapsulation
     this.user = user;
-    this.scoreRenderer = scoreRenderer;
-    this.deltaCounter = deltaCounter;
+    this.incomeManager = incomeManager;
+    // this.scoreRenderer = scoreRenderer;
+    // this.deltaCounter = deltaCounter;
     this.energyLimitRenderer = energyLimitRenderer;
     this.energyRecoveryLooper = energyRecoveryLooper;
-    this.passiveIncomeCounter = passiveIncomeCounter;
-    this.passiveIncomeRenderer = passiveIncomeRenderer;
+    // this.passiveIncomeCounter = passiveIncomeCounter;
+    // this.passiveIncomeRenderer = passiveIncomeRenderer;
     this.activeUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_active');
     this.passiveUpgradesField = document.querySelector('.upgradesScreen__upgradesField_type_passive');
   }
@@ -111,16 +113,18 @@ class UpgradeManager {
       if(this.user.score >= currentUpgradeLevel.cost) {
         this.user.score = this.user.score - currentUpgradeLevel.cost;
         this.user.expences = this.user.expences + currentUpgradeLevel.cost;
-        this.scoreRenderer();
+
+        this.incomeManager.scoreCounter();
+        this.incomeManager.scoreRenderer();
         if(currentUpgradeLevel.income !== undefined) {
           // console.log('Income');
           userUpgrade.level++;
-          this.user.passiveIncome = this.passiveIncomeCounter();
-          this.passiveIncomeRenderer();
+          this.user.passiveIncome = this.incomeManager.passiveIncomeCounter();
+          this.incomeManager.passiveIncomeRenderer();
         } else if (currentUpgradeLevel.delta !== undefined) {
           // console.log('Delta');
           userUpgrade.level++;
-          this.deltaCounter();
+          this.incomeManager.deltaCounter();
         } else {
           // console.log('Energy');
           userUpgrade.level++;
