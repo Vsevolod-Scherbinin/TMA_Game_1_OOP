@@ -79,20 +79,19 @@ console.log('tg', tg);
 //     avatarField.src = res;
 //   });
 
-
-
 try {
   if(tg.initDataUnsafe.user.first_name.length>0) {
     console.log('tgData', tg.initDataUnsafe);
     nameField.textContent = tg.initDataUnsafe.user.first_name;
     // const userPhoto = user.getUserPhoto(tg.initDataUnsafe.user.id);
-    console.log('UserId', tg.initDataUnsafe.user.id);
+    const userId = tg.initDataUnsafe.user.id;
+    console.log('UserId', userId);
 
-    // user.getUserPhoto(tg.initDataUnsafe.user.id)
-    //   .then((res) => {
-    //     // console.log('userPhoto', res);
-    //     avatarField.src = res;
-    //   });
+    user.getUserPhoto(userId)
+      .then((res) => {
+        // console.log('userPhoto', res);
+        avatarField.src = res;
+      });
   }
 } catch {}
 // } catch (error){console.log(error)}
