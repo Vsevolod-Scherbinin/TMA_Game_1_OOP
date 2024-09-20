@@ -52,20 +52,20 @@ class DailyTasksManager {
       return
     }
     console.log('channelId', channelId);
-    // const subscribed = await this.user.checkUserSubscription(channelId, this.user.userId);
-    // console.log('subscribed', subscribed);
-    // if(subscribed) {
-    //   const newCard = card.cloneNode(true)
-    //   newCard.classList.add('wideCard_active');
-    //   newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
-    //   newCard.addEventListener('click', (evt) => {
-    //     const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
-    //     const reward = todayTasks.find(obj => obj.title === title).effect;
-    //     console.log(reward);
-    //     popupManager.taskPopupOpen(reward, newCard, taskId);
-    //   })
-    //   card.replaceWith(newCard);
-    // }
+    const subscribed = await this.user.checkUserSubscription(channelId, this.user.userId);
+    console.log('subscribed', subscribed);
+    if(subscribed) {
+      const newCard = card.cloneNode(true)
+      newCard.classList.add('wideCard_active');
+      newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+      newCard.addEventListener('click', (evt) => {
+        const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
+        const reward = todayTasks.find(obj => obj.title === title).effect;
+        console.log(reward);
+        popupManager.taskPopupOpen(reward, newCard, taskId);
+      })
+      card.replaceWith(newCard);
+    }
   }
 
   _createCard(elem) {
