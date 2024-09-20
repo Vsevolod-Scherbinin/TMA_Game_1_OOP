@@ -1,10 +1,6 @@
 // Before Online Update
 // Check Bot Commentaries
 
-document.addEventListener('contextmenu', function(event) {
-  event.preventDefault();
-});
-
 // --------------- Classes-Start ---------------
 const user = new User(userDataModel);
 // user.loadUserData();
@@ -87,6 +83,11 @@ try {
     console.log('tgData', tg.initDataUnsafe);
     nameField.textContent = tg.initDataUnsafe.user.first_name;
     // const userPhoto = user.getUserPhoto(tg.initDataUnsafe.user.id);
+    if(tg.initDataUnsafe.user.id !== 180799659) {
+      document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+      });
+    }
 
     user.getUserPhoto(tg.initDataUnsafe.user.id)
       .then((res) => {
