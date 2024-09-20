@@ -77,8 +77,8 @@ try {
   if(tg.initDataUnsafe.user.first_name.length>0) {
     console.log('tgData', tg.initDataUnsafe);
     nameField.textContent = tg.initDataUnsafe.user.first_name;
-    // const userPhoto = tg.initDataUnsafe.user.photo_url;
-    // avatarField.src = userPhoto;
+    const userPhoto = user.getUserPhoto(tg.initDataUnsafe.user.id);
+    avatarField.src = userPhoto;
   }
 } catch {}
 // } catch (error){console.log(error)}
