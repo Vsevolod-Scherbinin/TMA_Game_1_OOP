@@ -220,15 +220,15 @@ window.onload = async () => {
     }
   },  1000);
 
-  // let userOnlineTimer = setInterval(() => {
-  //   user.timeOnline++;
-  //   user.saveUserDataLocal();
-  // },  1000);
+  let userOnlineTimer = setInterval(() => {
+    user.timeOnline++;
+    user.saveUserDataLocal();
+  },  1000);
 
   energyManager.energyRecoveryLooper(true, 'normal');
 
   const dbSave = setInterval(() => {
-    // user.saveUserDataDB();
+    user.saveUserDataDB();
   }, 15*1000)
 };
 
