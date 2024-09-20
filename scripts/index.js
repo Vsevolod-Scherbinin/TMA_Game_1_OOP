@@ -73,11 +73,11 @@ const tg = window.Telegram.WebApp;
 console.log('tg', tg);
 // tg.enableClosingConfirmation();
 
-user.getUserPhoto(180799659)
-  .then((res) => {
-    // console.log('userPhoto', res);
-    avatarField.src = res;
-  });
+// user.getUserPhoto(180799659)
+//   .then((res) => {
+//     // console.log('userPhoto', res);
+//     avatarField.src = res;
+//   });
 
 
 
