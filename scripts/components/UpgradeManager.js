@@ -44,7 +44,7 @@ class UpgradeManager {
           ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.delta)}/тап`
           : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.energyLimit)}`;
     } else {
-      upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl Max`;
+      upgradeCardElement.querySelector('.upgradeCard__level').textContent = `Max`;
       upgradeCardElement.querySelector('.upgradeCard__costArea').remove();
 
       previousUpgrade.income !== undefined

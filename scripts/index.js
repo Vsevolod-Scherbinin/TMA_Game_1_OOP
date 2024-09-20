@@ -1,6 +1,10 @@
 // Before Online Update
 // Check Bot Commentaries
 
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
+
 // --------------- Classes-Start ---------------
 const user = new User(userDataModel);
 // user.loadUserData();
@@ -33,7 +37,6 @@ const levelManager = new LevelManager(user);
 
 const screenSwitcher = new ScreenSwitcher();
 screenSwitcher.setEventListeners();
-
 // --------------- Classes-End ---------------
 
 let timer = 0;
