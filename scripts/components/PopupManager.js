@@ -3,14 +3,14 @@ class PopupManager {
     user,
     scoreRenderer,
     achievementManager,
-    achievementGathering,
-    achievementsLevelCheck,
+    // achievementGathering,
+    // achievementsLevelCheck,
   ) {
     this.user = user;
     this.scoreRenderer = scoreRenderer;
     this.achievementManager = achievementManager;
-    this.achievementGathering = achievementGathering;
-    this.achievementsLevelCheck = achievementsLevelCheck;
+    // this.achievementGathering = achievementGathering;
+    // this.achievementsLevelCheck = achievementsLevelCheck;
     this.popup = document.querySelector('.popup');
   }
 
@@ -47,7 +47,7 @@ class PopupManager {
     // console.log(objLevel.effect);
     const card = document.querySelector(`.wideCard_id_${obj.id}`);
     const submit = () => {
-      this.achievementGathering(obj, level+1);
+      this.achievementManager.achievementGathering(obj, level+1);
       // if (obj.metric === 'energyLimit') {
       //   user.energyLimit = this.user.energyLimit + objLevel.effect
       // } else {
@@ -61,7 +61,7 @@ class PopupManager {
       this.user.saveUserDataLocal();
       this.cardReplacer();
       this.achievementManager.activeOnloadCorrection();
-      this.achievementsLevelCheck();
+      this.achievementManager.achievementsLevelCheck();
       this.scoreRenderer();
       this.popupClose();
     }

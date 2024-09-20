@@ -48,14 +48,14 @@ class AchievementManager {
         if(availableLevel > gatheredLevel) {
           card.classList.add('wideCard_active');
           card.addEventListener('click', () => {
-            popupManager.achievementsPopupOpen(object, availableLevel);
+            popupManager.achievementsPopupOpen(object, availableLevel-1);
           });
         }
       } else {
         if(isAvailable) {
           card.classList.add('wideCard_active');
           card.addEventListener('click', () => {
-            popupManager.achievementsPopupOpen(object, availableLevel);
+            popupManager.achievementsPopupOpen(object, availableLevel-1);
           });
         }
       }
