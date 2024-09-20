@@ -88,11 +88,11 @@ try {
     // const userPhoto = user.getUserPhoto(tg.initDataUnsafe.user.id);
     console.log('UserId', tg.initDataUnsafe.user.id);
 
-    user.getUserPhoto(tg.initDataUnsafe.user.id)
-      .then((res) => {
-        // console.log('userPhoto', res);
-        avatarField.src = res;
-      });
+    // user.getUserPhoto(tg.initDataUnsafe.user.id)
+    //   .then((res) => {
+    //     // console.log('userPhoto', res);
+    //     avatarField.src = res;
+    //   });
   }
 } catch {}
 // } catch (error){console.log(error)}
