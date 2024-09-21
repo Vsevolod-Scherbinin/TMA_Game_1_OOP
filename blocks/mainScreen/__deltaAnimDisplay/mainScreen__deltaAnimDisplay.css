@@ -17,9 +17,7 @@
   font-size: 24px;
   position: absolute;
   opacity: 1;
-  background:
-  linear-gradient(0deg, #FAB821, #FAB821),
-  linear-gradient(180deg, rgba(255, 219, 95, 0) 22.73%, #FFDB5F 72.73%);
+  background: #FFF;
   background-blend-mode: screen;
   background-clip: text;
   -webkit-background-clip: text;
