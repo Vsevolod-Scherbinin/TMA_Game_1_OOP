@@ -37,6 +37,7 @@
 @import url(../blocks/screen/__title/screen__title.css);
 
 @import url(../blocks/mainScreen/mainScreen.css);
+@import url(../blocks/mainScreen/__frame/mainScreen__frame.css);
 @import url(../blocks/mainScreen/__button/mainScreen__button.css);
 @import url(../blocks/mainScreen/__deltaAnimDisplay/mainScreen__deltaAnimDisplay.css);
 
