@@ -2,7 +2,7 @@ class LevelManager {
   constructor(user) {
     this.user = user;
     this.levelField = document.querySelector('.userBar__levelScore');
-    this.statusField = document.querySelector('.userBar__userStatus');
+    // this.statusField = document.querySelector('.userBar__userStatus');
     this.progressBar = document.querySelector('.userBar__progressBarInner');
     this.btnMain = document.querySelector('.mainScreen__button');
     this.a = 90;  //Чем больше это значение, тем больше разница в очках между уровнями
@@ -29,13 +29,13 @@ class LevelManager {
   levelRenderer() {
     this._mainButtonChanger();
     this.levelField.textContent = `${formatNumberWithSpaces(this.user.level)}`;
-    let currentLevelStatus;
-    if(this.user.level < 10) {
-      currentLevelStatus = levelsStatuses[0].status;
-    } else if(this.user.level <= 130) {
-      currentLevelStatus = levelsStatuses.find(obj => obj.level === Math.floor(this.user.level / 10) * 10).status;
-    }
-    this.statusField.textContent = currentLevelStatus;
+    // let currentLevelStatus;
+    // if(this.user.level < 10) {
+    //   currentLevelStatus = levelsStatuses[0].status;
+    // } else if(this.user.level <= 130) {
+    //   currentLevelStatus = levelsStatuses.find(obj => obj.level === Math.floor(this.user.level / 10) * 10).status;
+    // }
+    // this.statusField.textContent = currentLevelStatus;
   }
 
   progressBarRenderer(prevLimit, currentLimit) {

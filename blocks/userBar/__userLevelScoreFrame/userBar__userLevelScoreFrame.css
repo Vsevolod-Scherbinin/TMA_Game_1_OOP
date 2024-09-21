@@ -1,0 +1,14 @@
+.userBar__userLevelScoreFrame {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 15px;
+  height: 15px;
+  border: 0.5px solid #6D6D6D;
+  border-radius: 4px;
+  transform: rotate(45deg);
+  background: linear-gradient(225deg, #4D4D4D 4.42%, #31312F 95.02%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

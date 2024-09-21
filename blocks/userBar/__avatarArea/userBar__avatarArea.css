@@ -1,8 +1,8 @@
-.userBar__userAvatar {
+.userBar__avatarArea {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
   width: 31px;
   height: 31px;
-  object-fit: contain;
-  border-radius: 50%;
+  position: relative;
 }

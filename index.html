@@ -10,22 +10,24 @@
 <body class="page">
   <div class="userBar">
     <div class="userBar__userProfile">
-      <img src="./images/avatar.png" alt="Аватар" class="userBar__userAvatar">
-      <div class="userBar__text">
-        <h2 class="userBar__userName">Name</h2>
-        <p class="userBar__userStatus">Status</p>
+      <div class="userBar__avatarArea">
+        <img src="./images/avatar.png" alt="Аватар" class="userBar__userAvatar">
+        <div class="userBar__userLevelScoreArea">
+          <div class="userBar__userLevelScoreFrame">
+            <p class="userBar__levelScore"></p>
+          </div>
+          <div class="userBar__progressBar">
+            <div class="userBar__progressBarInner"></div>
+          </div>
+        </div>
       </div>
+      <h2 class="userBar__userName">Name</h2>
     </div>
-    <div class="userBar__userLevel">
-      <div class="userBar__userLevelScoreArea">
-        <p class="userBar__levelTitle">Уровень</p>
-        <p class="userBar__levelScore"></p>
-      </div>
-      <div class="userBar__progressBar">
-        <!-- <div class="userBar__progressBarFrame"></div> -->
-        <div class="userBar__progressBarInner"></div>
-      </div>
+    <img src="./images/logo.png" alt="Логотип" class="userBar__logo">
+    <div class="userBar__button">
+      <p class="userBar__buttonTitle">О токене</p>
     </div>
+  </div>
   </div>
   <div class="scoreArea">
     <img src="./images/coin.png" alt="Coin" class="scoreArea__icon">

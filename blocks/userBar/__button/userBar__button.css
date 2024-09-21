@@ -1,0 +1,12 @@
+.userBar__button {
+  margin: 0;
+  padding: 0 4px;
+  box-sizing: border-box;
+  width: 94px;
+  height: 32px;
+  border: 1px solid #35363B;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

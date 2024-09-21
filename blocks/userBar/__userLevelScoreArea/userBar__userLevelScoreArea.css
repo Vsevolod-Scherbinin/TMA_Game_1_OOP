@@ -1,7 +1,13 @@
 .userBar__userLevelScoreArea {
   margin: 0;
   padding: 0;
+  height: 21px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 100%;
+  transform: translate(-8px, 45%);
 }

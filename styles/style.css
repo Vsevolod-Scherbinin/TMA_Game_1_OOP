@@ -7,17 +7,19 @@
 @import url(../blocks/button/__text/button__text.css);
 
 @import url(../blocks/userBar/userBar.css);
+@import url(../blocks/userBar/__userProfile/userBar__userProfile.css);
+@import url(../blocks/userBar/__avatarArea/userBar__avatarArea.css);
+@import url(../blocks/userBar/__userAvatar/userBar__userAvatar.css);
+@import url(../blocks/userBar/__userLevelScoreArea/userBar__userLevelScoreArea.css);
+@import url(../blocks/userBar/__userLevelScoreFrame/userBar__userLevelScoreFrame.css);
+@import url(../blocks/userBar/__levelScore/userBar__levelScore.css);
 @import url(../blocks/userBar/__progressBar/userBar__progressBar.css);
 @import url(../blocks/userBar/__progressBarInner/userBar__progressBarInner.css);
-@import url(../blocks/userBar/__userLevel/userBar__userLevel.css);
-@import url(../blocks/userBar/__userLevelScoreArea/userBar__userLevelScoreArea.css);
-@import url(../blocks/userBar/__levelScore/userBar__levelScore.css);
-@import url(../blocks/userBar/__userStatus/userBar__userStatus.css);
 @import url(../blocks/userBar/__userName/userBar__userName.css);
-@import url(../blocks/userBar/__userAvatar/userBar__userAvatar.css);
-@import url(../blocks/userBar/__userProfile/userBar__userProfile.css);
-@import url(../blocks/userBar/__levelTitle/userBar__levelTitle.css);
-@import url(../blocks/userBar/__text/userBar__text.css);
+@import url(../blocks/userBar/__logo/userBar__logo.css);
+@import url(../blocks/userBar/__button/userBar__button.css);
+@import url(../blocks/userBar/__buttonTitle/userBar__buttonTitle.css);
+
 
 @import url(../blocks/scoreArea/scoreArea.css);
 @import url(../blocks/scoreArea/__icon/scoreArea__icon.css);
