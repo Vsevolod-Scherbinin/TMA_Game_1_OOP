@@ -74,11 +74,12 @@ class UpgradeManager {
   checkUpgradeAvailable() {
     const upgradeCards = document.querySelectorAll('.upgradeCard');
     upgradeCards.forEach((card) => {
-      const costArea = card.querySelector('.upgradeCard__cost');
-      const overlay = card.querySelector('.upgradeCard__overlay');
-      if (costArea) {
-        const cost = card.querySelector('.upgradeCard__cost').textContent;
-        this.user.score < cost ? overlay.classList.add('upgradeCard__overlay_inactive') : overlay.classList.remove('upgradeCard__overlay_inactive');
+      const costArea = card.querySelector('.upgradeCard__costArea');
+      const cost = convertStringToNumber(card.querySelector('.upgradeCard__cost').textContent);
+      if(this.user.score < cost) {
+        costArea.classList.add('upgradeCard__costArea_inactive');
+      } else {
+        costArea.classList.remove('upgradeCard__costArea_inactive');
       }
     });
   }

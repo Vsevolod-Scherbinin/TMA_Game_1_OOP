@@ -5,3 +5,11 @@ const formatNumberWithSpaces = (number) => {
       useGrouping: true,
   }).format(number).replace(/,/g, ' ');
 };
+
+function convertStringToNumber(str) {
+  // Убираем все пробелы
+  const noSpaces = str.replace(/\s+/g, '');
+  // Преобразуем строку в число
+  const number = Number(noSpaces);
+  return number;
+}

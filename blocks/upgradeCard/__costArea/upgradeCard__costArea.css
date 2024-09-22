@@ -11,3 +11,7 @@
   gap: 6px;
   background: #0075FF;
 }
+
+.upgradeCard__costArea_inactive {
+  background: #0E4A90;
+}

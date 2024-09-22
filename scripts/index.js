@@ -180,16 +180,16 @@ window.onload = async () => {
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
   // ServiceFunctions-Start
-    // user.score = 50000;
+    user.score = 1000;
     // user.taps = 0;
     // user.cummulativeIncome = 0;
-    // user.passiveIncome = 0;
+    user.passiveIncome = 0;
     // user.gatheredAchievements = [];
-    // user.activeUpgrades[0].level = 0;
-    // user.activeUpgrades[1].level = 0;
+    user.activeUpgrades[0].level = 0;
+    user.activeUpgrades[1].level = 0;
     // user.energy = 500;
-    // user.passiveUpgrades[0].level = 0;
-    // user.passiveUpgrades[1].level = 0;
+    user.passiveUpgrades[0].level = 0;
+    user.passiveUpgrades[1].level = 0;
   // ServiceFunctions-End
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);

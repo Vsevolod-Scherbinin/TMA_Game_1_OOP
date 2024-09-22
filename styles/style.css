@@ -90,8 +90,6 @@
 @import url(../blocks/navigation/__btnName/_active/navigation__btnName_active.css);
 
 @import url(../blocks/upgradeCard/upgradeCard.css);
-@import url(../blocks/upgradeCard/__overlay/upgradeCard__overlay.css);
-@import url(../blocks/upgradeCard/__overlay/_inactive/upgradeCard__overlay_inactive.css);
 @import url(../blocks/upgradeCard/__topArea/upgradeCard__topArea.css);
 @import url(../blocks/upgradeCard/__icon/upgradeCard__icon.css);
 @import url(../blocks/upgradeCard/__info/upgradeCard__info.css);
