@@ -95,12 +95,12 @@
   </section>
   <section class="navigation">
     <label class="navigation__button navigation__button_active">
-      <input class="navigation__input navigation__button_type_main" type="radio" id="main" name="screen" value="main" checked/>
+      <input class="navigation__input navigation__button_type_main" type="radio" id="main" name="screen" value="main" />
       <img src="./images/mainscreen-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_main">
       <span class="navigation__btnName navigation__btnName_active">Игра</span>
     </label>
     <label class="navigation__button">
-      <input class="navigation__input navigation__button_type_upgrades" type="radio" id="upgrades" name="screen" value="upgrades"/>
+      <input class="navigation__input navigation__button_type_upgrades" type="radio" id="upgrades" name="screen" value="upgrades" checked/>
       <img src="./images/upgrade-button-icon.png" alt="Icon" class="navigation__buttonIcon navigation__buttonIcon_type_upgrades">
       <span class="navigation__btnName">Апгрейды</span>
     </label>
@@ -116,6 +116,26 @@
     </label>
   </section>
   <template id="upgradeCard">
+    <div class="upgradeCard">
+      <div class="upgradeCard__overlay"></div>
+      <img src="" alt="icon" class="upgradeCard__icon">
+      <div class="upgradeCard__info">
+        <h3 class="upgradeCard__title"></h3>
+        <div class="upgradeCard__bottomArea">
+          <p class="upgradeCard__level"></p>
+          <div class="upgradeCard__effectArea">
+            <img src="" alt="icon" class="upgradeCard__effectIcon">
+            <p class="upgradeCard__effect"></p>
+          </div>
+      </div>
+      </div>
+      <div class="upgradeCard__costArea">
+        <img src="./images/coin.png" alt="Coin" class="upgradeCard__coinIcon">
+        <p class="upgradeCard__cost"></p>
+      </div>
+    </div>
+  </template>
+  <!-- <template id="upgradeCard">
     <div class="upgradeCard">
       <div class="upgradeCard__overlay"></div>
       <div class="upgradeCard__topArea">
@@ -137,7 +157,7 @@
         </div>
       </div>
     </div>
-  </template>
+  </template> -->
   <template id="wideCard">
     <div class="wideCard">
       <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="icon" class="wideCard__icon">

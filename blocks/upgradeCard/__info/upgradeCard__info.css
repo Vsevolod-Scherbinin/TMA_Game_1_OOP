@@ -1,10 +1,12 @@
 .upgradeCard__info {
   margin: 0;
   padding: 0;
+  height: 100%;
   box-sizing: border-box;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
+  flex: 1;
 }
