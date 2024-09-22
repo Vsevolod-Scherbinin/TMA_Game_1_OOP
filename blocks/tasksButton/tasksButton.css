@@ -1,13 +1,17 @@
 .tasksButton {
   margin: 0;
-  padding: 4px 12px;
+  padding: 4px 24px;
   box-sizing: border-box;
   width: 100%;
   height: 47px;
   border-radius: 12px;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
-  background: rgba(245, 243, 244, 0.2);
+  background-color: rgba(245, 243, 244, 0.2);
+  background-image: url(../../images/task-button-background.png);
+  background-position: 90%;
+  background-size: contain;
+  background-repeat: no-repeat;
   align-self: flex-end;
 }

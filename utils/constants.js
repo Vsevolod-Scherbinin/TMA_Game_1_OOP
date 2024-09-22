@@ -16,7 +16,7 @@ const btnMain = document.querySelector('.mainScreen__button');
 const navSection = document.querySelector('.navigation');
 
 const tasksButton = document.querySelector('.tasksButton');
-const newTasksIcon = document.querySelector('.tasksButton__newTasksIcon');
+const newTasksIcon = document.querySelector('.tasksButton__newTasksCount');
 
 
 const dailyTaskScreen = document.querySelector('.dailyTasksScreen');

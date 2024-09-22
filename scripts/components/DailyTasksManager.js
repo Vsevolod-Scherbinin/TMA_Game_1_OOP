@@ -135,8 +135,8 @@ class DailyTasksManager {
 
   newTasksToggle() {
     this.user.isFirstVisitToday()
-      ? newTasksIcon.classList.add('tasksButton__newTasksIcon_active')
-      : newTasksIcon.classList.remove('tasksButton__newTasksIcon_active');
+      ? newTasksIcon.classList.add('tasksButton__newTasksCount_active')
+      : newTasksIcon.classList.remove('tasksButton__newTasksCount_active');
   }
 
 

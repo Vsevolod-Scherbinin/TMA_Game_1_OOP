@@ -51,8 +51,9 @@
 @import url(../blocks/tasksButton/__leftSide/tasksButton__leftSide.css);
 @import url(../blocks/tasksButton/__icon/tasksButton__icon.css);
 @import url(../blocks/tasksButton/__title/tasksButton__title.css);
-@import url(../blocks/tasksButton/__newTasksIcon/tasksButton__newTasksIcon.css);
-@import url(../blocks/tasksButton/__newTasksIcon/_active/tasksButton__newTasksIcon_active.css);
+@import url(../blocks/tasksButton/__newTasksCount/tasksButton__newTasksCount.css);
+@import url(../blocks/tasksButton/__newTasksCount/_active/tasksButton__newTasksCount_active.css);
+@import url(../blocks/tasksButton/__tasksCountText/tasksButton__tasksCountText.css);
 
 @import url(../blocks/dailyTasksScreen/dailyTasksScreen.css);
 @import url(../blocks/dailyTasksScreen/_active/dailyTasksScreen_active.css);

@@ -1,0 +1,11 @@
+.tasksButton__newTasksCount {
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 22px;
+  border-radius: 11px;
+  background: #B7FF33;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}

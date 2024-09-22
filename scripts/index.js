@@ -104,7 +104,7 @@ console.log(tg.initDataUnsafe.user !== undefined);
 
 tasksButton.addEventListener('click', () => {
   dailyTasksManager.openScreen();
-  dailyTasksManager.newTasksToggle();
+  // dailyTasksManager.newTasksToggle();
 });
 
 function closeScreen() {
@@ -217,7 +217,7 @@ window.onload = async () => {
   achievementManager.activeOnloadCorrection();
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.contentRenderer();
-  dailyTasksManager.newTasksToggle();
+  // dailyTasksManager.newTasksToggle();
   dailyTasksManager.friendCardToggle();
   await dailyTasksManager.channelCardToggle();
 
