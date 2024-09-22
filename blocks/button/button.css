@@ -5,8 +5,7 @@
   width: 100%;
   height: 50px;
   border-radius: 8px;
-  background: radial-gradient(70% 70% at 50% 50%, #9BFFBE 0%, #2BB159 20%, #124925 100%);
-  background-blend-mode: color;
+  background: #0075FF;
   display: flex;
   align-items: center;
   justify-content: center;

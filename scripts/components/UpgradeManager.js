@@ -50,9 +50,9 @@ class UpgradeManager {
       upgradeCardElement.querySelector('.upgradeCard__costArea').remove();
 
       previousUpgrade.income !== undefined
-        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.income)}`
+        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.income)}/час`
         : previousUpgrade.delta !== undefined
-          ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.delta)}`
+          ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.delta)}/тап`
           : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.energyLimit)}`;
     }
 
@@ -75,11 +75,13 @@ class UpgradeManager {
     const upgradeCards = document.querySelectorAll('.upgradeCard');
     upgradeCards.forEach((card) => {
       const costArea = card.querySelector('.upgradeCard__costArea');
-      const cost = convertStringToNumber(card.querySelector('.upgradeCard__cost').textContent);
-      if(this.user.score < cost) {
-        costArea.classList.add('upgradeCard__costArea_inactive');
-      } else {
-        costArea.classList.remove('upgradeCard__costArea_inactive');
+      if(costArea) {
+        const cost = convertStringToNumber(costArea.querySelector('.upgradeCard__cost').textContent);
+        if(this.user.score < cost) {
+          costArea.classList.add('upgradeCard__costArea_inactive');
+        } else {
+          costArea.classList.remove('upgradeCard__costArea_inactive');
+        }
       }
     });
   }
@@ -140,9 +142,9 @@ class UpgradeManager {
           currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl ${nextUpgradeLevel.level}`;
           currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.cost)}`;
           if(nextUpgradeLevel.income !== undefined) {
-            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.income)}`;
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.income)}/час`;
           } else if(nextUpgradeLevel.delta !== undefined) {
-            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.delta)}`;
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.delta)}/тап`;
           } else {
             currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
           }

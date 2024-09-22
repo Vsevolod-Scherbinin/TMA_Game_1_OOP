@@ -5,5 +5,7 @@
   height: 64px;
   object-fit: contain;
   border-radius: 8px;
-  background: #D9D9D933;
+  background: linear-gradient(0deg, rgba(217, 217, 217, 0.2), rgba(217, 217, 217, 0.2)),
+  linear-gradient(135deg, #2883E8 0%, #39D6FF 100%);
+  background-blend-mode: color;
 }
