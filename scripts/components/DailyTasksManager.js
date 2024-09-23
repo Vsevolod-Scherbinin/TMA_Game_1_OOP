@@ -5,9 +5,9 @@ class DailyTasksManager {
     this.dailyTaskField = document.querySelector('.dailyTasksScreen__cardField');
   }
 
-  subscribe(link) {
-    window.open(`${link}`, '_blank');
-  }
+  // subscribe(link) {
+  //   window.open(`${link}`, '_blank');
+  // }
 
   friendCardToggle() {
     const today = new Date().toLocaleDateString();
@@ -96,7 +96,8 @@ class DailyTasksManager {
       }))
       const channel = elem.type === 'channel';
       channel && (card.addEventListener('click', () => {
-        this.subscribe(elem.channelLink);
+        // this.subscribe(elem.channelLink);
+        openLink(elem.channelLink)
       }))
     }
   }

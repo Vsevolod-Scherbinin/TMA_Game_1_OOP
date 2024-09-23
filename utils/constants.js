@@ -41,5 +41,8 @@ const energyUpgrade = activeUpgrades.find(upgrade => upgrade.id === 2);
 
 const passiveAchievements = achievements.filter(obj => obj.type === 'passive');
 
+const tokenButton = document.querySelector('.userBar__button');
+const tokenLink = 'https://t.me/+cU6JKcOAFuphZTli';
+
 // let score = 0;  // make condition of loaded data
 // let delta = 1;  // make condition of loaded data

@@ -112,6 +112,10 @@ function closeScreen() {
 }
 dailyTaskCloseBtn.addEventListener('click', closeScreen);
 
+tokenButton.addEventListener('click', () => {
+  openLink(tokenLink);
+});
+
 async function mainClick(evt) {
   if(user.energy >= user.delta) {
     if(tg.initDataUnsafe.user) {

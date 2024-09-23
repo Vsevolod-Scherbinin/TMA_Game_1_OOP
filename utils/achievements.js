@@ -42,7 +42,7 @@ const achievements = [
   {
     id: 2,
     title: 'Автоматизатор',
-    effectIcon: './images/passive-income-icon.png',
+    effectIcon: './images/coin.png',
     type: 'passive',
     metric: 'passiveIncome',
     levels: [
