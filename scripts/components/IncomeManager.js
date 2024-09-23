@@ -36,21 +36,9 @@ class IncomeManager {
     }
   }
 
-  _offlineTimeCounter() {
-    const closureDate = localStorage.getItem('closureTime');
-    if(closureDate) {
-      const now = new Date();
-      const closureTime = new Date(closureDate);
-      const timeDelta = now - closureTime
-      const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
-      return timeDeltaInSeconds;
-    }
-  }
-
-
   passiveOfflineIncomeCounter() {
     const limit = 3600 * passiveOfflineIncomeHoursLimit;
-    const seconds = this._offlineTimeCounter();
+    const seconds = offlineTimeCounter();
     const passiveIncome = this.passiveIncomeCounter();
     if(seconds < limit) {
       return Math.round(passiveIncome / 3600) * seconds;

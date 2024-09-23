@@ -59,7 +59,6 @@ class EnergyManager {
   }
 
   energyRecoveryLooper(start, type) {
-    // let energyRecoveryInterval;
     let cycleTime;
     // const btnMain = document.querySelector('.mainScreen__button');
     type === 'normal' && (cycleTime = 1000);
@@ -93,4 +92,17 @@ class EnergyManager {
     }
   }
 
+  offlineEnergyCounter() {
+    const seconds = offlineTimeCounter();
+    const offlineEnergy = seconds * 3;
+    const totalEnergy = this.user.energy + offlineEnergy;
+    const energyLimit = this.energyUpgradeLimiter();
+    console.log('totalEnergy', totalEnergy);
+
+    if(totalEnergy < energyLimit) {
+      this.user.energy = totalEnergy;
+    } else {
+      this.user.energy = energyLimit;
+    }
+  }
 }

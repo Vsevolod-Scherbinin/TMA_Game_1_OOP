@@ -208,6 +208,7 @@ window.onload = async () => {
   incomeManager.passiveOnlineIncomeCounter();
   energyManager.energyUpgradeLimiter();
   energyManager.energyLimitRenderer();
+  energyManager.offlineEnergyCounter();
   upgradeManager.allUpgradesRenderer();
 
   friendsManager.friendsRenderer();

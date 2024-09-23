@@ -13,3 +13,14 @@ function convertStringToNumber(str) {
   const number = Number(noSpaces);
   return number;
 }
+
+function offlineTimeCounter() {
+  const closureDate = localStorage.getItem('closureTime');
+  if(closureDate) {
+    const now = new Date();
+    const closureTime = new Date(closureDate);
+    const timeDelta = now - closureTime
+    const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+    return timeDeltaInSeconds;
+  }
+}
