@@ -19,7 +19,7 @@ class FriendsManager {
   }
 
   friendsRenderer() {
-    friends.forEach((elem) => {
+    friendsTasks.forEach((elem) => {
       friendsCardsField.append(this._createCards(elem));
     });
   }
@@ -27,7 +27,7 @@ class FriendsManager {
   friendsAmountCheck() {
     const cards = friendsCardsField.querySelectorAll('.wideCard');
     // Проходим по каждому условию
-    friends.forEach(elem => {
+    friendsTasks.forEach(elem => {
       // Проверяем, соответствует ли количество друзей условию
       if (this.user.friends.length >= elem.limit) {
         // Находим карточку по id условия
@@ -37,7 +37,7 @@ class FriendsManager {
           card.classList.add('wideCard_complete');
           card.querySelector('.wideCard__icon').src = `./images/done.png`;
           card.addEventListener('click', () => {
-            const reward = friends.find(obj => obj.id === elem.id).effect;
+            const reward = friendsTasks.find(obj => obj.id === elem.id).effect;
             popupManager.taskPopupOpen(reward, card);
           })
         }

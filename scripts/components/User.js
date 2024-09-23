@@ -93,9 +93,11 @@ class User {
   }
 
   saveUserDataDB() {
-    console.log('Autosave', this);
+    const { friends, ...userDataWithoutFriends } = this;
 
-    mainApi.saveUser(this)
+    console.log('Autosave', userDataWithoutFriends);
+
+    mainApi.saveUser(userDataWithoutFriends)
       .then((res) => {
         console.log(res);
       })

@@ -188,10 +188,12 @@ window.onload = async () => {
     // user.activeUpgrades[0].level = 0;
     // user.activeUpgrades[1].level = 0;
     // user.energy = 500;
+    // user.timeOnline = 0;
     // user.passiveUpgrades[0].level = 0;
     // user.passiveUpgrades[1].level = 0;
     // user.passiveUpgrades[2].level = 0;
     // user.passiveUpgrades[3].level = 0;
+    user.friends = [];
   // ServiceFunctions-End
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
