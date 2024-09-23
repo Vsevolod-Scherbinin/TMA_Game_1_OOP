@@ -5,6 +5,7 @@ class EnergyManager {
     this.energyLimitField = document.querySelector('.energyArea__limit');
     this.energyScoreField = document.querySelector('.energyArea__score');
     this.btnMain = document.querySelector('.mainScreen__button');
+    this.energyRecoveryInterval;
   }
 
   energyUpgradeLimiter() {
@@ -46,30 +47,6 @@ class EnergyManager {
     }
   }
 
-  energyRecoveryLooper(start, type) {
-    let energyRecoveryInterval;
-    let cycleTime;
-    // const btnMain = document.querySelector('.mainScreen__button');
-    type === 'normal' && (cycleTime = 1000);
-    if(type === 'fast') {
-      cycleTime = 25;
-      this.btnMain.removeEventListener('click', mainClick);
-    }
-    if(start) {
-      energyRecoveryInterval = setInterval(() => {
-        // console.log(this.user.energy);
-
-        this.energyRecovery();
-        if(this.user.energy >= this.energyUpgradeLimiter()) {
-          clearInterval(energyRecoveryInterval);
-          type === 'fast' && this.btnMain.addEventListener('click', mainClick);
-        }
-      }, cycleTime);
-    } else {
-      clearInterval(energyRecoveryInterval);
-    }
-  }
-
   energyRecovery() {
     if(this.user.energy < this.energyUpgradeLimiter()) {
       this.user.energy = this.user.energy + 3;
@@ -79,6 +56,30 @@ class EnergyManager {
     }
     this.energyRenderer();
     this.user.saveUserDataLocal();
+  }
+
+  energyRecoveryLooper(start, type) {
+    // let energyRecoveryInterval;
+    let cycleTime;
+    // const btnMain = document.querySelector('.mainScreen__button');
+    type === 'normal' && (cycleTime = 1000);
+    if(type === 'fast') {
+      cycleTime = 25;
+      this.btnMain.removeEventListener('click', mainClick);
+    }
+    if(start) {
+      this.energyRecoveryInterval = setInterval(() => {
+        // console.log(this.user.energy);
+
+        this.energyRecovery();
+        if(this.user.energy >= this.energyUpgradeLimiter()) {
+          clearInterval(this.energyRecoveryInterval);
+          type === 'fast' && this.btnMain.addEventListener('click', mainClick);
+        }
+      }, cycleTime);
+    } else {
+      clearInterval(this.energyRecoveryInterval);
+    }
   }
 
   setEnergyRecoveryTimeout(start) {
