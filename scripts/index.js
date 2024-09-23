@@ -20,7 +20,6 @@ const upgradeManager = new UpgradeManager(
 
 const achievementManager = new AchievementManager(user);
 const friendsManager = new FriendsManager(user);
-const dailyTasksManager = new DailyTasksManager(user);
 
 const popupManager = new PopupManager(
   user,
@@ -30,12 +29,13 @@ const popupManager = new PopupManager(
   achievementManager.achievementsLevelCheck.bind(achievementManager),
 );
 
+const dailyTasksManager = new DailyTasksManager(user, popupManager);
+
 const levelManager = new LevelManager(user);
 
 const screenSwitcher = new ScreenSwitcher();
 screenSwitcher.setEventListeners();
 // --------------- Classes-End ---------------
-
 let timer = 0;
 
 function createTaskCards(elem) {
@@ -71,13 +71,6 @@ function click(e) {
 
 const tg = window.Telegram.WebApp;
 console.log('tg', tg);
-// tg.enableClosingConfirmation();
-
-// user.getUserPhoto(180799659)
-//   .then((res) => {
-//     // console.log('userPhoto', res);
-//     avatarField.src = res;
-//   });
 
 try {
   if(tg.initDataUnsafe.user.first_name.length>0) {
@@ -89,6 +82,8 @@ try {
         event.preventDefault();
       });
     }
+
+    tg.enableClosingConfirmation();
 
     user.getUserPhoto(tg.initDataUnsafe.user.id)
       .then((res) => {
@@ -183,6 +178,12 @@ window.onload = async () => {
 
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
+
+  // BreakPoint
+  if(user.lastEntry === '') {
+    saveNewEntryDate()
+  }
+
   // ServiceFunctions-Start
     // user.score = 50000;
     // user.taps = 0;
@@ -197,7 +198,7 @@ window.onload = async () => {
     // user.passiveUpgrades[1].level = 0;
     // user.passiveUpgrades[2].level = 0;
     // user.passiveUpgrades[3].level = 0;
-    user.friends = [];
+    // user.friends = [];
   // ServiceFunctions-End
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
@@ -226,6 +227,10 @@ window.onload = async () => {
   achievementManager.activeOnloadCorrection();
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.contentRenderer();
+  dailyTasksManager.dailyEnterRewardSetter();
+  console.log(dailyEnterRewards);
+
+
   // dailyTasksManager.newTasksToggle();
   dailyTasksManager.friendCardToggle();
   await dailyTasksManager.channelCardToggle();

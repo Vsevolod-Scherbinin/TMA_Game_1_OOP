@@ -1,7 +1,7 @@
 // const TMA = window.Telegram.WebApp;
 
-const BASE_URL = 'https://api.scherbinin.mesto.nomoredomains.club';
-// const BASE_URL = 'http://localhost:3200';
+// const BASE_URL = 'https://api.scherbinin.mesto.nomoredomains.club';
+const BASE_URL = 'http://localhost:3200';
 
 const passiveOfflineIncomeHoursLimit = 3;
 const onlinePassiveTimeLimit = 3600 * passiveOfflineIncomeHoursLimit;
@@ -43,6 +43,8 @@ const passiveAchievements = achievements.filter(obj => obj.type === 'passive');
 
 const tokenButton = document.querySelector('.userBar__button');
 const tokenLink = 'https://t.me/+cU6JKcOAFuphZTli';
+
+const dailyEnterRewards = [];
 
 // let score = 0;  // make condition of loaded data
 // let delta = 1;  // make condition of loaded data

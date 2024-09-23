@@ -1,13 +1,10 @@
 class DailyTasksManager {
-  constructor(user) {
+  constructor(user, popupManager) {
     this.user = user;
+    this.popupManager = popupManager;
     this.wideCardTemplate = document.querySelector('#wideCard').content;
     this.dailyTaskField = document.querySelector('.dailyTasksScreen__cardField');
   }
-
-  // subscribe(link) {
-  //   window.open(`${link}`, '_blank');
-  // }
 
   friendCardToggle() {
     const today = new Date().toLocaleDateString();
@@ -29,7 +26,7 @@ class DailyTasksManager {
         const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log(reward);
-        popupManager.taskPopupOpen(reward, newCard, taskId);
+        this.popupManager.taskPopupOpen(reward, newCard, taskId);
       })
       card.replaceWith(newCard);
     }
@@ -62,7 +59,7 @@ class DailyTasksManager {
         const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log(reward);
-        popupManager.taskPopupOpen(reward, newCard, taskId);
+        this.popupManager.taskPopupOpen(reward, newCard, taskId);
       })
       card.replaceWith(newCard);
     }
@@ -126,7 +123,7 @@ class DailyTasksManager {
     });
 
     user.achievements.forEach((userAch) => {
-        const found = achievements.find(obj => obj.id === userAch);
+      const found = achievements.find(obj => obj.id === userAch);
     });
   }
 
@@ -140,26 +137,29 @@ class DailyTasksManager {
       : newTasksIcon.classList.remove('tasksButton__newTasksCount_active');
   }
 
+  dailyEnterRewardSetter() {
+    for (let day = 1; day <= 30; day++) {
+      let reward = { day: day, amount: 100 }; // Базовая награда за день
+      if (day % 5 === 0) {
+          reward.amount = day * 100;
+      }
+      dailyEnterRewards.push(reward);
+    }
+  }
 
+  entryStreakCounter() {
+    const today = new Date().toLocaleDateString();
 
-  // gathering(obj, level) {
-  //   const newAchievement = {
-  //     id: obj.id,
-  //     level: level,
-  //   };
-  //   const isObjectPresent = this.user.gatheredAchievements.some(obj => obj.id === newAchievement.id);
-  //   // console.log('isObjectPresent', isObjectPresent);
-  //   if(isObjectPresent) {
-  //     const gatheredAchievement = this.user.gatheredAchievements.find(obj => obj.id === newAchievement.id);
-  //     // console.log('gatheredAchievement', gatheredAchievement);
-  //     if(gatheredAchievement.level < newAchievement.level) {
-  //       this.user.gatheredAchievements.splice(this.user.gatheredAchievements.indexOf(gatheredAchievement), 1);
-  //       this.user.gatheredAchievements.push(newAchievement);
-  //     }
-  //   } else {
-  //     this.user.gatheredAchievements.push(newAchievement);
-  //     console.log(this.user);
-  //   }
-  //   this.user.saveUserDataLocal();
-  // }
+    if(today - this.user.lastEntry < 86400000) {
+      this.user.entryStreak++;
+      const reward = dailyEnterRewards.find(obj => obj.day === this.user.entryStreak);
+      daysPopupOpen(reward, this.user.entryStreak);
+    } else {
+      this.user.entryStreak = 1;
+    }
+  }
+
+  saveNewEntryDate() {
+    this.user.lastEntry = new Date().toLocaleDateString();
+  }
 }

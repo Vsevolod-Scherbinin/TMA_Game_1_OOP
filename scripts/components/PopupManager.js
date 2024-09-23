@@ -85,16 +85,16 @@ class PopupManager {
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
   }
 
-  referencePopupOpen(bonus, dbData) {
+  referencePopupOpen(reward, dbData) {
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
-    this.popup.querySelector('.popup__message').textContent = `Вы получили $${formatNumberWithSpaces(bonus)} от друга`;
+    this.popup.querySelector('.popup__message').textContent = `Вы получили $${formatNumberWithSpaces(reward)} от друга`;
     this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
     const submit = () => {
       console.log('Submit');
       //this.user.referenceBonus = 0;
-      this.user.score = this.user.score + bonus;
-      this.user.cummulativeIncome = this.user.cummulativeIncome + bonus;
+      this.user.score = this.user.score + reward;
+      this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.referenceBonus = 0;
       this.user.saveUserDataLocal();
       // incomeManager.scoreRenderer();
@@ -103,7 +103,7 @@ class PopupManager {
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
   }
 
-  taskPopupOpen(bonus, card, taskId) {
+  taskPopupOpen(reward, card, taskId) {
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
     this.popup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
@@ -111,11 +111,11 @@ class PopupManager {
     const submit = () => {
       console.log('Submit');
       console.log('score', this.user.score);
-      console.log('bonus', bonus);
+      console.log('reward', reward);
 
-      this.user.score = this.user.score + bonus;
+      this.user.score = this.user.score + reward;
       console.log(this.user.score);
-      this.user.cummulativeIncome = this.user.cummulativeIncome + bonus;
+      this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.tasks.push({id: taskId});
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
@@ -127,7 +127,7 @@ class PopupManager {
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
   }
 
-  friendsPopupOpen(bonus, card) {
+  friendsPopupOpen(reward, card) {
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
     this.popup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
@@ -135,15 +135,40 @@ class PopupManager {
     const submit = () => {
       console.log('Submit');
       console.log('score', this.user.score);
-      console.log('bonus', bonus);
+      console.log('reward', reward);
 
-      this.user.score = this.user.score + bonus;
+      this.user.score = this.user.score + reward;
       console.log(this.user.score);
-      this.user.cummulativeIncome = this.user.cummulativeIncome + bonus;
+      this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
 
       this._cardReplacer(card)
+
+      this.popupClose();
+    }
+    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+  }
+
+  daysPopupOpen(reward, days) {
+    let word = '';
+    days === 1
+      ? word = 'день' : days > 4
+      ? word = 'дней' : word = 'дня';
+    this.popup.classList.remove('popup_inactive');
+    this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    this.popup.querySelector('.popup__message').textContent = `Получите $${reward} за ${days} ${word} в игре подряд!`;
+    this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
+    const submit = () => {
+      console.log('Submit');
+      console.log('score', this.user.score);
+      console.log('reward', reward);
+
+      this.user.score = this.user.score + reward;
+      console.log(this.user.score);
+      this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
+      this.user.saveUserDataLocal();
+      incomeManager.scoreRenderer();
 
       this.popupClose();
     }
