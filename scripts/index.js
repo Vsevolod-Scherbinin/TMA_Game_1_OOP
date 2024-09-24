@@ -155,6 +155,8 @@ window.onload = async () => {
   // } catch {}
 } catch {await user.loadUserDataDB('180799659')}
 
+  screenSwitcher.screenSwitch();
+
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
 
@@ -181,38 +183,41 @@ window.onload = async () => {
 
   // dailyTasksManager.entryStreakCounter('2024-09-09T07:13:20.936Z');
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
-  // Test Low Passive Income
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
-  screenSwitcher.screenSwitch();
-  upgradeManager.checkUpgradeAvailable();
+
   levelManager.levelRenderer();
   levelManager.levelProgressCounter();
+
   incomeManager.deltaCounter();
-  // user.saveUserDataLocal();
   incomeManager.scoreRenderer();
-  energyManager.energyRenderer();
   incomeManager.passiveIncomeCounter();
   incomeManager.passiveIncomeRenderer();
   incomeManager.passiveOnlineIncomeCounter();
+
+  energyManager.energyRenderer();
   energyManager.energyUpgradeLimiter();
   energyManager.energyLimitRenderer();
   energyManager.offlineEnergyCounter();
+  energyManager.energyRecoveryLooper(true, 'normal');
+
   upgradeManager.allUpgradesRenderer();
+  upgradeManager.checkUpgradeAvailable();
 
   friendsManager.friendsRenderer();
   friendsManager.friendsAmountCheck();
 
-  user.saveUserDataLocal();
   achievementManager.achievementsCardsRenderer();
   achievementManager.achievementsLevelCheck();
   achievementManager.activeOnloadCorrection();
+
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.dailyEnterRewardSetter();
-
   dailyTasksManager.friendCardToggle();
   await dailyTasksManager.channelCardToggle();
   dailyTasksManager.registryCardToggle();
   dailyTasksManager.newTasksAmountRenderer();
+
+  user.saveUserDataLocal();
 
   let passiveIncomeTimer = setInterval(() => {
     incomeManager.passiveOnlineIncomeCounter();
@@ -230,8 +235,6 @@ window.onload = async () => {
     achievementManager.achievementsLevelCheck();
     user.saveUserDataLocal();
   },  1000);
-
-  energyManager.energyRecoveryLooper(true, 'normal');
 
   const dbSave = setInterval(() => {
     user.saveUserDataDB();

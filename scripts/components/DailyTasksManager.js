@@ -173,19 +173,11 @@ class DailyTasksManager {
   }
 
   saveNewEntryDate() {
-    // this.user.lastEntry = today;
     this.user.lastEntry = new Date();
   }
 
   entryStreakCounter() {
     const today = new Date();
-    // const today = new Date(day);
-    // console.log('today', today);
-    // console.log('today', today.toLocaleDateString());
-    // console.log('lastEntry', new Date(this.user.lastEntry).toLocaleDateString());
-
-    // console.log((today.toLocaleDateString() !== new Date(this.user.lastEntry).toLocaleDateString()));
-    // console.log(today - new Date(this.user.lastEntry));
 
     if((user.lastEntry === '') || (today - new Date(this.user.lastEntry) > 86400000)) {
       this.user.entryStreak = 1;
@@ -203,8 +195,6 @@ class DailyTasksManager {
     const today = new Date().toLocaleDateString();
     const tasksAmount = dailyTasks.find(obj => obj.date === today).tasks.length;
     const complete = this.user.tasks.length;
-    console.log('tasksAmount', tasksAmount);
-    console.log('complete', complete);
     return tasksAmount - complete;
   }
 
