@@ -89,7 +89,7 @@ class DailyTasksManager {
       card.querySelector('.taskCard__statusIcon').classList.add('complete');
       return
     }
-    const registered = this.registryDelayCounter() > 10;
+    const registered = this.registryDelayCounter() > 3600;
     console.log('registered', registered);
     if(registered) {
       const newCard = card.cloneNode(true);
