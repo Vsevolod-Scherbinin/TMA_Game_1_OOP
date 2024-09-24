@@ -180,7 +180,7 @@ window.onload = async () => {
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
 
   // ServiceFunctions-Start
-    // user.score = 50000;
+    user.score = 50000;
     // user.taps = 0;
     // user.cummulativeIncome = 0;
     // user.passiveIncome = 0;
