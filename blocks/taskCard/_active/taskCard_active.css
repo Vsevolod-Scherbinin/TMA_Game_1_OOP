@@ -1,0 +1,8 @@
+.taskCard_active {
+  /* background: linear-gradient(0deg, rgba(254, 215, 49, 0.5), rgba(254, 215, 49, 0.5)); */
+  /* background-blend-mode: color; */
+  box-shadow: 0px 4px 6px 0px #FED731BF inset,
+              0px -4px 6px 0px #FED731BF inset,
+              4px 0px 6px 0px #FED731BF inset,
+              -4px 0px 6px 0px #FED731BF inset;
+}

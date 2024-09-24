@@ -2,7 +2,7 @@ class DailyTasksManager {
   constructor(user, popupManager) {
     this.user = user;
     this.popupManager = popupManager;
-    this.wideCardTemplate = document.querySelector('#wideCard').content;
+    this.taskCardTemplate = document.querySelector('#taskCard').content;
     this.dailyTaskField = document.querySelector('.dailyTasksScreen__cardField');
   }
 
@@ -10,20 +10,20 @@ class DailyTasksManager {
     const today = new Date().toLocaleDateString();
     const todayTasks = dailyTasks.find(obj => obj.date === today).tasks;
     const taskId = todayTasks.find(obj => obj.type === 'friend').id;
-    const card = this.dailyTaskField.querySelector(`.wideCard_type_friend`);
+    const card = this.dailyTaskField.querySelector(`.taskCard_type_friend`);
 
     const isGathered = this.user.tasks.some(obj => obj.id === taskId);
     if(isGathered) {
-      card.querySelector('.wideCard__icon').src = `./images/done.png`;
+      card.querySelector('.taskCard__statusIcon').src = `./images/check-complete.png`;
       return
     }
 
     if(this.user.hasInvitedToday()) {
       const newCard = card.cloneNode(true)
-      newCard.classList.add('wideCard_active');
-      newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+      newCard.classList.add('taskCard_active');
+      newCard.querySelector('.taskCard__statusIcon').src = `./images/check-incomplete.png`;
       newCard.addEventListener('click', (evt) => {
-        const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
+        const title = evt.target.closest('.taskCard').querySelector('.taskCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log(reward);
         this.popupManager.taskPopupOpen(reward, newCard, taskId);
@@ -41,11 +41,11 @@ class DailyTasksManager {
     const todayTasks = dailyTasks.find(obj => obj.date === today).tasks;
     const taskId = todayTasks.find(obj => obj.type === 'channel').id;
     const channelId = todayTasks.find(obj => obj.type === 'channel').channelId;
-    const card = this.dailyTaskField.querySelector(`.wideCard_type_channel`);
+    const card = this.dailyTaskField.querySelector(`.taskCard_type_channel`);
 
     const isGathered = this.user.tasks.some(obj => obj.id === taskId);
     if(isGathered) {
-      card.querySelector('.wideCard__icon').src = `./images/done.png`;
+      card.querySelector('.taskCard__statusIcon').src = `./images/check-complete.png`;
       return
     }
     console.log('channelId', channelId);
@@ -53,10 +53,10 @@ class DailyTasksManager {
     console.log('subscribed', subscribed);
     if(subscribed) {
       const newCard = card.cloneNode(true)
-      newCard.classList.add('wideCard_active');
-      newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+      newCard.classList.add('taskCard_active');
+      newCard.querySelector('.taskCard__statusIcon').src = `./images/check-incomplete.png`;
       newCard.addEventListener('click', (evt) => {
-        const title = evt.target.closest('.wideCard').querySelector('.wideCard__title').textContent;
+        const title = evt.target.closest('.taskCard').querySelector('.taskCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log(reward);
         this.popupManager.taskPopupOpen(reward, newCard, taskId);
@@ -66,20 +66,23 @@ class DailyTasksManager {
   }
 
   _createCard(elem) {
-    const cardElement = wideCardTemplate.cloneNode(true);
-    cardElement.querySelector('.wideCard').classList.add(`wideCard_id_${elem.id}`);
-    cardElement.querySelector('.wideCard').classList.add(`wideCard_type_${elem.type}`);
-    cardElement.querySelector('.wideCard__title').textContent = elem.title;
-    cardElement.querySelector('.wideCard__description').textContent = elem.description;
-    cardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
-    cardElement.querySelector('.wideCard__effect').textContent = `${formatNumber(elem.effect)}`;
-    // cardElement.querySelector('.wideCard__effect').textContent = `+${formatNumber(elem.effect)}`;
-    // hasChannel && cardElement.querySelector('wideCard').classList.add(`wideCard_${elem.channelId}`);
+    const cardElement = this.taskCardTemplate.cloneNode(true);
+    cardElement.querySelector('.taskCard').classList.add(`taskCard_id_${elem.id}`);
+    cardElement.querySelector('.taskCard').classList.add(`taskCard_type_${elem.type}`);
+    cardElement.querySelector('.taskCard__icon').src = elem.mainIcon;
+    cardElement.querySelector('.taskCard__title').textContent = elem.title;
+    cardElement.querySelector('.taskCard__effectIcon').src = elem.effectIcon;
+    cardElement.querySelector('.taskCard__effect').textContent = `${formatNumber(elem.effect)}`;
+    elem.type === "friend" && (cardElement.querySelector('.taskCard__statusIcon').src = `data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7`);
+    elem.type === "channel" && (cardElement.querySelector('.taskCard__statusIcon').src = `./images/link-icon.png`);
+    elem.type === "register" && (cardElement.querySelector('.taskCard__statusIcon').src = `./images/link-icon.png`);
+    // cardElement.querySelector('.taskCard__effect').textContent = `+${formatNumber(elem.effect)}`;
+    // hasChannel && cardElement.querySelector('taskCard').classList.add(`taskCard_${elem.channelId}`);
     return cardElement;
   }
 
   setCardEvents(elem) {
-    const card = this.dailyTaskField.querySelector(`.wideCard_id_${elem.id}`)
+    const card = this.dailyTaskField.querySelector(`.taskCard_id_${elem.id}`)
 
     const isGathered = this.user.tasks.some(obj => obj.id === elem.id);
     const friend = elem.type === 'friend';
@@ -108,26 +111,6 @@ class DailyTasksManager {
     });
   }
 
-  contentRenderer() {
-    const cards = document.querySelectorAll('.wideCard__title');
-    cards.forEach((card) => {
-      // console.log(card);
-      const cardObj = achievements.find(obj => obj.title === card.textContent);
-      if(cardObj) {
-        const userAchLevel = this.user.achievements.find(obj => obj.id === cardObj.id).level;
-        // console.log(userAchLevel);
-        const cardLevel = cardObj.levels.find(obj => obj.level === userAchLevel);
-        card.closest('.wideCard').querySelector('.wideCard__icon').src = cardLevel.mainIcon;
-        card.closest('.wideCard').querySelector('.wideCard__description').textContent = cardLevel.description;
-        card.closest('.wideCard').querySelector('.wideCard__effect').textContent = formatNumber(cardLevel.effect);
-      }
-    });
-
-    user.achievements.forEach((userAch) => {
-      const found = achievements.find(obj => obj.id === userAch);
-    });
-  }
-
   openScreen() {
     dailyTaskScreen.classList.add('dailyTasksScreen_active');
   }
@@ -139,6 +122,7 @@ class DailyTasksManager {
   }
 
   dailyEnterRewardSetter() {
+    dailyEnterRewards = [];
     for (let day = 1; day <= 30; day++) {
       let reward = { day: day, amount: 100 }; // Базовая награда за день
       if (day % 5 === 0) {

@@ -2,7 +2,7 @@ class ScreenSwitcher {
   constructor() {
     this.btnMainScreen = document.querySelector('.navigation__button_type_main');
     this.btnUpgrades = document.querySelector('.navigation__button_type_upgrades');
-    this.btnTasks = document.querySelector('.navigation__button_type_friends');
+    this.btnFriends = document.querySelector('.navigation__button_type_friends');
     this.btnAchievements = document.querySelector('.navigation__button_type_achievement');
     this.mainScreen = document.querySelector('.mainScreen');
     this.upgradesScreen = document.querySelector('.upgradesScreen');
@@ -25,11 +25,11 @@ class ScreenSwitcher {
       this.btnUpgrades.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
       this.upgradesScreen.classList.add('screen_active');
-    } else if (this.btnTasks.checked) {
+    } else if (this.btnFriends.checked) {
       page.style.backgroundColor = '#1A1A1A';
-      page.style.backgroundImage = 'none';
+      page.style.backgroundImage = 'url(./images/friends-background.png)';
       document.querySelector('.navigation__button_active').classList.remove('navigation__button_active');
-      this.btnTasks.parentElement.classList.add('navigation__button_active');
+      this.btnFriends.parentElement.classList.add('navigation__button_active');
       document.querySelector('.screen_active').classList.remove('screen_active');
       this.friendsScreen.classList.add('screen_active');
     } else if (this.btnAchievements.checked) {
@@ -46,7 +46,7 @@ class ScreenSwitcher {
   setEventListeners() {
     this.btnMainScreen.addEventListener('click', this.screenSwitch.bind(this));
     this.btnUpgrades.addEventListener('click', this.screenSwitch.bind(this));
-    this.btnTasks.addEventListener('click', this.screenSwitch.bind(this));
+    this.btnFriends.addEventListener('click', this.screenSwitch.bind(this));
     this.btnAchievements.addEventListener('click', this.screenSwitch.bind(this));
   }
 }

@@ -224,7 +224,6 @@ window.onload = async () => {
   achievementManager.achievementsLevelCheck();
   achievementManager.activeOnloadCorrection();
   dailyTasksManager.cardsRenderer(currentDate);
-  dailyTasksManager.contentRenderer();
   dailyTasksManager.dailyEnterRewardSetter();
   console.log(dailyEnterRewards);
 

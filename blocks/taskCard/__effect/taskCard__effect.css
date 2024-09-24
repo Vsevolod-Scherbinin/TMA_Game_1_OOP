@@ -1,0 +1,10 @@
+.taskCard__effect {
+  margin: 0;
+  padding: 0;
+  width: 64px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16.94px;
+  text-align: start;
+  color: #FED731;
+}
