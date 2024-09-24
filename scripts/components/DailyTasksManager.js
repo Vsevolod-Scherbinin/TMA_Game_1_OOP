@@ -99,7 +99,7 @@ class DailyTasksManager {
         const title = evt.target.closest('.taskCard').querySelector('.taskCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log('reward', reward);
-        popupManager.taskPopupOpen(reward, newCard, taskId);
+        popupManager.taskPopupOpen(reward, newCard, taskId, 'registry');
       })
       card.replaceWith(newCard);
     }

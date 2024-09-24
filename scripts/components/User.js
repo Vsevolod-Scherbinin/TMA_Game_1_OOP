@@ -26,6 +26,7 @@ class User {
     channels,
     registryTime,
     invitedToday,
+    lastEntry,
     lastClosure,
   }) {
     this.userId = userId;
@@ -50,6 +51,7 @@ class User {
     this.channels = channels;
     this.registryTime = registryTime;
     this.invitedToday = invitedToday;
+    this.lastEntry = lastEntry;
     this.lastClosure = lastClosure;
   }
 
@@ -146,8 +148,6 @@ class User {
   }
 
   offlineTimeCounter() {
-    console.log('this.lastClosure', this.lastClosure);
-
     if(this.lastClosure) {
       const now = new Date();
       const closureTime = new Date(this.lastClosure);
@@ -155,6 +155,18 @@ class User {
       const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
       return timeDeltaInSeconds;
     }
+  }
+
+  isFirstVisitToday() {
+    const lastVisitDate = new Date(this.lastEntry).toLocaleDateString();
+    const today = new Date().toLocaleDateString();
+
+    if (!lastVisitDate || lastVisitDate !== today) {
+      this.lastEntry = new Date();
+      return true; // Первое посещение за день
+    }
+
+    return false; // Не первое посещение за день
   }
 
   hasInvitedToday() {

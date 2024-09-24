@@ -108,7 +108,7 @@ class PopupManager {
     page.append(newPopup);
   }
 
-  taskPopupOpen(reward, card, taskId) {
+  taskPopupOpen(reward, card, taskId, type) {
     const cardImage = card.querySelector('.taskCard__icon').src;
     const newPopup = this.popupTemplate.cloneNode(true);
     newPopup.querySelector('.popup').classList.add('popup_type_task');
@@ -118,7 +118,6 @@ class PopupManager {
     // this.popup.querySelector('.popup__image').src = './images/check-incomplete.png';
     const submit = () => {
       this.user.score = this.user.score + reward;
-      console.log(this.user.score);
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.tasks.push({id: taskId});
       this.user.saveUserDataLocal();
@@ -126,8 +125,9 @@ class PopupManager {
       this._taskCardReplacer(card);
       dailyTasksManager.newTasksAmountRenderer();
       document.querySelector('.popup_type_task').remove();
+      type === 'registry' && (this.user.registryTime = '');
     }
-    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
     page.append(newPopup);
   }
 

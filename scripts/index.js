@@ -176,6 +176,11 @@ window.onload = async () => {
     // user.passiveUpgrades[3].level = 0;
     // user.friends = [];
   // ServiceFunctions-End
+
+  if(user.isFirstVisitToday()) {
+    user.tasks = [];
+  }
+
   dailyTasksManager.dailyEnterRewardSetter();
   dailyTasksManager.entryStreakCounter();
   const registryDelay = dailyTasksManager.registryDelayCounter();
