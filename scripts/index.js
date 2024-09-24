@@ -179,11 +179,6 @@ window.onload = async () => {
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
 
-  // BreakPoint
-  if(user.lastEntry === '') {
-    saveNewEntryDate()
-  }
-
   // ServiceFunctions-Start
     // user.score = 50000;
     // user.taps = 0;
@@ -200,6 +195,9 @@ window.onload = async () => {
     // user.passiveUpgrades[3].level = 0;
     // user.friends = [];
   // ServiceFunctions-End
+  dailyTasksManager.dailyEnterRewardSetter();
+  dailyTasksManager.entryStreakCounter();
+  // dailyTasksManager.entryStreakCounter('2024-09-09T07:13:20.936Z');
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
   screenSwitcher.screenSwitch();
@@ -259,7 +257,7 @@ window.onload = async () => {
   energyManager.energyRecoveryLooper(true, 'normal');
 
   const dbSave = setInterval(() => {
-    user.saveUserDataDB();
+    // user.saveUserDataDB();
   }, 15*1000)
 };
 

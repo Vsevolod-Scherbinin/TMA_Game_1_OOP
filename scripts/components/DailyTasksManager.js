@@ -147,19 +147,30 @@ class DailyTasksManager {
     }
   }
 
-  entryStreakCounter() {
-    const today = new Date().toLocaleDateString();
-
-    if(today - this.user.lastEntry < 86400000) {
-      this.user.entryStreak++;
-      const reward = dailyEnterRewards.find(obj => obj.day === this.user.entryStreak);
-      daysPopupOpen(reward, this.user.entryStreak);
-    } else {
-      this.user.entryStreak = 1;
-    }
+  saveNewEntryDate() {
+    // this.user.lastEntry = today;
+    this.user.lastEntry = new Date();
   }
 
-  saveNewEntryDate() {
-    this.user.lastEntry = new Date().toLocaleDateString();
+  entryStreakCounter() {
+    const today = new Date();
+    // const today = new Date(day);
+    // console.log('today', today);
+    // console.log('today', today.toLocaleDateString());
+    // console.log('lastEntry', new Date(this.user.lastEntry).toLocaleDateString());
+
+    // console.log((today.toLocaleDateString() !== new Date(this.user.lastEntry).toLocaleDateString()));
+    // console.log(today - new Date(this.user.lastEntry));
+
+    if((user.lastEntry === '') || (today - new Date(this.user.lastEntry) > 86400000)) {
+      this.user.entryStreak = 1;
+      this.popupManager.daysPopupOpen(user.entryStreak);
+      this.saveNewEntryDate(today);
+    } else if ((today.toLocaleDateString() !== new Date(this.user.lastEntry).toLocaleDateString()) && (today - new Date(this.user.lastEntry) <= 86400000)) {
+      this.user.entryStreak++;
+      const reward = dailyEnterRewards.find(obj => obj.day === this.user.entryStreak);
+      this.popupManager.daysPopupOpen(user.entryStreak);
+      this.saveNewEntryDate(today);
+    }
   }
 }

@@ -150,26 +150,24 @@ class PopupManager {
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
   }
 
-  daysPopupOpen(reward, days) {
+  daysPopupOpen(days) {
+    const reward = dailyEnterRewards.find(obj => obj.day === days).amount;
     let word = '';
     days === 1
       ? word = 'день' : days > 4
       ? word = 'дней' : word = 'дня';
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
-    this.popup.querySelector('.popup__message').textContent = `Получите $${reward} за ${days} ${word} в игре подряд!`;
-    this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
+    this.popup.querySelector('.popup__message').textContent = `Получите $${reward} за ${days} ${word} в игре подряд! Каждый 5-й день - x10`;
+    this.popup.querySelector('.popup__image').src = './images/gift-icon.png';
     const submit = () => {
-      console.log('Submit');
-      console.log('score', this.user.score);
-      console.log('reward', reward);
-
+      // console.log('Submit');
+      // console.log('score', this.user.score);
+      // console.log('reward', reward);
       this.user.score = this.user.score + reward;
-      console.log(this.user.score);
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
-
       this.popupClose();
     }
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
