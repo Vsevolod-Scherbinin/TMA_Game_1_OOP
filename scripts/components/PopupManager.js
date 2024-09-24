@@ -40,17 +40,14 @@ class PopupManager {
   }
 
   achievementsPopupOpen(obj, level) {
-    console.log(this.popup);
-    console.log('obj', obj);
-
     const objLevel = obj.levels.find(obj => obj.level === level);
     const iconLevel = obj.levels.find(obj => obj.level === (level +1));
-    console.log('objLevel', objLevel);
 
-    this.popup.classList.remove('popup_inactive');
-    this.popup.querySelector('.popup__title').textContent = obj.title;
-    this.popup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumber(objLevel.effect)}`;
-    this.popup.querySelector('.popup__image').src = iconLevel.mainIcon;
+    const newPopup = this.popupTemplate.cloneNode(true);
+    newPopup.querySelector('.popup').classList.add('popup_type_achievememts');
+    newPopup.querySelector('.popup__title').textContent = obj.title;
+    newPopup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumber(objLevel.effect)}`;
+    newPopup.querySelector('.popup__image').src = iconLevel.mainIcon;
     // console.log(objLevel.effect);
     const card = document.querySelector(`.wideCard_id_${obj.id}`);
     const submit = () => {
@@ -70,26 +67,27 @@ class PopupManager {
       this.achievementManager.activeOnloadCorrection();
       this.achievementManager.achievementsLevelCheck();
       this.scoreRenderer();
-      this.popupClose();
+      document.querySelector('.popup_type_achievememts').remove();
     }
-    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    page.append(newPopup);
   }
 
   offlineIncomePopupOpen(offlinePassiveIncome) {
-    this.popup.classList.remove('popup_inactive');
-    this.popup.querySelector('.popup__title').textContent = 'Ваш заработок!';
-    this.popup.querySelector('.popup__message').textContent = `Поздравляем! Вы заработали $${formatNumber(offlinePassiveIncome)}`;
-    this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
+    const newPopup = this.popupTemplate.cloneNode(true);
+    newPopup.querySelector('.popup').classList.add('popup_type_passiveIncome');
+    newPopup.querySelector('.popup__title').textContent = 'Ваш заработок!';
+    newPopup.querySelector('.popup__message').textContent = `Поздравляем! Вы заработали $${formatNumber(offlinePassiveIncome)}`;
+    newPopup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
     const submit = () => {
-      console.log('Submit');
-
       this.user.score = this.user.score + offlinePassiveIncome;
       this.user.cummulativeIncome = this.user.cummulativeIncome + offlinePassiveIncome;
       this.user.saveUserDataLocal();
       // incomeManager.scoreRenderer();
-      this.popupClose();
+      document.querySelector('.popup_type_passiveIncome').remove();
     }
-    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    page.append(newPopup);
   }
 
   referencePopupOpen(reward) {
@@ -98,36 +96,25 @@ class PopupManager {
     newPopup.querySelector('.popup__title').textContent = 'Поздравляем!';
     newPopup.querySelector('.popup__message').textContent = `Вы получили $${formatNumber(reward)} от друга`;
     newPopup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
-    // this.popup.classList.remove('popup_inactive');
-    // this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
-    // this.popup.querySelector('.popup__message').textContent = `Вы получили $${formatNumber(reward)} от друга`;
-    // this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
     const submit = () => {
-      console.log('Submit');
-      //this.user.referenceBonus = 0;
       this.user.score = this.user.score + reward;
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.referenceBonus = 0;
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
-      // this.popupClose();
       document.querySelector('.popup_type_reference').remove();
     }
     newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
-    console.log('newPopup', newPopup);
-
     page.append(newPopup);
   }
 
   taskPopupOpen(reward, card, taskId) {
-    console.log('card', card);
-
     const cardImage = card.querySelector('.taskCard__icon').src;
-
-    this.popup.classList.remove('popup_inactive');
-    this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
-    this.popup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
-    this.popup.querySelector('.popup__image').src = cardImage;
+    const newPopup = this.popupTemplate.cloneNode(true);
+    newPopup.querySelector('.popup').classList.add('popup_type_task');
+    newPopup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    newPopup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
+    newPopup.querySelector('.popup__image').src = cardImage;
     // this.popup.querySelector('.popup__image').src = './images/check-incomplete.png';
     const submit = () => {
       this.user.score = this.user.score + reward;
@@ -138,32 +125,29 @@ class PopupManager {
       incomeManager.scoreRenderer();
       this._taskCardReplacer(card);
       dailyTasksManager.newTasksAmountRenderer();
-      this.popupClose();
+      document.querySelector('.popup_type_task').remove();
     }
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    page.append(newPopup);
   }
 
   friendsPopupOpen(reward, card) {
-    this.popup.classList.remove('popup_inactive');
-    this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
-    this.popup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
-    this.popup.querySelector('.popup__image').src = './images/done.png';
+    const newPopup = this.popupTemplate.cloneNode(true);
+    newPopup.querySelector('.popup').classList.add('popup_type_friend');
+    newPopup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    newPopup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
+    newPopup.querySelector('.popup__image').src = './images/done.png';
     const submit = () => {
-      console.log('Submit');
-      console.log('score', this.user.score);
-      console.log('reward', reward);
-
       this.user.score = this.user.score + reward;
       console.log(this.user.score);
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
-
       this._wideCardReplacer(card);
-
-      this.popupClose();
+      document.querySelector('.popup_type_friend').remove();
     }
-    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    page.append(newPopup);
   }
 
   daysPopupOpen(days) {
@@ -172,20 +156,19 @@ class PopupManager {
     days === 1
       ? word = 'день' : days > 4
       ? word = 'дней' : word = 'дня';
-    this.popup.classList.remove('popup_inactive');
-    this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
-    this.popup.querySelector('.popup__message').textContent = `Получите $${reward} за ${days} ${word} в игре подряд! Каждый 5-й день - x10`;
-    this.popup.querySelector('.popup__image').src = './images/gift-icon.png';
+    const newPopup = this.popupTemplate.cloneNode(true);
+    newPopup.querySelector('.popup').classList.add('popup_type_days');
+    newPopup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    newPopup.querySelector('.popup__message').textContent = `Получите $${reward} за ${days} ${word} в игре подряд! Каждый 5-й день - x10`;
+    newPopup.querySelector('.popup__image').src = './images/gift-icon.png';
     const submit = () => {
-      // console.log('Submit');
-      // console.log('score', this.user.score);
-      // console.log('reward', reward);
       this.user.score = this.user.score + reward;
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
-      this.popupClose();
+      document.querySelector('.popup_type_days').remove();
     }
-    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    page.append(newPopup);
   }
 }
