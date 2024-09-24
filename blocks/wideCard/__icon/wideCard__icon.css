@@ -5,7 +5,11 @@
   height: 64px;
   object-fit: contain;
   border-radius: 8px;
-  background: linear-gradient(0deg, rgba(217, 217, 217, 0.2), rgba(217, 217, 217, 0.2)),
-  linear-gradient(135deg, #2883E8 0%, #39D6FF 100%);
+  /* background: linear-gradient(0deg, rgba(217, 217, 217, 0.2), rgba(217, 217, 217, 0.2)),
+  linear-gradient(135deg, #2883E8 0%, #39D6FF 100%); */
+  background-image: url(../../../images/card-icon-background.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   background-blend-mode: color;
 }
