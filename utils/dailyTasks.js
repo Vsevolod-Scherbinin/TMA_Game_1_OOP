@@ -25,7 +25,7 @@ const dailyTasks = [
         id: 3,
         type: 'register',
         mainIcon: './images/task-icon-channel.png',
-        link: 'https://t.me/+cU6JKcOAFuphZTli',
+        link: 'https://ya.ru',
         title: "Зарегистрируйтесь на сайте",
         effectIcon: "./images/coin.png",
         effect: 30000,
