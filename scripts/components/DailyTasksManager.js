@@ -30,7 +30,7 @@ class DailyTasksManager {
     }
 
     if(this.user.hasInvitedToday()) {
-      const newCard = card.cloneNode(true)
+      const newCard = card.cloneNode(true);
       newCard.classList.add('taskCard_active');
       newCard.querySelector('.taskCard__statusIcon').src = `./images/check-incomplete.png`;
       newCard.addEventListener('click', (evt) => {
@@ -64,7 +64,7 @@ class DailyTasksManager {
     const subscribed = await this.user.checkUserSubscription(channelId, this.user.userId);
     console.log('subscribed', subscribed);
     if(subscribed) {
-      const newCard = card.cloneNode(true)
+      const newCard = card.cloneNode(true);
       newCard.classList.add('taskCard_active');
       newCard.querySelector('.taskCard__statusIcon').src = `./images/check-incomplete.png`;
       newCard.addEventListener('click', (evt) => {
@@ -92,7 +92,7 @@ class DailyTasksManager {
     const registered = this.registryDelayCounter() > 10;
     console.log('registered', registered);
     if(registered) {
-      const newCard = card.cloneNode(true)
+      const newCard = card.cloneNode(true);
       newCard.classList.add('taskCard_active');
       newCard.querySelector('.taskCard__statusIcon').src = `./images/check-incomplete.png`;
       newCard.addEventListener('click', (evt) => {

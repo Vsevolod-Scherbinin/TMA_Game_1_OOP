@@ -9,6 +9,7 @@ class PopupManager {
     this.scoreRenderer = scoreRenderer;
     this.achievementManager = achievementManager;
     this.dailyTasksManager = dailyTasksManager;
+    this.popupTemplate = document.querySelector('#popup').content;
     this.popup = document.querySelector('.popup');
   }
 
@@ -27,7 +28,8 @@ class PopupManager {
   }
 
   popupClose() {
-    this.popup.classList.add('popup_inactive');
+    // this.popup.classList.add('popup_inactive');
+    document.querySelector('.popup').remove();
   }
 
   cardReplacer() {
@@ -90,11 +92,16 @@ class PopupManager {
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
   }
 
-  referencePopupOpen(reward, dbData) {
-    this.popup.classList.remove('popup_inactive');
-    this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
-    this.popup.querySelector('.popup__message').textContent = `Вы получили $${formatNumber(reward)} от друга`;
-    this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
+  referencePopupOpen(reward) {
+    const newPopup = this.popupTemplate.cloneNode(true);
+    newPopup.querySelector('.popup').classList.add('popup_type_reference');
+    newPopup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    newPopup.querySelector('.popup__message').textContent = `Вы получили $${formatNumber(reward)} от друга`;
+    newPopup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
+    // this.popup.classList.remove('popup_inactive');
+    // this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
+    // this.popup.querySelector('.popup__message').textContent = `Вы получили $${formatNumber(reward)} от друга`;
+    // this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
     const submit = () => {
       console.log('Submit');
       //this.user.referenceBonus = 0;
@@ -102,10 +109,14 @@ class PopupManager {
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.referenceBonus = 0;
       this.user.saveUserDataLocal();
-      // incomeManager.scoreRenderer();
-      this.popupClose();
+      incomeManager.scoreRenderer();
+      // this.popupClose();
+      document.querySelector('.popup_type_reference').remove();
     }
-    this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+    console.log('newPopup', newPopup);
+
+    page.append(newPopup);
   }
 
   taskPopupOpen(reward, card, taskId) {
