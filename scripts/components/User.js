@@ -26,7 +26,7 @@ class User {
     channels,
     registryTime,
     invitedToday,
-    // lastClosure,
+    lastClosure,
   }) {
     this.userId = userId;
     this.score = score;
@@ -50,7 +50,7 @@ class User {
     this.channels = channels;
     this.registryTime = registryTime;
     this.invitedToday = invitedToday;
-    // this.lastClosure = lastClosure;
+    this.lastClosure = lastClosure;
   }
 
   saveUserDataLocal() {
@@ -143,6 +143,18 @@ class User {
     console.log('UserDBLoaded', this);
 
     localStorage.setItem('DataFromDB', JSON.stringify(this));
+  }
+
+  offlineTimeCounter() {
+    console.log('this.lastClosure', this.lastClosure);
+
+    if(this.lastClosure) {
+      const now = new Date();
+      const closureTime = new Date(this.lastClosure);
+      const timeDelta = now - closureTime
+      const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+      return timeDeltaInSeconds;
+    }
   }
 
   hasInvitedToday() {
