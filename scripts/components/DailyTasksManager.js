@@ -1,9 +1,11 @@
 class DailyTasksManager {
-  constructor(user, popupManager) {
+  constructor(user) {
     this.user = user;
-    this.popupManager = popupManager;
+    // this.popupManager = popupManager;
     this.taskCardTemplate = document.querySelector('#taskCard').content;
     this.dailyTaskField = document.querySelector('.dailyTasksScreen__cardField');
+    this.newTasksCount = document.querySelector('.tasksButton__newTasksCount');
+    this.newTasksCountText = document.querySelector('.tasksButton__tasksCountText');
   }
 
   registryDelayCounter() {
@@ -35,7 +37,7 @@ class DailyTasksManager {
         const title = evt.target.closest('.taskCard').querySelector('.taskCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log(reward);
-        this.popupManager.taskPopupOpen(reward, newCard, taskId);
+        popupManager.taskPopupOpen(reward, newCard, taskId);
       })
       card.replaceWith(newCard);
     }
@@ -69,7 +71,7 @@ class DailyTasksManager {
         const title = evt.target.closest('.taskCard').querySelector('.taskCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log(reward);
-        this.popupManager.taskPopupOpen(reward, newCard, taskId);
+        popupManager.taskPopupOpen(reward, newCard, taskId);
       })
       card.replaceWith(newCard);
     }
@@ -97,7 +99,7 @@ class DailyTasksManager {
         const title = evt.target.closest('.taskCard').querySelector('.taskCard__title').textContent;
         const reward = todayTasks.find(obj => obj.title === title).effect;
         console.log('reward', reward);
-        this.popupManager.taskPopupOpen(reward, newCard, taskId);
+        popupManager.taskPopupOpen(reward, newCard, taskId);
       })
       card.replaceWith(newCard);
     }
@@ -159,12 +161,6 @@ class DailyTasksManager {
     dailyTaskScreen.classList.add('dailyTasksScreen_active');
   }
 
-  newTasksToggle() {
-    this.user.isFirstVisitToday()
-      ? newTasksIcon.classList.add('tasksButton__newTasksCount_active')
-      : newTasksIcon.classList.remove('tasksButton__newTasksCount_active');
-  }
-
   dailyEnterRewardSetter() {
     dailyEnterRewards = [];
     for (let day = 1; day <= 30; day++) {
@@ -193,13 +189,31 @@ class DailyTasksManager {
 
     if((user.lastEntry === '') || (today - new Date(this.user.lastEntry) > 86400000)) {
       this.user.entryStreak = 1;
-      this.popupManager.daysPopupOpen(user.entryStreak);
+      popupManager.daysPopupOpen(user.entryStreak);
       this.saveNewEntryDate(today);
     } else if ((today.toLocaleDateString() !== new Date(this.user.lastEntry).toLocaleDateString()) && (today - new Date(this.user.lastEntry) <= 86400000)) {
       this.user.entryStreak++;
       const reward = dailyEnterRewards.find(obj => obj.day === this.user.entryStreak);
-      this.popupManager.daysPopupOpen(user.entryStreak);
+      popupManager.daysPopupOpen(user.entryStreak);
       this.saveNewEntryDate(today);
+    }
+  }
+
+  _newTasksCounter() {
+    const today = new Date().toLocaleDateString();
+    const tasksAmount = dailyTasks.find(obj => obj.date === today).tasks.length;
+    const complete = this.user.tasks.length;
+    console.log('tasksAmount', tasksAmount);
+    console.log('complete', complete);
+    return tasksAmount - complete;
+  }
+
+  newTasksAmountRenderer() {
+    if(this._newTasksCounter() > 0) {
+      this.newTasksCount.classList.add('tasksButton__newTasksCount_active');
+      this.newTasksCountText.textContent = this._newTasksCounter();
+    } else {
+      this.newTasksCount.classList.remove('tasksButton__newTasksCount_active');
     }
   }
 }

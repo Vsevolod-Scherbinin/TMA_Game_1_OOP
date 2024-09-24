@@ -3,14 +3,12 @@ class PopupManager {
     user,
     scoreRenderer,
     achievementManager,
-    // achievementGathering,
-    // achievementsLevelCheck,
+    dailyTasksManager,
   ) {
     this.user = user;
     this.scoreRenderer = scoreRenderer;
     this.achievementManager = achievementManager;
-    // this.achievementGathering = achievementGathering;
-    // this.achievementsLevelCheck = achievementsLevelCheck;
+    this.dailyTasksManager = dailyTasksManager;
     this.popup = document.querySelector('.popup');
   }
 
@@ -121,19 +119,14 @@ class PopupManager {
     this.popup.querySelector('.popup__image').src = cardImage;
     // this.popup.querySelector('.popup__image').src = './images/check-incomplete.png';
     const submit = () => {
-      console.log('Submit');
-      console.log('score', this.user.score);
-      console.log('reward', reward);
-
       this.user.score = this.user.score + reward;
       console.log(this.user.score);
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.tasks.push({id: taskId});
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
-
       this._taskCardReplacer(card);
-
+      dailyTasksManager.newTasksAmountRenderer();
       this.popupClose();
     }
     this.popup.querySelector('.popup__button').addEventListener('click', submit, { once: true });

@@ -1,35 +1,25 @@
-// Before Online Update
-// Check Bot Commentaries
-
 // --------------- Classes-Start ---------------
 const user = new User(userDataModel);
-// user.loadUserData();
 
 const incomeManager = new IncomeManager(user);
 const energyManager = new EnergyManager(user);
 const upgradeManager = new UpgradeManager(
   user,
   incomeManager,
-  // incomeManager.scoreCounter.bind(incomeManager),
-  // incomeManager.deltaCounter.bind(incomeManager),
   energyManager.energyLimitRenderer.bind(energyManager),
   energyManager.energyRecoveryLooper.bind(energyManager),
-  // incomeManager.passiveIncomeCounter.bind(incomeManager),
-  // incomeManager.passiveIncomeRenderer.bind(incomeManager),
 );
 
 const achievementManager = new AchievementManager(user);
 const friendsManager = new FriendsManager(user);
+const dailyTasksManager = new DailyTasksManager(user);
 
 const popupManager = new PopupManager(
   user,
   incomeManager.scoreCounter.bind(incomeManager),
   achievementManager,
-  achievementManager.achievementGathering.bind(achievementManager),
-  achievementManager.achievementsLevelCheck.bind(achievementManager),
+  dailyTasksManager,
 );
-
-const dailyTasksManager = new DailyTasksManager(user, popupManager);
 
 const levelManager = new LevelManager(user);
 
@@ -87,19 +77,16 @@ try {
 
     user.getUserPhoto(tg.initDataUnsafe.user.id)
       .then((res) => {
-        // console.log('userPhoto', res);
         avatarField.src = res;
       });
   }
 } catch {}
-// } catch (error){console.log(error)}
 
 console.log(tg.initDataUnsafe.user !== undefined);
 
 
 tasksButton.addEventListener('click', () => {
   dailyTasksManager.openScreen();
-  // dailyTasksManager.newTasksToggle();
 });
 
 function closeScreen() {
@@ -138,12 +125,10 @@ async function mainClick(evt) {
 btnMain.addEventListener('click', mainClick);
 
 // --------------- MainClick-End ---------------
-
 try {
   tg.expand();
   console.log('platform', tg.platform);
 } catch {}
-// } catch (error){console.log(error)}
 
 inviteFriendBtn.addEventListener('click', () => {
   user.inviteFriends()
@@ -161,12 +146,6 @@ const currentDate = new Date().toLocaleDateString();
 window.onload = async () => {
   // localStorage.removeItem('invited');
   // localStorage.clear();
-  // Subscribtion Test
-  // user.checkUserSubscription(-1002493343663, user.userId);
-  // user.checkUserSubscription(-1002493343663, 180799659);
-  // user.checkUserSubscription(-1002493343663, 653832788);
-
-  // user.loadUserData();
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
       console.log('DBLoading', tg.initDataUnsafe.user.id);
@@ -230,21 +209,16 @@ window.onload = async () => {
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.dailyEnterRewardSetter();
 
-  // dailyTasksManager.newTasksToggle();
   dailyTasksManager.friendCardToggle();
   await dailyTasksManager.channelCardToggle();
   dailyTasksManager.registryCardToggle();
+  dailyTasksManager.newTasksAmountRenderer();
 
-  // Make separate function as energy
   let passiveIncomeTimer = setInterval(() => {
-    // Move unlimited functions to userOnlineTimer
     incomeManager.passiveOnlineIncomeCounter();
     levelManager.levelProgressCounter();
     incomeManager.scoreRenderer();
     upgradeManager.checkUpgradeAvailable();
-    achievementManager.achievementsLevelCheck();
-
-    // user.saveUserDataLocal();
 
     if(timer == onlinePassiveTimeLimit) {
       clearInterval(passiveIncomeTimer);
@@ -253,13 +227,14 @@ window.onload = async () => {
 
   let userOnlineTimer = setInterval(() => {
     user.timeOnline++;
+    achievementManager.achievementsLevelCheck();
     user.saveUserDataLocal();
   },  1000);
 
   energyManager.energyRecoveryLooper(true, 'normal');
 
   const dbSave = setInterval(() => {
-    // user.saveUserDataDB();
+    user.saveUserDataDB();
   }, 15*1000)
 };
 
