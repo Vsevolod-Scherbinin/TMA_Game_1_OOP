@@ -225,8 +225,6 @@ window.onload = async () => {
   achievementManager.activeOnloadCorrection();
   dailyTasksManager.cardsRenderer(currentDate);
   dailyTasksManager.dailyEnterRewardSetter();
-  console.log(dailyEnterRewards);
-
 
   // dailyTasksManager.newTasksToggle();
   dailyTasksManager.friendCardToggle();

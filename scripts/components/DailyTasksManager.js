@@ -15,6 +15,7 @@ class DailyTasksManager {
     const isGathered = this.user.tasks.some(obj => obj.id === taskId);
     if(isGathered) {
       card.querySelector('.taskCard__statusIcon').src = `./images/check-complete.png`;
+      card.querySelector('.taskCard__statusIcon').classList.add('complete');
       return
     }
 
@@ -46,6 +47,7 @@ class DailyTasksManager {
     const isGathered = this.user.tasks.some(obj => obj.id === taskId);
     if(isGathered) {
       card.querySelector('.taskCard__statusIcon').src = `./images/check-complete.png`;
+      card.querySelector('.taskCard__statusIcon').classList.add('complete');
       return
     }
     console.log('channelId', channelId);
@@ -73,9 +75,7 @@ class DailyTasksManager {
     cardElement.querySelector('.taskCard__title').textContent = elem.title;
     cardElement.querySelector('.taskCard__effectIcon').src = elem.effectIcon;
     cardElement.querySelector('.taskCard__effect').textContent = `${formatNumber(elem.effect)}`;
-    elem.type === "friend" && (cardElement.querySelector('.taskCard__statusIcon').src = `data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7`);
-    elem.type === "channel" && (cardElement.querySelector('.taskCard__statusIcon').src = `./images/link-icon.png`);
-    elem.type === "register" && (cardElement.querySelector('.taskCard__statusIcon').src = `./images/link-icon.png`);
+    cardElement.querySelector('.taskCard__statusIcon').src = `./images/link-icon.png`;
     // cardElement.querySelector('.taskCard__effect').textContent = `+${formatNumber(elem.effect)}`;
     // hasChannel && cardElement.querySelector('taskCard').classList.add(`taskCard_${elem.channelId}`);
     return cardElement;
@@ -95,10 +95,17 @@ class DailyTasksManager {
             this.friendCardToggle();
           });
       }))
+
       const channel = elem.type === 'channel';
       channel && (card.addEventListener('click', () => {
         // this.subscribe(elem.channelLink);
         openLink(elem.channelLink)
+      }))
+
+      const registry = elem.type === 'registry';
+      registry && (card.addEventListener('click', () => {
+        // this.subscribe(elem.channelLink);
+        openLink(elem.link)
       }))
     }
   }
