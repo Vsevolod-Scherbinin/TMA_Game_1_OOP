@@ -134,7 +134,8 @@ inviteFriendBtn.addEventListener('click', () => {
   user.inviteFriends()
     .then(() => {
       const today = new Date().toLocaleDateString();
-      localStorage.setItem('invited', today);
+      user.invitedToday = today;
+      // localStorage.setItem('invited', today);
       dailyTasksManager.friendCardToggle();
       achievementManager.friendsAmountCheck();
     });
@@ -144,7 +145,6 @@ const currentDate = new Date().toLocaleDateString();
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
-  // localStorage.removeItem('invited');
   // localStorage.clear();
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {

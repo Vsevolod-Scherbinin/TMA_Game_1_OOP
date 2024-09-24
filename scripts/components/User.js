@@ -25,6 +25,7 @@ class User {
     friends,
     channels,
     registryTime,
+    invitedToday,
     // lastClosure,
   }) {
     this.userId = userId;
@@ -48,6 +49,7 @@ class User {
     this.friends = friends;
     this.channels = channels;
     this.registryTime = registryTime;
+    this.invitedToday = invitedToday;
     // this.lastClosure = lastClosure;
   }
 
@@ -143,23 +145,12 @@ class User {
     localStorage.setItem('DataFromDB', JSON.stringify(this));
   }
 
-  isFirstVisitToday() {
-    const lastVisitDate = localStorage.getItem('lastVisitDate');
-    const today = new Date().toLocaleDateString();
-
-    if (!lastVisitDate || lastVisitDate !== today) {
-      localStorage.setItem('lastVisitDate', today);
-      return true; // Первое посещение за день
-    }
-
-    return false; // Не первое посещение за день
-  }
-
   hasInvitedToday() {
-    const invited = localStorage.getItem('invited');
+    // const invited = localStorage.getItem('invited');
     const today = new Date().toLocaleDateString();
 
-    if (!invited || invited !== today) {
+    if (!this.invitedToday || this.invitedToday !== today) {
+    // if (!invited || invited !== today) {
       // localStorage.setItem('invited', today);
       return false;
     }
