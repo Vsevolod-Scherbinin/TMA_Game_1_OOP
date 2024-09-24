@@ -14,10 +14,17 @@ class PopupManager {
     this.popup = document.querySelector('.popup');
   }
 
-  _cardReplacer(card) {
+  _taskCardReplacer(card) {
+    const newCard = card.cloneNode(true);
+    newCard.classList.remove('taskCard_active');
+    // newCard.querySelector('.taskCard__icon').src = `./images/done.png`;
+    card.replaceWith(newCard);
+  }
+
+  _wideCardReplacer(card) {
     const newCard = card.cloneNode(true);
     newCard.classList.remove('wideCard_active');
-    newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
+    // newCard.querySelector('.wideCard__icon').src = `./images/done.png`;
     card.replaceWith(newCard);
   }
 
@@ -104,10 +111,15 @@ class PopupManager {
   }
 
   taskPopupOpen(reward, card, taskId) {
+    console.log('card', card);
+
+    const cardImage = card.querySelector('.taskCard__icon').src;
+
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
     this.popup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
-    this.popup.querySelector('.popup__image').src = './images/done.png';
+    this.popup.querySelector('.popup__image').src = cardImage;
+    // this.popup.querySelector('.popup__image').src = './images/check-incomplete.png';
     const submit = () => {
       console.log('Submit');
       console.log('score', this.user.score);
@@ -120,7 +132,7 @@ class PopupManager {
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
 
-      this._cardReplacer(card);
+      this._taskCardReplacer(card);
 
       this.popupClose();
     }
@@ -143,7 +155,7 @@ class PopupManager {
       this.user.saveUserDataLocal();
       incomeManager.scoreRenderer();
 
-      this._cardReplacer(card)
+      this._wideCardReplacer(card);
 
       this.popupClose();
     }

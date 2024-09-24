@@ -23,7 +23,7 @@ const dailyTasks = [
       },
       {
         id: 3,
-        type: 'register',
+        type: 'registry',
         mainIcon: './images/task-icon-channel.png',
         link: 'https://ya.ru',
         title: "Зарегистрируйтесь на сайте",

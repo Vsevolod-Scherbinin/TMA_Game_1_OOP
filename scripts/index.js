@@ -180,7 +180,7 @@ window.onload = async () => {
   dbData.referenceBonus > 0 && popupManager.referencePopupOpen(dbData.referenceBonus);
 
   // ServiceFunctions-Start
-    user.score = 50000;
+    // user.score = 50000;
     // user.taps = 0;
     // user.cummulativeIncome = 0;
     // user.passiveIncome = 0;
@@ -197,8 +197,12 @@ window.onload = async () => {
   // ServiceFunctions-End
   dailyTasksManager.dailyEnterRewardSetter();
   dailyTasksManager.entryStreakCounter();
+  const registryDelay = dailyTasksManager.registryDelayCounter();
+  // console.log('registryDelay', registryDelay);
+
   // dailyTasksManager.entryStreakCounter('2024-09-09T07:13:20.936Z');
   const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
+  // Test Low Passive Income
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
   screenSwitcher.screenSwitch();
   upgradeManager.checkUpgradeAvailable();
@@ -229,6 +233,7 @@ window.onload = async () => {
   // dailyTasksManager.newTasksToggle();
   dailyTasksManager.friendCardToggle();
   await dailyTasksManager.channelCardToggle();
+  dailyTasksManager.registryCardToggle();
 
   // Make separate function as energy
   let passiveIncomeTimer = setInterval(() => {

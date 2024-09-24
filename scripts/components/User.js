@@ -24,6 +24,7 @@ class User {
     referenceBonus,
     friends,
     channels,
+    registryTime,
     // lastClosure,
   }) {
     this.userId = userId;
@@ -46,6 +47,7 @@ class User {
     this.referenceBonus = referenceBonus;
     this.friends = friends;
     this.channels = channels;
+    this.registryTime = registryTime;
     // this.lastClosure = lastClosure;
   }
 

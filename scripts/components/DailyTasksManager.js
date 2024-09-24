@@ -6,6 +6,14 @@ class DailyTasksManager {
     this.dailyTaskField = document.querySelector('.dailyTasksScreen__cardField');
   }
 
+  registryDelayCounter() {
+    const now = new Date();
+    const registryTime = new Date(this.user.registryTime);
+    const timeDelta = now - registryTime
+    const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+    return timeDeltaInSeconds;
+  }
+
   friendCardToggle() {
     const today = new Date().toLocaleDateString();
     const todayTasks = dailyTasks.find(obj => obj.date === today).tasks;
@@ -67,6 +75,34 @@ class DailyTasksManager {
     }
   }
 
+  registryCardToggle() {
+    const today = new Date().toLocaleDateString();
+    const todayTasks = dailyTasks.find(obj => obj.date === today).tasks;
+    const taskId = todayTasks.find(obj => obj.type === 'registry').id;
+    const card = this.dailyTaskField.querySelector(`.taskCard_type_registry`);
+
+    const isGathered = this.user.tasks.some(obj => obj.id === taskId);
+    if(isGathered) {
+      card.querySelector('.taskCard__statusIcon').src = `./images/check-complete.png`;
+      card.querySelector('.taskCard__statusIcon').classList.add('complete');
+      return
+    }
+    const registered = this.registryDelayCounter() > 10;
+    console.log('registered', registered);
+    if(registered) {
+      const newCard = card.cloneNode(true)
+      newCard.classList.add('taskCard_active');
+      newCard.querySelector('.taskCard__statusIcon').src = `./images/check-incomplete.png`;
+      newCard.addEventListener('click', (evt) => {
+        const title = evt.target.closest('.taskCard').querySelector('.taskCard__title').textContent;
+        const reward = todayTasks.find(obj => obj.title === title).effect;
+        console.log('reward', reward);
+        this.popupManager.taskPopupOpen(reward, newCard, taskId);
+      })
+      card.replaceWith(newCard);
+    }
+  }
+
   _createCard(elem) {
     const cardElement = this.taskCardTemplate.cloneNode(true);
     cardElement.querySelector('.taskCard').classList.add(`taskCard_id_${elem.id}`);
@@ -105,7 +141,8 @@ class DailyTasksManager {
       const registry = elem.type === 'registry';
       registry && (card.addEventListener('click', () => {
         // this.subscribe(elem.channelLink);
-        openLink(elem.link)
+        openLink(elem.link);
+        this.user.registryTime = new Date();
       }))
     }
   }
