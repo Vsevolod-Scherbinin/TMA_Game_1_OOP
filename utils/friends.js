@@ -1,8 +1,8 @@
 const friendsTasks = [
   {
     id: 1,
-    // mainIcon: './images/achievement-icon-friends-bronze.png',
-    mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+    mainIcon: './images/achievement-icon-friends-blank.png',
+    // mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
     title: "Привести друга",
     description: 'Приведите в игру 1 друга',
     effectIcon: "./images/coin.png",
@@ -11,8 +11,8 @@ const friendsTasks = [
   },
   {
     id: 2,
-    // mainIcon: './images/achievement-icon-friends-silver.png',
-    mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+    mainIcon: './images/achievement-icon-friends-bronze.png',
+    // mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
     title: "Привести друга",
     description: 'Приведите в игру 5 друзей',
     effectIcon: "./images/coin.png",
@@ -21,8 +21,8 @@ const friendsTasks = [
   },
   {
     id: 3,
-    // mainIcon: './images/achievement-icon-friends-gold.png',
-    mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+    mainIcon: './images/achievement-icon-friends-silver.png',
+    // mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
     title: "Привести друга",
     description: 'Приведите в игру 10 друзей',
     effectIcon: "./images/coin.png",
@@ -31,22 +31,12 @@ const friendsTasks = [
   },
   {
     id: 4,
-    // mainIcon: './images/achievement-icon-friends-gold.png',
-    mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+    mainIcon: './images/achievement-icon-friends-gold.png',
+    // mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
     title: "Привести друга",
     description: 'Приведите в игру 15 друзей',
     effectIcon: "./images/coin.png",
     effect: 100000,
     limit: 15,
-  },
-  {
-    id: 5,
-    // mainIcon: './images/achievement-icon-friends-gold.png',
-    mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
-    title: "Привести друга",
-    description: 'Приведите в игру 25 друзей',
-    effectIcon: "./images/coin.png",
-    effect: 125000,
-    limit: 25,
   },
 ];

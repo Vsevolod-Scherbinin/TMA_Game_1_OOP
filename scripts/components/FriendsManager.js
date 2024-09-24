@@ -14,7 +14,8 @@ class FriendsManager {
     wideCardElement.querySelector('.wideCard__title').textContent = elem.title;
     wideCardElement.querySelector('.wideCard__description').textContent = elem.description;
     wideCardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
-    wideCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(elem.effect)}`;
+    wideCardElement.querySelector('.wideCard__effect').textContent = `${elem.effect}`;
+    // wideCardElement.querySelector('.wideCard__effect').textContent = `${formatNumberWithSpaces(elem.effect)}`;
     return wideCardElement;
   }
 
