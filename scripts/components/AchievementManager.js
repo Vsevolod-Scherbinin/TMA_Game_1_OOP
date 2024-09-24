@@ -15,8 +15,8 @@ class AchievementManager {
     achievementCardElement.querySelector('.wideCard__title').textContent = elem.title;
     achievementCardElement.querySelector('.wideCard__description').textContent = levelData.description;
     achievementCardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
-    achievementCardElement.querySelector('.wideCard__effect').textContent = `+${levelData.effect}`;
-    // achievementCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(levelData.effect)}`;
+    // achievementCardElement.querySelector('.wideCard__effect').textContent = `+${levelData.effect}`;
+    achievementCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumber(levelData.effect)}`;
     return achievementCardElement;
   }
 
@@ -35,9 +35,8 @@ class AchievementManager {
     const iconLvl = cardData.levels.find(obj => obj.level === iconLevel);
     card.querySelector('.wideCard__icon').src = iconLvl.mainIcon;
     card.querySelector('.wideCard__description').textContent = cardLevel.description;
-    card.querySelector('.wideCard__effect').textContent = cardLevel.effect
-    ;
-    // card.querySelector('.wideCard__effect').textContent = formatNumberWithSpaces(cardLevel.effect);
+    // card.querySelector('.wideCard__effect').textContent = cardLevel.effect;
+    card.querySelector('.wideCard__effect').textContent = formatNumber(cardLevel.effect);
   }
 
   activeOnloadCorrection() {

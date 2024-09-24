@@ -9,7 +9,7 @@ class IncomeManager {
   deltaCounter() {
     const currentDeltaLevel = deltaUpgrade.levels.find(upgrade => upgrade.level === this.user.activeUpgrades.find(upgrade => upgrade.id === 1).level);
     this.user.delta = currentDeltaLevel.delta;
-    this.deltaIncomeScoreField.textContent = `${formatNumberWithSpaces(user.delta)}`;
+    this.deltaIncomeScoreField.textContent = `${formatNumber(user.delta)}`;
   }
 
   passiveIncomeCounter() {
@@ -23,7 +23,7 @@ class IncomeManager {
   }
 
   passiveIncomeRenderer() {
-    this.passiveIncomeScoreField.textContent = `${formatNumberWithSpaces(this.user.passiveIncome)}`;
+    this.passiveIncomeScoreField.textContent = `${formatNumber(this.user.passiveIncome)}`;
   }
 
   passiveOnlineIncomeCounter() {
@@ -57,7 +57,7 @@ class IncomeManager {
   }
 
   scoreRenderer() {
-    this.scoreField.textContent = formatNumberWithSpaces(user.score);
+    this.scoreField.textContent = formatNumber(user.score);
   }
 
 }

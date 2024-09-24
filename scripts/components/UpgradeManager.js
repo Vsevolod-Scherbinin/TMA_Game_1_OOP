@@ -38,22 +38,22 @@ class UpgradeManager {
       });
 
       upgradeCardElement.querySelector('.upgradeCard__level').textContent = `lvl ${currentUpgrade.level}`;
-      upgradeCardElement.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(currentUpgrade.cost)}`;
+      upgradeCardElement.querySelector('.upgradeCard__cost').textContent = `${formatNumber(currentUpgrade.cost)}`;
 
       currentUpgrade.income !== undefined
-        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.income)}/час`
+        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumber(currentUpgrade.income)}/час`
         : currentUpgrade.delta !== undefined
-          ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.delta)}/тап`
-          : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(currentUpgrade.energyLimit)}`;
+          ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumber(currentUpgrade.delta)}/тап`
+          : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumber(currentUpgrade.energyLimit)}`;
     } else {
       upgradeCardElement.querySelector('.upgradeCard__level').textContent = `Max`;
       upgradeCardElement.querySelector('.upgradeCard__costArea').remove();
 
       previousUpgrade.income !== undefined
-        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.income)}/час`
+        ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumber(previousUpgrade.income)}/час`
         : previousUpgrade.delta !== undefined
-          ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.delta)}/тап`
-          : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(previousUpgrade.energyLimit)}`;
+          ? upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumber(previousUpgrade.delta)}/тап`
+          : upgradeCardElement.querySelector('.upgradeCard__effect').textContent = `${formatNumber(previousUpgrade.energyLimit)}`;
     }
 
 
@@ -140,13 +140,13 @@ class UpgradeManager {
         if(nextUpgradeLevel) {
           // userUpgrade.level++;
           currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `lvl ${nextUpgradeLevel.level}`;
-          currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.cost)}`;
+          currentUpgradeCard.querySelector('.upgradeCard__cost').textContent = `${formatNumber(nextUpgradeLevel.cost)}`;
           if(nextUpgradeLevel.income !== undefined) {
-            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.income)}/час`;
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumber(nextUpgradeLevel.income)}/час`;
           } else if(nextUpgradeLevel.delta !== undefined) {
-            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.delta)}/тап`;
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumber(nextUpgradeLevel.delta)}/тап`;
           } else {
-            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumberWithSpaces(nextUpgradeLevel.energyLimit)}`;
+            currentUpgradeCard.querySelector('.upgradeCard__effect').textContent = `${formatNumber(nextUpgradeLevel.energyLimit)}`;
           }
         } else {
           currentUpgradeCard.querySelector('.upgradeCard__level').textContent = `Max`;

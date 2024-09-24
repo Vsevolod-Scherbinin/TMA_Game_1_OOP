@@ -72,7 +72,8 @@ class DailyTasksManager {
     cardElement.querySelector('.wideCard__title').textContent = elem.title;
     cardElement.querySelector('.wideCard__description').textContent = elem.description;
     cardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
-    cardElement.querySelector('.wideCard__effect').textContent = `+${formatNumberWithSpaces(elem.effect)}`;
+    cardElement.querySelector('.wideCard__effect').textContent = `${formatNumber(elem.effect)}`;
+    // cardElement.querySelector('.wideCard__effect').textContent = `+${formatNumber(elem.effect)}`;
     // hasChannel && cardElement.querySelector('wideCard').classList.add(`wideCard_${elem.channelId}`);
     return cardElement;
   }
@@ -118,7 +119,7 @@ class DailyTasksManager {
         const cardLevel = cardObj.levels.find(obj => obj.level === userAchLevel);
         card.closest('.wideCard').querySelector('.wideCard__icon').src = cardLevel.mainIcon;
         card.closest('.wideCard').querySelector('.wideCard__description').textContent = cardLevel.description;
-        card.closest('.wideCard').querySelector('.wideCard__effect').textContent = formatNumberWithSpaces(cardLevel.effect);
+        card.closest('.wideCard').querySelector('.wideCard__effect').textContent = formatNumber(cardLevel.effect);
       }
     });
 

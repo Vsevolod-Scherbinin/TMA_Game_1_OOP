@@ -34,11 +34,11 @@ class EnergyManager {
   }
 
   energyLimitRenderer() {
-    this.energyLimitField.textContent = formatNumberWithSpaces(this.energyLimiterTotal());
+    this.energyLimitField.textContent = formatNumber(this.energyLimiterTotal());
   }
 
   energyRenderer() {
-    this.energyScoreField.textContent = formatNumberWithSpaces(this.user.energy);
+    this.energyScoreField.textContent = formatNumber(this.user.energy);
   }
 
   energyCounter() {

@@ -1,9 +1,30 @@
-const formatNumberWithSpaces = (number) => {
-  return new Intl.NumberFormat('en-US', {
+// const formatNumber = (number) => {
+//   return new Intl.NumberFormat('en-US', {
+//       minimumFractionDigits: 0,
+//       maximumFractionDigits: 2,
+//       useGrouping: true,
+//   }).format(number).replace(/,/g, ' ');
+// };
+
+const formatNumber = (number) => {
+  // Преобразуем число в строку и проверяем его длину
+  const numStr = number.toString();
+
+  if (numStr.length > 5) {
+    // Заменяем последние три разряда на 'k'
+    console.log('numStr', numStr);
+
+    const formattedNumber = numStr.slice(0, -3) + 'k';
+    console.log('formattedNumber', formattedNumber);
+
+    return formattedNumber;
+  } else {
+    return new Intl.NumberFormat('en-US', {
       minimumFractionDigits: 0,
       maximumFractionDigits: 2,
       useGrouping: true,
-  }).format(number).replace(/,/g, ' ');
+    }).format(number).replace(/,/g, ' ');
+  }
 };
 
 function convertStringToNumber(str) {

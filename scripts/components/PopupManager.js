@@ -42,7 +42,7 @@ class PopupManager {
 
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = obj.title;
-    this.popup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumberWithSpaces(objLevel.effect)}`;
+    this.popup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumber(objLevel.effect)}`;
     this.popup.querySelector('.popup__image').src = iconLevel.mainIcon;
     // console.log(objLevel.effect);
     const card = document.querySelector(`.wideCard_id_${obj.id}`);
@@ -71,7 +71,7 @@ class PopupManager {
   offlineIncomePopupOpen(offlinePassiveIncome) {
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = 'Ваш заработок!';
-    this.popup.querySelector('.popup__message').textContent = `Поздравляем! Вы заработали $${formatNumberWithSpaces(offlinePassiveIncome)}`;
+    this.popup.querySelector('.popup__message').textContent = `Поздравляем! Вы заработали $${formatNumber(offlinePassiveIncome)}`;
     this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
     const submit = () => {
       console.log('Submit');
@@ -88,7 +88,7 @@ class PopupManager {
   referencePopupOpen(reward, dbData) {
     this.popup.classList.remove('popup_inactive');
     this.popup.querySelector('.popup__title').textContent = 'Поздравляем!';
-    this.popup.querySelector('.popup__message').textContent = `Вы получили $${formatNumberWithSpaces(reward)} от друга`;
+    this.popup.querySelector('.popup__message').textContent = `Вы получили $${formatNumber(reward)} от друга`;
     this.popup.querySelector('.popup__image').src = './images/offline-passive-income-icon.png';
     const submit = () => {
       console.log('Submit');

@@ -28,7 +28,7 @@ class LevelManager {
 
   levelRenderer() {
     this._mainButtonChanger();
-    this.levelField.textContent = `${formatNumberWithSpaces(this.user.level)}`;
+    this.levelField.textContent = `${formatNumber(this.user.level)}`;
     // let currentLevelStatus;
     // if(this.user.level < 10) {
     //   currentLevelStatus = levelsStatuses[0].status;
