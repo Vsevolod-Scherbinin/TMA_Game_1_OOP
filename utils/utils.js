@@ -22,29 +22,20 @@ function convertStringToNumber(str) {
 
 function offlineTimeCounter() {
   try {
-    let closureDate;
-    const test = tg.CloudStorage.getItem('closureTime', (err, values) => {
+    tg.CloudStorage.getItem('closureTime', (err, closureDate) => {
       if(err) { console.log('err', err); }
       else {
-        return values;
-
+        if(closureDate !== (null ||  undefined)) {
+          console.log('closureDate', closureDate);
+          const now = new Date();
+          const closureTime = new Date(closureDate);
+          const timeDelta = now - closureTime
+          const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+          console.log('timeDeltaInSeconds', timeDeltaInSeconds);
+          return timeDeltaInSeconds;
+        }
       }
     });
-    // const closureDate = localStorage.getItem('closureTime');
-
-    console.log('closureDate', closureDate);
-    console.log('test', test);
-    // console.log(closureDate !== (null ||  undefined));
-
-    if(closureDate !== (null ||  undefined)) {
-      console.log('closureDate', closureDate);
-      const now = new Date();
-      const closureTime = new Date(closureDate);
-      const timeDelta = now - closureTime
-      const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
-      console.log('timeDeltaInSeconds', timeDeltaInSeconds);
-      return timeDeltaInSeconds;
-    }
   } catch {}
 }
 
