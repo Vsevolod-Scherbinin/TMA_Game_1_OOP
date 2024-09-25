@@ -243,7 +243,7 @@ window.onload = async () => {
 
   const dbSave = setInterval(() => {
     user.saveUserDataDB();
-  }, 15*1000)
+  }, 10*1000)
 };
 
 window.addEventListener('beforeunload', (evt) => {

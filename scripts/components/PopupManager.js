@@ -63,6 +63,7 @@ class PopupManager {
       this.user.activeAchievements.splice(index, 1);
       // this.user.activeAchievements = this.user.activeAchievements.filter(object => obj.id !== )
       this.user.saveUserDataLocal();
+      this.user.saveUserDataDB();
       this.cardReplacer();
       this.achievementManager.activeOnloadCorrection();
       this.achievementManager.achievementsLevelCheck();
@@ -83,7 +84,8 @@ class PopupManager {
       this.user.score = this.user.score + offlinePassiveIncome;
       this.user.cummulativeIncome = this.user.cummulativeIncome + offlinePassiveIncome;
       this.user.saveUserDataLocal();
-      // incomeManager.scoreRenderer();
+      this.user.saveUserDataDB();
+      incomeManager.scoreRenderer();
       document.querySelector('.popup_type_passiveIncome').remove();
     }
     newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
@@ -101,6 +103,7 @@ class PopupManager {
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.referenceBonus = 0;
       this.user.saveUserDataLocal();
+      this.user.saveUserDataDB();
       incomeManager.scoreRenderer();
       document.querySelector('.popup_type_reference').remove();
     }
@@ -121,6 +124,7 @@ class PopupManager {
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.tasks.push({id: taskId});
       this.user.saveUserDataLocal();
+      this.user.saveUserDataDB();
       incomeManager.scoreRenderer();
       this._taskCardReplacer(card);
       dailyTasksManager.newTasksAmountRenderer();
@@ -142,6 +146,7 @@ class PopupManager {
       console.log(this.user.score);
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.saveUserDataLocal();
+      this.user.saveUserDataDB();
       incomeManager.scoreRenderer();
       this._wideCardReplacer(card);
       document.querySelector('.popup_type_friend').remove();
@@ -165,6 +170,7 @@ class PopupManager {
       this.user.score = this.user.score + reward;
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
       this.user.saveUserDataLocal();
+      this.user.saveUserDataDB();
       incomeManager.scoreRenderer();
       document.querySelector('.popup_type_days').remove();
     }
