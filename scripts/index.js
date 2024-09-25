@@ -265,17 +265,17 @@ window.onload = async () => {
   // user.saveUserDataDB();
 // });
 
-window.addEventListener('beforeunload', (evt) => {
-  evt.preventDefault();
-  window.location.reload();
-  const closureDate = new Date();
-  try {
-    tg.CloudStorage.setItem('closureTime', closureDate);
-  } catch {}
-  localStorage.setItem('closureTime', closureDate);
-  localStorage.removeItem('DataFromDB');
-  user.saveUserDataDB();
-});
+// window.addEventListener('beforeunload', (evt) => {
+//   evt.preventDefault();
+//   // window.location.reload();
+//   const closureDate = new Date();
+//   try {
+//     tg.CloudStorage.setItem('closureTime', closureDate);
+//   } catch {}
+//   localStorage.setItem('closureTime', closureDate);
+//   localStorage.removeItem('DataFromDB');
+//   user.saveUserDataDB();
+// });
 
 // window.addEventListener('unload', (evt) => {
 //   evt.preventDefault();
@@ -288,4 +288,16 @@ window.addEventListener('beforeunload', (evt) => {
 //   localStorage.removeItem('DataFromDB');
 //   user.saveUserDataDB();
 // });
+
+window.onbeforeunload = (evt) => {
+  evt.preventDefault();
+  // window.location.reload();
+  const closureDate = new Date();
+  try {
+    tg.CloudStorage.setItem('closureTime', closureDate);
+  } catch {}
+  localStorage.setItem('closureTime', closureDate);
+  localStorage.removeItem('DataFromDB');
+  user.saveUserDataDB();
+};
 // --------------- Window-End ---------------
