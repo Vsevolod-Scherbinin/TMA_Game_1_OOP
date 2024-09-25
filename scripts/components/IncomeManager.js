@@ -36,9 +36,9 @@ class IncomeManager {
     }
   }
 
-  passiveOfflineIncomeCounter() {
+  async passiveOfflineIncomeCounter() {
     const limit = 3600 * passiveOfflineIncomeHoursLimit;
-    const seconds = offlineTimeCounter();
+    const seconds = await offlineTimeCounter();
     console.log('seconds', seconds);
 
     // const seconds = this.user.offlineTimeCounter();

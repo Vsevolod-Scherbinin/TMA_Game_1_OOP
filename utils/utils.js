@@ -20,26 +20,53 @@ function convertStringToNumber(str) {
   return number;
 }
 
+// function offlineTimeCounter() {
+//   try {
+//     tg.CloudStorage.getItem('closureTime', (err, closureDate) => {
+//       if(err) {
+//         console.log('err', err);
+//       }
+//       else {
+//         console.log('closureDate', closureDate);
+//         if(closureDate !== (null ||  undefined)) {
+//           console.log('closureDate', closureDate);
+//           const now = new Date();
+//           const closureTime = new Date(closureDate);
+//           const timeDelta = now - closureTime
+//           const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+//           console.log('timeDeltaInSeconds', timeDeltaInSeconds);
+//           return timeDeltaInSeconds;
+//         }
+//       }
+//     });
+//   } catch {}
+// }
+
 function offlineTimeCounter() {
-  try {
-    tg.CloudStorage.getItem('closureTime', (err, closureDate) => {
-      if(err) {
-        console.log('err', err);
-      }
-      else {
-        console.log('closureDate', closureDate);
-        if(closureDate !== (null ||  undefined)) {
+  return new Promise((resolve, reject) => {
+    try {
+      tg.CloudStorage.getItem('closureTime', (err, closureDate) => {
+        if (err) {
+          console.log('err', err);
+          reject(err); // Отправляем ошибку в reject
+        } else {
           console.log('closureDate', closureDate);
-          const now = new Date();
-          const closureTime = new Date(closureDate);
-          const timeDelta = now - closureTime
-          const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
-          console.log('timeDeltaInSeconds', timeDeltaInSeconds);
-          return timeDeltaInSeconds;
+          if (closureDate !== null && closureDate !== undefined) {
+            const now = new Date();
+            const closureTime = new Date(closureDate);
+            const timeDelta = now - closureTime;
+            const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+            console.log('timeDeltaInSeconds', timeDeltaInSeconds);
+            resolve(timeDeltaInSeconds); // Возвращаем результат через resolve
+          } else {
+            resolve(0); // Если closureDate не задан, возвращаем 0
+          }
         }
-      }
-    });
-  } catch {}
+      });
+    } catch (error) {
+      reject(error); // Обрабатываем ошибки
+    }
+  });
 }
 
 function openLink(link) {
