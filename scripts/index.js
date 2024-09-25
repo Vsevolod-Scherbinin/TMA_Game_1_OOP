@@ -267,7 +267,7 @@ window.onload = async () => {
 
 window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
-  localStorage.setItem('closureTime', closureDate);
+  localStorage.setItem('closureTime', new Date());
   // window.location.reload();
   const closureDate = new Date();
   try {
