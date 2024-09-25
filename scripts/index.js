@@ -73,7 +73,7 @@ try {
       });
     }
 
-    // tg.enableClosingConfirmation();
+    tg.enableClosingConfirmation();
 
     user.getUserPhoto(tg.initDataUnsafe.user.id)
       .then((res) => {
@@ -247,18 +247,18 @@ window.onload = async () => {
   }, 10*1000)
 };
 
-window.addEventListener('beforeunload', (evt) => {
-  evt.preventDefault();
+// window.addEventListener('beforeunload', (evt) => {
+//   evt.preventDefault();
 //   // localStorage.clear();
 //   localStorage.removeItem('DataFromDB');
 //   localStorage.setItem('closureTime', new Date());
 //   user.lastClosure = new Date();
-  user.saveUserDataDB();
-});
+  // user.saveUserDataDB();
+// });
 window.addEventListener('unload', (evt) => {
   evt.preventDefault();
   localStorage.setItem('closureTime', new Date());
   localStorage.removeItem('DataFromDB');
-  // user.saveUserDataDB();
+  user.saveUserDataDB();
 });
 // --------------- Window-End ---------------
