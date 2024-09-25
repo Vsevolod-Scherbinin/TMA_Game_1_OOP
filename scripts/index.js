@@ -146,6 +146,7 @@ const currentDate = new Date().toLocaleDateString();
 // --------------- Window-Start ---------------
 window.onload = async () => {
   // localStorage.clear();
+  localStorage.setItem('test');
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
       console.log('DBLoading', tg.initDataUnsafe.user.id);
