@@ -256,18 +256,6 @@ window.onload = async () => {
   // user.saveUserDataDB();
 // });
 
-window.addEventListener('beforeunload', (evt) => {
-  console.log('Before unload event triggered');
-  evt.preventDefault();
-  user.saveUserDataDB().then(() => {
-    console.log('User data saved');
-    localStorage.removeItem('DataFromDB');
-    localStorage.setItem('closureTime', new Date());
-  }).catch((error) => {
-    console.error('Error saving user data:', error);
-  });
-});
-
 window.addEventListener('unload', (evt) => {
   evt.preventDefault();
   localStorage.setItem('closureTime', new Date());
