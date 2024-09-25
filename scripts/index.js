@@ -197,7 +197,7 @@ window.onload = async () => {
   // console.log('registryDelay', registryDelay);
 
   // dailyTasksManager.entryStreakCounter('2024-09-09T07:13:20.936Z');
-  const offlinePassiveIncome = incomeManager.passiveOfflineIncomeCounter();
+  const offlinePassiveIncome = await incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
 
   levelManager.levelRenderer();
@@ -212,7 +212,7 @@ window.onload = async () => {
   energyManager.energyRenderer();
   energyManager.energyUpgradeLimiter();
   energyManager.energyLimitRenderer();
-  energyManager.offlineEnergyCounter();
+  await energyManager.offlineEnergyCounter();
   energyManager.energyRecoveryLooper(true, 'normal');
 
   upgradeManager.allUpgradesRenderer();
