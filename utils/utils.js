@@ -23,8 +23,11 @@ function convertStringToNumber(str) {
 function offlineTimeCounter() {
   try {
     tg.CloudStorage.getItem('closureTime', (err, closureDate) => {
-      if(err) { console.log('err', err); }
+      if(err) {
+        console.log('err', err);
+      }
       else {
+        console.log('closureDate', closureDate);
         if(closureDate !== (null ||  undefined)) {
           console.log('closureDate', closureDate);
           const now = new Date();
