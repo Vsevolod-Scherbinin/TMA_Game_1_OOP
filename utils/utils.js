@@ -24,7 +24,17 @@ function offlineTimeCounter() {
   try {
   const closureDate = localStorage.getItem('closureTime');
 
-    const closureDateCloud = window.Telegram.WebApp.CloudStorage.getItem('closureTime');
+    // const closureDateCloud = window.Telegram.WebApp.CloudStorage.getItem('closureTime');
+    window.Telegram.WebApp.CloudStorage.getItems('closureTime', (data) => {
+      if (data) {
+        console.log('Retrieved data:', data);
+        // Доступ к значению closureTime
+        const closureTime = data['closureTime'];
+        console.log('Closure Time:', closureTime);
+      } else {
+        console.error('No data found for the specified keys.');
+      }
+    });
 
   console.log('closureDate', closureDate);
   console.log('closureDateCloud', closureDateCloud);
