@@ -246,12 +246,18 @@ window.onload = async () => {
   }, 10*1000)
 };
 
+// window.addEventListener('beforeunload', (evt) => {
+//   evt.preventDefault();
+//   // localStorage.clear();
+//   localStorage.removeItem('DataFromDB');
+//   localStorage.setItem('closureTime', new Date());
+//   user.lastClosure = new Date();
+//   user.saveUserDataDB();
+// });
 window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
-  // localStorage.clear();
+  user.saveUserDataDB();
   localStorage.removeItem('DataFromDB');
   localStorage.setItem('closureTime', new Date());
-  user.lastClosure = new Date();
-  user.saveUserDataDB();
 });
 // --------------- Window-End ---------------
