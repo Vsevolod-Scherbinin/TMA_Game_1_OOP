@@ -27,7 +27,7 @@ function offlineTimeCounter() {
     const closureDateCloud = tg.CloudStorage.getItem('closureTime');
 
     tg.CloudStorage.getItem('closureTime', (data) => {
-      const closureDateCloud = data; // Извлекаем значение
+      const closureDateCloud = data.result; // Извлекаем значение
 
       console.log('closureDate from Cloud Storage:', closureDateCloud);
 
