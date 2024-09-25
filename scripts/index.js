@@ -267,6 +267,7 @@ window.onload = async () => {
 
 window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
+  window.location.reload();
   const closureDate = new Date();
   try {
     tg.CloudStorage.setItem('closureTime', closureDate);
@@ -278,6 +279,7 @@ window.addEventListener('beforeunload', (evt) => {
 
 window.addEventListener('unload', (evt) => {
   evt.preventDefault();
+  window.location.reload();
   const closureDate = new Date();
   try {
     tg.CloudStorage.setItem('closureTime', closureDate);
