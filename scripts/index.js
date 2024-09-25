@@ -146,7 +146,11 @@ const currentDate = new Date().toLocaleDateString();
 // --------------- Window-Start ---------------
 window.onload = async () => {
   // localStorage.clear();
-  localStorage.setItem('test', 'test');
+  try {
+    const closureDate = new Date();
+    tg.CloudStorage.setItem('closureTime', closureDate);
+  } catch {}
+
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
       console.log('DBLoading', tg.initDataUnsafe.user.id);
@@ -258,11 +262,12 @@ window.onload = async () => {
 
 window.addEventListener('unload', (evt) => {
   evt.preventDefault();
+  const closureDate = new Date();
   user.saveUserDataDB();
-  try {
-    tg.CloudStorage.setItem('closureTime', new Date());
-  } catch {}
-  localStorage.setItem('closureTime', new Date());
+  // try {
+  //   tg.CloudStorage.setItem('closureTime', closureDate);
+  // } catch {}
+  localStorage.setItem('closureTime', closureDate);
   localStorage.removeItem('DataFromDB');
 });
 // --------------- Window-End ---------------
