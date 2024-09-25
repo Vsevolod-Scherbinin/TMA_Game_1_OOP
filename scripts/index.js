@@ -258,7 +258,7 @@ window.onload = async () => {
 window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
   localStorage.setItem('closureTime', new Date());
-  user.saveUserDataDB();
   localStorage.removeItem('DataFromDB');
+  user.saveUserDataDB();
 });
 // --------------- Window-End ---------------
