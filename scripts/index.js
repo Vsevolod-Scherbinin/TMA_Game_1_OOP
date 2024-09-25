@@ -267,12 +267,12 @@ window.onload = async () => {
 
 window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
+  localStorage.setItem('closureTime', closureDate);
   // window.location.reload();
   const closureDate = new Date();
   try {
     tg.CloudStorage.setItem('closureTime', closureDate);
   } catch {}
-  localStorage.setItem('closureTime', closureDate);
   localStorage.removeItem('DataFromDB');
   user.saveUserDataDB();
 });
