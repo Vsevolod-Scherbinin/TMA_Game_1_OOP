@@ -32,7 +32,7 @@ function offlineTimeCounter() {
     });
 
     const cloudTest = tg.CloudStorage.getKeys();
-    console.log('cloudTest', cloudTest);
+    console.log('cloudTest', cloudTest.getKeys());
 
 
     // console.log('closureDate', closureDate);
