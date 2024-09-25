@@ -96,7 +96,10 @@ dailyTaskCloseBtn.addEventListener('click', closeScreen);
 
 tokenButton.addEventListener('click', () => {
   // openLink(tokenLink);
-  offlineTimeCounter();
+  const test = tg.CloudStorage.getItem('test');
+  console.log('test', test);
+
+  // offlineTimeCounter();
 });
 
 async function mainClick(evt) {
