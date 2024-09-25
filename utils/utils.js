@@ -22,9 +22,9 @@ function convertStringToNumber(str) {
 
 function offlineTimeCounter() {
   const closureDate = localStorage.getItem('closureTime');
-  // console.log('closureDate', closureDate);
+  console.log('closureDate', closureDate);
 
-  if(closureDate !== null || undefined) {
+  if(closureDate !== (null ||  undefined)) {
     const now = new Date();
     const closureTime = new Date(closureDate);
     const timeDelta = now - closureTime
