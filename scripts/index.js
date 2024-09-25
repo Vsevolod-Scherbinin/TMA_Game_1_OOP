@@ -155,7 +155,8 @@ window.onload = async () => {
     .catch((error) => {
       console.error('Error saving exit time:', error);
     });
-  } catch {}
+  } catch (error){console.log('error', error);
+  }
 
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
