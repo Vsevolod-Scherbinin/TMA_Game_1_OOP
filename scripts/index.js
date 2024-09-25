@@ -149,13 +149,13 @@ window.onload = async () => {
   // localStorage.clear();
   // Сохранение времени выхода
 const exitTime = new Date().toISOString(); // Сохраняем время в ISO формате
-tg.CloudStorage.setItem('closureTime', exitTime)
-    .then(() => {
-        console.log('Exit time saved successfully');
-    })
-    .catch((error) => {
-        console.error('Error saving exit time:', error);
-    });
+tg.CloudStorage.setItem('closureTime', exitTime, (result) => {
+  if (result) {
+      console.log('Exit time saved successfully:', result);
+  } else {
+      console.error('Error saving exit time');
+  }
+});
 
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
