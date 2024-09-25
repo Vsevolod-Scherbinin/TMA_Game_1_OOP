@@ -95,7 +95,8 @@ function closeScreen() {
 dailyTaskCloseBtn.addEventListener('click', closeScreen);
 
 tokenButton.addEventListener('click', () => {
-  openLink(tokenLink);
+  // openLink(tokenLink);
+  offlineTimeCounter();
 });
 
 async function mainClick(evt) {
@@ -148,7 +149,7 @@ window.onload = async () => {
   // localStorage.clear();
   try {
     const closureDate = new Date();
-    await tg.CloudStorage.setItem('closureTime', closureDate);
+    tg.CloudStorage.setItem('closureTime', closureDate);
     console.log('CloudSave', closureDate);
 
   } catch (error){console.log('error', error);
@@ -251,7 +252,7 @@ window.onload = async () => {
 
   const dbSave = setInterval(() => {
     user.saveUserDataDB();
-  }, 15*1000)
+  }, 10*1000)
 };
 
 // window.addEventListener('beforeunload', (evt) => {
