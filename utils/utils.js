@@ -37,10 +37,12 @@ function offlineTimeCounter() {
     // console.log(closureDate !== (null ||  undefined));
 
     if(closureDate !== (null ||  undefined)) {
+      console.log('values2', values);
       const now = new Date();
       const closureTime = new Date(closureDate);
       const timeDelta = now - closureTime
       const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+      console.log('timeDeltaInSeconds', timeDeltaInSeconds);
       return timeDeltaInSeconds;
     }
   } catch {}
