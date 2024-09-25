@@ -24,9 +24,10 @@ function offlineTimeCounter() {
   try {
   const closureDate = localStorage.getItem('closureTime');
 
-    // const closureDate = window.Telegram.WebApp.CloudStorage.getItem('closureTime');
+    const closureDateCloud = window.Telegram.WebApp.CloudStorage.getItem('closureTime');
 
   console.log('closureDate', closureDate);
+  console.log('closureDateCloud', closureDateCloud);
   console.log(closureDate !== (null ||  undefined));
 
   if(closureDate !== (null ||  undefined)) {
