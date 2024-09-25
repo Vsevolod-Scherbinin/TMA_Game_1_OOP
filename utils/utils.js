@@ -20,6 +20,20 @@ function convertStringToNumber(str) {
   return number;
 }
 
+const formatScore = (number) => {
+  return new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+    useGrouping: true,
+  }).format(number).replace(/,/g, ' ');
+};
+
+function convertStringToNumber(str) {
+  const noSpaces = str.replace(/\s+/g, '');
+  const number = Number(noSpaces);
+  return number;
+}
+
 // function offlineTimeCounter() {
 //   try {
 //     tg.CloudStorage.getItem('closureTime', (err, closureDate) => {
