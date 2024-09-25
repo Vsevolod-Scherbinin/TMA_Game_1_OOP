@@ -291,6 +291,7 @@ window.onload = async () => {
 
 window.onbeforeunload = (evt) => {
   evt.preventDefault();
+  evt.returnValue = true;
   // window.location.reload();
   const closureDate = new Date();
   try {
