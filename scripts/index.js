@@ -258,10 +258,11 @@ window.onload = async () => {
 
 window.addEventListener('unload', (evt) => {
   evt.preventDefault();
-  user.saveUserDataDB()
-    .then(() => {
-      localStorage.setItem('closureTime', new Date());
-      localStorage.removeItem('DataFromDB');
-    });
+  user.saveUserDataDB();
+  try {
+    tg.CloudStorage.setItem('closureTime', new Date());
+  } catch {}
+  localStorage.setItem('closureTime', new Date());
+  localStorage.removeItem('DataFromDB');
 });
 // --------------- Window-End ---------------
