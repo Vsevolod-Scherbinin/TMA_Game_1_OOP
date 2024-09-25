@@ -33,11 +33,11 @@ function offlineTimeCounter() {
     });
     // const closureDate = localStorage.getItem('closureTime');
 
-    // console.log('closureDate', closureDate);
+    console.log('closureDate', closureDate);
     // console.log(closureDate !== (null ||  undefined));
 
     if(closureDate !== (null ||  undefined)) {
-      console.log('values2', values);
+      console.log('closureDate', closureDate);
       const now = new Date();
       const closureTime = new Date(closureDate);
       const timeDelta = now - closureTime
