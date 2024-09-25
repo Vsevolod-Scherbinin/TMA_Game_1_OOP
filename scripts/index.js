@@ -156,15 +156,15 @@ const currentDate = new Date().toLocaleDateString();
 // --------------- Window-Start ---------------
 window.onload = async () => {
   // localStorage.clear();
-tg.CloudStorage.setItem('test', 'test', (result) => {
-  console.log('result', result);
+// tg.CloudStorage.setItem('test', 'test', (result) => {
+//   console.log('result', result);
 
-  if (result) {
-      console.log('Exit time saved successfully:', result);
-  } else {
-      console.error('Error saving exit time');
-  }
-});
+//   if (result) {
+//       console.log('Exit time saved successfully:', result);
+//   } else {
+//       console.error('Error saving exit time');
+//   }
+// });
 
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
@@ -275,14 +275,25 @@ tg.CloudStorage.setItem('test', 'test', (result) => {
   // user.saveUserDataDB();
 // });
 
-window.addEventListener('unload', (evt) => {
+window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
   const closureDate = new Date();
-  user.saveUserDataDB();
   try {
     tg.CloudStorage.setItem('closureTime', closureDate);
   } catch {}
   localStorage.setItem('closureTime', closureDate);
   localStorage.removeItem('DataFromDB');
+  user.saveUserDataDB();
+});
+
+window.addEventListener('unload', (evt) => {
+  evt.preventDefault();
+  const closureDate = new Date();
+  try {
+    tg.CloudStorage.setItem('closureTime', closureDate);
+  } catch {}
+  localStorage.setItem('closureTime', closureDate);
+  localStorage.removeItem('DataFromDB');
+  user.saveUserDataDB();
 });
 // --------------- Window-End ---------------
