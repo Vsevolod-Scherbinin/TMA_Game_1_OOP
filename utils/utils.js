@@ -23,13 +23,13 @@ function convertStringToNumber(str) {
 function offlineTimeCounter() {
   try {
     const closureDate = localStorage.getItem('closureTime');
-
+    tg.CloudStorage.getKeys((keys) => {
+      console.log('Available keys in Cloud Storage:', keys);
+  });
     tg.CloudStorage.getItem('closureTime', (data) => {
       const closureDateCloud = data; // Извлекаем значение
-
-      console.log('closureDate from localStorage:', closureDate);
       console.log('closureDate from Cloud Storage:', closureDateCloud);
-  });
+    });
 
     const cloudTest = tg.CloudStorage.getItem('closureTime');
     console.log('cloudTest', cloudTest);
