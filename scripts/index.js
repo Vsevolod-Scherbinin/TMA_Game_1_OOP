@@ -96,16 +96,6 @@ dailyTaskCloseBtn.addEventListener('click', closeScreen);
 
 tokenButton.addEventListener('click', () => {
   openLink(tokenLink);
-  const test = tg.CloudStorage.getItem('closureTime', (err, values) => {
-    if(err) {
-      console.log('err', err);
-    } else {
-      console.log('values', values);
-    }
-  });
-
-
-  // offlineTimeCounter();
 });
 
 async function mainClick(evt) {

@@ -22,21 +22,18 @@ function convertStringToNumber(str) {
 
 function offlineTimeCounter() {
   try {
-    const closureDate = localStorage.getItem('closureTime');
-    tg.CloudStorage.getKeys((keys) => {
-      console.log('Available keys in Cloud Storage:', keys);
+    let closureDate;
+    const test = tg.CloudStorage.getItem('closureTime', (err, values) => {
+      if(err) {
+        console.log('err', err);
+      } else {
+        closureDate = values;
+        console.log('values', values);
+      }
     });
-    tg.CloudStorage.getItem('closureTime').then((data) => {
-      const closureDateCloud = data; // Извлекаем значение
-      console.log('closureDate from Cloud Storage:', closureDateCloud);
-    });
-
-    const cloudTest = tg.CloudStorage.getKeys();
-    console.log('cloudTest', cloudTest.getKeys());
-
+    // const closureDate = localStorage.getItem('closureTime');
 
     // console.log('closureDate', closureDate);
-    // console.log('closureDateCloud', closureDateCloud);
     // console.log(closureDate !== (null ||  undefined));
 
     if(closureDate !== (null ||  undefined)) {
