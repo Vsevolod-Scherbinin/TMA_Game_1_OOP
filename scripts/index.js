@@ -258,8 +258,10 @@ window.onload = async () => {
 
 window.addEventListener('unload', (evt) => {
   evt.preventDefault();
-  localStorage.setItem('closureTime', new Date());
-  localStorage.removeItem('DataFromDB');
-  user.saveUserDataDB();
+  user.saveUserDataDB()
+    .then(() => {
+      localStorage.setItem('closureTime', new Date());
+      localStorage.removeItem('DataFromDB');
+    });
 });
 // --------------- Window-End ---------------
