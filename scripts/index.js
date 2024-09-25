@@ -73,7 +73,7 @@ try {
       });
     }
 
-    tg.enableClosingConfirmation();
+    // tg.enableClosingConfirmation();
 
     user.getUserPhoto(tg.initDataUnsafe.user.id)
       .then((res) => {
