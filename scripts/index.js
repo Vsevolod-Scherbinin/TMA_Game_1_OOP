@@ -59,7 +59,7 @@ function click(e) {
 
 // --------------- MainClick-Start ---------------
 
-const tg = window.Telegram.WebApp;
+// const tg = window.Telegram.WebApp;
 console.log('tg', tg);
 
 try {
@@ -148,7 +148,7 @@ window.onload = async () => {
   // localStorage.clear();
   try {
     const closureDate = new Date();
-    tg.CloudStorage.setItem('closureTime', closureDate)
+    tg.CloudStorage.setItem('closureTime', closureDate);
     // .then(() => {
     //   console.log('Exit time saved successfully');
     // })
@@ -255,7 +255,7 @@ window.onload = async () => {
 
   const dbSave = setInterval(() => {
     user.saveUserDataDB();
-  }, 10*1000)
+  }, 15*1000)
 };
 
 // window.addEventListener('beforeunload', (evt) => {

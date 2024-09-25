@@ -22,31 +22,31 @@ function convertStringToNumber(str) {
 
 function offlineTimeCounter() {
   try {
-  const closureDate = localStorage.getItem('closureTime');
+    const closureDate = localStorage.getItem('closureTime');
 
-    // const closureDateCloud = window.Telegram.WebApp.CloudStorage.getItem('closureTime');
-    window.Telegram.WebApp.CloudStorage.getItem('closureTime', (data) => {
-      if (data) {
-        console.log('Retrieved data:', data);
-        // Доступ к значению closureTime
-        const closureTime = data['closureTime'];
-        console.log('Closure Time:', closureTime);
-      } else {
-        console.error('No data found for the specified keys.');
-      }
-    });
+    const closureDateCloud = tg.CloudStorage.getItem('closureTime');
+    // window.Telegram.WebApp.CloudStorage.getItem('closureTime', (data) => {
+    //   if (data) {
+    //     console.log('Retrieved data:', data);
+    //     // Доступ к значению closureTime
+    //     const closureTime = data['closureTime'];
+    //     console.log('Closure Time:', closureTime);
+    //   } else {
+    //     console.error('No data found for the specified keys.');
+    //   }
+    // });
 
-  console.log('closureDate', closureDate);
-  console.log('closureDateCloud', closureDateCloud);
-  console.log(closureDate !== (null ||  undefined));
+    console.log('closureDate', closureDate);
+    console.log('closureDateCloud', closureDateCloud);
+    console.log(closureDate !== (null ||  undefined));
 
-  if(closureDate !== (null ||  undefined)) {
-    const now = new Date();
-    const closureTime = new Date(closureDate);
-    const timeDelta = now - closureTime
-    const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
-    return timeDeltaInSeconds;
-  }
+    if(closureDate !== (null ||  undefined)) {
+      const now = new Date();
+      const closureTime = new Date(closureDate);
+      const timeDelta = now - closureTime
+      const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+      return timeDeltaInSeconds;
+    }
   } catch {}
 }
 

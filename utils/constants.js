@@ -1,4 +1,4 @@
-// const TMA = window.Telegram.WebApp;
+const tg = window.Telegram.WebApp;
 
 const BASE_URL = 'https://api.scherbinin.mesto.nomoredomains.club';
 // const BASE_URL = 'http://localhost:3200';
