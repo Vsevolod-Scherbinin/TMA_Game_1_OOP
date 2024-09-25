@@ -246,11 +246,12 @@ window.onload = async () => {
   }, 10*1000)
 };
 
-window.addEventListener('beforeunload', async (evt) => {
+window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
   user.lastClosure = new Date();
-  await user.saveUserDataDB();
+  user.saveUserDataDB();
   localStorage.clear();
   // localStorage.removeItem('DataFromDB');
+  localStorage.setItem('closureTime', new Date());
 });
 // --------------- Window-End ---------------
