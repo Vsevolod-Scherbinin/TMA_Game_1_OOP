@@ -24,16 +24,18 @@ function offlineTimeCounter() {
   try {
     const closureDate = localStorage.getItem('closureTime');
 
-    const closureDateCloud = tg.CloudStorage.getItem('closureTime');
+    // const closureDateCloud = tg.CloudStorage.getItem('closureTime');
 
     tg.CloudStorage.getItem('closureTime', (data) => {
-      // const closureDateCloud = data; // Извлекаем значение
-      console.log('data', data);
+      const closureDateCloud = data; // Извлекаем значение
+
+      console.log('closureDate from localStorage:', closureDate);
+      console.log('closureDate from Cloud Storage:', closureDateCloud);
   });
 
-    console.log('closureDate', closureDate);
-    console.log('closureDateCloud', closureDateCloud);
-    console.log(closureDate !== (null ||  undefined));
+    // console.log('closureDate', closureDate);
+    // console.log('closureDateCloud', closureDateCloud);
+    // console.log(closureDate !== (null ||  undefined));
 
     if(closureDate !== (null ||  undefined)) {
       const now = new Date();
