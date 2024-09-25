@@ -150,6 +150,8 @@ window.onload = async () => {
   // Сохранение времени выхода
 const exitTime = new Date().toISOString(); // Сохраняем время в ISO формате
 tg.CloudStorage.setItem('closureTime', exitTime, (result) => {
+  console.log('result', result);
+
   if (result) {
       console.log('Exit time saved successfully:', result);
   } else {
