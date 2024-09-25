@@ -98,7 +98,7 @@ class User {
     }
   }
 
-  saveUserDataDB() {
+  async saveUserDataDB() {
     const { friends, ...userDataWithoutFriends } = this;
 
     console.log('Autosave', userDataWithoutFriends);
