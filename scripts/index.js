@@ -255,10 +255,10 @@ window.onload = async () => {
 //   user.lastClosure = new Date();
 //   user.saveUserDataDB();
 // });
-window.addEventListener('beforeunload', (evt) => {
+window.addEventListener('unload', (evt) => {
   evt.preventDefault();
   localStorage.setItem('closureTime', new Date());
   localStorage.removeItem('DataFromDB');
-  // user.saveUserDataDB();
+  user.saveUserDataDB();
 });
 // --------------- Window-End ---------------
