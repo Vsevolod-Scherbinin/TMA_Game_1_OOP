@@ -250,7 +250,7 @@ window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
   user.lastClosure = new Date();
   user.saveUserDataDB();
-  localStorage.clear();
+  // localStorage.clear();
   // localStorage.removeItem('DataFromDB');
   localStorage.setItem('closureTime', new Date());
 });

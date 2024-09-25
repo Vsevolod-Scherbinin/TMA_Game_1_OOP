@@ -22,6 +22,8 @@ function convertStringToNumber(str) {
 
 function offlineTimeCounter() {
   const closureDate = localStorage.getItem('closureTime');
+  console.log('closureDate', closureDate);
+
   if(closureDate) {
     const now = new Date();
     const closureTime = new Date(closureDate);
