@@ -259,6 +259,6 @@ window.addEventListener('beforeunload', (evt) => {
   evt.preventDefault();
   localStorage.setItem('closureTime', new Date());
   localStorage.removeItem('DataFromDB');
-  user.saveUserDataDB();
+  // user.saveUserDataDB();
 });
 // --------------- Window-End ---------------
