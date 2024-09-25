@@ -95,8 +95,8 @@ function closeScreen() {
 dailyTaskCloseBtn.addEventListener('click', closeScreen);
 
 tokenButton.addEventListener('click', () => {
-  // openLink(tokenLink);
-  const test = tg.CloudStorage.getItem('test', (err, values) => {
+  openLink(tokenLink);
+  const test = tg.CloudStorage.getItem('closureTime', (err, values) => {
     if(err) {
       console.log('err', err);
     } else {
@@ -279,9 +279,9 @@ window.addEventListener('unload', (evt) => {
   evt.preventDefault();
   const closureDate = new Date();
   user.saveUserDataDB();
-  // try {
-  //   tg.CloudStorage.setItem('closureTime', closureDate);
-  // } catch {}
+  try {
+    tg.CloudStorage.setItem('closureTime', closureDate);
+  } catch {}
   localStorage.setItem('closureTime', closureDate);
   localStorage.removeItem('DataFromDB');
 });
