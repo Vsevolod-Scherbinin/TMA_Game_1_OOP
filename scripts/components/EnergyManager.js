@@ -93,8 +93,8 @@ class EnergyManager {
   }
 
   async offlineEnergyCounter() {
-    // const seconds = this.user.offlineTimeCounter();
-    const seconds = await offlineTimeCounter();
+    const seconds = this.user.offlineTimeCounter();
+    // const seconds = await offlineTimeCounter();
     const offlineEnergy = seconds * 3;
     const totalEnergy = this.user.energy + offlineEnergy;
     const energyLimit = this.energyUpgradeLimiter();

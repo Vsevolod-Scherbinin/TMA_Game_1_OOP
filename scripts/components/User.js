@@ -99,6 +99,7 @@ class User {
   }
 
   saveUserDataDB() {
+    this.lastClosure = new Date();
     const { friends, ...userDataWithoutFriends } = this;
 
     console.log('Autosave', userDataWithoutFriends);
@@ -147,15 +148,15 @@ class User {
     localStorage.setItem('DataFromDB', JSON.stringify(this));
   }
 
-  // offlineTimeCounter() {
-  //   if(this.lastClosure) {
-  //     const now = new Date();
-  //     const closureTime = new Date(this.lastClosure);
-  //     const timeDelta = now - closureTime
-  //     const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
-  //     return timeDeltaInSeconds;
-  //   }
-  // }
+  offlineTimeCounter() {
+    if(this.lastClosure) {
+      const now = new Date();
+      const closureTime = new Date(this.lastClosure);
+      const timeDelta = now - closureTime
+      const timeDeltaInSeconds = Math.floor(timeDelta / 1000);
+      return timeDeltaInSeconds;
+    }
+  }
 
   isFirstVisitToday() {
     const lastVisitDate = new Date(this.lastEntry).toLocaleDateString();
