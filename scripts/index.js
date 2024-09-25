@@ -148,7 +148,7 @@ window.onload = async () => {
   // localStorage.clear();
   try {
     const closureDate = new Date();
-    tg.CloudStorage.setItem('closureTime', closureDate);
+    await tg.CloudStorage.setItem('closureTime', closureDate);
     console.log('CloudSave', closureDate);
 
   } catch (error){console.log('error', error);
