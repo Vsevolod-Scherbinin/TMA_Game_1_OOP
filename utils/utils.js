@@ -24,16 +24,16 @@ function offlineTimeCounter() {
   try {
     let closureDate;
     const test = tg.CloudStorage.getItem('closureTime', (err, values) => {
-      if(err) {
-        console.log('err', err);
-      } else {
-        closureDate = values;
-        console.log('values', values);
+      if(err) { console.log('err', err); }
+      else {
+        return values;
+
       }
     });
     // const closureDate = localStorage.getItem('closureTime');
 
     console.log('closureDate', closureDate);
+    console.log('test', test);
     // console.log(closureDate !== (null ||  undefined));
 
     if(closureDate !== (null ||  undefined)) {
