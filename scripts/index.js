@@ -149,12 +149,6 @@ window.onload = async () => {
   try {
     const closureDate = new Date();
     tg.CloudStorage.setItem('closureTime', closureDate);
-    // .then(() => {
-    //   console.log('Exit time saved successfully');
-    // })
-    // .catch((error) => {
-    //   console.error('Error saving exit time:', error);
-    // });
   } catch (error){console.log('error', error);
   }
 
