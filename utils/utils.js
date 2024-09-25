@@ -21,9 +21,10 @@ function convertStringToNumber(str) {
 }
 
 function offlineTimeCounter() {
-  // const closureDate = localStorage.getItem('closureTime');
   try {
-    const closureDate = window.Telegram.WebApp.CloudStorage.getItem('closureTime');
+  const closureDate = localStorage.getItem('closureTime');
+
+    // const closureDate = window.Telegram.WebApp.CloudStorage.getItem('closureTime');
 
   console.log('closureDate', closureDate);
   console.log(closureDate !== (null ||  undefined));
