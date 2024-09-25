@@ -147,13 +147,15 @@ const currentDate = new Date().toLocaleDateString();
 // --------------- Window-Start ---------------
 window.onload = async () => {
   // localStorage.clear();
-  try {
-    const closureDate = new Date();
-    tg.CloudStorage.setItem('closureTime', closureDate);
-    console.log('CloudSave', closureDate);
-
-  } catch (error){console.log('error', error);
-  }
+  // Сохранение времени выхода
+const exitTime = new Date().toISOString(); // Сохраняем время в ISO формате
+tg.CloudStorage.setItem('closureTime', exitTime)
+    .then(() => {
+        console.log('Exit time saved successfully');
+    })
+    .catch((error) => {
+        console.error('Error saving exit time:', error);
+    });
 
   try {
     if(tg.initDataUnsafe.user.first_name.length>0) {
