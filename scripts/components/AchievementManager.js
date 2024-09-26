@@ -16,7 +16,7 @@ class AchievementManager {
     achievementCardElement.querySelector('.wideCard__description').textContent = levelData.description;
     achievementCardElement.querySelector('.wideCard__effectIcon').src = elem.effectIcon;
     // achievementCardElement.querySelector('.wideCard__effect').textContent = `+${levelData.effect}`;
-    achievementCardElement.querySelector('.wideCard__effect').textContent = `+${formatNumber(levelData.effect)}`;
+    achievementCardElement.querySelector('.wideCard__effect').textContent = `${formatNumber(levelData.effect)}`;
     return achievementCardElement;
   }
 
