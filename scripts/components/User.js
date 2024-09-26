@@ -233,11 +233,11 @@ class User {
         body: JSON.stringify({ userId }),
       });
       const photo = await response.json();
-      console.log('photo', photo.file_path);
-      const userPhotoUrl = `https://api.telegram.org/file/bot6750879766:AAFr6iUUudfD_zxG6RE87VbRblR5uRrSTao/${photo.file_path}`;
-      return userPhotoUrl;
-      // avatarField.src = userPhotoUrl;
-
+      if(photo !== undefined) {
+        console.log('photo', photo.file_path);
+        const userPhotoUrl = `https://api.telegram.org/file/bot6750879766:AAFr6iUUudfD_zxG6RE87VbRblR5uRrSTao/${photo.file_path}`;
+        return userPhotoUrl;
+      }
     } catch (error) {
       console.error('Ошибка при загрузке фотографии:', error);
     }
