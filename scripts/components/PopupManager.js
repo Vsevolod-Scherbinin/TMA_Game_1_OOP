@@ -40,38 +40,43 @@ class PopupManager {
   }
 
   achievementsPopupOpen(obj, level) {
-    const objLevel = obj.levels.find(obj => obj.level === level);
-    const iconLevel = obj.levels.find(obj => obj.level === (level +1));
+    const number = document.querySelectorAll('.popup_type_achievements').length;
+    console.log('number', number);
 
-    const newPopup = this.popupTemplate.cloneNode(true);
-    newPopup.querySelector('.popup').classList.add('popup_type_achievememts');
-    newPopup.querySelector('.popup__title').textContent = obj.title;
-    newPopup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumber(objLevel.effect)}`;
-    newPopup.querySelector('.popup__image').src = iconLevel.mainIcon;
-    // console.log(objLevel.effect);
-    const card = document.querySelector(`.wideCard_id_${obj.id}`);
-    const submit = () => {
-      this.achievementManager.achievementGathering(obj, level+1);
-      // if (obj.metric === 'energyLimit') {
-      //   user.energyLimit = this.user.energyLimit + objLevel.effect
-      // } else {
-        user.score = this.user.score + objLevel.effect;
-        this.user.cummulativeIncome = this.user.cummulativeIncome + objLevel.effect;
-      // }
+      if(number == 0) {
+        const objLevel = obj.levels.find(obj => obj.level === level);
+        const iconLevel = obj.levels.find(obj => obj.level === (level +1));
 
-      const index = this.user.activeAchievements.indexOf(this.user.activeAchievements.find(object => object.id === obj.id));
-      this.user.activeAchievements.splice(index, 1);
-      // this.user.activeAchievements = this.user.activeAchievements.filter(object => obj.id !== )
-      this.user.saveUserDataLocal();
-      this.user.saveUserDataDB();
-      this.cardReplacer();
-      this.achievementManager.activeOnloadCorrection();
-      this.achievementManager.achievementsLevelCheck();
-      this.scoreRenderer();
-      document.querySelector('.popup_type_achievememts').remove();
+        const newPopup = this.popupTemplate.cloneNode(true);
+        newPopup.querySelector('.popup').classList.add('popup_type_achievements');
+        newPopup.querySelector('.popup__title').textContent = obj.title;
+        newPopup.querySelector('.popup__message').textContent = `${objLevel.description} и получите $${formatNumber(objLevel.effect)}`;
+        newPopup.querySelector('.popup__image').src = iconLevel.mainIcon;
+        // console.log(objLevel.effect);
+        const card = document.querySelector(`.wideCard_id_${obj.id}`);
+        const submit = () => {
+          this.achievementManager.achievementGathering(obj, level+1);
+          // if (obj.metric === 'energyLimit') {
+          //   user.energyLimit = this.user.energyLimit + objLevel.effect
+          // } else {
+            user.score = this.user.score + objLevel.effect;
+            this.user.cummulativeIncome = this.user.cummulativeIncome + objLevel.effect;
+          // }
+
+          const index = this.user.activeAchievements.indexOf(this.user.activeAchievements.find(object => object.id === obj.id));
+          this.user.activeAchievements.splice(index, 1);
+          // this.user.activeAchievements = this.user.activeAchievements.filter(object => obj.id !== )
+          this.user.saveUserDataLocal();
+          this.user.saveUserDataDB();
+          this.cardReplacer();
+          this.achievementManager.activeOnloadCorrection();
+          this.achievementManager.achievementsLevelCheck();
+          this.scoreRenderer();
+          document.querySelector('.popup_type_achievements').remove();
+        }
+        newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
+        page.append(newPopup);
     }
-    newPopup.querySelector('.popup__button').addEventListener('click', submit, { once: true });
-    page.append(newPopup);
   }
 
   offlineIncomePopupOpen(offlinePassiveIncome) {

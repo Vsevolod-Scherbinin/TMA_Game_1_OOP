@@ -3,7 +3,7 @@ class AchievementManager {
     this.user = user;
     this.wideCardTemplate = document.querySelector('#wideCard').content;
     this.achievementCardsField = document.querySelector('.achievementsScreen__cardField');
-    this.user.activeAchievements = []
+    // this.user.activeAchievements = [];
   }
 
   _createAchievementsCard(elem, level) {
@@ -51,20 +51,25 @@ class AchievementManager {
           card.classList.add('wideCard_active');
           card.addEventListener('click', () => {
             popupManager.achievementsPopupOpen(object, availableLevel-1);
-          });
+          }, { once: true });
         }
       } else {
         if(isAvailable) {
           card.classList.add('wideCard_active');
           card.addEventListener('click', () => {
             popupManager.achievementsPopupOpen(object, availableLevel-1);
-          });
+          }, { once: true });
         }
       }
     })
   }
 
   achievementsLevelCheck() {
+    // Active Ach-s Correction
+    // this.user.activeAchievements.forEach((ach) => {
+    //   const available = this.user.achievements.find(obj => obj.id === ach.id);
+    //   ach.level = available.level;
+    // });
     // energyAchievementLimiter();
     achievements.forEach((object) => {
       // console.log(energyLimiterTotal());
@@ -80,28 +85,34 @@ class AchievementManager {
         lessLimits.push(obj.limit);
       });
       // console.log('lessLimits', lessLimits);
-
       const isGathered = this.user.gatheredAchievements.some(obj => obj.id === object.id);
 
+      let activeLevel = 0;
       const isActive = this.user.activeAchievements.some(obj => obj.id === object.id);
-
-      // console.log('isActive', isActive);
+      isActive && (activeLevel = this.user.activeAchievements.find(obj => obj.id === object.id).level);
 
       const userAch = this.user.achievements.find(obj => obj.id === object.id);
       const card = this.achievementCardsField.querySelector(`.wideCard_id_${object.id}`);
-      // const index = this.user.activeAchievements.indexOf(this.user.activeAchievements.find(obj => obj.id === object.id));
-      // console.log('index', index);
       if(lessLevels.length) {
         if(!isGathered) {
           userAch.level = 1;
-          this._achievementsContentRenderer(card, object, userAch.level-1, userAch.level);
+          card.classList.add('wideCard_active');
           if(!isActive) {
-            this.user.activeAchievements.push({id: object.id});
-            card.classList.add('wideCard_active');
+            // console.log('Av !G !Act', object.id);
+
+            this.user.activeAchievements.push({id: object.id, level: userAch.level});
+            // card.classList.add('wideCard_active');
             card.addEventListener('click', () => {
               // console.log('Test !isGathered');
               popupManager.achievementsPopupOpen(object, userAch.level-1);
             });
+            this._achievementsContentRenderer(card, object, userAch.level-1, userAch.level);
+          } else {
+            // console.log('Av !G Act', object.id);
+            card.addEventListener('click', () => {
+              popupManager.achievementsPopupOpen(object, activeLevel-1);
+            });
+            this._achievementsContentRenderer(card, object, activeLevel-1, activeLevel);
           }
         } else {
           const gatheredLevel = this.user.gatheredAchievements.find(obj => obj.id === object.id).level;
@@ -110,23 +121,46 @@ class AchievementManager {
           if(gatheredLevel < availableLevel) {
             userAch.level = gatheredLevel + 1;
             this._achievementsContentRenderer(card, object, gatheredLevel, userAch.level);
-            if(!isActive) {
-              this.user.activeAchievements.push({id: object.id});
+            card.classList.add('wideCard_active');
+          if(!isActive) {
+            // console.log('Av !G !Act', object.id);
+
+            this.user.activeAchievements.push({id: object.id, level: userAch.level});
+            // card.classList.add('wideCard_active');
+            card.addEventListener('click', () => {
+              // console.log('Test !isGathered');
+              popupManager.achievementsPopupOpen(object, userAch.level-1);
+            }, { once: true });
+            this._achievementsContentRenderer(card, object, userAch.level-1, userAch.level);
+          } else {
+            card.addEventListener('click', () => {
+              popupManager.achievementsPopupOpen(object, activeLevel-1);
+            }, { once: true });
+            this._achievementsContentRenderer(card, object, activeLevel-1, activeLevel);
+          }
+          } else {
+            // console.log('Av<G', object.id);
+            if(isActive) {
               card.classList.add('wideCard_active');
               card.addEventListener('click', () => {
-                console.log('Test !isGathered');
-                popupManager.achievementsPopupOpen(object, userAch.level-1);
-              });
+                popupManager.achievementsPopupOpen(object, activeLevel-1);
+              }, { once: true });
+              this._achievementsContentRenderer(card, object, activeLevel, activeLevel);
+            } else {
+              card.classList.remove('wideCard_active');
+              this._achievementsContentRenderer(card, object, gatheredLevel, userAch.level);
             }
-          } else {
-            card.classList.remove('wideCard_active');
-            this._achievementsContentRenderer(card, object, gatheredLevel, userAch.level);
           }
         }
       } else {
-        userAch.level = 0;
-        this._achievementsContentRenderer(card, object, userAch.level, userAch.level);
-
+        if(isActive) {
+          // console.log('!Av Act', object.id);
+          this._achievementsContentRenderer(card, object, activeLevel, activeLevel);
+        } else {
+          // console.log('!Av !Act', object.id);
+          userAch.level = 0;
+          this._achievementsContentRenderer(card, object, userAch.level, userAch.level);
+        }
       }
     });
   };
