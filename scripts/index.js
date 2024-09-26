@@ -77,6 +77,8 @@ try {
 
     user.getUserPhoto(tg.initDataUnsafe.user.id)
       .then((res) => {
+        console.log('res', res);
+
         res.ok && (avatarField.src = res);
       });
   }
