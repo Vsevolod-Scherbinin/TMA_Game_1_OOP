@@ -46,5 +46,8 @@ const tokenLink = 'https://t.me/+cU6JKcOAFuphZTli';
 
 let dailyEnterRewards = [];
 
+const preloader = document.querySelector('.preloaderScreen');
+
+
 // let score = 0;  // make condition of loaded data
 // let delta = 1;  // make condition of loaded data

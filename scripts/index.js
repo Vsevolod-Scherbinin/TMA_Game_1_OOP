@@ -145,6 +145,9 @@ const currentDate = new Date().toLocaleDateString();
 
 // --------------- Window-Start ---------------
 window.onload = async () => {
+  setTimeout(() => {
+    document.readyState === 'complete' && preloader.remove();
+  }, 2000);
   // localStorage.clear();
 // tg.CloudStorage.setItem('test', 'test', (result) => {
 //   console.log('result', result);
@@ -275,7 +278,7 @@ window.addEventListener('beforeunload', (evt) => {
     tg.CloudStorage.setItem('closureTime', closureDate);
   } catch {}
   localStorage.removeItem('DataFromDB');
-  user.saveUserDataDB();
+  // user.saveUserDataDB();
 });
 
 // window.addEventListener('unload', (evt) => {
