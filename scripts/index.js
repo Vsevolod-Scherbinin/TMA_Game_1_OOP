@@ -187,12 +187,13 @@ window.onload = async () => {
     // user.friends = [];
   // ServiceFunctions-End
 
+  dailyTasksManager.dailyEnterRewardSetter();
+  dailyTasksManager.entryStreakCounter();
+
   if(user.isFirstVisitToday()) {
     user.tasks = [];
   }
 
-  dailyTasksManager.dailyEnterRewardSetter();
-  dailyTasksManager.entryStreakCounter();
   const registryDelay = dailyTasksManager.registryDelayCounter();
   // console.log('registryDelay', registryDelay);
 

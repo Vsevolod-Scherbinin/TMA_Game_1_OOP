@@ -178,12 +178,16 @@ class DailyTasksManager {
 
   entryStreakCounter() {
     const today = new Date();
+    console.log('today', today);
+    console.log('this.user.lastEntry', this.user.lastEntry);
 
-    if((user.lastEntry === '') || (today - new Date(this.user.lastEntry) > 86400000)) {
+    if((this.user.lastEntry === '') || (today - new Date(this.user.lastEntry) > 86400000)) {
+      console.log('Cond 1');
       this.user.entryStreak = 1;
-      popupManager.daysPopupOpen(user.entryStreak);
+      popupManager.daysPopupOpen(this.user.entryStreak);
       this.saveNewEntryDate(today);
     } else if ((today.toLocaleDateString() !== new Date(this.user.lastEntry).toLocaleDateString()) && (today - new Date(this.user.lastEntry) <= 86400000)) {
+      console.log('Cond 2');
       this.user.entryStreak++;
       const reward = dailyEnterRewards.find(obj => obj.day === this.user.entryStreak);
       popupManager.daysPopupOpen(user.entryStreak);
