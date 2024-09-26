@@ -11,3 +11,9 @@
   max-height: 50vh;
   gap: 20px;
 }
+
+@media screen and (max-width: 669px) {
+  .mainScreen__frame {
+    max-height: 45vh;
+  }
+}

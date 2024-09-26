@@ -9,6 +9,6 @@
   align-items: center;
   gap: 7px;
   background: #1D1E20;
-  border-bottom: 1px solid #2F3034;
+  border: 1px solid #2F3034;
   position: relative;
 }
