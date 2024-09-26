@@ -61,7 +61,7 @@ class IncomeManager {
   }
 
   scoreRenderer() {
-    this.scoreField.textContent = formatNumber(user.score);
+    this.scoreField.textContent = formatScoreNumber(user.score);
   }
 
 }

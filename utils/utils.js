@@ -20,7 +20,7 @@ function convertStringToNumber(str) {
   return number;
 }
 
-const formatScore = (number) => {
+const formatScoreNumber = (number) => {
   return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
