@@ -77,9 +77,7 @@ try {
 
     user.getUserPhoto(tg.initDataUnsafe.user.id)
       .then((res) => {
-        console.log('res', res);
-
-        res.ok && (avatarField.src = res);
+        !res.includes('undefined') && (avatarField.src = res);
       });
   }
 } catch {}
