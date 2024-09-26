@@ -67,7 +67,7 @@ try {
     console.log('tgData', tg.initDataUnsafe);
     nameField.textContent = tg.initDataUnsafe.user.first_name;
     // const userPhoto = user.getUserPhoto(tg.initDataUnsafe.user.id);
-    if(tg.initDataUnsafe.user.id !== 180799659 || 653832788) {
+    if(tg.initDataUnsafe.user.id !== (180799659 || 653832788)) {
       document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
       });
