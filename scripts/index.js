@@ -237,6 +237,7 @@ window.onload = async () => {
   dailyTasksManager.newTasksAmountRenderer();
 
   user.saveUserDataLocal();
+  user.saveUserDataDB();
 
   let passiveIncomeTimer = setInterval(() => {
     incomeManager.passiveOnlineIncomeCounter();

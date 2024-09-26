@@ -137,7 +137,7 @@ class DailyTasksManager {
       const channel = elem.type === 'channel';
       channel && (card.addEventListener('click', () => {
         // this.subscribe(elem.channelLink);
-        openLink(elem.channelLink)
+        openLink(elem.channelLink);
       }))
 
       const registry = elem.type === 'registry';
@@ -145,6 +145,7 @@ class DailyTasksManager {
         // this.subscribe(elem.channelLink);
         openLink(elem.link);
         this.user.registryTime = new Date();
+        this.user.saveUserDataDB();
       }))
     }
   }

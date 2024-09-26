@@ -4,6 +4,7 @@ class IncomeManager {
     this.scoreField = document.querySelector('.scoreArea__score');
     this.deltaIncomeScoreField = document.querySelector('.income_type_active').querySelector('.income__score');
     this.passiveIncomeScoreField = document.querySelector('.income_type_passive').querySelector('.income__score');
+    this.epsilon = 0;
   }
 
   deltaCounter() {
@@ -29,8 +30,15 @@ class IncomeManager {
   passiveOnlineIncomeCounter() {
     if(timer < onlinePassiveTimeLimit) {
       const passiveIncome = this.passiveIncomeCounter();
-      this.user.score = this.user.score + Math.round(passiveIncome / 3600);
-      this.user.cummulativeIncome = this.user.cummulativeIncome + Math.round(passiveIncome / 3600);
+      this.epsilon = this.epsilon + passiveIncome / 3600;
+      if(this.epsilon > 1) {
+        this.user.score = Math.round(this.user.score + this.epsilon);
+        this.user.cummulativeIncome = Math.round(this.user.cummulativeIncome + this.epsilon);
+
+        this.epsilon = 0;
+      }
+      // this.user.score = this.user.score + Math.round(passiveIncome / 3600);
+      // this.user.cummulativeIncome = this.user.cummulativeIncome + Math.round(passiveIncome / 3600);
 
       timer++;
     }
