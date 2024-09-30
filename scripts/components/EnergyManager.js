@@ -49,7 +49,8 @@ class EnergyManager {
 
   energyRecovery() {
     if(this.user.energy < this.energyUpgradeLimiter()) {
-      this.user.energy = this.user.energy + 3;
+      this.user.energy = this.user.energy + 1;
+      // this.user.energy = this.user.energy + 3;
       if(this.user.energy >= this.energyUpgradeLimiter()) {
         this.user.energy = this.energyUpgradeLimiter();
       }
