@@ -1,6 +1,6 @@
 const dailyTasks = [
   {
-    date: '24.09.2024',
+    date: '30.09.2024',
     tasks: [
       {
         id: 1,
@@ -33,7 +33,7 @@ const dailyTasks = [
     ]
   },
   {
-    date: '25.09.2024',
+    date: '01.10.2024',
     tasks: [
       {
         id: 1,
@@ -66,7 +66,7 @@ const dailyTasks = [
     ]
   },
   {
-    date: '26.09.2024',
+    date: '02.10.2024',
     tasks: [
       {
         id: 1,
@@ -99,7 +99,7 @@ const dailyTasks = [
     ]
   },
   {
-    date: '27.09.2024',
+    date: '03.10.2024',
     tasks: [
       {
         id: 1,

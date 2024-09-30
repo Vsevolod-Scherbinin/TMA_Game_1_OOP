@@ -177,10 +177,70 @@ class DailyTasksManager {
     this.user.lastEntry = new Date();
   }
 
+  // getDayOfYear(date) {
+  //   const start = new Date(date.getFullYear(), 0); // Начало года
+  //   const diff = date - start; // Разница в миллисекундах
+  //   const oneDay = 1000 * 60 * 60 * 24; // Количество миллисекунд в одном дне
+  //   return Math.floor(diff / oneDay) + 1; // Возвращаем номер дня года
+  // }
+
+  // entryStreakCounter() {
+  //   const today = new Date();
+  //   const todayString = today.toISOString().split('T')[0];
+
+  //   const day = new Date('2024-12-31T07:21:55.116Z');
+
+  //   const todayNumber = this.getDayOfYear(today);
+  //   const dayNumber = this.getDayOfYear(day);
+  //   console.log('todayNumber', todayNumber);
+  //   console.log('dayNumber', dayNumber);
+
+  //   if (this.user.lastEntry === '') {
+  //     // console.log('First entry');
+  //     this.user.entryStreak = 1;
+  //     popupManager.daysPopupOpen(this.user.entryStreak);
+  //     this.saveNewEntryDate(today);
+  //   } else {
+  //     const lastEntryDate = new Date(this.user.lastEntry);
+  //     const lastEntryString = lastEntryDate.toISOString().split('T')[0];
+  //     console.log('todayString', todayString);
+  //     console.log('lastEntryString', lastEntryString);
+
+
+  //     const oneDayInMillis = 86400000;
+  //     const daysDifference = Math.floor((today - lastEntryDate) / oneDayInMillis);
+  //     console.log('daysDifference', daysDifference);
+
+  //     if (daysDifference > 1) {
+  //         // console.log('Missed a day');
+  //         this.user.entryStreak = 1;
+  //         popupManager.daysPopupOpen(this.user.entryStreak);
+  //         this.saveNewEntryDate(today);
+  //     } else if (daysDifference === 1 || (daysDifference === 0 && todayString !== lastEntryString)) {
+  //         console.log('New day entry');
+  //         this.user.entryStreak++;
+  //         popupManager.daysPopupOpen(this.user.entryStreak);
+  //         this.saveNewEntryDate(today);
+  //     } else {
+  //         console.log('Same day entry, no change');
+  //     }
+  //   }
+  // }
+
   entryStreakCounter() {
     const today = new Date();
+    const todayString = today.toISOString().split('T')[0];
+    const lastEntryDate = new Date(this.user.lastEntry);
+    const lastEntryString = lastEntryDate.toISOString().split('T')[0];
+    const oneDayInMillis = 86400000; // 24 часа в миллисекундах
+    const daysDifference = (today - lastEntryDate) / oneDayInMillis;
+
     console.log('today', today);
-    console.log('this.user.lastEntry', this.user.lastEntry);
+    console.log('todayString', todayString);
+    console.log('lastEntryDate', lastEntryDate);
+    console.log('lastEntryString', lastEntryString);
+    console.log('daysDifference', daysDifference);
+
 
     if((this.user.lastEntry === '') || (today - new Date(this.user.lastEntry) > 86400000)) {
       console.log('Cond 1');
