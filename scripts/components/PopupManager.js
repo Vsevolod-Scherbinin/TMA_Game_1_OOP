@@ -140,16 +140,17 @@ class PopupManager {
     page.append(newPopup);
   }
 
-  friendsPopupOpen(reward, card) {
+  friendsPopupOpen(reward, card, cardId) {
+    const cardImage = card.querySelector('.wideCard__icon').src;
     const newPopup = this.popupTemplate.cloneNode(true);
     newPopup.querySelector('.popup').classList.add('popup_type_friend');
     newPopup.querySelector('.popup__title').textContent = 'Поздравляем!';
     newPopup.querySelector('.popup__message').textContent = `Вы выполнили задание`;
-    newPopup.querySelector('.popup__image').src = './images/done.png';
+    newPopup.querySelector('.popup__image').src = cardImage;
     const submit = () => {
       this.user.score = this.user.score + reward;
-      console.log(this.user.score);
       this.user.cummulativeIncome = this.user.cummulativeIncome + reward;
+      !this.user.friendsGathered.some(obj => obj.id === cardId) && this.user.friendsGathered.push({id: cardId});
       this.user.saveUserDataLocal();
       this.user.saveUserDataDB();
       incomeManager.scoreRenderer();

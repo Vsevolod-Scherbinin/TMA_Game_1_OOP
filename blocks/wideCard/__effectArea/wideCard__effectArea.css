@@ -4,9 +4,15 @@
   width: 64px;
   height: 64px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 4px;
   position: absolute;
   right: 8px;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
 }

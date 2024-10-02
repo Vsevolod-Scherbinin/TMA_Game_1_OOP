@@ -137,7 +137,7 @@ inviteFriendBtn.addEventListener('click', () => {
       user.invitedToday = today;
       // localStorage.setItem('invited', today);
       dailyTasksManager.friendCardToggle();
-      achievementManager.friendsAmountCheck();
+      friendsManager.friendsAmountCheck();
     });
 })
 

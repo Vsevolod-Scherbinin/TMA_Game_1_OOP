@@ -23,6 +23,7 @@ class User {
     activeAchievements,
     referenceBonus,
     friends,
+    friendsGathered,
     channels,
     registryTime,
     invitedToday,
@@ -48,6 +49,7 @@ class User {
     this.activeAchievements = activeAchievements,
     this.referenceBonus = referenceBonus;
     this.friends = friends;
+    this.friendsGathered = friendsGathered;
     this.channels = channels;
     this.registryTime = registryTime;
     this.invitedToday = invitedToday;

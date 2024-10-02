@@ -122,6 +122,7 @@
 @import url(../blocks/wideCard/__description/wideCard__description.css);
 @import url(../blocks/wideCard/__effectIcon/wideCard__effectIcon.css);
 @import url(../blocks/wideCard/__info/wideCard__info.css);
+@import url(../blocks/wideCard/__statusIcon/wideCard__statusIcon.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_inactive/popup_inactive.css);
