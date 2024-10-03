@@ -193,10 +193,10 @@ window.onload = async () => {
   dailyTasksManager.dailyEnterRewardSetter();
   dailyTasksManager.entryStreakCounter();
 
-  if(user.isFirstVisitToday()) {
-    console.log(user.isFirstVisitToday());
+  console.log(user.isFirstVisitToday());
 
-    user.tasks.length = 0;
+  if(user.isFirstVisitToday()) {
+    user.tasks.splice(0, user.tasks.length);
   }
 
   const registryDelay = dailyTasksManager.registryDelayCounter();
