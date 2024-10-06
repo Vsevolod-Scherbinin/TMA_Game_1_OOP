@@ -161,6 +161,8 @@ class User {
   }
 
   isFirstVisitToday() {
+    console.log('this.lastEntry', this.lastEntry);
+
     const lastVisitDate = new Date(this.lastEntry).toLocaleDateString();
     const today = new Date().toLocaleDateString();
 
