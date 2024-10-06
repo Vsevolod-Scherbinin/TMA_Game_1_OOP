@@ -164,6 +164,10 @@ class User {
     const lastVisitDate = new Date(this.lastEntry).toLocaleDateString();
     const today = new Date().toLocaleDateString();
 
+    console.log('lastVisitDate', lastVisitDate);
+    console.log('today', today);
+
+
     if (!lastVisitDate || lastVisitDate !== today) {
       this.lastEntry = new Date();
       return true; // Первое посещение за день
