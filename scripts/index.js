@@ -193,16 +193,13 @@ window.onload = async () => {
   dailyTasksManager.dailyEnterRewardSetter();
   dailyTasksManager.entryStreakCounter();
 
-  console.log(user.isFirstVisitToday());
+  const firstVisitToday = user.isFirstVisitToday();
+  console.log('firstVisitToday', firstVisitToday);
 
-  if(user.isFirstVisitToday()) {
+  if(firstVisitToday) {
     user.tasks.splice(0, user.tasks.length);
   }
 
-  const registryDelay = dailyTasksManager.registryDelayCounter();
-  // console.log('registryDelay', registryDelay);
-
-  // dailyTasksManager.entryStreakCounter('2024-09-09T07:13:20.936Z');
   const offlinePassiveIncome = await incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
 
