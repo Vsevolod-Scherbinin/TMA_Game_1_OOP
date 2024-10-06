@@ -166,8 +166,14 @@ window.onload = async () => {
       await user.loadUserDataDB(tg.initDataUnsafe.user.id);
     }
   // } catch {}
-} catch {await user.loadUserDataDB('180799659')}
+  } catch {await user.loadUserDataDB('180799659')}
 
+  const firstVisitToday = user.isFirstVisitToday();
+  console.log('firstVisitToday', firstVisitToday);
+
+  if(firstVisitToday) {
+    user.tasks.splice(0, user.tasks.length);
+  }
   screenSwitcher.screenSwitch();
 
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
@@ -192,13 +198,6 @@ window.onload = async () => {
 
   dailyTasksManager.dailyEnterRewardSetter();
   dailyTasksManager.entryStreakCounter();
-
-  const firstVisitToday = user.isFirstVisitToday();
-  console.log('firstVisitToday', firstVisitToday);
-
-  if(firstVisitToday) {
-    user.tasks.splice(0, user.tasks.length);
-  }
 
   const offlinePassiveIncome = await incomeManager.passiveOfflineIncomeCounter();
   offlinePassiveIncome > 0 && popupManager.offlineIncomePopupOpen(offlinePassiveIncome);
