@@ -209,10 +209,12 @@ class DailyTasksManager {
 
     if (this.user.lastEntry === '' || daysDifference > 1) {
       this.user.entryStreak = 1;
+      this.user.tasks.splice(0, user.tasks.length);
       popupManager.daysPopupOpen(this.user.entryStreak);
       this.saveNewEntryDate(today);
     } else if (daysDifference === 1) {
       this.user.entryStreak++;
+      this.user.tasks.splice(0, user.tasks.length);
       popupManager.daysPopupOpen(this.user.entryStreak);
       this.saveNewEntryDate(today);
     }

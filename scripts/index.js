@@ -168,12 +168,12 @@ window.onload = async () => {
   // } catch {}
   } catch {await user.loadUserDataDB('180799659')}
 
-  const firstVisitToday = user.isFirstVisitToday();
-  console.log('firstVisitToday', firstVisitToday);
+  // const firstVisitToday = user.isFirstVisitToday();
+  // console.log('firstVisitToday', firstVisitToday);
 
-  if(firstVisitToday) {
-    user.tasks.splice(0, user.tasks.length);
-  }
+  // if(firstVisitToday) {
+  //   user.tasks.splice(0, user.tasks.length);
+  // }
   screenSwitcher.screenSwitch();
 
   const dbData = JSON.parse(localStorage.getItem('DataFromDB'));
