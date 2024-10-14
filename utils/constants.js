@@ -1,9 +1,11 @@
 const tg = window.Telegram.WebApp;
 
+const passiveOfflineIncomeHoursLimit = 3; // количество часов офлайн, за которые начисляется доход
+const energyDelta = 1;
+
 const BASE_URL = 'https://api.scherbinin.mesto.nomoredomains.club';
 // const BASE_URL = 'http://localhost:3200';
 
-const passiveOfflineIncomeHoursLimit = 3;
 const onlinePassiveTimeLimit = 3600 * passiveOfflineIncomeHoursLimit;
 
 const nameField = document.querySelector('.userBar__userName');

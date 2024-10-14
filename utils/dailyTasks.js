@@ -1,6 +1,6 @@
 const dailyTasks = [
   {
-    date: '03.10.2024',
+    date: '14.10.2024',
     tasks: [
       {
         id: 1,
@@ -33,7 +33,7 @@ const dailyTasks = [
     ]
   },
   {
-    date: '04.10.2024',
+    date: '15.10.2024',
     tasks: [
       {
         id: 1,
@@ -64,9 +64,8 @@ const dailyTasks = [
         effect: 30000,
       },
     ]
-  },
-  {
-    date: '05.10.2024',
+  },{
+    date: '16.10.2024',
     tasks: [
       {
         id: 1,
@@ -97,9 +96,8 @@ const dailyTasks = [
         effect: 30000,
       },
     ]
-  },
-  {
-    date: '06.10.2024',
+  },{
+    date: '17.10.2024',
     tasks: [
       {
         id: 1,
@@ -130,9 +128,8 @@ const dailyTasks = [
         effect: 30000,
       },
     ]
-  },
-  {
-    date: '07.10.2024',
+  },{
+    date: '18.10.2024',
     tasks: [
       {
         id: 1,
@@ -163,75 +160,8 @@ const dailyTasks = [
         effect: 30000,
       },
     ]
-  },
-  {
-    date: '08.10.2024',
-    tasks: [
-      {
-        id: 1,
-        type: 'friend',
-        // mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
-        mainIcon: './images/achievement-icon-friends-gold.png',
-        title: "Пригласите в игру 1 друга",
-        effectIcon: "./images/coin.png",
-        effect: 10000,
-      },
-      {
-        id: 2,
-        type: 'channel',
-        mainIcon: './images/task-icon-channel.png',
-        channelId: -1002493343663,
-        channelLink: 'https://t.me/+cU6JKcOAFuphZTli',
-        title: "Подпишитесь на канал",
-        effectIcon: "./images/coin.png",
-        effect: 20000,
-      },
-      {
-        id: 3,
-        type: 'registry',
-        mainIcon: './images/task-icon-channel.png',
-        link: 'https://ya.ru',
-        title: "Зарегистрируйтесь на сайте",
-        effectIcon: "./images/coin.png",
-        effect: 30000,
-      },
-    ]
-  },
-  {
-    date: '09.10.2024',
-    tasks: [
-      {
-        id: 1,
-        type: 'friend',
-        // mainIcon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
-        mainIcon: './images/achievement-icon-friends-gold.png',
-        title: "Пригласите в игру 1 друга",
-        effectIcon: "./images/coin.png",
-        effect: 10000,
-      },
-      {
-        id: 2,
-        type: 'channel',
-        mainIcon: './images/task-icon-channel.png',
-        channelId: -1002493343663,
-        channelLink: 'https://t.me/+cU6JKcOAFuphZTli',
-        title: "Подпишитесь на канал",
-        effectIcon: "./images/coin.png",
-        effect: 20000,
-      },
-      {
-        id: 3,
-        type: 'registry',
-        mainIcon: './images/task-icon-channel.png',
-        link: 'https://ya.ru',
-        title: "Зарегистрируйтесь на сайте",
-        effectIcon: "./images/coin.png",
-        effect: 30000,
-      },
-    ]
-  },
-  {
-    date: '10.10.2024',
+  },{
+    date: '19.10.2024',
     tasks: [
       {
         id: 1,
