@@ -3,8 +3,8 @@ const tg = window.Telegram.WebApp;
 const passiveOfflineIncomeHoursLimit = 3; // количество часов офлайн, за которые начисляется доход
 const energyDelta = 1;
 
-const BASE_URL = 'https://api.scherbinin.mesto.nomoredomains.club';
-// const BASE_URL = 'http://localhost:3200';
+// const BASE_URL = 'https://api.scherbinin.mesto.nomoredomains.club';
+const BASE_URL = 'http://localhost:3200';
 
 const onlinePassiveTimeLimit = 3600 * passiveOfflineIncomeHoursLimit;
 
@@ -12,14 +12,15 @@ const nameField = document.querySelector('.userBar__userName');
 const avatarField = document.querySelector('.userBar__userAvatar');
 
 const page = document.querySelector('.page');
-const btnMain = document.querySelector('.mainScreen__button');
+const btnMain = document.querySelector('.slots');
+let rolling = false;
+// const btnMain = document.querySelector('.mainScreen__button');
 // const scoreDisplay = document.querySelector('.mainScreen__deltaAnimDisplay');
 
 const navSection = document.querySelector('.navigation');
 
 const tasksButton = document.querySelector('.tasksButton');
 const newTasksIcon = document.querySelector('.tasksButton__newTasksCount');
-
 
 const dailyTaskScreen = document.querySelector('.dailyTasksScreen');
 const dailyTaskCloseBtn = document.querySelector('.dailyTasksScreen__closeButton');

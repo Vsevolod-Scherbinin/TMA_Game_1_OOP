@@ -9,25 +9,25 @@ class LevelManager {
     this.c = 10;  //Если a<100, c - число, которое нужно прибавить, чтобы 1-й уровень заканчивался на 100 очках.
   }
 
-  _mainButtonChanger() {
-    this.user.level >= 1 && (this.btnMain.style.backgroundImage = `url('./images/main-button.png')`);
-    this.user.level >= 10 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${10}lvl.png')`);
-    this.user.level >= 20 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${20}lvl.png')`);
-    this.user.level >= 30 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${30}lvl.png')`);
-    this.user.level >= 40 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${40}lvl.png')`);
-    this.user.level >= 50 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${50}lvl.png')`);
-    this.user.level >= 60 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${60}lvl.png')`);
-    this.user.level >= 70 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${70}lvl.png')`);
-    this.user.level >= 80 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${80}lvl.png')`);
-    this.user.level >= 90 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${90}lvl.png')`);
-    this.user.level >= 100 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${100}lvl.png')`);
-    this.user.level >= 110 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${110}lvl.png')`);
-    this.user.level >= 120 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${120}lvl.png')`);
-    this.user.level >= 130 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${130}lvl.png')`);
-  }
+  // _mainButtonChanger() {
+  //   this.user.level >= 1 && (this.btnMain.style.backgroundImage = `url('./images/main-button.png')`);
+  //   this.user.level >= 10 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${10}lvl.png')`);
+  //   this.user.level >= 20 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${20}lvl.png')`);
+  //   this.user.level >= 30 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${30}lvl.png')`);
+  //   this.user.level >= 40 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${40}lvl.png')`);
+  //   this.user.level >= 50 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${50}lvl.png')`);
+  //   this.user.level >= 60 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${60}lvl.png')`);
+  //   this.user.level >= 70 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${70}lvl.png')`);
+  //   this.user.level >= 80 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${80}lvl.png')`);
+  //   this.user.level >= 90 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${90}lvl.png')`);
+  //   this.user.level >= 100 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${100}lvl.png')`);
+  //   this.user.level >= 110 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${110}lvl.png')`);
+  //   this.user.level >= 120 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${120}lvl.png')`);
+  //   this.user.level >= 130 && (this.btnMain.style.backgroundImage = `url('./images/main-button-${130}lvl.png')`);
+  // }
 
   levelRenderer() {
-    this._mainButtonChanger();
+    // this._mainButtonChanger();
     this.levelField.textContent = `${formatNumber(this.user.level)}`;
     // let currentLevelStatus;
     // if(this.user.level < 10) {

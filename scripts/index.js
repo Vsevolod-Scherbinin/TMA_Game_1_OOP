@@ -76,7 +76,7 @@ function click(e) {
   btnMain.classList.add('mainScreen__button_active');
   setTimeout(() => {
     btnMain.classList.remove('mainScreen__button_active');
-  }, 100);
+}, 100);
 }
 
 // --------------- MainClick-Start ---------------
@@ -121,12 +121,13 @@ tokenButton.addEventListener('click', () => {
 });
 
 async function mainClick(evt) {
-  if(user.energy >= user.delta) {
+  if(user.energy >= user.delta && rolling == false) {
     if(tg.initDataUnsafe.user) {
       tg.HapticFeedback.impactOccurred('soft');
       tg.HapticFeedback.notificationOccurred('success');
     }
     click(evt);
+    rollAll();
     user.taps++;
     user.activeIncome = user.activeIncome + user.delta;
     energyManager.setEnergyRecoveryTimeout(false);

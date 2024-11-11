@@ -135,3 +135,5 @@
 @import url(../blocks/popup/__buttonText/popup__buttonText.css);
 
 @import url(../blocks/Preloader.css);
+
+@import url(../blocks/slots/slots.css);
